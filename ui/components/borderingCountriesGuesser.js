@@ -1,5 +1,8 @@
-import React, { useState } from 'react';
+import React, { Fragment, useState } from 'react';
 import { Button, Form } from 'react-bootstrap';
+import { Typeahead } from 'react-bootstrap-typeahead';
+
+import 'react-bootstrap-typeahead/css/Typeahead.css';
 
 function borderingCountriesGuesser(props) {
     // TODO will all these be used?
@@ -11,11 +14,13 @@ function borderingCountriesGuesser(props) {
     const [duplicateGuess, setDuplicateGuess] = useState(false);
     const [failed, setFailed] = useState(false);
     const [value, setValue] = useState('');
+    const [selectCountry, setSelectCountry] = useState([]);
 
     const handleSubmit = (event) => {
         event.preventDefault();
         setValue('');
         const guessedName = event.target[0].value.toLowerCase();
+        // TODO check name against known list
 
         if (guessedName.length > 0) {
             if (!guesses.includes(guessedName)) {
@@ -43,22 +48,27 @@ function borderingCountriesGuesser(props) {
         setValue(text.value);
     }
 
-    {/* TODO this needs an autocomplete form */ }
     return (
         <div id='borders'>
             <h2>Bordering Countries</h2>
             <div id='borders-form'>
                 {<Form onSubmit={handleSubmit}>
                     <br />
-                    <Form.Group className='mb-3'>
-                        <Form.Label>Guess the bordering countries</Form.Label>
-                        <Form.Control type='text' placeholder='' onChange={changeValue} value={value} />
-                        <Form.Text className='text-muted'>
-                            Enter a country name
-                        </Form.Text>
-                    </Form.Group>
+                    <Fragment>
+                        <Form.Group className='mb-3'>
+                            <Form.Label>Guess the bordering countries</Form.Label>
+                            {/* <Form.Control type='text' onChange={changeValue} value={value} /> TODO add the value thing back in? */}
+                            <Typeahead
+                                id='example' // TODO what is id?
+                                onChange={setSelectCountry}
+                                options={props.possibleCountries}
+                                placeholder="Select your country"
+                                selected={selectCountry}
+                            />
+                        </Form.Group>
+                    </Fragment>
                     <Button variant='primary' type='submit'>
-                        Submit
+                        Guess
                     </Button>
                 </Form>}
             </div>

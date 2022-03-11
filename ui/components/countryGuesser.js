@@ -1,5 +1,8 @@
-import React, { useState } from 'react';
+import React, { useState, Fragment } from 'react';
 import { Button, Form } from 'react-bootstrap';
+import { Typeahead } from 'react-bootstrap-typeahead';
+
+import 'react-bootstrap-typeahead/css/Typeahead.css';
 
 function CountryGuesser(props) {
     const [guessAttempted, setGuessAttempted] = useState(false);
@@ -9,11 +12,13 @@ function CountryGuesser(props) {
     const [duplicateGuess, setDuplicateGuess] = useState(false);
     const [failed, setFailed] = useState(false);
     const [value, setValue] = useState('');
+    const [selectCountry, setSelectCountry] = useState([]);
 
     const handleSubmit = (event) => {
         event.preventDefault();
         setValue('');
         const guessedName = event.target[0].value.toLowerCase();
+        // TODO check name against known list
         if (guessedName.length > 0) {
             if (!guesses.includes(guessedName)) {
                 setDuplicateGuess(false);
@@ -39,6 +44,7 @@ function CountryGuesser(props) {
         setValue(text.value);
     }
 
+    // TODO look into making the forms more generic and reusable
     return (
         <div id='country-guesser' className='component'>
             {!failed && !correctGuess && <div id='country-info'>
@@ -56,38 +62,33 @@ function CountryGuesser(props) {
             <div id='country-form'>
                 {!correctGuess && !failed && <Form onSubmit={handleSubmit}>
                     <br />
-                    <Form.Group className='mb-3'>
-                        <Form.Label>Guess the country</Form.Label>
-                        <Form.Control type='text' placeholder='' onChange={changeValue} value={value} />
-                        <Form.Text className='text-muted'>
-                            Enter a country name
-                        </Form.Text>
-
-                        {/* TODO this needs an autocomplete form */}
-                        {/* https://www.javatpoint.com/html-list-box#:~:text=The%20list%20box%20is%20a,from%20the%20list%20of%20options. */}
-                        {/* <Form.Select aria-label="Default select example">
-                            <option>Open this select menu</option>
-                            <option value="1">One</option>
-                            <option value="2">Two</option>
-                            <option value="3">Three</option>
-                        </Form.Select> */}
-
-
-                    </Form.Group>
+                    <Fragment>
+                        <Form.Group className='mb-3'>
+                            <Form.Label>Guess the country</Form.Label>
+                            {/* <Form.Control type='text' onChange={changeValue} value={value} /> TODO add the value thing back in? */}
+                            <Typeahead
+                                id='example' // TODO what is id?
+                                onChange={setSelectCountry}
+                                options={props.possibleCountries}
+                                placeholder="Select your country"
+                                selected={selectCountry}
+                            />
+                        </Form.Group>
+                    </Fragment>
                     <Button variant='primary' type='submit'>
-                        Submit
+                        Guess
                     </Button>
                 </Form>}
             </div>
             <br />
             {!correctGuess && guessAttempted && !failed && <div id='guess-feedback'>
                 {duplicateGuess && <p style={{ color: 'brown' }}>You've already tried that country!</p>}
-                {!duplicateGuess && <p style={{ color: 'red' }}>Incorrect! That was your {incorrectCount} attempt.</p>}
+                {!duplicateGuess && <p style={{ color: 'red' }}>Incorrect! That was attempt number {incorrectCount}/6.</p>}
                 {<p>Your guesses so far: {guesses.toString()}</p>}
             </div>}
             {correctGuess && !failed && <div id='successful-guess'>
                 {incorrectCount === 0 && <h5>Amazing! You got <a href={props.map}>{props.name}</a> in 1!</h5>}
-                {incorrectCount > 0 && <h5>Well done!! It took you {incorrectCount + 1} attempts to get <a href={props.map}>{props.name}</a>!</h5>}
+                {incorrectCount > 0 && <h5>Well done! It took you {incorrectCount + 1} attempts to get <a href={props.map}>{props.name}</a>!</h5>}
                 {<img style={{ border: 'solid' }} src={props.flag} alt='Country Flag' />}
                 <p>Your answer history was: {guesses.toString()}</p>
             </div>}
