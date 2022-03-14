@@ -10,7 +10,6 @@ function Country() {
   const [ready, setReady] = useState(false);
   const [possibleCountries, setPossibleCountries] = useState();
 
-
   // TODO refactor this!
   async function getCountry() {
     try {
@@ -41,6 +40,7 @@ function Country() {
 
   function countryList(countriesArray) {
     const optionsList = [];
+    // TODO organise in alphabetical order?
     countriesArray.forEach(country => {
       const option = {
         label: country,
@@ -74,10 +74,11 @@ function Country() {
       />}
       {/* TODO should only show this when the other has been done? */}
       {/* TODO need to tidy up the borders */}
-      {ready && countryResponse.borders.length >= 1 && <BorderingCountriesGuesser
-        name={countryResponse.name} borderingCountries={countryResponse.borders}
+      {/* {ready && countryResponse.borders && <BorderingCountriesGuesser
+        name={countryResponse.name} 
+        borderingCountries={countryResponse.borders}
         possibleCountries={possibleCountries}
-      />}
+      />} */}
       {/* TODO once both completed clear the forms and show the button again? Or link to another page? */}
     </div >
   );

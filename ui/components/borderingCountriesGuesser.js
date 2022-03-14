@@ -13,16 +13,33 @@ function borderingCountriesGuesser(props) {
     const [guesses, setGuesses] = useState([]);
     const [duplicateGuess, setDuplicateGuess] = useState(false);
     const [failed, setFailed] = useState(false);
+    const [knownCountry, setKnownCountry] = useState(true);
     const [value, setValue] = useState('');
     const [selectCountry, setSelectCountry] = useState([]);
 
     const handleSubmit = (event) => {
         event.preventDefault();
         setValue('');
-        const guessedName = event.target[0].value.toLowerCase();
-        // TODO check name against known list
-
+        const guessedName = event.target[0].value.toLowerCase().trim();
+        let isValidCountry = false;
         if (guessedName.length > 0) {
+            props.possibleCountries.find(country => {
+                if (country.label.toLowerCase() === guessedName) {
+                    setKnownCountry(true);
+                    isValidCountry = true;
+                } else {
+                    setDuplicateGuess(false);
+                    setGuessAttempted(false);
+                    setKnownCountry(false);
+                }
+            });
+        } else {
+            setKnownCountry(false);
+            setGuessAttempted(false);
+            setDuplicateGuess(false);
+        }
+
+        if (isValidCountry) {
             if (!guesses.includes(guessedName)) {
                 setDuplicateGuess(false);
                 setGuessAttempted(true);

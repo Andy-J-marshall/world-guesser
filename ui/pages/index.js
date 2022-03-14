@@ -1,8 +1,8 @@
 import React from 'react';
-import axios from 'axios';
 import Country from '../components/country';
 
 // TODO tidy up CSS for whole app
+// TODO change favicon
 function App() {
   return (
     <div id='app'>

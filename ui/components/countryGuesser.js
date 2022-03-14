@@ -11,15 +11,34 @@ function CountryGuesser(props) {
     const [guesses, setGuesses] = useState([]);
     const [duplicateGuess, setDuplicateGuess] = useState(false);
     const [failed, setFailed] = useState(false);
+    const [knownCountry, setKnownCountry] = useState(true);
     const [value, setValue] = useState('');
     const [selectCountry, setSelectCountry] = useState([]);
 
     const handleSubmit = (event) => {
         event.preventDefault();
         setValue('');
-        const guessedName = event.target[0].value.toLowerCase();
-        // TODO check name against known list
+        const guessedName = event.target[0].value.toLowerCase().trim();
+        let isValidCountry = false;
         if (guessedName.length > 0) {
+            props.possibleCountries.find(country => {
+                if (country.label.toLowerCase() === guessedName) {
+                    setKnownCountry(true);
+                    isValidCountry = true;
+                } else {
+                    setDuplicateGuess(false);
+                    setGuessAttempted(false);
+                    setKnownCountry(false);
+                }
+            });
+        } else {
+            setKnownCountry(false);
+            setGuessAttempted(false);
+            setDuplicateGuess(false);
+        }
+
+        if (isValidCountry) {
+            setKnownCountry(true);
             if (!guesses.includes(guessedName)) {
                 setDuplicateGuess(false);
                 setGuessAttempted(true);
@@ -81,8 +100,11 @@ function CountryGuesser(props) {
                 </Form>}
             </div>
             <br />
-            {!correctGuess && guessAttempted && !failed && <div id='guess-feedback'>
+            <div id='invalid-guess-feedback'>
                 {duplicateGuess && <p style={{ color: 'brown' }}>You've already tried that country!</p>}
+                {!knownCountry && <p style={{ color: 'brown' }}>Enter a valid country name</p>}
+            </div>
+            {!correctGuess && guessAttempted && !failed && <div id='guess-feedback'>
                 {!duplicateGuess && <p style={{ color: 'red' }}>Incorrect! That was attempt number {incorrectCount}/6.</p>}
                 {<p>Your guesses so far: {guesses.toString()}</p>}
             </div>}

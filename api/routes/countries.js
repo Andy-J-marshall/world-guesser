@@ -5,6 +5,8 @@ const https = require('https');
 
 // https://restcountries.com/
 
+// TODO do I really need to use express for this? Just combine it into the react app?
+
 router.get('/', async (req, res, next) => {
   try {
     // TODO do I still have to do this?
