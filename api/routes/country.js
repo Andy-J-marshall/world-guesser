@@ -11,13 +11,16 @@ router.get('/', async (req, res, next) => {
     const agent = new https.Agent({
       rejectUnauthorized: false
     });
-    const country = req.query.country;
-    const response = await axios.get(`https://restcountries.com/v3.1/name/${country}`, {
+    const { countryCode } = req.query;
+    if (!countryCode) {
+      console.log('No country code exists for the selected country');
+    }
+    const url = `https://restcountries.com/v3.1/alpha/${countryCode}`;
+    const response = await axios.get(url, {
       httpsAgent: agent,
     });
     const body = response.data[0];
 
-    // TODO only use if independent unMember both === true? Or if same as previous one
     const returnObject = {
       name: body.name.common,
       borders: body.borders,

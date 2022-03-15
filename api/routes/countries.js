@@ -18,24 +18,29 @@ router.get('/', async (req, res, next) => {
     });
     const body = response.data;
 
-    const countryNameArray = [];
     const officialCountryNameArray = [];
-    const fullCountriesArray = [];
+    const independentCountriesArray = [];
+    const countryCodeMapping = [];
 
     body.forEach(country => {
       const name = country.name.common;
-      countryNameArray.push(name);
       const officialName = country.name.official;
       officialCountryNameArray.push(officialName);
       if (country.unMember && country.independent) {
-        fullCountriesArray.push(name);
+        independentCountriesArray.push(name);
+        const code = country.cioc;
+        const countryMappingObj = {
+          name,
+          code,
+        };
+        countryCodeMapping.push(countryMappingObj);
       }
     });
 
     const returnObject = {
-      countryNames: countryNameArray,
-      officialCountryNames: officialCountryNameArray, // TODO do we need this?
-      fullCountriesArray: fullCountriesArray,
+      officialCountryNames: officialCountryNameArray.sort(), // TODO Also add Taiwan, Greenland, Kosovo, Palestine (and more) to this?
+      independentCountriesArray: independentCountriesArray.sort(),
+      countryCodeMapping,
     }
     res.status(200).send(returnObject);
 

@@ -109,7 +109,7 @@ function CountryGuesser(props) {
                 {<p>Your guesses so far: {guesses.toString()}</p>}
             </div>}
             {correctGuess && !failed && <div id='successful-guess'>
-                {incorrectCount === 0 && <h5>Amazing! You got <a href={props.map}>{props.name}</a> in 1!</h5>}
+                {incorrectCount === 0 && <h5>Amazing! You got <a href={props.map}>{props.name}</a> in one!</h5>}
                 {incorrectCount > 0 && <h5>Well done! It took you {incorrectCount + 1} attempts to get <a href={props.map}>{props.name}</a>!</h5>}
                 {<img style={{ border: 'solid' }} src={props.flag} alt='Country Flag' />}
                 <p>Your answer history was: {guesses.toString()}</p>

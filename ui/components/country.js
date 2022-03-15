@@ -6,20 +6,17 @@ import BorderingCountriesGuesser from './borderingCountriesGuesser';
 
 function Country() {
   const [countryResponse, setCountryResponse] = useState();
+  const [possibleCountries, setPossibleCountries] = useState();
   const [error, setError] = useState(false);
   const [ready, setReady] = useState(false);
-  const [possibleCountries, setPossibleCountries] = useState();
 
   // TODO refactor this!
   async function getCountry() {
     try {
-      // TODO give option for easy or hard mode e.g. fullCountriesArray or countryNames
-      const fullCountriesArray = await getFullCountriesInfo();
-      const countryList = fullCountriesArray.countryNames;
-      const randomCountry = countryList[Math.floor(Math.random() * countryList.length)];
-      const response = await axios.get('http://localhost:4000/country?country=' + randomCountry); // TODO will this always work? Try complex names
+      const getAllCountriesResp = await getCountriesInfo();
+      const countryCode = returnRandomCountryCode(getAllCountriesResp);
+      const response = await axios.get('http://localhost:4000/country?countryCode=' + countryCode); // TODO will this always work? Try complex names
       setCountryResponse(response.data);
-      // TODO what if it gets a 404?
       setReady(true);
     } catch (error) {
       setError(true);
@@ -27,27 +24,31 @@ function Country() {
     }
   }
 
-  async function getFullCountriesInfo() {
+  async function getCountriesInfo() {
     try {
       const response = await axios.get('http://localhost:4000/countries');
       const body = response.data;
-      countryList(body.countryNames);
+      const countriesArray = body.independentCountriesArray;
+      const optionsList = [];
+      countriesArray.forEach(country => {
+        const option = {
+          label: country,
+        }
+        optionsList.push(option);
+      });
+      setPossibleCountries(optionsList);
       return body;
     } catch (error) {
       console.log(error);
     }
   }
 
-  function countryList(countriesArray) {
-    const optionsList = [];
-    // TODO organise in alphabetical order?
-    countriesArray.forEach(country => {
-      const option = {
-        label: country,
-      }
-      optionsList.push(option);
-    });
-    setPossibleCountries(optionsList);
+  function returnRandomCountryCode(getAllCountriesResp) {
+    const countries = getAllCountriesResp.independentCountriesArray;
+    const selectedCountry = countries[Math.floor(Math.random() * countries.length)];
+    const { countryCodeMapping } = getAllCountriesResp;
+    const countryDetails = countryCodeMapping.find(country => country.name === selectedCountry);
+    return countryDetails.code;
   }
 
   function numberWithCommas(number) {
@@ -55,11 +56,11 @@ function Country() {
   }
 
   return (
-    // <div className='d-grid gap-2"></div>
     <div id='country'>
       {!ready && <Button variant='primary' size='lg' onClick={getCountry}>
         Press to begin the fun!
       </Button>}
+      {/* TODO make the error handling more generic? Create a component */}
       {error && <p>Error found when finding country. Please try again</p>}
       {ready && <CountryGuesser
         name={countryResponse.name}
