@@ -19,16 +19,20 @@ router.get('/', async (req, res, next) => {
     const body = response.data;
 
     const officialCountryNameArray = [];
-    const independentCountriesArray = [];
+    const countriesArray = [];
     const countryCodeMapping = [];
+    const extraCountries = ['Taiwan', 'Greenland', 'Palestine', 'Kosovo', 'Western Sahara'];
 
     body.forEach(country => {
       const name = country.name.common;
       const officialName = country.name.official;
       officialCountryNameArray.push(officialName);
-      if (country.unMember && country.independent) {
-        independentCountriesArray.push(name);
-        const code = country.cioc;
+      if ((country.unMember && country.independent) || extraCountries.includes(name)) {
+        countriesArray.push(name);
+        let code = country.cioc;
+        if (!code) {
+          code = country.cca3;
+        }
         const countryMappingObj = {
           name,
           code,
@@ -38,8 +42,8 @@ router.get('/', async (req, res, next) => {
     });
 
     const returnObject = {
-      officialCountryNames: officialCountryNameArray.sort(), // TODO Also add Taiwan, Greenland, Kosovo, Palestine (and more) to this?
-      independentCountriesArray: independentCountriesArray.sort(),
+      officialCountryNames: officialCountryNameArray.sort(),
+      countriesArray: countriesArray.sort(),
       countryCodeMapping,
     }
     res.status(200).send(returnObject);

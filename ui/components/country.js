@@ -28,7 +28,7 @@ function Country() {
     try {
       const response = await axios.get('http://localhost:4000/countries');
       const body = response.data;
-      const countriesArray = body.independentCountriesArray;
+      const countriesArray = body.countriesArray;
       const optionsList = [];
       countriesArray.forEach(country => {
         const option = {
@@ -44,7 +44,7 @@ function Country() {
   }
 
   function returnRandomCountryCode(getAllCountriesResp) {
-    const countries = getAllCountriesResp.independentCountriesArray;
+    const countries = getAllCountriesResp.countriesArray;
     const selectedCountry = countries[Math.floor(Math.random() * countries.length)];
     const { countryCodeMapping } = getAllCountriesResp;
     const countryDetails = countryCodeMapping.find(country => country.name === selectedCountry);
