@@ -39,6 +39,8 @@ function borderingCountriesGuesser(props) {
             setDuplicateGuess(false);
         }
 
+        // TODO this will need to find the code from the country code mapping
+
         if (isValidCountry) {
             if (!guesses.includes(guessedName)) {
                 setDuplicateGuess(false);
@@ -76,7 +78,7 @@ function borderingCountriesGuesser(props) {
                             <Form.Label>Guess the bordering countries</Form.Label>
                             {/* <Form.Control type='text' onChange={changeValue} value={value} /> TODO add the value thing back in? */}
                             <Typeahead
-                                id='example' // TODO what is id?
+                                id='bordering-countries-guesser'
                                 onChange={setSelectCountry}
                                 options={props.possibleCountries}
                                 placeholder="Select your country"

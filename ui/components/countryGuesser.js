@@ -58,7 +58,7 @@ function CountryGuesser(props) {
         }
     };
 
-    // TODO this is causing a warning in the console
+    // TODO this is causing a warning in the console - check docs for how it works
     function changeValue(text) {
         setValue(text.value);
     }
@@ -86,7 +86,7 @@ function CountryGuesser(props) {
                             <Form.Label>Guess the country</Form.Label>
                             {/* <Form.Control type='text' onChange={changeValue} value={value} /> TODO add the value thing back in? */}
                             <Typeahead
-                                id='example' // TODO what is id?
+                                id='country-search'
                                 onChange={setSelectCountry}
                                 options={props.possibleCountries}
                                 placeholder="Select your country"
