@@ -2,10 +2,9 @@
   "private": true,
   "homepage": "https://andy-j-marshall.github.io/world-guesser/",
   "scripts": {
-    "predeploy": "npm run build",
-    "deploy": "gh-pages -d build",
     "start": "react-scripts start",
-    "build": "react-scripts build"
+    "build": "react-scripts build",
+    "deploy": "gh-pages -d build"
   },
   "dependencies": {
     "axios": "^0.26.0",
