@@ -3,7 +3,7 @@
   "homepage": "https://andy-j-marshall.github.io/world-guesser/",
   "scripts": {
     "predeploy": "npm run build",
-    "deploy": "gh-pages -d .next",
+    "deploy": "gh-pages -b master -d build",
     "dev": "next dev",
     "build": "next build",
     "start": "next start"
