@@ -1,5 +1,5 @@
-const axios = require('axios');;
-const https = require('https');
+import axios from 'axios';
+import https from 'https';
 
 async function countryRequest(countryCode) {
   try {
@@ -35,4 +35,4 @@ async function countryRequest(countryCode) {
   }
 };
 
-module.exports = countryRequest;
+export default countryRequest;

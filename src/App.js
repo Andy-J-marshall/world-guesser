@@ -1,5 +1,5 @@
 import React from 'react';
-import Country from '../components/country';
+import Country from './components/country';
 
 // TODO tidy up CSS for whole app
 // TODO change favicon
