@@ -2,8 +2,8 @@ import React, { useState } from 'react';
 import { Button } from 'react-bootstrap';
 import CountryGuesser from './countryGuesser';
 import BorderingCountriesGuesser from './borderingCountriesGuesser';
-const getAllCountriesRequest = require('../restHelpers/allCountriesRequest');
-const getCountryRequest = require('../restHelpers/countryRequest');
+import getAllCountriesRequest from '../restHelpers/allCountriesRequest';
+import getCountryRequest from '../restHelpers/countryRequest';
 
 function Country() {
   const [countryResponse, setCountryResponse] = useState();
