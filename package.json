@@ -1,12 +1,16 @@
 {
   "private": true,
+  "homepage": "https://andy-j-marshall.github.io/world-guesser/",
   "scripts": {
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d .next",
     "dev": "next dev",
     "build": "next build",
     "start": "next start"
   },
   "dependencies": {
     "axios": "^0.26.0",
+    "gh-pages": "^3.2.3",
     "next": "latest",
     "react": "17.0.2",
     "react-bootstrap": "^1.5.2",
