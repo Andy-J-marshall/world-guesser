@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
-import axios from 'axios';
 import { Button } from 'react-bootstrap';
 import CountryGuesser from './countryGuesser';
 import BorderingCountriesGuesser from './borderingCountriesGuesser';
+const getAllCountriesRequest = require('../restHelpers/allCountriesRequest');
+const getCountryRequest = require('../restHelpers/countryRequest');
 
 function Country() {
   const [countryResponse, setCountryResponse] = useState();
@@ -16,8 +17,8 @@ function Country() {
     try {
       const getAllCountriesResp = await getCountriesInfo();
       const countryCode = returnRandomCountryCode(getAllCountriesResp);
-      const response = await axios.get('http://localhost:4001/country?countryCode=' + countryCode); // TODO will this always work? Try complex names
-      setCountryResponse(response.data);
+      const response = await getCountryRequest(countryCode); // TODO will this always work? Try complex names
+      setCountryResponse(response);
       setReady(true);
     } catch (error) {
       setError(true);
@@ -27,9 +28,8 @@ function Country() {
 
   async function getCountriesInfo() {
     try {
-      const response = await axios.get('http://localhost:4001/countries');
-      const body = response.data;
-      const countriesArray = body.countriesArray;
+      const response = await getAllCountriesRequest();
+      const countriesArray = response.countriesArray;
       const optionsList = [];
       countriesArray.forEach(country => {
         const option = {
@@ -38,7 +38,7 @@ function Country() {
         optionsList.push(option);
       });
       setPossibleCountries(optionsList);
-      return body;
+      return response;
     } catch (error) {
       console.log(error);
     }
@@ -77,12 +77,12 @@ function Country() {
       />}
       {/* TODO should only show this when the other has been done? */}
       {/* TODO need to tidy up the borders */}
-      {ready && countryResponse.borders && <BorderingCountriesGuesser
+      {/* {ready && countryResponse.borders && <BorderingCountriesGuesser
         name={countryResponse.name}
         borderingCountries={countryResponse.borders}
         possibleCountries={possibleCountries}
         countryCodeMapping={countryCodeMapping}
-      />}
+      />} */}
       {/* TODO once both completed clear the forms and show the button again? Or link to another page? */}
     </div >
   );

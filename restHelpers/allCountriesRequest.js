@@ -1,13 +1,9 @@
-const { default: axios } = require('axios');
-const express = require('express');
-const router = express.Router();
+const axios = require('axios');
 const https = require('https');
 
 // https://restcountries.com/
 
-// TODO do I really need to use express for this? Just combine it into the react app?
-
-router.get('/', async (req, res, next) => {
+async function allCountriesRequest() {
   try {
     // TODO do I still have to do this?
     const agent = new https.Agent({
@@ -46,11 +42,11 @@ router.get('/', async (req, res, next) => {
       countriesArray: countriesArray.sort(),
       countryCodeMapping,
     }
-    res.status(200).send(returnObject);
+    return returnObject;
 
   } catch (error) {
-    res.status(404).send('ERROR');
+    console.log(error);
   }
-});
+}
 
-module.exports = router;
+module.exports = allCountriesRequest;

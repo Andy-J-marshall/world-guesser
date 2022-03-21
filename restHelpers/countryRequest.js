@@ -1,17 +1,12 @@
-const { default: axios } = require('axios');
-const express = require('express');
-const router = express.Router();
+const axios = require('axios');;
 const https = require('https');
 
-// https://restcountries.com/
-
-router.get('/', async (req, res, next) => {
+async function countryRequest(countryCode) {
   try {
     // TODO do I still have to do this?
     const agent = new https.Agent({
       rejectUnauthorized: false
     });
-    const { countryCode } = req.query;
     if (!countryCode) {
       console.log('No country code exists for the selected country');
     }
@@ -31,12 +26,13 @@ router.get('/', async (req, res, next) => {
       flags: body.flags.png,
       region: body.region,
       subregion: body.subregion,
-    }
-    res.status(200).send(returnObject);
+    };
+
+    return returnObject;
 
   } catch (error) {
-    res.status(404).send('ERROR');
+    console.log(error);
   }
-});
+};
 
-module.exports = router;
+module.exports = countryRequest;
