@@ -16,6 +16,7 @@ function CountryGuesser(props) {
     const map = props.map;
     const capital = props.capital;
     const possibleCountries = props.possibleCountries;
+    const borderingCountries = props.borderingCountries;
 
     const [guessAttempted, setGuessAttempted] = useState(false);
     const [correctGuess, setCorrectGuess] = useState(false);
@@ -59,7 +60,7 @@ function CountryGuesser(props) {
                 } else {
                     setIncorrectCount(incorrectCount + 1)
                     setCorrectGuess(false);
-                    if (incorrectCount === 5) {
+                    if (incorrectCount >= 5) {
                         setFailed(true);
                     }
                 }
@@ -126,6 +127,8 @@ function CountryGuesser(props) {
                 flag={flag}
                 incorrectCount={incorrectCount}
                 guesses={guesses}
+                borderingCountries={borderingCountries}
+                possibleCountries={possibleCountries}
             />}
             {failed && <FailurePage
                 name={name}

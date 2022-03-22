@@ -5,26 +5,30 @@ import { Typeahead } from 'react-bootstrap-typeahead';
 import 'react-bootstrap-typeahead/css/Typeahead.css';
 
 function borderingCountriesGuesser(props) {
-    const possibleCountries = props.possibleCountries;
+    const name = props.name;
     const borderingCountries = props.borderingCountries;
+    const possibleCountries = props.possibleCountries;
+    const countryCodeMapping = props.countryCodeMapping;
 
     // TODO will all these be used?
     const [guessAttempted, setGuessAttempted] = useState(false);
     const [correctGuesses, setCorrectGuesses] = useState([]);
+    const [correctGuess, setCorrectGuess] = useState(false);
     const [incorrectGuesses, setIncorrectGuesses] = useState([]);
     const [incorrectCount, setIncorrectCount] = useState(0);
     const [guesses, setGuesses] = useState([]);
     const [duplicateGuess, setDuplicateGuess] = useState(false);
     const [failed, setFailed] = useState(false);
+    const [succeeded, setSucceeded] = useState(false);
     const [knownCountry, setKnownCountry] = useState(true);
-    const [value, setValue] = useState('');
     const [selectCountry, setSelectCountry] = useState([]);
 
     const handleSubmit = (event) => {
         event.preventDefault();
-        setValue('');
         const guessedName = event.target[0].value.toLowerCase().trim();
         let isValidCountry = false;
+
+        // TODO move this if/else code somewhere so it can be shared?
         if (guessedName.length > 0) {
             possibleCountries.find(country => {
                 if (country.label.toLowerCase() === guessedName) {
@@ -42,20 +46,31 @@ function borderingCountriesGuesser(props) {
             setDuplicateGuess(false);
         }
 
-        // TODO this will need to find the code from the country code mapping
-
+        // TODO make sure this works with countries such as Greenland/ Kosovo etc.
         if (isValidCountry) {
+            const answerCountries = [];
+            borderingCountries.forEach(borderingCountry => {
+                countryCodeMapping.find(country => {
+                    if (country.code === borderingCountry) {
+                        answerCountries.push(country.name);
+                    }
+                })
+            });
             if (!guesses.includes(guessedName)) {
                 setDuplicateGuess(false);
                 setGuessAttempted(true);
-                const lowerCaseCountryArray = borderingCountries.map(country => country.toLowerCase());
-                if (lowerCaseCountryArray.includes(guessedName)) {
+                const lowerCaseBorderingCountryArray = answerCountries.map(country => country.toLowerCase());
+                if (lowerCaseBorderingCountryArray.includes(guessedName)) {
                     setCorrectGuesses([...correctGuesses, guessedName]);
+                    // TODO why is this counter off by 1? Same as the one in countryGuesser
+                    if (correctGuesses.length + 1 === answerCountries.length) {
+                        setSucceeded(true);
+                    }
                 } else {
-                    setIncorrectGuesses(guessedName);
+                    setIncorrectGuesses([...incorrectGuesses, guessedName]);
                     setIncorrectCount(incorrectCount + 1);
-                    setCorrectGuess(false);
-                    if (incorrectCount === 5) {
+                    setCorrectGuess(false); // TODO do I need this?
+                    if (incorrectCount >= 5) {
                         setFailed(true);
                     }
                 }
@@ -66,25 +81,21 @@ function borderingCountriesGuesser(props) {
         }
     };
 
-    function changeValue(text) {
-        setValue(text.value);
-    }
-
     return (
         <div id='borders'>
             <h2>Bordering Countries</h2>
+            <p>Your country is: {name}</p>
             <div id='borders-form'>
                 {<Form onSubmit={handleSubmit}>
                     <br />
                     <Fragment>
                         <Form.Group className='mb-3'>
                             <Form.Label>Guess the bordering countries</Form.Label>
-                            {/* <Form.Control type='text' onChange={changeValue} value={value} /> TODO add the value thing back in? */}
                             <Typeahead
                                 id='bordering-countries-guesser'
                                 onChange={setSelectCountry}
                                 options={possibleCountries}
-                                placeholder="Select your country"
+                                placeholder='Select your country'
                                 selected={selectCountry}
                             />
                         </Form.Group>
@@ -94,9 +105,13 @@ function borderingCountriesGuesser(props) {
                     </Button>
                 </Form>}
             </div>
+            <br />
+            {/* TODO make a bigger deal about correct and incorrect guesses e.g. colours etc. */}
             <p>Correct guesses so far: {correctGuesses.toString()}</p>
             <p>Incorrect guesses so far: {incorrectGuesses.toString()}</p>
             {/* TODO complete this */}
+            {failed && <p>FAILED!!</p>}
+            {succeeded && <p>SUCCESS!!</p>}
         </div>
     );
 }

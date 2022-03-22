@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Button } from 'react-bootstrap';
 import CountryGuesser from './countryGuesser';
-import BorderingCountriesGuesser from './borderingCountriesGuesser';
+// import BorderingCountriesGuesser from './borderingCountriesGuesser'; // TODO remove?
 import getAllCountriesRequest from '../restHelpers/allCountriesRequest';
 import getCountryRequest from '../restHelpers/countryRequest';
 
@@ -17,7 +17,7 @@ function Country() {
     try {
       const getAllCountriesResp = await getCountriesInfo();
       const countryCode = returnRandomCountryCode(getAllCountriesResp);
-      const response = await getCountryRequest(countryCode); // TODO will this always work? Try complex names
+      const response = await getCountryRequest(countryCode);
       setCountryResponse(response);
       setReady(true);
     } catch (error) {
@@ -50,7 +50,7 @@ function Country() {
     const { countryCodeMapping } = getAllCountriesResp;
     setCountryCodeMapping(countryCodeMapping);
     const countryDetails = countryCodeMapping.find(country => country.name === selectedCountry);
-    return countryDetails.code;
+    return countryDetails.code; // TODO just return countryDetails here instead and miss out the second API call?
   }
 
   function numberWithCommas(number) {
@@ -72,17 +72,16 @@ function Country() {
         subregion={countryResponse.subregion}
         map={countryResponse.map}
         capital={countryResponse.capital.toString()}
+        borderingCountries={countryResponse.borders}
         possibleCountries={possibleCountries}
+        countryCodeMapping={countryCodeMapping}
       />}
-      {/* TODO should only show this when the other has been done? */}
-      {/* TODO need to tidy up the borders */}
       {/* {ready && countryResponse.borders && <BorderingCountriesGuesser
         name={countryResponse.name}
         borderingCountries={countryResponse.borders}
         possibleCountries={possibleCountries}
         countryCodeMapping={countryCodeMapping}
       />} */}
-      {/* TODO once both completed clear the forms and show the button again? Or link to another page? */}
     </div >
   );
 }
