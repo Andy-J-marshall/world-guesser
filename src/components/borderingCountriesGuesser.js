@@ -5,6 +5,9 @@ import { Typeahead } from 'react-bootstrap-typeahead';
 import 'react-bootstrap-typeahead/css/Typeahead.css';
 
 function borderingCountriesGuesser(props) {
+    const possibleCountries = props.possibleCountries;
+    const borderingCountries = props.borderingCountries;
+
     // TODO will all these be used?
     const [guessAttempted, setGuessAttempted] = useState(false);
     const [correctGuesses, setCorrectGuesses] = useState([]);
@@ -23,7 +26,7 @@ function borderingCountriesGuesser(props) {
         const guessedName = event.target[0].value.toLowerCase().trim();
         let isValidCountry = false;
         if (guessedName.length > 0) {
-            props.possibleCountries.find(country => {
+            possibleCountries.find(country => {
                 if (country.label.toLowerCase() === guessedName) {
                     setKnownCountry(true);
                     isValidCountry = true;
@@ -45,7 +48,7 @@ function borderingCountriesGuesser(props) {
             if (!guesses.includes(guessedName)) {
                 setDuplicateGuess(false);
                 setGuessAttempted(true);
-                const lowerCaseCountryArray = props.borderingCountries.map(country => country.toLowerCase());
+                const lowerCaseCountryArray = borderingCountries.map(country => country.toLowerCase());
                 if (lowerCaseCountryArray.includes(guessedName)) {
                     setCorrectGuesses([...correctGuesses, guessedName]);
                 } else {
@@ -80,7 +83,7 @@ function borderingCountriesGuesser(props) {
                             <Typeahead
                                 id='bordering-countries-guesser'
                                 onChange={setSelectCountry}
-                                options={props.possibleCountries}
+                                options={possibleCountries}
                                 placeholder="Select your country"
                                 selected={selectCountry}
                             />

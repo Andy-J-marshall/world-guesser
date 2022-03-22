@@ -1,20 +1,24 @@
 TODO Complete the readme
+# README
 
-Site is hosted here:
-https://andy-j-marshall.github.io/world-guesser/"
+## Site is hosted here
+https://andy-j-marshall.github.io/world-guesser/
 
-pre-requisites:
+## pre-requisites
 node
 
-To run locally:
-npm i
-npm run start
+## To run locally
+Run the following:
+* `npm i`
+* `npm run start`
 
-To deploy:
-npm i
-npm build
-npm deploy
+## To deploy
+Run the following:
+* `npm i`
+* `npm build`
+* `npm deploy`
 
-Todo list:
+## Todo list
 Create the bordering countries app
 Can I hide the http response in the browser?
+Create a stats page

@@ -62,7 +62,6 @@ function Country() {
       {!ready && <Button variant='primary' size='lg' onClick={getCountry}>
         Press to begin the fun!
       </Button>}
-      {/* TODO make the error handling more generic? Create a component */}
       {error && <p>Error found when finding country. Please try again</p>}
       {ready && <CountryGuesser
         name={countryResponse.name}

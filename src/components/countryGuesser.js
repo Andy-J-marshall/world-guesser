@@ -1,10 +1,22 @@
 import React, { useState, Fragment } from 'react';
 import { Button, Form } from 'react-bootstrap';
 import { Typeahead } from 'react-bootstrap-typeahead';
+import FailurePage from './failurePage';
+import SuccessPage from './successPage';
 
 import 'react-bootstrap-typeahead/css/Typeahead.css';
 
 function CountryGuesser(props) {
+    const name = props.name;
+    const population = props.population;
+    const flag = props.flag;
+    const landlocked = props.landlocked;
+    const region = props.region;
+    const subregion = props.subregion;
+    const map = props.map;
+    const capital = props.capital;
+    const possibleCountries = props.possibleCountries;
+
     const [guessAttempted, setGuessAttempted] = useState(false);
     const [correctGuess, setCorrectGuess] = useState(false);
     const [incorrectCount, setIncorrectCount] = useState(0);
@@ -21,7 +33,7 @@ function CountryGuesser(props) {
         const guessedName = event.target[0].value.toLowerCase().trim();
         let isValidCountry = false;
         if (guessedName.length > 0) {
-            props.possibleCountries.find(country => {
+            possibleCountries.find(country => {
                 if (country.label.toLowerCase() === guessedName) {
                     setKnownCountry(true);
                     isValidCountry = true;
@@ -42,7 +54,7 @@ function CountryGuesser(props) {
             if (!guesses.includes(guessedName)) {
                 setDuplicateGuess(false);
                 setGuessAttempted(true);
-                if (guessedName === props.name.toLowerCase()) {
+                if (guessedName === name.toLowerCase()) {
                     setCorrectGuess(true);
                 } else {
                     setIncorrectCount(incorrectCount + 1)
@@ -68,15 +80,15 @@ function CountryGuesser(props) {
         <div id='country-guesser' className='component'>
             {!failed && !correctGuess && <div id='country-info'>
                 <h2>Mystery Country</h2>
-                {<p>Population = {props.population}</p>}
-                {incorrectCount >= 1 && <p>Region = {props.region}</p>}
-                {incorrectCount >= 2 && <p>Landlocked = {props.landlocked}</p>}
-                {incorrectCount >= 3 && <p>Sub region = {props.subregion}</p>}
+                {<p>Population = {population}</p>}
+                {incorrectCount >= 1 && <p>Region = {region}</p>}
+                {incorrectCount >= 2 && <p>Landlocked = {landlocked}</p>}
+                {incorrectCount >= 3 && <p>Sub region = {subregion}</p>}
                 {incorrectCount >= 4 && <div>
                     <p>Flag: </p>
-                    {<img style={{ border: 'solid' }} src={props.flag} alt='Country Flag' />}
+                    {<img style={{ border: 'solid' }} src={flag} alt='Country Flag' />}
                 </div>}
-                {incorrectCount >= 5 && <p>Capital city/cities = {props.capital}</p>}
+                {incorrectCount >= 5 && <p>Capital city/cities = {capital}</p>}
             </div>}
             <div id='country-form'>
                 {!correctGuess && !failed && <Form onSubmit={handleSubmit}>
@@ -88,7 +100,7 @@ function CountryGuesser(props) {
                             <Typeahead
                                 id='country-search'
                                 onChange={setSelectCountry}
-                                options={props.possibleCountries}
+                                options={possibleCountries}
                                 placeholder="Select your country"
                                 selected={selectCountry}
                             />
@@ -108,17 +120,18 @@ function CountryGuesser(props) {
                 {!duplicateGuess && <p style={{ color: 'red' }}>Incorrect! That was attempt number {incorrectCount}/6.</p>}
                 {<p>Your guesses so far: {guesses.toString()}</p>}
             </div>}
-            {correctGuess && !failed && <div id='successful-guess'>
-                {incorrectCount === 0 && <h5>Amazing! You got <a href={props.map}>{props.name}</a> in one!</h5>}
-                {incorrectCount > 0 && <h5>Well done! It took you {incorrectCount + 1} attempts to get <a href={props.map}>{props.name}</a>!</h5>}
-                {<img style={{ border: 'solid' }} src={props.flag} alt='Country Flag' />}
-                <p>Your answer history was: {guesses.toString()}</p>
-            </div>}
-            {failed && <div id='incorrect-guess'>
-                <p style={{ color: 'red' }}>YOU LOST</p>
-                {<p>The answer was <a href={props.map}>{props.name}</a></p>}
-                {<img style={{ border: 'solid' }} src={props.flag} alt='Country Flag' />}
-            </div>}
+            {correctGuess && !failed && <SuccessPage
+                name={name}
+                map={map}
+                flag={flag}
+                incorrectCount={incorrectCount}
+                guesses={guesses}
+            />}
+            {failed && <FailurePage
+                name={name}
+                map={map}
+                flag={flag}
+            />}
         </div >
     )
 }
