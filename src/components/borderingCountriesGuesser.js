@@ -49,13 +49,13 @@ function borderingCountriesGuesser(props) {
             setDuplicateGuess(false);
         }
 
-        // Some countries aren't appearing in answerCountries due to the codes mismatch
         if (isValidCountry) {
             setKnownCountry(true);
+            
+            // TODO should do this earlier and pass in to component as property
             const answerCountries = [];
             borderingCountries.forEach(borderingCountry => {
                 countryCodeMapping.find(country => {
-                    // TODO can I do a second check for a different kind of code?
                     if (country.code === borderingCountry) {
                         answerCountries.push(country.name);
                     }
@@ -126,8 +126,9 @@ function borderingCountriesGuesser(props) {
                 <p>There are {borderingCountries.length - correctGuesses.length} bordering countries remaining</p>
             </div>}
             {/* TODO complete this and use the components */}
-            {failed && <p>FAILED!!</p>}
-            {succeeded && <p>SUCCESS!!</p>}
+            {failed && <p>FAILED!! You found {correctGuesses.length} bordering countries out of {borderingCountries.length}.</p>}
+            {/* TODO add this in: The missing countries were {guesses.filter(countryGuess => !answerCountries.includes(countryGuess)} */}
+            {succeeded && <p>SUCCESS!! You found the {borderingCountries.length} bordering countries and had {incorrectGuesses.length} incorrect guesses</p>}
         </div>
     );
 }

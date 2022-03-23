@@ -3,26 +3,23 @@ import { Button } from 'react-bootstrap';
 import CountryGuesser from './countryGuesser';
 import BorderingCountriesGuesser from './borderingCountriesGuesser'; // TODO remove?
 import getAllCountriesRequest from '../restHelpers/allCountriesRequest';
-import getCountryRequest from '../restHelpers/countryRequest';
 
 function Country() {
-  const [countryResponse, setCountryResponse] = useState();
+  const [country, setCountry] = useState();
   const [possibleCountries, setPossibleCountries] = useState();
   const [countryCodeMapping, setCountryCodeMapping] = useState();
   const [error, setError] = useState(false);
   const [ready, setReady] = useState(false);
 
-  // TODO refactor this!
   async function getCountry() {
     try {
       const getAllCountriesResp = await getCountriesInfo();
-      const countryCode = returnRandomCountryCode(getAllCountriesResp);
-      const response = await getCountryRequest(countryCode);
-      setCountryResponse(response);
+      setCountryCodeMapping(getAllCountriesResp.countryCodeMapping);
+      const country = getAllCountriesResp.country;
+      setCountry(country);
       setReady(true);
     } catch (error) {
       setError(true);
-      console.log(error);
     }
   }
 
@@ -40,17 +37,8 @@ function Country() {
       setPossibleCountries(optionsList);
       return response;
     } catch (error) {
-      console.log(error);
+      setError(true);
     }
-  }
-
-  function returnRandomCountryCode(getAllCountriesResp) {
-    const countries = getAllCountriesResp.countriesArray;
-    const selectedCountry = countries[Math.floor(Math.random() * countries.length)];
-    const { countryCodeMapping } = getAllCountriesResp;
-    setCountryCodeMapping(countryCodeMapping);
-    const countryDetails = countryCodeMapping.find(country => country.name === selectedCountry);
-    return countryDetails.code; // TODO just return countryDetails here instead and miss out the second API call?
   }
 
   function numberWithCommas(number) {
@@ -64,21 +52,21 @@ function Country() {
       </Button>}
       {error && <p>Error found when finding country. Please try again</p>}
       {ready && <CountryGuesser
-        name={countryResponse.name}
-        population={numberWithCommas(countryResponse.population)}
-        flag={countryResponse.flags}
-        landlocked={countryResponse.landlocked ? 'Yes' : 'No'}
-        region={countryResponse.region}
-        subregion={countryResponse.subregion}
-        map={countryResponse.map}
-        capital={countryResponse.capital.toString()}
-        borderingCountries={countryResponse.borders}
+        name={country.name}
+        population={numberWithCommas(country.population)}
+        flag={country.flags}
+        landlocked={country.landlocked ? 'Yes' : 'No'}
+        region={country.region}
+        subregion={country.subregion}
+        map={country.map}
+        capital={country.capital.toString()}
+        borderingCountries={country.borders}
         possibleCountries={possibleCountries}
         countryCodeMapping={countryCodeMapping}
       />}
-      {ready && countryResponse.borders && <BorderingCountriesGuesser
-        name={countryResponse.name}
-        borderingCountries={countryResponse.borders}
+      {ready && country.borders && <BorderingCountriesGuesser
+        name={country.name}
+        borderingCountries={country.borders}
         possibleCountries={possibleCountries}
         countryCodeMapping={countryCodeMapping}
       />}
