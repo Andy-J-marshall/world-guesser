@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Button } from 'react-bootstrap';
 import CountryGuesser from './countryGuesser';
-// import BorderingCountriesGuesser from './borderingCountriesGuesser'; // TODO remove?
+import BorderingCountriesGuesser from './borderingCountriesGuesser'; // TODO remove?
 import getAllCountriesRequest from '../restHelpers/allCountriesRequest';
 import getCountryRequest from '../restHelpers/countryRequest';
 
@@ -76,12 +76,12 @@ function Country() {
         possibleCountries={possibleCountries}
         countryCodeMapping={countryCodeMapping}
       />}
-      {/* {ready && countryResponse.borders && <BorderingCountriesGuesser
+      {ready && countryResponse.borders && <BorderingCountriesGuesser
         name={countryResponse.name}
         borderingCountries={countryResponse.borders}
         possibleCountries={possibleCountries}
         countryCodeMapping={countryCodeMapping}
-      />} */}
+      />}
     </div >
   );
 }

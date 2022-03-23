@@ -22,3 +22,6 @@ Run the following:
 Create the bordering countries app
 Can I hide the http response in the browser?
 Create a stats page
+
+## PROBLEMS
+why does Vietnam (VNM) not return appear in list of bordering countries? Any other problems? Does it appear in others too?

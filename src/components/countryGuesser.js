@@ -25,12 +25,10 @@ function CountryGuesser(props) {
     const [duplicateGuess, setDuplicateGuess] = useState(false);
     const [failed, setFailed] = useState(false);
     const [knownCountry, setKnownCountry] = useState(true);
-    const [value, setValue] = useState('');
     const [selectCountry, setSelectCountry] = useState([]);
 
     const handleSubmit = (event) => {
         event.preventDefault();
-        setValue('');
         const guessedName = event.target[0].value.toLowerCase().trim();
         let isValidCountry = false;
         if (guessedName.length > 0) {
@@ -71,11 +69,6 @@ function CountryGuesser(props) {
         }
     };
 
-    // TODO this is causing a warning in the console - check docs for how it works
-    function changeValue(text) {
-        setValue(text.value);
-    }
-
     // TODO look into making the forms more generic and reusable
     return (
         <div id='country-guesser' className='component'>
@@ -97,7 +90,6 @@ function CountryGuesser(props) {
                     <Fragment>
                         <Form.Group className='mb-3'>
                             <Form.Label>Guess the country</Form.Label>
-                            {/* <Form.Control type='text' onChange={changeValue} value={value} /> TODO add the value thing back in? */}
                             <Typeahead
                                 id='country-search'
                                 onChange={setSelectCountry}
@@ -113,6 +105,7 @@ function CountryGuesser(props) {
                 </Form>}
             </div>
             <br />
+            {/* TODO make this stuff a component? */}
             <div id='invalid-guess-feedback'>
                 {duplicateGuess && <p style={{ color: 'brown' }}>You've already tried that country!</p>}
                 {!knownCountry && <p style={{ color: 'brown' }}>Enter a valid country name</p>}
