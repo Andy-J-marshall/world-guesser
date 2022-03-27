@@ -32,6 +32,7 @@ function SuccessPage(props) {
                 borderingCountries={borderingCountries}
                 possibleCountries={possibleCountries}
                 countryCodeMapping={countryCodeMapping}
+                map={map}
             />}
             {!newGameStarted && <div id='new-game-button'>
                 <br />

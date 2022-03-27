@@ -2,7 +2,7 @@ import React, { useState, Fragment } from 'react';
 import { Button, Form } from 'react-bootstrap';
 import { Typeahead } from 'react-bootstrap-typeahead';
 import FailurePage from './failurePage';
-import SuccessPage from './successPage';
+import CountryGuesserSuccessPage from './countryGuesserSuccessPage';
 import BasicValidation from './guessFeedback/basicValidation';
 import CountryGuessFeedback from './guessFeedback/countryGuessFeedback';
 
@@ -116,7 +116,7 @@ function CountryGuesser(props) {
                 incorrectCount={incorrectCount}
                 duplicateGuess={duplicateGuess}
             />}
-            {correctGuess && !failed && <SuccessPage
+            {correctGuess && !failed && <CountryGuesserSuccessPage
                 name={name}
                 map={map}
                 flag={flag}

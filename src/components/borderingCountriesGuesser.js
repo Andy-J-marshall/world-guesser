@@ -3,6 +3,7 @@ import { Button, Form } from 'react-bootstrap';
 import { Typeahead } from 'react-bootstrap-typeahead';
 import BasicValidation from './guessFeedback/basicValidation';
 import BorderingCountriesFeedback from './guessFeedback/borderingCountriesFeedback';
+import FailurePage from './failurePage';
 
 import 'react-bootstrap-typeahead/css/Typeahead.css';
 
@@ -11,6 +12,7 @@ function borderingCountriesGuesser(props) {
     const borderingCountries = props.borderingCountries;
     const possibleCountries = props.possibleCountries;
     const countryCodeMapping = props.countryCodeMapping;
+    const map = props.map;
 
     const [correctGuesses, setCorrectGuesses] = useState([]);
     const [correctLastGuess, setCorrectLastGuess] = useState(false);
@@ -78,7 +80,7 @@ function borderingCountriesGuesser(props) {
                     setIncorrectGuesses([...incorrectGuesses, guessedName]);
                     setIncorrectCount(incorrectCount + 1);
                     setCorrectLastGuess(false);
-                    if (incorrectCount >= 5) {
+                    if (incorrectCount >= 1) {
                         setFailed(true);
                     }
                 }
@@ -129,9 +131,13 @@ function borderingCountriesGuesser(props) {
                 />
                 {guessedActualCountry && <p style={{ color: 'brown' }}>That's the actual country! Guess the bordering ones instead</p>}
             </div>}
-            {/* TODO complete this and use the components */}
-            {failed && <p>FAILED!! You found {correctGuesses.length} bordering countries out of {borderingCountries.length}.</p>}
-            {/* TODO add this in: The missing countries were {guesses.filter(countryGuess => !answerCountries.includes(countryGuess)} */}
+            {failed && <FailurePage
+                name={name}
+                map={map}
+                correctGuesses={correctGuesses}
+                borderingCountriesCount={borderingCountries.length}
+            />}
+            {/* TODO add this as a component */}
             {succeeded && <p>SUCCESS!! You found the {borderingCountries.length} bordering countries and had {incorrectGuesses.length} incorrect guesses</p>}
         </div>
     );

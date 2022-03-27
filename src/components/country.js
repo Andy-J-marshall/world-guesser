@@ -69,6 +69,7 @@ function Country() {
         borderingCountries={country.borders}
         possibleCountries={possibleCountries}
         countryCodeMapping={countryCodeMapping}
+        map={country.map}
       />}
     </div >
   );
