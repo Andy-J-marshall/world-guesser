@@ -3,8 +3,6 @@ import { Button } from 'react-bootstrap';
 import Country from './country';
 import BorderingCountriesGuesser from './borderingCountriesGuesser';
 
-import 'react-bootstrap-typeahead/css/Typeahead.css';
-
 function SuccessPage(props) {
     const incorrectCount = props.incorrectCount;
     const guesses = props.guesses;

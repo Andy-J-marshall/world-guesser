@@ -3,6 +3,8 @@ import { Button, Form } from 'react-bootstrap';
 import { Typeahead } from 'react-bootstrap-typeahead';
 import FailurePage from './failurePage';
 import SuccessPage from './successPage';
+import BasicValidation from './guessFeedback/basicValidation';
+import CountryGuessFeedback from './guessFeedback/countryGuessFeedback';
 
 import 'react-bootstrap-typeahead/css/Typeahead.css';
 
@@ -69,7 +71,6 @@ function CountryGuesser(props) {
         }
     };
 
-    // TODO look into making the forms more generic and reusable
     return (
         <div id='country-guesser' className='component'>
             {!failed && !correctGuess && <div id='country-info'>
@@ -84,6 +85,7 @@ function CountryGuesser(props) {
                 </div>}
                 {incorrectCount >= 5 && <p>Capital city/cities = {capital}</p>}
             </div>}
+            {/* TODO look into making the forms more generic and reusable */}
             <div id='country-form'>
                 {!correctGuess && !failed && <Form onSubmit={handleSubmit}>
                     <br />
@@ -105,15 +107,15 @@ function CountryGuesser(props) {
                 </Form>}
             </div>
             <br />
-            {/* TODO make this stuff a component? */}
-            <div id='invalid-guess-feedback'>
-                {duplicateGuess && <p style={{ color: 'brown' }}>You've already tried that country!</p>}
-                {!knownCountry && <p style={{ color: 'brown' }}>Enter a valid country name</p>}
-            </div>
-            {!correctGuess && guessAttempted && !failed && <div id='guess-feedback'>
-                {!duplicateGuess && <p style={{ color: 'red' }}>Incorrect! That was attempt number {incorrectCount}/6.</p>}
-                {<p>Your guesses so far: {guesses.toString()}</p>}
-            </div>}
+            <BasicValidation
+                duplicateGuess={duplicateGuess}
+                knownCountry={knownCountry}
+            />
+            {!correctGuess && guessAttempted && !failed && <CountryGuessFeedback
+                guesses={guesses}
+                incorrectCount={incorrectCount}
+                duplicateGuess={duplicateGuess}
+            />}
             {correctGuess && !failed && <SuccessPage
                 name={name}
                 map={map}

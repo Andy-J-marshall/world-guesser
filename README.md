@@ -20,3 +20,4 @@ Run the following:
 
 ## Todo list
 Create a stats page
+Difficulty options based on region and start letter (if not Eur?)

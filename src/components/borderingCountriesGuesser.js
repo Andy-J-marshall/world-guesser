@@ -1,6 +1,8 @@
 import React, { Fragment, useState } from 'react';
 import { Button, Form } from 'react-bootstrap';
 import { Typeahead } from 'react-bootstrap-typeahead';
+import BasicValidation from './guessFeedback/basicValidation';
+import BorderingCountriesFeedback from './guessFeedback/borderingCountriesFeedback';
 
 import 'react-bootstrap-typeahead/css/Typeahead.css';
 
@@ -51,7 +53,7 @@ function borderingCountriesGuesser(props) {
 
         if (isValidCountry) {
             setKnownCountry(true);
-            
+
             // TODO should do this earlier and pass in to component as property
             const answerCountries = [];
             borderingCountries.forEach(borderingCountry => {
@@ -91,6 +93,7 @@ function borderingCountriesGuesser(props) {
         <div id='borders'>
             <h2>Bordering Countries</h2>
             <p>Your country is: {name}</p>
+            {/* TODO improve grammar if only 1 bordering country */}
             <p>There are {borderingCountries.length} bordering countries to find</p>
             <div id='borders-form'>
                 {<Form onSubmit={handleSubmit}>
@@ -113,17 +116,18 @@ function borderingCountriesGuesser(props) {
                 </Form>}
             </div>
             <br />
-            {/* TODO make a bigger deal about correct and incorrect guesses e.g. colours etc. */}
-            {guesses.length > 0 && !failed && !succeeded && <p>Correct guesses so far: {correctGuesses.toString()}</p>}
-            {guesses.length > 0 && !failed && !succeeded && <p>Incorrect guesses so far: {incorrectGuesses.toString()}</p>}
+            {guesses.length > 0 && !failed && !succeeded && <BorderingCountriesFeedback
+                correctGuesses={correctGuesses}
+                incorrectGuesses={incorrectGuesses}
+                incorrectCount={incorrectCount}
+                borderingCountriesCount={borderingCountries.length}
+            />}
             {!succeeded && !correctLastGuess && <div id='invalid-border-guess-feedback'>
-                {duplicateGuess && <p style={{ color: 'brown' }}>You've already tried that country!</p>}
-                {!knownCountry && <p style={{ color: 'brown' }}>Enter a valid country name</p>}
+                <BasicValidation
+                    duplicateGuess={duplicateGuess}
+                    knownCountry={knownCountry}
+                />
                 {guessedActualCountry && <p style={{ color: 'brown' }}>That's the actual country! Guess the bordering ones instead</p>}
-            </div>}
-            {!succeeded && guesses.length > 0 && !failed && <div id='lives-counter'>
-                <p>You have {6 - incorrectCount} lives remaining</p>
-                <p>There are {borderingCountries.length - correctGuesses.length} bordering countries remaining</p>
             </div>}
             {/* TODO complete this and use the components */}
             {failed && <p>FAILED!! You found {correctGuesses.length} bordering countries out of {borderingCountries.length}.</p>}

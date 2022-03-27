@@ -2,8 +2,6 @@ import React, { useState } from 'react';
 import { Button } from 'react-bootstrap';
 import Country from './country';
 
-import 'react-bootstrap-typeahead/css/Typeahead.css';
-
 function FailurePage(props) {
     const name = props.name;
     const flag = props.flag;
