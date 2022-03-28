@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Button } from 'react-bootstrap';
-import Country from './country';
+import Country from '../country';
 
 function FailurePage(props) {
     const name = props.name;

@@ -3,7 +3,8 @@ import { Button, Form } from 'react-bootstrap';
 import { Typeahead } from 'react-bootstrap-typeahead';
 import BasicValidation from './guessFeedback/basicValidation';
 import BorderingCountriesFeedback from './guessFeedback/borderingCountriesFeedback';
-import FailurePage from './failurePage';
+import FailurePage from './resultPages/failurePage';
+import BorderingCountriesSuccessPage from './resultPages/borderingCountriesSuccessPage';
 
 import 'react-bootstrap-typeahead/css/Typeahead.css';
 
@@ -80,7 +81,8 @@ function borderingCountriesGuesser(props) {
                     setIncorrectGuesses([...incorrectGuesses, guessedName]);
                     setIncorrectCount(incorrectCount + 1);
                     setCorrectLastGuess(false);
-                    if (incorrectCount >= 1) {
+                    // TODO make this number dynamic depending on number of borders?
+                    if (incorrectCount >= 5) { // TODO make sure this is 5
                         setFailed(true);
                     }
                 }
@@ -93,31 +95,33 @@ function borderingCountriesGuesser(props) {
 
     return (
         <div id='borders'>
-            <h2>Bordering Countries</h2>
-            <p>Your country is: {name}</p>
-            {/* TODO improve grammar if only 1 bordering country */}
-            <p>There are {borderingCountries.length} bordering countries to find</p>
-            <div id='borders-form'>
-                {<Form onSubmit={handleSubmit}>
-                    <br />
-                    <Fragment>
-                        <Form.Group className='mb-3'>
-                            <Form.Label>Guess the bordering countries</Form.Label>
-                            <Typeahead
-                                id='bordering-countries-guesser'
-                                onChange={setSelectCountry}
-                                options={possibleCountries}
-                                placeholder='Select your country'
-                                selected={selectCountry}
-                            />
-                        </Form.Group>
-                    </Fragment>
-                    <Button variant='primary' type='submit'>
-                        Guess
-                    </Button>
-                </Form>}
-            </div>
-            <br />
+            {!succeeded && !failed && <div>
+                <h2>Bordering Countries</h2>
+                <p>Your country is: {name}</p>
+                {/* TODO improve grammar if only 1 bordering country */}
+                <p>There are {borderingCountries.length} bordering countries to find</p>
+                <div id='borders-form'>
+                    {<Form onSubmit={handleSubmit}>
+                        <br />
+                        <Fragment>
+                            <Form.Group className='mb-3'>
+                                <Form.Label>Guess the bordering countries</Form.Label>
+                                <Typeahead
+                                    id='bordering-countries-guesser'
+                                    onChange={setSelectCountry}
+                                    options={possibleCountries}
+                                    placeholder='Select your country'
+                                    selected={selectCountry}
+                                />
+                            </Form.Group>
+                        </Fragment>
+                        <Button variant='primary' type='submit'>
+                            Guess
+                        </Button>
+                    </Form>}
+                </div>
+                <br />
+            </div>}
             {guesses.length > 0 && !failed && !succeeded && <BorderingCountriesFeedback
                 correctGuesses={correctGuesses}
                 incorrectGuesses={incorrectGuesses}
@@ -131,14 +135,18 @@ function borderingCountriesGuesser(props) {
                 />
                 {guessedActualCountry && <p style={{ color: 'brown' }}>That's the actual country! Guess the bordering ones instead</p>}
             </div>}
-            {failed && <FailurePage
+            {failed && !succeeded && <FailurePage
                 name={name}
                 map={map}
                 correctGuesses={correctGuesses}
                 borderingCountriesCount={borderingCountries.length}
             />}
-            {/* TODO add this as a component */}
-            {succeeded && <p>SUCCESS!! You found the {borderingCountries.length} bordering countries and had {incorrectGuesses.length} incorrect guesses</p>}
+            {succeeded && <BorderingCountriesSuccessPage
+                correctGuesses={correctGuesses}
+                incorrectGuesses={incorrectGuesses}
+                name={name}
+                map={map}
+            />}
         </div>
     );
 }

@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { Button } from 'react-bootstrap';
 import CountryGuesser from './countryGuesser';
-import BorderingCountriesGuesser from './borderingCountriesGuesser'; // TODO remove?
 import getAllCountriesRequest from '../restHelpers/allCountriesRequest';
 
 function Country() {
@@ -16,6 +15,7 @@ function Country() {
       const getAllCountriesResp = await getCountriesInfo();
       setCountryCodeMapping(getAllCountriesResp.countryCodeMapping);
       const country = getAllCountriesResp.country;
+      console.log(country.name) // TODO remove this!
       setCountry(country);
       setReady(true);
     } catch (error) {
@@ -63,13 +63,6 @@ function Country() {
         borderingCountries={country.borders}
         possibleCountries={possibleCountries}
         countryCodeMapping={countryCodeMapping}
-      />}
-      {ready && country.borders && <BorderingCountriesGuesser
-        name={country.name}
-        borderingCountries={country.borders}
-        possibleCountries={possibleCountries}
-        countryCodeMapping={countryCodeMapping}
-        map={country.map}
       />}
     </div >
   );

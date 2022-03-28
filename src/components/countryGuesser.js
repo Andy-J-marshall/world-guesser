@@ -1,8 +1,8 @@
 import React, { useState, Fragment } from 'react';
 import { Button, Form } from 'react-bootstrap';
 import { Typeahead } from 'react-bootstrap-typeahead';
-import FailurePage from './failurePage';
-import CountryGuesserSuccessPage from './countryGuesserSuccessPage';
+import FailurePage from './resultPages/failurePage';
+import CountryGuesserSuccessPage from './resultPages/countryGuesserSuccessPage';
 import BasicValidation from './guessFeedback/basicValidation';
 import CountryGuessFeedback from './guessFeedback/countryGuessFeedback';
 
@@ -19,6 +19,7 @@ function CountryGuesser(props) {
     const capital = props.capital;
     const possibleCountries = props.possibleCountries;
     const borderingCountries = props.borderingCountries;
+    const countryCodeMapping= props.countryCodeMapping;
 
     const [guessAttempted, setGuessAttempted] = useState(false);
     const [correctGuess, setCorrectGuess] = useState(false);
@@ -124,6 +125,7 @@ function CountryGuesser(props) {
                 guesses={guesses}
                 borderingCountries={borderingCountries}
                 possibleCountries={possibleCountries}
+                countryCodeMapping={countryCodeMapping}
             />}
             {failed && <FailurePage
                 name={name}

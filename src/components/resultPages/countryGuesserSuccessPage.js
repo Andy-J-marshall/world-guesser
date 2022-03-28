@@ -1,9 +1,8 @@
 import React, { useState } from 'react';
-import { Button } from 'react-bootstrap';
-import Country from './country';
-import BorderingCountriesGuesser from './borderingCountriesGuesser';
+import BorderingCountriesGuesser from '../borderingCountriesGuesser';
+import PlayButton from '../playButton';
 
-function SuccessPage(props) {
+function CountryGuesserSuccessPage(props) {
     const incorrectCount = props.incorrectCount;
     const guesses = props.guesses;
     const name = props.name;
@@ -15,33 +14,35 @@ function SuccessPage(props) {
 
     const [newGameStarted, setNewGameStarted] = useState(false);
 
-    function startNewGame() {
+    function startBorderingCountriesGame() {
         setNewGameStarted(true);
     }
 
+    // TODO improve wording e.g. if only 1 bordering country
     return (
         <div>
-            {!newGameStarted && < div id='successful-guess' >
+            {!newGameStarted && < div id='successful-country-game' >
                 {incorrectCount === 0 && <h5>Amazing! You got <a href={map}>{name}</a> in one!</h5>}
-                {incorrectCount > 0 && <h5>Well done! It took you {incorrectCount + 1} attempts to get <a href={map}>{name}</a>!</h5>}
+                {incorrectCount > 0
+                    // TODO for some reason the H5 isn't appearing?
+                    && <h5>Well done! It took you {incorrectCount + 1} attempts to get <a href={map}>{name}</a>!</h5>
+                    && <p>Your answer history was: {guesses.toString()}</p>
+                }
                 {<img style={{ border: 'solid' }} src={flag} alt='Country Flag' />}
-                <p>Your answer history was: {guesses.toString()}</p>
             </div >}
-            {!newGameStarted && borderingCountries && <BorderingCountriesGuesser
+            {newGameStarted && borderingCountries && <BorderingCountriesGuesser
                 name={name}
                 borderingCountries={borderingCountries}
                 possibleCountries={possibleCountries}
                 countryCodeMapping={countryCodeMapping}
                 map={map}
             />}
-            {!newGameStarted && <div id='new-game-button'>
-                <br />
-                <Button variant='primary' size='lg' onClick={startNewGame}>Try again</Button>
-            </div>}
-            {newGameStarted && <Country />}
-            {/* TODO add a button to start guessing the bordering countries here as well? And make a component */}
+            {!newGameStarted && <PlayButton
+                callback={startBorderingCountriesGame}
+                buttonText='Guess the bordering countries'
+            />}
         </div>
     )
 }
 
-export default SuccessPage;
+export default CountryGuesserSuccessPage;
