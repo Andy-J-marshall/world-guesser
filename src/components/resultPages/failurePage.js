@@ -34,6 +34,8 @@ function FailurePage(props) {
                 {<p>See {name} on the <a href={map}>map</a></p>}
             </div >}
 
+            {!newGameStarted && <br />}
+
             {!newGameStarted && <PlayButton
                 callback={startNewGame}
                 buttonText='Try again'

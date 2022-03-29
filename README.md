@@ -22,3 +22,4 @@ Run the following:
 Create a stats page
 Difficulty options based on region and start letter (if not Eur?)
 Design a nice UI
+Add clues for bordering countries

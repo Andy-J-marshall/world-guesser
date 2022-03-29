@@ -29,6 +29,9 @@ function BorderingCountriesSuccessPage(props) {
                 }
                 {incorrectCount > 0 && <p>Incorrect answer(s): {incorrectGuesses.toString()}</p>}
             </div >}
+
+            {!newGameStarted && <br />}
+
             {!newGameStarted && <PlayButton
                 callback={startNewGame}
                 buttonText='Play again'
@@ -36,7 +39,6 @@ function BorderingCountriesSuccessPage(props) {
             {newGameStarted && allCountriesResponse && <Country
                 countriesInfo={allCountriesResponse}
             />}
-
         </div>
     )
 }

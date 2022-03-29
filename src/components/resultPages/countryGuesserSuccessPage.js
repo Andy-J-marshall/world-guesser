@@ -51,7 +51,9 @@ function CountryGuesserSuccessPage(props) {
                 map={map}
             />}
 
-            {!newGameStarted && borderingCountries.length === 0 && <PlayButton
+            {!newGameStarted && <br />}
+
+            {!newGameStarted && <PlayButton
                 callback={startNewGame}
                 buttonText='Play again'
             />}
