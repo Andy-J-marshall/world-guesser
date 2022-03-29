@@ -5,7 +5,6 @@ function PlayButton(props) {
     const callback = props.callback;
     const buttonText = props.buttonText;
 
-    // TODO improve how this works so it doesn't need to be clicked so many times when creating a new game
     return (
         <div id='new-game-button'>
             <Button variant='primary' size='lg' onClick={callback}>{buttonText}</Button>

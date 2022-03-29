@@ -39,7 +39,7 @@ function borderingCountriesGuesser(props) {
             } else {
                 setGuessedActualCountry(false);
                 possibleCountries.find(country => {
-                    if (country.label.toLowerCase() === guessedName) {
+                    if (country.toLowerCase() === guessedName) {
                         setKnownCountry(true);
                         isValidCountry = true;
                     } else {

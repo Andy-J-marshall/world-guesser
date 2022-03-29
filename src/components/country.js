@@ -1,46 +1,13 @@
-import React, { useState } from 'react';
+import React from 'react';
 import CountryGuesser from './countryGuesser';
-import PlayButton from './playButton';
-import getAllCountriesRequest from '../restHelpers/allCountriesRequest';
 
 function Country(props) {
+  const countriesInfo = props.countriesInfo;
 
-  const [country, setCountry] = useState();
-  const [possibleCountries, setPossibleCountries] = useState();
-  const [countryCodeMapping, setCountryCodeMapping] = useState();
-  const [error, setError] = useState(false);
-  const [ready, setReady] = useState(false);
-
-  async function getCountry() {
-    try {
-      const getAllCountriesResp = await getCountriesInfo();
-      setCountryCodeMapping(getAllCountriesResp.countryCodeMapping);
-      const country = getAllCountriesResp.country;
-      console.log(country.name) // TODO remove this!
-      setCountry(country);
-      setReady(true);
-    } catch (error) {
-      setError(true);
-    }
-  }
-
-  async function getCountriesInfo() {
-    try {
-      const response = await getAllCountriesRequest();
-      const countriesArray = response.countriesArray;
-      const optionsList = [];
-      countriesArray.forEach(country => {
-        const option = {
-          label: country,
-        }
-        optionsList.push(option);
-      });
-      setPossibleCountries(optionsList);
-      return response;
-    } catch (error) {
-      setError(true);
-    }
-  }
+  const countryCodeMapping = countriesInfo.countryCodeMapping
+  const possibleCountries = countriesInfo.countriesArray;
+  const country = countriesInfo.country;
+  console.log(country.name) // TODO remove this!
 
   function numberWithCommas(number) {
     return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
@@ -62,16 +29,11 @@ function Country(props) {
 
   return (
     <div id='country'>
-      {!ready && <PlayButton
-        buttonText='Press to begin the fun!'
-        callback={getCountry}
-      />}
-      {error && <p>Error found when finding country. Please try again</p>}
-      {ready && <CountryGuesser
+      {country && <CountryGuesser
         name={country.name}
         population={numberWithCommas(country.population)}
         flag={country.flags}
-        landlocked={country.landlocked ? 'Yes' : 'No'}
+        landlocked={country.landlocked ? 'Country is landlocked' : 'Country is not landlocked'}
         region={country.region}
         subregion={country.subregion}
         map={country.map}

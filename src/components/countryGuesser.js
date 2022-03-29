@@ -19,7 +19,6 @@ function CountryGuesser(props) {
     const capital = props.capital;
     const possibleCountries = props.possibleCountries;
     const borderingCountries = props.borderingCountries;
-    const countryCodeMapping= props.countryCodeMapping;
 
     const [guessAttempted, setGuessAttempted] = useState(false);
     const [correctGuess, setCorrectGuess] = useState(false);
@@ -36,7 +35,7 @@ function CountryGuesser(props) {
         let isValidCountry = false;
         if (guessedName.length > 0) {
             possibleCountries.find(country => {
-                if (country.label.toLowerCase() === guessedName) {
+                if (country.toLowerCase() === guessedName) {
                     setKnownCountry(true);
                     isValidCountry = true;
                 } else {
@@ -78,7 +77,7 @@ function CountryGuesser(props) {
                 <h2>Mystery Country</h2>
                 {<p>Population = {population}</p>}
                 {incorrectCount >= 1 && <p>Region = {region}</p>}
-                {incorrectCount >= 2 && <p>Landlocked = {landlocked}</p>}
+                {incorrectCount >= 2 && <p>{landlocked}</p>}
                 {incorrectCount >= 3 && <p>Sub region = {subregion}</p>}
                 {incorrectCount >= 4 && <div>
                     <p>Flag: </p>

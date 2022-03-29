@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import Country from '../country';
 import PlayButton from '../playButton';
+import getAllCountriesRequest from '../../restHelpers/allCountriesRequest';
 
 function FailurePage(props) {
     const name = props.name;
@@ -10,9 +11,12 @@ function FailurePage(props) {
     const correctGuesses = props.correctGuesses;
 
     const [newGameStarted, setNewGameStarted] = useState(false);
+    const [allCountriesResponse, setAllCountriesResponse] = useState();
 
-    function startNewGame() {
+    async function startNewGame() {
         setNewGameStarted(true);
+        const response = await getAllCountriesRequest();
+        setAllCountriesResponse(response);
     }
 
     return (
@@ -34,7 +38,9 @@ function FailurePage(props) {
                 callback={startNewGame}
                 buttonText='Try again'
             />}
-            {newGameStarted && <Country />}
+            {newGameStarted && allCountriesResponse && <Country
+                countriesInfo={allCountriesResponse}
+            />}
         </div>
     )
 }

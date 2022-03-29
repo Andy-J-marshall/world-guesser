@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import Country from '../country';
 import PlayButton from '../playButton';
+import getAllCountriesRequest from '../../restHelpers/allCountriesRequest';
 
 function BorderingCountriesSuccessPage(props) {
     const incorrectGuesses = props.incorrectGuesses;
@@ -11,9 +12,12 @@ function BorderingCountriesSuccessPage(props) {
     const messageText = correctGuesses.length === 1 ? `You found the only bordering country` : `You found the ${correctGuesses.length} bordering countries`;
 
     const [newGameStarted, setNewGameStarted] = useState(false);
+    const [allCountriesResponse, setAllCountriesResponse] = useState();
 
-    function startNewGame() {
+    async function startNewGame() {
         setNewGameStarted(true);
+        const response = await getAllCountriesRequest();
+        setAllCountriesResponse(response);
     }
 
     return (
@@ -29,7 +33,10 @@ function BorderingCountriesSuccessPage(props) {
                 callback={startNewGame}
                 buttonText='Play again'
             />}
-            {newGameStarted && <Country />}
+            {newGameStarted && allCountriesResponse && <Country
+                countriesInfo={allCountriesResponse}
+            />}
+
         </div>
     )
 }
