@@ -7,9 +7,12 @@ function FailurePage(props) {
     const name = props.name;
     const flag = props.flag;
     const map = props.map;
-    const borderingCountriesCount = props.borderingCountriesCount;
+    const borderingCountries = props.borderingCountries;
     const correctGuesses = props.correctGuesses;
     const guesses = props.guesses;
+
+    const borderingCountriesCount = borderingCountries.length;
+    const missingAnswersArray = borderingCountries.filter(countryGuess => !correctGuesses.includes(countryGuess.toLowerCase()));
 
     const [newGameStarted, setNewGameStarted] = useState(false);
     const [allCountriesResponse, setAllCountriesResponse] = useState();
@@ -30,9 +33,10 @@ function FailurePage(props) {
             </div >}
 
             {borderingCountriesCount && !newGameStarted && < div id='bordering-countries-failure' >
-                {/* TODO add this in: The missing countries were {guesses.filter(countryGuess => !answerCountries.includes(countryGuess)} */}
-                <p>You found {correctGuesses.length} bordering countries out of {borderingCountriesCount}.</p>
+                <p>You found {correctGuesses.length} bordering countries out of {borderingCountriesCount}</p>
                 {correctGuesses.length > 0 && <p>Countries found: {correctGuesses.toString()}</p>}
+                <p>You missed {missingAnswersArray.toString()}</p>
+                {<p>Your answer history was: {guesses.toString()}</p>}
                 {<p>See {name} on the <a href={map}>map</a></p>}
             </div >}
 
