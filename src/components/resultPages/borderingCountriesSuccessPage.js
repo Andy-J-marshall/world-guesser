@@ -11,7 +11,7 @@ function BorderingCountriesSuccessPage(props) {
     const incorrectCount = incorrectGuesses.length;
 
     const messageText = correctGuesses.length === 1
-        ? `Well done! You found the only bordering country of ${name} with 1 incorrect answer`
+        ? `Well done! You found the only bordering country of ${name} with ${incorrectCount} incorrect answer`
         : `Well done! You found the ${correctGuesses.length} bordering countries of ${name} with ${incorrectCount} incorrect answers`;
 
     const [newGameStarted, setNewGameStarted] = useState(false);
