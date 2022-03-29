@@ -9,7 +9,10 @@ function BorderingCountriesSuccessPage(props) {
     const name = props.name;
     const map = props.map;
     const incorrectCount = incorrectGuesses.length;
-    const messageText = correctGuesses.length === 1 ? `You found the only bordering country` : `You found the ${correctGuesses.length} bordering countries`;
+
+    const messageText = correctGuesses.length === 1
+        ? `Well done! You found the only bordering country of ${name} with 1 incorrect answer`
+        : `Well done! You found the ${correctGuesses.length} bordering countries of ${name} with ${incorrectCount} incorrect answers`;
 
     const [newGameStarted, setNewGameStarted] = useState(false);
     const [allCountriesResponse, setAllCountriesResponse] = useState();
@@ -23,11 +26,8 @@ function BorderingCountriesSuccessPage(props) {
     return (
         <div>
             {!newGameStarted && < div id='successful-bordering-countries-game' >
-                {incorrectCount === 0 && <h5>Amazing! {messageText} of <a href={map}>{name}</a> with no incorrect answers!</h5>}
-                {incorrectCount > 0
-                    && <h5>Well done! {messageText} of <a href={map}>{name}</a> with {incorrectCount} incorrect answer(s).</h5>
-                }
-                {incorrectCount > 0 && <p>Incorrect answer(s): {incorrectGuesses.toString()}</p>}
+                <h5>{messageText}</h5>
+                <p>See <a href={map}>{name}</a> on the map</p>
             </div >}
 
             {!newGameStarted && <br />}

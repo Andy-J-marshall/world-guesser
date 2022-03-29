@@ -7,7 +7,6 @@ function Country(props) {
   const countryCodeMapping = countriesInfo.countryCodeMapping
   const possibleCountries = countriesInfo.countriesArray;
   const country = countriesInfo.country;
-  console.log(country.name) // TODO remove this!
 
   function numberWithCommas(number) {
     return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");

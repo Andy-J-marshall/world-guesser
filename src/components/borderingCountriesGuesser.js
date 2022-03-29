@@ -14,6 +14,10 @@ function borderingCountriesGuesser(props) {
     const possibleCountries = props.possibleCountries;
     const map = props.map;
 
+    const numberOfBorderingCountriesText = borderingCountries.length > 1
+        ? `There are ${borderingCountries.length} bordering countries to find`
+        : 'There is 1 bordering country to find';
+
     const [correctGuesses, setCorrectGuesses] = useState([]);
     const [correctLastGuess, setCorrectLastGuess] = useState(false);
     const [incorrectGuesses, setIncorrectGuesses] = useState([]);
@@ -61,7 +65,6 @@ function borderingCountriesGuesser(props) {
                 if (lowerCaseBorderingCountryArray.includes(guessedName)) {
                     setCorrectGuesses([...correctGuesses, guessedName]);
                     setCorrectLastGuess(true);
-                    // TODO why is this counter off by 1? Same as the one in countryGuesser
                     if (correctGuesses.length + 1 === borderingCountries.length) {
                         setSucceeded(true);
                     }
@@ -85,13 +88,11 @@ function borderingCountriesGuesser(props) {
             {!succeeded && !failed && <div>
                 <h2>Bordering Countries</h2>
                 <p>Your country is: {name}</p>
-                {/* TODO improve grammar if only 1 bordering country */}
-                <p>There are {borderingCountries.length} bordering countries to find</p>
+                <p>{numberOfBorderingCountriesText}</p>
                 <div id='borders-form'>
                     {<Form onSubmit={handleSubmit}>
                         <Fragment>
                             <Form.Group className='mb-3'>
-                                <Form.Label>Guess the bordering countries</Form.Label>
                                 <Typeahead
                                     id='bordering-countries-guesser'
                                     onChange={setSelectCountry}

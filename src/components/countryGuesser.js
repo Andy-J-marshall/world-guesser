@@ -90,7 +90,6 @@ function CountryGuesser(props) {
                 {!correctGuess && !failed && <Form onSubmit={handleSubmit}>
                     <Fragment>
                         <Form.Group className='mb-3'>
-                            <Form.Label>Guess the country</Form.Label>
                             <Typeahead
                                 id='country-search'
                                 onChange={setSelectCountry}

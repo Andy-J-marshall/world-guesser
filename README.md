@@ -15,8 +15,8 @@ Run the following:
 ## To deploy
 Run the following:
 * `npm i`
-* `npm build`
-* `npm deploy`
+* `npm run build`
+* `npm run deploy`
 
 ## Todo list
 Create a stats page
