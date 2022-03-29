@@ -19,7 +19,7 @@ function App() {
 
   return (
     <div id='app'>
-      <h1>FUN WITH COUNTRIES</h1>
+      <h1>FUN WITH COUNTRIES!</h1>
       {allCountriesResponse && <Country
         countriesInfo={allCountriesResponse}
       />}
