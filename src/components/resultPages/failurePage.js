@@ -9,6 +9,7 @@ function FailurePage(props) {
     const map = props.map;
     const borderingCountriesCount = props.borderingCountriesCount;
     const correctGuesses = props.correctGuesses;
+    const guesses = props.guesses;
 
     const [newGameStarted, setNewGameStarted] = useState(false);
     const [allCountriesResponse, setAllCountriesResponse] = useState();
@@ -21,9 +22,10 @@ function FailurePage(props) {
 
     return (
         <div id='failure-page'>
-            {!newGameStarted && <p style={{ color: 'red' }}>YOU LOST</p>}
+            {!newGameStarted && <p style={{ color: 'red' }}>Unlucky, better luck next time</p>}
             {!borderingCountriesCount && !newGameStarted && < div id='country-failure' >
                 {<p>The answer was <a href={map}>{name}</a></p>}
+                {<p>Your answer history was: {guesses.toString()}</p>}
                 <img style={{ border: 'solid' }} src={flag} alt='Country Flag' />
             </div >}
 

@@ -8,6 +8,7 @@ function BorderingCountriesSuccessPage(props) {
     const correctGuesses = props.correctGuesses;
     const name = props.name;
     const map = props.map;
+    const guesses = props.guesses;
     const incorrectCount = incorrectGuesses.length;
 
     const messageText = correctGuesses.length === 1
@@ -28,6 +29,7 @@ function BorderingCountriesSuccessPage(props) {
             {!newGameStarted && < div id='successful-bordering-countries-game' >
                 <h5>{messageText}</h5>
                 <p>See <a href={map}>{name}</a> on the map</p>
+                {<p>Your answer history was: {guesses.toString()}</p>}
             </div >}
 
             {!newGameStarted && <br />}

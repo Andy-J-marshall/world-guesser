@@ -10,10 +10,11 @@ function App() {
 
   useEffect(() => {
     if (!foundCountry) {
-      getAllCountriesRequest().then(allCountriesResponse => {
-        setFindCountry(true);
-        setAllCountriesResponse(allCountriesResponse);
-      });
+      getAllCountriesRequest()
+        .then(allCountriesResponse => {
+          setFindCountry(true);
+          setAllCountriesResponse(allCountriesResponse);
+        });
     }
   });
 

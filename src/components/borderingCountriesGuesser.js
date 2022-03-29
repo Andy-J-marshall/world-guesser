@@ -126,12 +126,14 @@ function borderingCountriesGuesser(props) {
                 map={map}
                 correctGuesses={correctGuesses}
                 borderingCountriesCount={borderingCountries.length}
+                guesses={guesses}
             />}
             {succeeded && <BorderingCountriesSuccessPage
                 correctGuesses={correctGuesses}
                 incorrectGuesses={incorrectGuesses}
                 name={name}
                 map={map}
+                guesses={guesses}
             />}
         </div>
     );

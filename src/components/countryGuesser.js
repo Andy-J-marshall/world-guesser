@@ -126,6 +126,7 @@ function CountryGuesser(props) {
                 name={name}
                 map={map}
                 flag={flag}
+                guesses={guesses}
             />}
         </div >
     )
