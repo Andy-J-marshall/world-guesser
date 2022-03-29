@@ -89,7 +89,6 @@ function CountryGuesser(props) {
             {/* TODO look into making the forms more generic and reusable */}
             <div id='country-form'>
                 {!correctGuess && !failed && <Form onSubmit={handleSubmit}>
-                    <br />
                     <Fragment>
                         <Form.Group className='mb-3'>
                             <Form.Label>Guess the country</Form.Label>
@@ -107,7 +106,6 @@ function CountryGuesser(props) {
                     </Button>
                 </Form>}
             </div>
-            <br />
             <BasicValidation
                 duplicateGuess={duplicateGuess}
                 knownCountry={knownCountry}
@@ -125,7 +123,6 @@ function CountryGuesser(props) {
                 guesses={guesses}
                 borderingCountries={borderingCountries}
                 possibleCountries={possibleCountries}
-                countryCodeMapping={countryCodeMapping}
             />}
             {failed && <FailurePage
                 name={name}

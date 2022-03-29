@@ -8,7 +8,6 @@ function PlayButton(props) {
     // TODO improve how this works so it doesn't need to be clicked so many times when creating a new game
     return (
         <div id='new-game-button'>
-            <br />
             <Button variant='primary' size='lg' onClick={callback}>{buttonText}</Button>
         </div>
     );

@@ -1,17 +1,10 @@
 import axios from 'axios';
-import https from 'https';
 
 // https://restcountries.com/
 
 async function allCountriesRequest() {
   try {
-    // TODO do I still have to do this?
-    const agent = new https.Agent({
-      rejectUnauthorized: false
-    });
-    const response = await axios.get(`https://restcountries.com/v3.1/all`, {
-      httpsAgent: agent,
-    });
+    const response = await axios.get(`https://restcountries.com/v3.1/all`);
     const body = response.data;
 
     const countriesArray = [];

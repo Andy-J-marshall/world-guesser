@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import BorderingCountriesGuesser from '../borderingCountriesGuesser';
 import PlayButton from '../playButton';
+import Country from '../country';
 
 function CountryGuesserSuccessPage(props) {
     const incorrectCount = props.incorrectCount;
@@ -8,39 +9,49 @@ function CountryGuesserSuccessPage(props) {
     const name = props.name;
     const borderingCountries = props.borderingCountries;
     const possibleCountries = props.possibleCountries;
-    const countryCodeMapping = props.countryCodeMapping;
     const flag = props.flag;
     const map = props.map;
 
     const [newGameStarted, setNewGameStarted] = useState(false);
+    const [borderingCountriesGameStarted, setBorderingCountriesGameStarted] = useState(false);
+    const [newCountryFinderGameStarted, setNewCountryFinderGameStarted] = useState(false);
 
     function startBorderingCountriesGame() {
+        setBorderingCountriesGameStarted(true);
         setNewGameStarted(true);
     }
 
-    // TODO improve wording e.g. if only 1 bordering country
+    function startNewGame() {
+        setNewCountryFinderGameStarted(true);
+        setNewGameStarted(true);
+    }
+
     return (
         <div>
             {!newGameStarted && < div id='successful-country-game' >
                 {incorrectCount === 0 && <h5>Amazing! You got <a href={map}>{name}</a> in one!</h5>}
-                {incorrectCount > 0
-                    // TODO for some reason the H5 isn't appearing?
-                    && <h5>Well done! It took you {incorrectCount + 1} attempts to get <a href={map}>{name}</a>!</h5>
-                    && <p>Your answer history was: {guesses.toString()}</p>
-                }
+                {incorrectCount > 0 && <p>Well done! It took you {incorrectCount + 1} attempts to get <a href={map}>{name}</a></p>}
+                {incorrectCount > 0 && <p>Your answer history was: {guesses.toString()}</p>}
                 {<img style={{ border: 'solid' }} src={flag} alt='Country Flag' />}
             </div >}
-            {newGameStarted && borderingCountries && <BorderingCountriesGuesser
-                name={name}
-                borderingCountries={borderingCountries}
-                possibleCountries={possibleCountries}
-                countryCodeMapping={countryCodeMapping}
-                map={map}
-            />}
-            {!newGameStarted && <PlayButton
+            {!newGameStarted && <br />}
+
+            {!newGameStarted && borderingCountries.length > 0 && <PlayButton
                 callback={startBorderingCountriesGame}
                 buttonText='Guess the bordering countries'
             />}
+            {newGameStarted && borderingCountriesGameStarted && <BorderingCountriesGuesser
+                name={name}
+                borderingCountries={borderingCountries}
+                possibleCountries={possibleCountries}
+                map={map}
+            />}
+
+            {!newGameStarted && borderingCountries.length === 0 && <PlayButton
+                callback={startNewGame}
+                buttonText='Play again'
+            />}
+            {newGameStarted && newCountryFinderGameStarted && <Country />}
         </div>
     )
 }

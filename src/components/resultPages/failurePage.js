@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import { Button } from 'react-bootstrap';
 import Country from '../country';
+import PlayButton from '../playButton';
 
 function FailurePage(props) {
     const name = props.name;
@@ -17,21 +17,23 @@ function FailurePage(props) {
 
     return (
         <div id='failure-page'>
-            <p style={{ color: 'red' }}>YOU LOST</p>
+            {!newGameStarted && <p style={{ color: 'red' }}>YOU LOST</p>}
             {!borderingCountriesCount && !newGameStarted && < div id='country-failure' >
                 {<p>The answer was <a href={map}>{name}</a></p>}
                 <img style={{ border: 'solid' }} src={flag} alt='Country Flag' />
             </div >}
+
             {borderingCountriesCount && !newGameStarted && < div id='bordering-countries-failure' >
                 {/* TODO add this in: The missing countries were {guesses.filter(countryGuess => !answerCountries.includes(countryGuess)} */}
                 <p>You found {correctGuesses.length} bordering countries out of {borderingCountriesCount}.</p>
                 {correctGuesses.length > 0 && <p>Countries found: {correctGuesses.toString()}</p>}
                 {<p>See {name} on the <a href={map}>map</a></p>}
             </div >}
-            {!newGameStarted && <div id='retry-button'>
-                <br />
-                <Button variant='primary' size='lg' onClick={startNewGame}>Try again</Button>
-            </div>}
+
+            {!newGameStarted && <PlayButton
+                callback={startNewGame}
+                buttonText='Try again'
+            />}
             {newGameStarted && <Country />}
         </div>
     )

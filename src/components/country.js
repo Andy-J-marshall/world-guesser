@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
-import { Button } from 'react-bootstrap';
 import CountryGuesser from './countryGuesser';
+import PlayButton from './playButton';
 import getAllCountriesRequest from '../restHelpers/allCountriesRequest';
 
-function Country() {
+function Country(props) {
+
   const [country, setCountry] = useState();
   const [possibleCountries, setPossibleCountries] = useState();
   const [countryCodeMapping, setCountryCodeMapping] = useState();
@@ -45,11 +46,26 @@ function Country() {
     return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
   }
 
+  function returnBorderingCountries(borderingCountries) {
+    const answerCountries = [];
+    if (borderingCountries) {
+      borderingCountries.forEach(borderingCountry => {
+        countryCodeMapping.find(country => {
+          if (country.code === borderingCountry) {
+            answerCountries.push(country.name);
+          }
+        })
+      });
+    }
+    return answerCountries;
+  }
+
   return (
     <div id='country'>
-      {!ready && <Button variant='primary' size='lg' onClick={getCountry}>
-        Press to begin the fun!
-      </Button>}
+      {!ready && <PlayButton
+        buttonText='Press to begin the fun!'
+        callback={getCountry}
+      />}
       {error && <p>Error found when finding country. Please try again</p>}
       {ready && <CountryGuesser
         name={country.name}
@@ -60,9 +76,8 @@ function Country() {
         subregion={country.subregion}
         map={country.map}
         capital={country.capital.toString()}
-        borderingCountries={country.borders}
+        borderingCountries={returnBorderingCountries(country.borders)}
         possibleCountries={possibleCountries}
-        countryCodeMapping={countryCodeMapping}
       />}
     </div >
   );

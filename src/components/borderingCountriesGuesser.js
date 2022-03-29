@@ -12,7 +12,6 @@ function borderingCountriesGuesser(props) {
     const name = props.name;
     const borderingCountries = props.borderingCountries;
     const possibleCountries = props.possibleCountries;
-    const countryCodeMapping = props.countryCodeMapping;
     const map = props.map;
 
     const [correctGuesses, setCorrectGuesses] = useState([]);
@@ -56,33 +55,21 @@ function borderingCountriesGuesser(props) {
 
         if (isValidCountry) {
             setKnownCountry(true);
-
-            // TODO should do this earlier and pass in to component as property
-            const answerCountries = [];
-            borderingCountries.forEach(borderingCountry => {
-                countryCodeMapping.find(country => {
-                    if (country.code === borderingCountry) {
-                        answerCountries.push(country.name);
-                    }
-                })
-            });
-
             if (!guesses.includes(guessedName)) {
                 setDuplicateGuess(false);
-                const lowerCaseBorderingCountryArray = answerCountries.map(country => country.toLowerCase());
+                const lowerCaseBorderingCountryArray = borderingCountries.map(country => country.toLowerCase());
                 if (lowerCaseBorderingCountryArray.includes(guessedName)) {
                     setCorrectGuesses([...correctGuesses, guessedName]);
                     setCorrectLastGuess(true);
                     // TODO why is this counter off by 1? Same as the one in countryGuesser
-                    if (correctGuesses.length + 1 === answerCountries.length) {
+                    if (correctGuesses.length + 1 === borderingCountries.length) {
                         setSucceeded(true);
                     }
                 } else {
                     setIncorrectGuesses([...incorrectGuesses, guessedName]);
                     setIncorrectCount(incorrectCount + 1);
                     setCorrectLastGuess(false);
-                    // TODO make this number dynamic depending on number of borders?
-                    if (incorrectCount >= 5) { // TODO make sure this is 5
+                    if (incorrectCount >= 5) {
                         setFailed(true);
                     }
                 }
@@ -102,7 +89,6 @@ function borderingCountriesGuesser(props) {
                 <p>There are {borderingCountries.length} bordering countries to find</p>
                 <div id='borders-form'>
                     {<Form onSubmit={handleSubmit}>
-                        <br />
                         <Fragment>
                             <Form.Group className='mb-3'>
                                 <Form.Label>Guess the bordering countries</Form.Label>
@@ -120,7 +106,6 @@ function borderingCountriesGuesser(props) {
                         </Button>
                     </Form>}
                 </div>
-                <br />
             </div>}
             {guesses.length > 0 && !failed && !succeeded && <BorderingCountriesFeedback
                 correctGuesses={correctGuesses}
