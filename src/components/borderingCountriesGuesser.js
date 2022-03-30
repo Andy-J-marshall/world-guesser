@@ -27,11 +27,12 @@ function borderingCountriesGuesser(props) {
     const [failed, setFailed] = useState(false);
     const [succeeded, setSucceeded] = useState(false);
     const [knownCountry, setKnownCountry] = useState(true);
-    const [selectCountry, setSelectCountry] = useState([]);
+    const [value, setValue] = useState([]);
     const [guessedActualCountry, setGuessedActualCountry] = useState(false);
 
     const handleSubmit = (event) => {
         event.preventDefault();
+        setValue([''])
         const guessedName = event.target[0].value.toLowerCase().trim();
         let isValidCountry = false;
 
@@ -94,10 +95,10 @@ function borderingCountriesGuesser(props) {
                             <Form.Group className='mb-3'>
                                 <Typeahead
                                     id='bordering-countries-guesser'
-                                    onChange={setSelectCountry}
+                                    onChange={setValue}
                                     options={possibleCountries}
                                     placeholder='Select your country'
-                                    selected={selectCountry}
+                                    selected={value}
                                 />
                             </Form.Group>
                         </Fragment>

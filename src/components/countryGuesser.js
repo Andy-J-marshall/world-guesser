@@ -27,10 +27,11 @@ function CountryGuesser(props) {
     const [duplicateGuess, setDuplicateGuess] = useState(false);
     const [failed, setFailed] = useState(false);
     const [knownCountry, setKnownCountry] = useState(true);
-    const [selectCountry, setSelectCountry] = useState([]);
+    const [value, setValue] = useState(['']);
 
     const handleSubmit = (event) => {
         event.preventDefault();
+        setValue(['']);
         const guessedName = event.target[0].value.toLowerCase().trim();
         let isValidCountry = false;
         if (guessedName.length > 0) {
@@ -92,10 +93,10 @@ function CountryGuesser(props) {
                         <Form.Group className='mb-3'>
                             <Typeahead
                                 id='country-search'
-                                onChange={setSelectCountry}
+                                onChange={setValue}
                                 options={possibleCountries}
-                                placeholder="Select your country"
-                                selected={selectCountry}
+                                placeholder='Select your country'
+                                selected={value}
                             />
                         </Form.Group>
                     </Fragment>
