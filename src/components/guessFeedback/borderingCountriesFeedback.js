@@ -1,4 +1,5 @@
 import React from 'react';
+import capitalizeText from '../../helpers/utils';
 
 function borderingCountriesFeedback(props) {
     const correctGuesses = props.correctGuesses;
@@ -19,8 +20,8 @@ function borderingCountriesFeedback(props) {
     return (
         <div id='bordering-countries-guess-feedback'>
             {/* TODO make a bigger deal about correct and incorrect guesses e.g. colours etc. */}
-            {correctGuesses.length > 0 && <p>Correct answers so far: {correctGuesses.toString()}</p>}
-            {incorrectGuesses.length > 0 && <p>Incorrect answers so far: {incorrectGuesses.toString()}</p>}
+            {correctGuesses.length > 0 && <p>Correct answers so far: {capitalizeText(correctGuesses)}</p>}
+            {incorrectGuesses.length > 0 && <p>Incorrect answers so far: {capitalizeText(incorrectGuesses)}</p>}
             <br />
             <p>{guessesRemainingText}</p>
             <p>{countriesRemainingText}</p>

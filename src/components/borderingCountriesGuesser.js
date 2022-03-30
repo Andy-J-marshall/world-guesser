@@ -35,7 +35,6 @@ function borderingCountriesGuesser(props) {
         const guessedName = event.target[0].value.toLowerCase().trim();
         let isValidCountry = false;
 
-        // TODO this is really messy
         if (guessedName.length > 0) {
             if (guessedName === name.toLowerCase()) {
                 setGuessedActualCountry(true);
@@ -125,7 +124,7 @@ function borderingCountriesGuesser(props) {
                 name={name}
                 map={map}
                 correctGuesses={correctGuesses}
-                borderingCountriesCount={borderingCountries.length}
+                borderingCountries={borderingCountries}
                 guesses={guesses}
             />}
             {succeeded && <BorderingCountriesSuccessPage

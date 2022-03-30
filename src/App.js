@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import Country from './components/country';
-import getAllCountriesRequest from './restHelpers/allCountriesRequest';
+import getAllCountriesRequest from './helpers/allCountriesRequest';
 
 // TODO tidy up CSS for whole app
 // TODO change favicon

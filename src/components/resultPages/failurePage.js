@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import Country from '../country';
 import PlayButton from '../playButton';
-import getAllCountriesRequest from '../../restHelpers/allCountriesRequest';
+import getAllCountriesRequest from '../../helpers/allCountriesRequest';
+import capitalizeText from '../../helpers/utils';
 
 function FailurePage(props) {
     const name = props.name;
@@ -11,8 +12,12 @@ function FailurePage(props) {
     const correctGuesses = props.correctGuesses;
     const guesses = props.guesses;
 
-    const borderingCountriesCount = borderingCountries.length;
-    const missingAnswersArray = borderingCountries.filter(countryGuess => !correctGuesses.includes(countryGuess.toLowerCase()));
+    let borderingCountriesCount;
+    let missingAnswersArray;
+    if (borderingCountries) {
+        borderingCountriesCount = borderingCountries.length;
+        missingAnswersArray = borderingCountries.filter(countryGuess => !correctGuesses.includes(countryGuess.toLowerCase()));
+    }
 
     const [newGameStarted, setNewGameStarted] = useState(false);
     const [allCountriesResponse, setAllCountriesResponse] = useState();
@@ -26,17 +31,18 @@ function FailurePage(props) {
     return (
         <div id='failure-page'>
             {!newGameStarted && <p style={{ color: 'red' }}>Unlucky, better luck next time</p>}
-            {!borderingCountriesCount && !newGameStarted && < div id='country-failure' >
+            {!borderingCountries && !newGameStarted && < div id='country-failure' >
                 {<p>The answer was <a href={map}>{name}</a></p>}
-                {<p>Your answer history was: {guesses.toString()}</p>}
+                {<p>Your answer history was: {capitalizeText(guesses)}</p>}
                 <img style={{ border: 'solid' }} src={flag} alt='Country Flag' />
             </div >}
 
-            {borderingCountriesCount && !newGameStarted && < div id='bordering-countries-failure' >
-                <p>You found {correctGuesses.length} bordering countries out of {borderingCountriesCount}</p>
-                {correctGuesses.length > 0 && <p>Countries found: {correctGuesses.toString()}</p>}
-                <p>You missed {missingAnswersArray.toString()}</p>
-                {<p>Your answer history was: {guesses.toString()}</p>}
+            {borderingCountries && !newGameStarted && < div id='bordering-countries-failure' >
+                {!correctGuesses && <p>You found none of the {borderingCountriesCount} bordering countries</p>}
+                {correctGuesses && correctGuesses.length > 0 && <p>You found {correctGuesses.length} bordering countries out of {borderingCountriesCount}</p>}
+                {correctGuesses && correctGuesses.length > 0 && <p>You found: {capitalizeText(correctGuesses)}</p>}
+                {missingAnswersArray && <p>You missed: {capitalizeText(missingAnswersArray)}</p>}
+                {<p>Your answer history was: {capitalizeText(guesses)}</p>}
                 {<p>See {name} on the <a href={map}>map</a></p>}
             </div >}
 

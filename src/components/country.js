@@ -1,5 +1,6 @@
 import React from 'react';
 import CountryGuesser from './countryGuesser';
+import capitalizeText from '../helpers/utils';
 
 function Country(props) {
   const countriesInfo = props.countriesInfo;
@@ -36,7 +37,7 @@ function Country(props) {
         region={country.region}
         subregion={country.subregion}
         map={country.map}
-        capital={country.capital.toString()}
+        capital={capitalizeText(country.capital)}
         borderingCountries={returnBorderingCountries(country.borders)}
         possibleCountries={possibleCountries}
       />}

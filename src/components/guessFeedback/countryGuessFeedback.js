@@ -1,4 +1,5 @@
 import React from 'react';
+import capitalizeText from '../../helpers/utils';
 
 function duplicateGuess(props) {
     const incorrectCount = props.incorrectCount;
@@ -8,7 +9,7 @@ function duplicateGuess(props) {
     return (
         <div id='country-guess-feedback'>
             {!duplicateGuess && <p style={{ color: 'red' }}>Incorrect! That was attempt number {incorrectCount}/6.</p>}
-            {<p>Your answers so far: {guesses.toString()}</p>}
+            {<p>Your answers so far: {capitalizeText(guesses)}</p>}
         </div>
     )
 }
