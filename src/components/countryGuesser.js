@@ -1,12 +1,9 @@
-import React, { useState, Fragment } from 'react';
-import { Button, Form } from 'react-bootstrap';
-import { Typeahead } from 'react-bootstrap-typeahead';
+import React, { useState } from 'react';
 import FailurePage from './resultPages/failurePage';
 import CountryGuesserSuccessPage from './resultPages/countryGuesserSuccessPage';
 import BasicValidation from './guessFeedback/basicValidation';
 import CountryGuessFeedback from './guessFeedback/countryGuessFeedback';
-
-import 'react-bootstrap-typeahead/css/Typeahead.css';
+import CountryForm from './countryForm';
 
 function CountryGuesser(props) {
     const name = props.name;
@@ -86,24 +83,13 @@ function CountryGuesser(props) {
                 </div>}
                 {incorrectCount >= 5 && <p>Capital city/cities = {capital}</p>}
             </div>}
-            {/* TODO look into making the forms more generic and reusable */}
             <div id='country-form'>
-                {!correctGuess && !failed && <Form onSubmit={handleSubmit}>
-                    <Fragment>
-                        <Form.Group className='mb-3'>
-                            <Typeahead
-                                id='country-search'
-                                onChange={setValue}
-                                options={possibleCountries}
-                                placeholder='Select your country'
-                                selected={value}
-                            />
-                        </Form.Group>
-                    </Fragment>
-                    <Button variant='primary' type='submit'>
-                        Guess
-                    </Button>
-                </Form>}
+                {!correctGuess && !failed && <CountryForm
+                    possibleCountries={possibleCountries}
+                    value={value}
+                    setValue={setValue}
+                    handleSubmit={handleSubmit}
+                />}
             </div>
             <BasicValidation
                 duplicateGuess={duplicateGuess}

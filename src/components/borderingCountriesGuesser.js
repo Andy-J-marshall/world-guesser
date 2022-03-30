@@ -1,12 +1,9 @@
-import React, { Fragment, useState } from 'react';
-import { Button, Form } from 'react-bootstrap';
-import { Typeahead } from 'react-bootstrap-typeahead';
+import React, { useState } from 'react';
 import BasicValidation from './guessFeedback/basicValidation';
 import BorderingCountriesFeedback from './guessFeedback/borderingCountriesFeedback';
 import FailurePage from './resultPages/failurePage';
 import BorderingCountriesSuccessPage from './resultPages/borderingCountriesSuccessPage';
-
-import 'react-bootstrap-typeahead/css/Typeahead.css';
+import CountryForm from './countryForm';
 
 function borderingCountriesGuesser(props) {
     const name = props.name;
@@ -90,22 +87,12 @@ function borderingCountriesGuesser(props) {
                 <p>Your country is: {name}</p>
                 <p>{numberOfBorderingCountriesText}</p>
                 <div id='borders-form'>
-                    {<Form onSubmit={handleSubmit}>
-                        <Fragment>
-                            <Form.Group className='mb-3'>
-                                <Typeahead
-                                    id='bordering-countries-guesser'
-                                    onChange={setValue}
-                                    options={possibleCountries}
-                                    placeholder='Select your country'
-                                    selected={value}
-                                />
-                            </Form.Group>
-                        </Fragment>
-                        <Button variant='primary' type='submit'>
-                            Guess
-                        </Button>
-                    </Form>}
+                    <CountryForm
+                        possibleCountries={possibleCountries}
+                        value={value}
+                        setValue={setValue}
+                        handleSubmit={handleSubmit}
+                    />
                 </div>
             </div>}
             {guesses.length > 0 && !failed && !succeeded && <BorderingCountriesFeedback
