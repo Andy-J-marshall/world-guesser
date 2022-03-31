@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import Country from '../country';
 import PlayButton from '../playButton';
 import getAllCountriesRequest from '../../helpers/allCountriesRequest';
-import { capitalizeText}  from '../../helpers/utils';
+import { capitalizeText } from '../../helpers/utils';
 
 function BorderingCountriesSuccessPage(props) {
     const incorrectGuesses = props.incorrectGuesses;
@@ -11,9 +11,10 @@ function BorderingCountriesSuccessPage(props) {
     const map = props.map;
     const guesses = props.guesses;
     const incorrectCount = incorrectGuesses.length;
+    const answerOrAnswers = incorrectCount === 1 ? 'answer' : 'answers';
 
     const messageText = correctGuesses.length === 1
-        ? `Well done! You found the only bordering country of ${name} with ${incorrectCount} incorrect answer(s)`
+        ? `Well done! You found the only bordering country of ${name} with ${incorrectCount} incorrect ${answerOrAnswers}`
         : `Well done! You found the ${correctGuesses.length} bordering countries of ${name} with ${incorrectCount} incorrect answers`;
 
     const [newGameStarted, setNewGameStarted] = useState(false);
@@ -28,7 +29,7 @@ function BorderingCountriesSuccessPage(props) {
     return (
         <div>
             {!newGameStarted && < div id='successful-bordering-countries-game' >
-                <h5>{messageText}</h5>
+                <h5 style={{ color: 'green' }}>{messageText}</h5>
                 <p>See <a href={map}>{name}</a> on the map</p>
                 {<p>Your answer history was: {capitalizeText(guesses)}</p>}
             </div >}

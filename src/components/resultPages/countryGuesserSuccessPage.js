@@ -3,7 +3,7 @@ import BorderingCountriesGuesser from '../borderingCountriesGuesser';
 import PlayButton from '../playButton';
 import Country from '../country';
 import getAllCountriesRequest from '../../helpers/allCountriesRequest';
-import { capitalizeText}  from '../../helpers/utils';
+import { capitalizeText } from '../../helpers/utils';
 
 function CountryGuesserSuccessPage(props) {
     const incorrectCount = props.incorrectCount;
@@ -34,8 +34,8 @@ function CountryGuesserSuccessPage(props) {
     return (
         <div>
             {!newGameStarted && < div id='successful-country-game' >
-                {incorrectCount === 0 && <h5>Amazing! You got <a href={map}>{name}</a> in one!</h5>}
-                {incorrectCount > 0 && <p>Well done! It took you {incorrectCount + 1} attempts to get <a href={map}>{name}</a></p>}
+                {incorrectCount === 0 && <h5 style={{ color: 'green' }}>Amazing! You got <a href={map}>{name}</a> in one!</h5>}
+                {incorrectCount > 0 && <h5 style={{ color: 'green' }}>Well done! It took you {incorrectCount + 1} attempts to get <a href={map}>{name}</a></h5>}
                 {incorrectCount > 0 && <p>Your answer history was: {capitalizeText(guesses)}</p>}
                 {<img style={{ border: 'solid' }} src={flag} alt='Country Flag' />}
             </div >}

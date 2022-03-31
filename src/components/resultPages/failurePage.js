@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import Country from '../country';
 import PlayButton from '../playButton';
 import getAllCountriesRequest from '../../helpers/allCountriesRequest';
-import { capitalizeText}  from '../../helpers/utils';
+import { capitalizeText } from '../../helpers/utils';
 
 function FailurePage(props) {
     const name = props.name;
