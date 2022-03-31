@@ -19,7 +19,8 @@ Run the following:
 * `npm run deploy`
 
 ## Todo list
-Create a stats page
-Difficulty options based on region and start letter (if not Eur?)
-Design a nice UI
 Add clues for bordering countries
+Design a nice UI
+Change favicon
+Create a stats page
+Difficulty options based on region?

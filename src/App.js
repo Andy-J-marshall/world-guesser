@@ -2,8 +2,6 @@ import React, { useState, useEffect } from 'react';
 import Country from './components/country';
 import getAllCountriesRequest from './helpers/allCountriesRequest';
 
-// TODO tidy up CSS for whole app
-// TODO change favicon
 function App() {
   const [allCountriesResponse, setAllCountriesResponse] = useState();
   const [foundCountry, setFindCountry] = useState(false);
