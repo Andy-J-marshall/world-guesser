@@ -1,24 +1,18 @@
-// TODO tidy up and rename
-
-function capitalizeText(stringArray) {
-    // TODO replace ' and ' with ' & '
+export function capitalizeText(stringArray) {
     let stringArrayAsString = '';
-    let count = 0;
-    stringArray.forEach(string => {
-        const originalString = string;
+    stringArray.forEach((originalString, index) => {
         const splitString = originalString.split(' ');
-        for (let i = 0; i < splitString.length; i++) {
-            splitString[i] = splitString[i].charAt(0).toUpperCase() + splitString[i].slice(1);
-        }
+        splitString.forEach((word, index, array) => {
+            array[index] = array[index].charAt(0).toUpperCase() + array[index].slice(1);
+        })
         const capitalizedString = splitString.join(' ');
-        if (count === 0) {
-            stringArrayAsString = capitalizedString;
-        } else {
-            stringArrayAsString = stringArrayAsString + ', ' + capitalizedString;
-        }
-        count ++;
+        stringArrayAsString = index === 0 ? capitalizedString : stringArrayAsString + ', ' + capitalizedString;
+        stringArrayAsString = stringArrayAsString.replace(' And ', ' & ');
     });
     return stringArrayAsString;
 }
 
-export default capitalizeText;
+export function numberWithCommas(number) {
+    return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+  }
+

@@ -1,5 +1,5 @@
 import React from 'react';
-import capitalizeText from '../../helpers/utils';
+import { capitalizeText } from '../../helpers/utils';
 
 function borderingCountriesFeedback(props) {
     const correctGuesses = props.correctGuesses;

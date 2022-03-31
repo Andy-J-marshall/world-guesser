@@ -3,7 +3,7 @@ import BorderingCountriesGuesser from '../borderingCountriesGuesser';
 import PlayButton from '../playButton';
 import Country from '../country';
 import getAllCountriesRequest from '../../helpers/allCountriesRequest';
-import capitalizeText from '../../helpers/utils';
+import { capitalizeText}  from '../../helpers/utils';
 
 function CountryGuesserSuccessPage(props) {
     const incorrectCount = props.incorrectCount;

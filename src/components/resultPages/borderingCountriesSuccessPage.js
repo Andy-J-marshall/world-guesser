@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import Country from '../country';
 import PlayButton from '../playButton';
 import getAllCountriesRequest from '../../helpers/allCountriesRequest';
-import capitalizeText from '../../helpers/utils';
+import { capitalizeText}  from '../../helpers/utils';
 
 function BorderingCountriesSuccessPage(props) {
     const incorrectGuesses = props.incorrectGuesses;

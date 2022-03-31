@@ -1,6 +1,6 @@
 import React from 'react';
 import CountryGuesser from './countryGuesser';
-import capitalizeText from '../helpers/utils';
+import { capitalizeText, numberWithCommas } from '../helpers/utils';
 
 function Country(props) {
   const countriesInfo = props.countriesInfo;
@@ -8,10 +8,6 @@ function Country(props) {
   const countryCodeMapping = countriesInfo.countryCodeMapping
   const possibleCountries = countriesInfo.countriesArray;
   const country = countriesInfo.country;
-
-  function numberWithCommas(number) {
-    return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-  }
 
   function returnBorderingCountries(borderingCountries) {
     const answerCountries = [];
