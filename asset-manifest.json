@@ -1,20 +1,20 @@
 {
   "files": {
-    "main.js": "/world-guesser/static/js/main.84d7ac4a.chunk.js",
-    "main.js.map": "/world-guesser/static/js/main.84d7ac4a.chunk.js.map",
+    "main.js": "/world-guesser/static/js/main.b261e156.chunk.js",
+    "main.js.map": "/world-guesser/static/js/main.b261e156.chunk.js.map",
     "runtime-main.js": "/world-guesser/static/js/runtime-main.8a2240f2.js",
     "runtime-main.js.map": "/world-guesser/static/js/runtime-main.8a2240f2.js.map",
     "static/css/2.f6bd4d84.chunk.css": "/world-guesser/static/css/2.f6bd4d84.chunk.css",
-    "static/js/2.65ec3b70.chunk.js": "/world-guesser/static/js/2.65ec3b70.chunk.js",
-    "static/js/2.65ec3b70.chunk.js.map": "/world-guesser/static/js/2.65ec3b70.chunk.js.map",
+    "static/js/2.07909eb7.chunk.js": "/world-guesser/static/js/2.07909eb7.chunk.js",
+    "static/js/2.07909eb7.chunk.js.map": "/world-guesser/static/js/2.07909eb7.chunk.js.map",
     "index.html": "/world-guesser/index.html",
     "static/css/2.f6bd4d84.chunk.css.map": "/world-guesser/static/css/2.f6bd4d84.chunk.css.map",
-    "static/js/2.65ec3b70.chunk.js.LICENSE.txt": "/world-guesser/static/js/2.65ec3b70.chunk.js.LICENSE.txt"
+    "static/js/2.07909eb7.chunk.js.LICENSE.txt": "/world-guesser/static/js/2.07909eb7.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
     "static/js/runtime-main.8a2240f2.js",
     "static/css/2.f6bd4d84.chunk.css",
-    "static/js/2.65ec3b70.chunk.js",
-    "static/js/main.84d7ac4a.chunk.js"
+    "static/js/2.07909eb7.chunk.js",
+    "static/js/main.b261e156.chunk.js"
   ]
 }
