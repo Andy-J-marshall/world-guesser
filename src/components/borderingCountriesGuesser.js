@@ -31,8 +31,39 @@ function borderingCountriesGuesser(props) {
         event.preventDefault();
         setValue([''])
         const guessedName = event.target[0].value.toLowerCase().trim();
-        let isValidCountry = false;
+        const isValidCountry = checkValidGuess(guessedName);
+        if (isValidCountry) {
+            checkGuessIsCorrect(guessedName);
+        }
+    };
 
+    function checkGuessIsCorrect(guessedName) {
+        setKnownCountry(true);
+        if (!guesses.includes(guessedName)) {
+            setDuplicateGuess(false);
+            const lowerCaseBorderingCountryArray = borderingCountries.map(country => country.toLowerCase());
+            if (lowerCaseBorderingCountryArray.includes(guessedName)) {
+                setCorrectGuesses([...correctGuesses, guessedName]);
+                setCorrectLastGuess(true);
+                if (correctGuesses.length + 1 === borderingCountries.length) {
+                    setSucceeded(true);
+                }
+            } else {
+                setIncorrectGuesses([...incorrectGuesses, guessedName]);
+                setIncorrectCount(incorrectCount + 1);
+                setCorrectLastGuess(false);
+                if (incorrectCount >= 5) {
+                    setFailed(true);
+                }
+            }
+            setGuesses([...guesses, guessedName]);
+        } else {
+            setDuplicateGuess(true);
+        }
+    }
+
+    function checkValidGuess(guessedName) {
+        let isValidCountry = false;
         if (guessedName.length > 0) {
             if (guessedName === name.toLowerCase()) {
                 setGuessedActualCountry(true);
@@ -53,32 +84,8 @@ function borderingCountriesGuesser(props) {
             setKnownCountry(false);
             setDuplicateGuess(false);
         }
-
-        if (isValidCountry) {
-            setKnownCountry(true);
-            if (!guesses.includes(guessedName)) {
-                setDuplicateGuess(false);
-                const lowerCaseBorderingCountryArray = borderingCountries.map(country => country.toLowerCase());
-                if (lowerCaseBorderingCountryArray.includes(guessedName)) {
-                    setCorrectGuesses([...correctGuesses, guessedName]);
-                    setCorrectLastGuess(true);
-                    if (correctGuesses.length + 1 === borderingCountries.length) {
-                        setSucceeded(true);
-                    }
-                } else {
-                    setIncorrectGuesses([...incorrectGuesses, guessedName]);
-                    setIncorrectCount(incorrectCount + 1);
-                    setCorrectLastGuess(false);
-                    if (incorrectCount >= 5) {
-                        setFailed(true);
-                    }
-                }
-                setGuesses([...guesses, guessedName]);
-            } else {
-                setDuplicateGuess(true);
-            }
-        }
-    };
+        return isValidCountry;
+    }
 
     return (
         <div id='borders'>

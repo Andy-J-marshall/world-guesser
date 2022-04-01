@@ -30,6 +30,33 @@ function CountryGuesser(props) {
         event.preventDefault();
         setValue(['']);
         const guessedName = event.target[0].value.toLowerCase().trim();
+        const isValidCountry = checkValidGuess(guessedName);
+        if (isValidCountry) {
+            checkGuessIsCorrect(guessedName);
+        }
+    };
+
+    function checkGuessIsCorrect(guessedName) {
+        setKnownCountry(true);
+        if (!guesses.includes(guessedName)) {
+            setDuplicateGuess(false);
+            setGuessAttempted(true);
+            if (guessedName === name.toLowerCase()) {
+                setCorrectGuess(true);
+            } else {
+                setIncorrectCount(incorrectCount + 1)
+                setCorrectGuess(false);
+                if (incorrectCount >= 5) {
+                    setFailed(true);
+                }
+            }
+            setGuesses([...guesses, guessedName]);
+        } else {
+            setDuplicateGuess(true);
+        }
+    }
+
+    function checkValidGuess(guessedName) {
         let isValidCountry = false;
         if (guessedName.length > 0) {
             possibleCountries.find(country => {
@@ -47,27 +74,8 @@ function CountryGuesser(props) {
             setGuessAttempted(false);
             setDuplicateGuess(false);
         }
-
-        if (isValidCountry) {
-            setKnownCountry(true);
-            if (!guesses.includes(guessedName)) {
-                setDuplicateGuess(false);
-                setGuessAttempted(true);
-                if (guessedName === name.toLowerCase()) {
-                    setCorrectGuess(true);
-                } else {
-                    setIncorrectCount(incorrectCount + 1)
-                    setCorrectGuess(false);
-                    if (incorrectCount >= 5) {
-                        setFailed(true);
-                    }
-                }
-                setGuesses([...guesses, guessedName]);
-            } else {
-                setDuplicateGuess(true);
-            }
-        }
-    };
+        return isValidCountry;
+    }
 
     return (
         <div id='country-guesser' className='component'>
