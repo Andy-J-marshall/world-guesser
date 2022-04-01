@@ -4,6 +4,7 @@ import CountryGuesserSuccessPage from './resultPages/countryGuesserSuccessPage';
 import BasicValidation from './guessFeedback/basicValidation';
 import CountryGuessFeedback from './guessFeedback/countryGuessFeedback';
 import CountryForm from './countryForm';
+import checkValidGuess from '../helpers/countryValidation';
 
 function CountryGuesser(props) {
     const name = props.name;
@@ -17,7 +18,6 @@ function CountryGuesser(props) {
     const possibleCountries = props.possibleCountries;
     const borderingCountries = props.borderingCountries;
 
-    const [guessAttempted, setGuessAttempted] = useState(false);
     const [correctGuess, setCorrectGuess] = useState(false);
     const [incorrectCount, setIncorrectCount] = useState(0);
     const [guesses, setGuesses] = useState([]);
@@ -30,51 +30,27 @@ function CountryGuesser(props) {
         event.preventDefault();
         setValue(['']);
         const guessedName = event.target[0].value.toLowerCase().trim();
-        const isValidCountry = checkValidGuess(guessedName);
-        if (isValidCountry) {
+        const { isValidCountry, knownCountry, duplicateGuess } = checkValidGuess(guessedName, possibleCountries, guesses);
+        setKnownCountry(knownCountry);
+        setDuplicateGuess(duplicateGuess);
+        if (isValidCountry && knownCountry && !duplicateGuess) {
             checkGuessIsCorrect(guessedName);
         }
     };
 
     function checkGuessIsCorrect(guessedName) {
         setKnownCountry(true);
-        if (!guesses.includes(guessedName)) {
-            setDuplicateGuess(false);
-            setGuessAttempted(true);
-            if (guessedName === name.toLowerCase()) {
-                setCorrectGuess(true);
-            } else {
-                setIncorrectCount(incorrectCount + 1)
-                setCorrectGuess(false);
-                if (incorrectCount >= 5) {
-                    setFailed(true);
-                }
+        setDuplicateGuess(false);
+        if (guessedName === name.toLowerCase()) {
+            setCorrectGuess(true);
+        } else {
+            setIncorrectCount(incorrectCount + 1)
+            setCorrectGuess(false);
+            if (incorrectCount >= 5) {
+                setFailed(true);
             }
-            setGuesses([...guesses, guessedName]);
-        } else {
-            setDuplicateGuess(true);
         }
-    }
-
-    function checkValidGuess(guessedName) {
-        let isValidCountry = false;
-        if (guessedName.length > 0) {
-            possibleCountries.find(country => {
-                if (country.toLowerCase() === guessedName) {
-                    setKnownCountry(true);
-                    isValidCountry = true;
-                } else {
-                    setDuplicateGuess(false);
-                    setGuessAttempted(false);
-                    setKnownCountry(false);
-                }
-            });
-        } else {
-            setKnownCountry(false);
-            setGuessAttempted(false);
-            setDuplicateGuess(false);
-        }
-        return isValidCountry;
+        setGuesses([...guesses, guessedName]);
     }
 
     return (
@@ -103,7 +79,7 @@ function CountryGuesser(props) {
                 duplicateGuess={duplicateGuess}
                 knownCountry={knownCountry}
             />
-            {!correctGuess && guessAttempted && !failed && <CountryGuessFeedback
+            {!correctGuess && guesses.length > 0 && !failed && <CountryGuessFeedback
                 guesses={guesses}
                 incorrectCount={incorrectCount}
                 duplicateGuess={duplicateGuess}
