@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import FailurePage from './resultPages/failurePage';
 import CountryGuesserSuccessPage from './resultPages/countryGuesserSuccessPage';
 import BasicValidation from './guessFeedback/basicValidation';
@@ -46,12 +46,15 @@ function CountryGuesser(props) {
         } else {
             setIncorrectCount(incorrectCount + 1)
             setCorrectGuess(false);
-            if (incorrectCount >= 5) {
-                setFailed(true);
-            }
         }
         setGuesses([...guesses, guessedName]);
     }
+
+    useEffect(() => {
+        if (incorrectCount >= 6) {
+            setFailed(true);
+        }
+    })
 
     return (
         <div id='country-guesser' className='component'>
@@ -65,7 +68,7 @@ function CountryGuesser(props) {
                     <p>Flag: </p>
                     {<img style={{ border: 'solid' }} src={flag} alt='Country Flag' />}
                 </div>}
-                {incorrectCount >= 5 && <p>Capital city/cities = {capital}</p>}
+                {incorrectCount >= 5 && <p>Capital city = {capital}</p>}
             </div>}
             <div id='country-form'>
                 {!correctGuess && !failed && <CountryForm

@@ -61,14 +61,11 @@ function borderingCountriesGuesser(props) {
             setIncorrectGuesses([...incorrectGuesses, guessedName]);
             setIncorrectCount(incorrectCount + 1);
             setCorrectLastGuess(false);
-            if (incorrectCount >= 5) {
-                setFailed(true);
-            }
         }
         setGuesses([...guesses, guessedName]);
     }
 
-    useEffect(() => {
+    function findStartingLetterOfBorders() {
         if (incorrectGuesses.length >= 4) {
             const startingLetters = [];
             borderingCountries.forEach((country) => {
@@ -77,8 +74,17 @@ function borderingCountriesGuesser(props) {
                     startingLetters.push(letter);
                 }
             });
-            setClues(capitalizeText(startingLetters));
+            return capitalizeText(startingLetters);
         }
+    }
+
+    useEffect(() => {
+        if (incorrectCount >= 6) {
+            setFailed(true);
+        }
+
+        const clues = findStartingLetterOfBorders();
+        setClues(clues);
     })
 
     return (
