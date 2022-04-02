@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import BasicValidation from './guessFeedback/basicValidation';
 import BorderingCountriesFeedback from './guessFeedback/borderingCountriesFeedback';
 import FailurePage from './resultPages/failurePage';
@@ -47,7 +47,6 @@ function borderingCountriesGuesser(props) {
         if (isValidCountry && knownCountry && !duplicateGuess) {
             checkGuessIsCorrect(guessedName);
         }
-        findBorderingCountryClue();
     };
 
     function checkGuessIsCorrect(guessedName) {
@@ -69,18 +68,18 @@ function borderingCountriesGuesser(props) {
         setGuesses([...guesses, guessedName]);
     }
 
-    function findBorderingCountryClue() {
-        if (incorrectGuesses.length >= 3 && !clues) {
+    useEffect(() => {
+        if (incorrectGuesses.length >= 4) {
             const startingLetters = [];
             borderingCountries.forEach((country) => {
                 if (!correctGuesses.includes(country.toLowerCase())) {
                     const letter = country.charAt(0).toUpperCase();
                     startingLetters.push(letter);
                 }
-            })
+            });
             setClues(capitalizeText(startingLetters));
         }
-    }
+    })
 
     return (
         <div id='borders'>
