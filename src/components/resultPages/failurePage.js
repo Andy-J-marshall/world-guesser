@@ -30,7 +30,7 @@ function FailurePage(props) {
 
     return (
         <div id='failure-page'>
-            {!newGameStarted && <p style={{ color: 'red' }}>Unlucky, better luck next time</p>}
+            {!newGameStarted && <p style={{ color: 'red' }}>You failed. Better luck next time</p>}
             {!borderingCountries && !newGameStarted && < div id='country-failure' >
                 {<p>The answer was <a href={map}>{name}</a></p>}
                 {<p>Your answer history was: {capitalizeText(guesses)}</p>}

@@ -5,6 +5,7 @@ import FailurePage from './resultPages/failurePage';
 import BorderingCountriesSuccessPage from './resultPages/borderingCountriesSuccessPage';
 import CountryForm from './countryForm';
 import checkValidGuess from '../helpers/countryValidation';
+import { capitalizeText } from '../helpers/utils';
 
 function borderingCountriesGuesser(props) {
     const name = props.name;
@@ -27,6 +28,7 @@ function borderingCountriesGuesser(props) {
     const [knownCountry, setKnownCountry] = useState(true);
     const [value, setValue] = useState([]);
     const [guessedActualCountry, setGuessedActualCountry] = useState(false);
+    const [clues, setClues] = useState();
 
     const handleSubmit = (event) => {
         event.preventDefault();
@@ -45,6 +47,7 @@ function borderingCountriesGuesser(props) {
         if (isValidCountry && knownCountry && !duplicateGuess) {
             checkGuessIsCorrect(guessedName);
         }
+        findBorderingCountryClue();
     };
 
     function checkGuessIsCorrect(guessedName) {
@@ -64,6 +67,19 @@ function borderingCountriesGuesser(props) {
             }
         }
         setGuesses([...guesses, guessedName]);
+    }
+
+    function findBorderingCountryClue() {
+        if (incorrectGuesses.length >= 3 && !clues) {
+            const startingLetters = [];
+            borderingCountries.forEach((country) => {
+                if (!correctGuesses.includes(country.toLowerCase())) {
+                    const letter = country.charAt(0).toUpperCase();
+                    startingLetters.push(letter);
+                }
+            })
+            setClues(capitalizeText(startingLetters));
+        }
     }
 
     return (
@@ -93,6 +109,9 @@ function borderingCountriesGuesser(props) {
                     knownCountry={knownCountry}
                 />
                 {guessedActualCountry && <p style={{ color: 'brown' }}>That's the actual country! Guess the bordering ones instead</p>}
+            </div>}
+            {!succeeded && !failed && clues && <div id='bordering-country-clues'>
+                <p>The remaining bordering countries begin with the following letters: {clues.toString()}</p>
             </div>}
             {failed && !succeeded && <FailurePage
                 name={name}

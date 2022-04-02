@@ -24,6 +24,7 @@ function borderingCountriesFeedback(props) {
             <br />
             <p>{guessesRemainingText}</p>
             <p>{countriesRemainingText}</p>
+            <br />
         </div>
     )
 }
