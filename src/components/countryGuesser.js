@@ -26,6 +26,7 @@ function CountryGuesser(props) {
     const [failed, setFailed] = useState(false);
     const [knownCountry, setKnownCountry] = useState(true);
     const [value, setValue] = useState(['']);
+    const [guessedBorderingCountry, setGuessedBorderingCountry] = useState(false);
 
     const handleSubmit = (event) => {
         event.preventDefault();
@@ -36,8 +37,17 @@ function CountryGuesser(props) {
         setDuplicateGuess(duplicateGuess);
         if (isValidCountry && knownCountry && !duplicateGuess) {
             checkGuessIsCorrect(guessedName);
+            isGuessBorderingCountry(guessedName)
         }
     };
+
+    function isGuessBorderingCountry(guessedName) {
+        if (!correctGuess && borderingCountries.find(country => country.toLowerCase() === guessedName)) {
+            setGuessedBorderingCountry(true);
+        } else {
+            setGuessedBorderingCountry(false);
+        }
+    }
 
     function checkGuessIsCorrect(guessedName) {
         setKnownCountry(true);
@@ -70,7 +80,8 @@ function CountryGuesser(props) {
                     {<img style={{ border: 'solid' }} src={flag} alt='Country Flag' />}
                 </div>}
                 {incorrectCount >= 5 && <p>Capital city = {capital}</p>}
-                {incorrectCount >= 5 && (region !== 'Europe') && <CountryClues
+                {/* TODO add this behind an 'easy' mode */}
+                {incorrectCount >= 5 && region !== 'Europe' && <CountryClues
                     countryNameClue={name.charAt(0).toUpperCase()}
                 />}
             </div>}
@@ -90,6 +101,7 @@ function CountryGuesser(props) {
                 guesses={guesses}
                 incorrectCount={incorrectCount}
                 duplicateGuess={duplicateGuess}
+                guessedBorderingCountry={guessedBorderingCountry}
             />}
             {correctGuess && !failed && <CountryGuesserSuccessPage
                 name={name}

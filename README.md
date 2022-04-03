@@ -20,7 +20,8 @@ Run the following:
 
 ## Todo list
 Add clues for country guesser? Maybe add an 'easy' country list to prevent extra clues?
+Create a stats page
 Design a nice UI
 Change favicon
-Create a stats page
-Difficulty options based on region?
+Choose particular regions?
+Maybe randomize the clue order?

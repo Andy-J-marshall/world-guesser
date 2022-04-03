@@ -5,10 +5,13 @@ function duplicateGuess(props) {
     const incorrectCount = props.incorrectCount;
     const guesses = props.guesses;
     const duplicateGuess = props.duplicateGuess;
+    const guessedBorderingCountry = props.guessedBorderingCountry;
 
     return (
         <div id='country-guess-feedback'>
             {!duplicateGuess && <p style={{ color: 'red' }}>Incorrect! That was attempt number {incorrectCount}/6.</p>}
+            {/* TODO add this behind an 'easy' mode? */}
+            {guessedBorderingCountry && <p>You're getting close!</p>}
             {<p>Your answers so far: {capitalizeText(guesses)}</p>}
         </div>
     )
