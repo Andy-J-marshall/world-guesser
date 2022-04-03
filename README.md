@@ -19,7 +19,7 @@ Run the following:
 * `npm run deploy`
 
 ## Todo list
-Add clues for bordering countries
+Add clues for country guesser? Maybe add an 'easy' country list to prevent extra clues?
 Design a nice UI
 Change favicon
 Create a stats page

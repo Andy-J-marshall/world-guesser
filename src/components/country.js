@@ -29,7 +29,7 @@ function Country(props) {
         name={country.name}
         population={numberWithCommas(country.population)}
         flag={country.flags}
-        landlocked={country.landlocked ? 'Country is landlocked' : 'Country is not landlocked'}
+        landlocked={country.landlocked ? 'The country is landlocked' : 'The country is not landlocked'}
         region={country.region}
         subregion={country.subregion}
         map={country.map}
