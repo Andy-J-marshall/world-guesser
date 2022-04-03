@@ -80,6 +80,7 @@ function borderingCountriesGuesser(props) {
     }
 
     useEffect(() => {
+        // TODO or if easy mode is enabled?
         if (incorrectCount >= 6) {
             setFailed(true);
         }

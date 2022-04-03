@@ -81,9 +81,9 @@ function CountryGuesser(props) {
                 </div>}
                 {incorrectCount >= 5 && <p>Capital city = {capital}</p>}
                 {/* TODO add this behind an 'easy' mode */}
-                {incorrectCount >= 5 && region !== 'Europe' && <CountryClues
+                {/* {incorrectCount >= 5 && region !== 'Europe' && <CountryClues
                     countryNameClue={name.charAt(0).toUpperCase()}
-                />}
+                />} */}
             </div>}
             <div id='country-form'>
                 {!correctGuess && !failed && <CountryForm
