@@ -4,6 +4,7 @@ import BorderingCountriesFeedback from './guessFeedback/borderingCountriesFeedba
 import FailurePage from './resultPages/failurePage';
 import BorderingCountriesSuccessPage from './resultPages/borderingCountriesSuccessPage';
 import CountryForm from './countryForm';
+import BorderingCountryClues from './borderingCountryClues';
 import checkValidGuess from '../helpers/countryValidation';
 import { capitalizeText } from '../helpers/utils';
 
@@ -115,9 +116,9 @@ function borderingCountriesGuesser(props) {
                 />
                 {guessedActualCountry && <p style={{ color: 'brown' }}>That's the actual country! Guess the bordering ones instead</p>}
             </div>}
-            {!succeeded && !failed && clues && <div id='bordering-country-clues'>
-                <p>The remaining bordering countries begin with the following letters: {clues.toString()}</p>
-            </div>}
+            {!succeeded && !failed && clues && <BorderingCountryClues
+                clues={clues}
+            />}
             {failed && !succeeded && <FailurePage
                 name={name}
                 map={map}
