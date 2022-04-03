@@ -22,6 +22,4 @@ Run the following:
 Add clues for country guesser? Maybe add an 'easy' country list to prevent extra clues?
 Create a stats page
 Design a nice UI
-Change favicon
-Choose particular regions?
 Maybe randomize the clue order?
