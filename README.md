@@ -20,6 +20,6 @@ Run the following:
 
 ## Todo list
 Add clues for country guesser? Maybe add an 'easy' country list to prevent extra clues?
+Maybe randomize the clue order?
 Create a stats page
 Design a nice UI
-Maybe randomize the clue order?

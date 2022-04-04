@@ -4,7 +4,6 @@ import CountryGuesserSuccessPage from './resultPages/countryGuesserSuccessPage';
 import BasicValidation from './guessFeedback/basicValidation';
 import CountryGuessFeedback from './guessFeedback/countryGuessFeedback';
 import CountryForm from './countryForm';
-import CountryClues from './countryClues';
 import checkValidGuess from '../helpers/countryValidation';
 
 function CountryGuesser(props) {
