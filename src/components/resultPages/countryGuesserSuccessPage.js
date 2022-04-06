@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import BorderingCountriesGuesser from '../borderingCountriesGuesser';
 import PlayButton from '../playButton';
 import Country from '../country';
@@ -30,6 +30,17 @@ function CountryGuesserSuccessPage(props) {
         const response = await getAllCountriesRequest();
         setAllCountriesResponse(response);
     }
+
+    // TODO do something better with this?
+    const numberOfWins = JSON.parse(localStorage.getItem('numberOfWins')) || 0;
+    const numberOfAttemptsForWins = JSON.parse(localStorage.getItem('numberOfAttemptsForWins')) || 0;
+    const numberOfGames = JSON.parse(localStorage.getItem('numberOfGames')) || 0;
+    useEffect(() => {
+        console.log('THE SUCCESS USEEFFECT')
+        localStorage.setItem('numberOfWins', JSON.stringify(numberOfWins + 1));
+        localStorage.setItem('numberOfGames', JSON.stringify(numberOfGames + 1));
+        localStorage.setItem('numberOfAttemptsForWins', JSON.stringify(numberOfAttemptsForWins + guesses.length));
+    }, [name]);
 
     return (
         <div>

@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import Country from './components/country';
+import CountryGuesserStats from './components/countryGuesserStats';
 import getAllCountriesRequest from './helpers/allCountriesRequest';
 
 function App() {
@@ -19,6 +20,8 @@ function App() {
   return (
     <div id='app'>
       <h1>FUN WITH COUNTRIES!</h1>
+      {/* TODO don't display this here? */}
+      <CountryGuesserStats />
       {allCountriesResponse && <Country
         countriesInfo={allCountriesResponse}
       />}

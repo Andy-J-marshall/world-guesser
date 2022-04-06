@@ -19,7 +19,6 @@ Run the following:
 * `npm run deploy`
 
 ## Todo list
-Add clues for country guesser? Maybe add an 'easy' country list to prevent extra clues?
-Maybe randomize the clue order?
+Add check that the country hasn't been used recently. Session storage?
 Create a stats page
 Design a nice UI

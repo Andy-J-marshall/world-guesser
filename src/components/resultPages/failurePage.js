@@ -1,9 +1,10 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Country from '../country';
 import PlayButton from '../playButton';
 import getAllCountriesRequest from '../../helpers/allCountriesRequest';
 import { capitalizeText } from '../../helpers/utils';
 
+// TODO split this into 2 components
 function FailurePage(props) {
     const name = props.name;
     const flag = props.flag;
@@ -27,6 +28,14 @@ function FailurePage(props) {
         const response = await getAllCountriesRequest();
         setAllCountriesResponse(response);
     }
+
+    // TODO do something better with this?
+    const numberOfGames = JSON.parse(localStorage.getItem('numberOfGames')) || 0;
+    useEffect(() => {
+        if (!borderingCountries) {
+            localStorage.setItem('numberOfGames', JSON.stringify(numberOfGames + 1));
+        }
+    }, [name]);
 
     return (
         <div id='failure-page'>
