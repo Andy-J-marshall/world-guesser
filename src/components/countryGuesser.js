@@ -7,6 +7,7 @@ import CountryForm from './countryForm';
 import checkValidGuess from '../helpers/countryValidation';
 
 function CountryGuesser(props) {
+    const countriesInfo = props.countriesInfo;
     const name = props.name;
     // console.log(name) // TODO delete
     const population = props.population;
@@ -100,6 +101,7 @@ function CountryGuesser(props) {
                 guessedBorderingCountry={guessedBorderingCountry}
             />}
             {correctGuess && !failed && <CountryGuesserSuccessPage
+                countriesInfo={countriesInfo}
                 name={name}
                 map={map}
                 flag={flag}
@@ -109,6 +111,7 @@ function CountryGuesser(props) {
                 possibleCountries={possibleCountries}
             />}
             {failed && <CountryGuesserFailurePage
+                countriesInfo={countriesInfo}
                 name={name}
                 map={map}
                 flag={flag}

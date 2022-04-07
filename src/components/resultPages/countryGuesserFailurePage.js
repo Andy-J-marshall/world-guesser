@@ -3,6 +3,7 @@ import StartNewGame from '../startNewGame';
 import { capitalizeText } from '../../helpers/utils';
 
 function CountryGuesserFailurePage(props) {
+    const countriesInfo = props.countriesInfo;
     const name = props.name;
     const flag = props.flag;
     const map = props.map;
@@ -25,6 +26,7 @@ function CountryGuesserFailurePage(props) {
                 <img style={{ border: 'solid' }} src={flag} alt='Country Flag' />
             </div >}
             <StartNewGame
+                countriesInfo={countriesInfo}
                 buttonText='Try again'
                 callback={setNewGameStarted}
             />

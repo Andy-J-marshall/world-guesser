@@ -1,13 +1,14 @@
 import React from 'react';
 import CountryGuesser from './countryGuesser';
 import { capitalizeText, numberWithCommas } from '../helpers/utils';
+import { selectCountry } from '../helpers/allCountriesRequest';
 
 function Country(props) {
   const countriesInfo = props.countriesInfo;
 
   const countryCodeMapping = countriesInfo.countryCodeMapping
   const possibleCountries = countriesInfo.countriesArray;
-  const country = countriesInfo.country;
+  const country = selectCountry(possibleCountries, countriesInfo.responseBody);
 
   function returnBorderingCountries(borderingCountries) {
     const answerCountries = [];
@@ -24,8 +25,10 @@ function Country(props) {
   }
 
   return (
+    // TODO don't have to pass everything in for country., just countries info?
     <div id='country'>
       {country && <CountryGuesser
+        countriesInfo={countriesInfo}
         name={country.name}
         population={numberWithCommas(country.population)}
         flag={country.flags}

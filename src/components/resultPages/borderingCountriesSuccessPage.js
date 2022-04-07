@@ -3,6 +3,7 @@ import StartNewGame from '../startNewGame';
 import { capitalizeText } from '../../helpers/utils';
 
 function BorderingCountriesSuccessPage(props) {
+    const countriesInfo = props.countriesInfo;
     const incorrectGuesses = props.incorrectGuesses;
     const correctGuesses = props.correctGuesses;
     const name = props.name;
@@ -26,6 +27,7 @@ function BorderingCountriesSuccessPage(props) {
             </div >}
 
             <StartNewGame
+                countriesInfo={countriesInfo}
                 buttonText='Play again'
                 callback={setNewGameStarted}
             />

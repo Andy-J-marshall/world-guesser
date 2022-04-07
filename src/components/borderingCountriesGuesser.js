@@ -9,6 +9,7 @@ import checkValidGuess from '../helpers/countryValidation';
 import { capitalizeText } from '../helpers/utils';
 
 function borderingCountriesGuesser(props) {
+    const countriesInfo = props.countriesInfo;
     const name = props.name;
     const borderingCountries = props.borderingCountries;
     const possibleCountries = props.possibleCountries;
@@ -120,6 +121,7 @@ function borderingCountriesGuesser(props) {
                 borderingCountryClues={clues}
             />}
             {failed && !succeeded && <BorderingCountriesFailurePage
+                countriesInfo={countriesInfo}
                 name={name}
                 map={map}
                 correctGuesses={correctGuesses}
@@ -127,6 +129,7 @@ function borderingCountriesGuesser(props) {
                 guesses={guesses}
             />}
             {succeeded && <BorderingCountriesSuccessPage
+                countriesInfo={countriesInfo}
                 correctGuesses={correctGuesses}
                 incorrectGuesses={incorrectGuesses}
                 name={name}

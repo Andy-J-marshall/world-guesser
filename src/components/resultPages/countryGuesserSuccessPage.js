@@ -5,6 +5,7 @@ import StartNewGame from '../startNewGame';
 import { capitalizeText } from '../../helpers/utils';
 
 function CountryGuesserSuccessPage(props) {
+    const countriesInfo = props.countriesInfo;
     const incorrectCount = props.incorrectCount;
     const guesses = props.guesses;
     const name = props.name;
@@ -50,16 +51,19 @@ function CountryGuesserSuccessPage(props) {
                 callback={startBorderingCountriesGame}
                 buttonText='Guess the bordering countries'
             />}
+
+            {!borderingCountriesGameStarted && <StartNewGame
+                countriesInfo={countriesInfo}
+                buttonText='Play again'
+                callback={startNewGame}
+            />}
+
             {newGameStarted && borderingCountriesGameStarted && <BorderingCountriesGuesser
+                countriesInfo={countriesInfo}
                 name={name}
                 borderingCountries={borderingCountries}
                 possibleCountries={possibleCountries}
                 map={map}
-            />}
-
-            {!borderingCountriesGameStarted && <StartNewGame
-                buttonText='Play again'
-                callback={startNewGame}
             />}
         </div>
     )

@@ -24,12 +24,10 @@ async function allCountriesRequest() {
       }
     });
 
-    const country = selectCountry(countriesArray, body);
-
     const returnObject = {
       countriesArray: countriesArray.sort(),
       countryCodeMapping,
-      country,
+      responseBody: body,
     }
     return returnObject;
   } catch (error) {
@@ -37,7 +35,7 @@ async function allCountriesRequest() {
   }
 }
 
-function selectCountry(countriesArray, countriesResponse) {
+export function selectCountry(countriesArray, countriesResponse) {
   const selectedCountry = countriesArray[Math.floor(Math.random() * countriesArray.length)];
   const country = countriesResponse.find(country => country.name.common.toLowerCase() === selectedCountry.toLowerCase());
   const countryObj = {

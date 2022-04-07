@@ -1,20 +1,16 @@
 import React, { useState } from 'react';
 import Country from './country';
 import PlayButton from './playButton';
-import getAllCountriesRequest from '../helpers/allCountriesRequest';
 
 function StartNewGame(props) {
+    const countriesInfo = props.countriesInfo;
     const buttonText = props.buttonText;
     const newGameStartedCallback = props.callback;
 
     const [newGameStarted, setNewGameStarted] = useState(false);
-    const [allCountriesResponse, setAllCountriesResponse] = useState();
 
-    // TODO would be nice not to have to redo this request every time! Pass in results from first request instead?
     async function startNewGame() {
-        const response = await getAllCountriesRequest();
         setNewGameStarted(true);
-        setAllCountriesResponse(response);
         newGameStartedCallback(true);
     }
 
@@ -25,8 +21,8 @@ function StartNewGame(props) {
                 callback={startNewGame}
                 buttonText={buttonText}
             />}
-            {newGameStarted && allCountriesResponse && <Country
-                countriesInfo={allCountriesResponse}
+            {newGameStarted && <Country
+                countriesInfo={countriesInfo}
             />}
         </div>
     )
