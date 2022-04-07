@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import BasicValidation from './guessFeedback/basicValidation';
 import BorderingCountriesFeedback from './guessFeedback/borderingCountriesFeedback';
-import FailurePage from './resultPages/failurePage';
+import BorderingCountriesFailurePage from './resultPages/borderingCountriesFailurePage';
 import BorderingCountriesSuccessPage from './resultPages/borderingCountriesSuccessPage';
 import CountryForm from './countryForm';
 import CountryClues from './countryClues';
@@ -80,7 +80,6 @@ function borderingCountriesGuesser(props) {
     }
 
     useEffect(() => {
-        // TODO or if easy mode is enabled?
         if (incorrectCount >= 6) {
             setFailed(true);
         }
@@ -120,7 +119,7 @@ function borderingCountriesGuesser(props) {
             {!succeeded && !failed && clues && <CountryClues
                 borderingCountryClues={clues}
             />}
-            {failed && !succeeded && <FailurePage
+            {failed && !succeeded && <BorderingCountriesFailurePage
                 name={name}
                 map={map}
                 correctGuesses={correctGuesses}

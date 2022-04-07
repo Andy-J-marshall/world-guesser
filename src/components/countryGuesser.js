@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import FailurePage from './resultPages/failurePage';
+import CountryGuesserFailurePage from './resultPages/countryGuesserFailurePage';
 import CountryGuesserSuccessPage from './resultPages/countryGuesserSuccessPage';
 import BasicValidation from './guessFeedback/basicValidation';
 import CountryGuessFeedback from './guessFeedback/countryGuessFeedback';
@@ -8,6 +8,7 @@ import checkValidGuess from '../helpers/countryValidation';
 
 function CountryGuesser(props) {
     const name = props.name;
+    // console.log(name) // TODO delete
     const population = props.population;
     const flag = props.flag;
     const landlocked = props.landlocked;
@@ -107,7 +108,7 @@ function CountryGuesser(props) {
                 borderingCountries={borderingCountries}
                 possibleCountries={possibleCountries}
             />}
-            {failed && <FailurePage
+            {failed && <CountryGuesserFailurePage
                 name={name}
                 map={map}
                 flag={flag}

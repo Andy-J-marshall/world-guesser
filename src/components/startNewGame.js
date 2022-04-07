@@ -10,6 +10,7 @@ function StartNewGame(props) {
     const [newGameStarted, setNewGameStarted] = useState(false);
     const [allCountriesResponse, setAllCountriesResponse] = useState();
 
+    // TODO would be nice not to have to redo this request every time! Pass in results from first request instead?
     async function startNewGame() {
         const response = await getAllCountriesRequest();
         setNewGameStarted(true);

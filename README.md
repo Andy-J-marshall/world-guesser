@@ -20,5 +20,5 @@ Run the following:
 
 ## Todo list
 Add check that the country hasn't been used recently. Session storage?
-Create a stats page
+Create a stats page: stats for each country, also bordering country success
 Design a nice UI
