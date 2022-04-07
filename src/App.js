@@ -21,7 +21,7 @@ function App() {
     <div id='app'>
       <h1>FUN WITH COUNTRIES!</h1>
       {/* TODO don't display this here? */}
-      <CountryGuesserStats />
+      {/* <CountryGuesserStats /> */}
       {allCountriesResponse && <Country
         countriesInfo={allCountriesResponse}
       />}

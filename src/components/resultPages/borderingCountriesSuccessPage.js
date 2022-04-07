@@ -1,7 +1,5 @@
 import React, { useState } from 'react';
-import Country from '../country';
-import PlayButton from '../playButton';
-import getAllCountriesRequest from '../../helpers/allCountriesRequest';
+import StartNewGame from '../startNewGame';
 import { capitalizeText } from '../../helpers/utils';
 
 function BorderingCountriesSuccessPage(props) {
@@ -18,13 +16,6 @@ function BorderingCountriesSuccessPage(props) {
         : `Well done! You found the ${correctGuesses.length} bordering countries of ${name} with ${incorrectCount} incorrect answers`;
 
     const [newGameStarted, setNewGameStarted] = useState(false);
-    const [allCountriesResponse, setAllCountriesResponse] = useState();
-
-    async function startNewGame() {
-        setNewGameStarted(true);
-        const response = await getAllCountriesRequest();
-        setAllCountriesResponse(response);
-    }
 
     return (
         <div>
@@ -34,15 +25,10 @@ function BorderingCountriesSuccessPage(props) {
                 {<p>Your answer history was: {capitalizeText(guesses)}</p>}
             </div >}
 
-            {!newGameStarted && <br />}
-
-            {!newGameStarted && <PlayButton
-                callback={startNewGame}
+            <StartNewGame
                 buttonText='Play again'
-            />}
-            {newGameStarted && allCountriesResponse && <Country
-                countriesInfo={allCountriesResponse}
-            />}
+                callback={setNewGameStarted}
+            />
         </div>
     )
 }

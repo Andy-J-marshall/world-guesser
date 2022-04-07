@@ -1,7 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import Country from '../country';
-import PlayButton from '../playButton';
-import getAllCountriesRequest from '../../helpers/allCountriesRequest';
+import StartNewGame from '../startNewGame';
 import { capitalizeText } from '../../helpers/utils';
 
 // TODO split this into 2 components
@@ -21,13 +19,6 @@ function FailurePage(props) {
     }
 
     const [newGameStarted, setNewGameStarted] = useState(false);
-    const [allCountriesResponse, setAllCountriesResponse] = useState();
-
-    async function startNewGame() {
-        setNewGameStarted(true);
-        const response = await getAllCountriesRequest();
-        setAllCountriesResponse(response);
-    }
 
     // TODO do something better with this?
     const numberOfGames = JSON.parse(localStorage.getItem('numberOfGames')) || 0;
@@ -55,15 +46,10 @@ function FailurePage(props) {
                 {<p>See {name} on the <a href={map}>map</a></p>}
             </div >}
 
-            {!newGameStarted && <br />}
-
-            {!newGameStarted && <PlayButton
-                callback={startNewGame}
+            <StartNewGame
                 buttonText='Try again'
-            />}
-            {newGameStarted && allCountriesResponse && <Country
-                countriesInfo={allCountriesResponse}
-            />}
+                callback={setNewGameStarted}
+            />
         </div>
     )
 }

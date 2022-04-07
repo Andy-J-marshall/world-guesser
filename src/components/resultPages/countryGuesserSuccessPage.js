@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import BorderingCountriesGuesser from '../borderingCountriesGuesser';
 import PlayButton from '../playButton';
-import Country from '../country';
-import getAllCountriesRequest from '../../helpers/allCountriesRequest';
+import StartNewGame from '../startNewGame';
 import { capitalizeText } from '../../helpers/utils';
 
 function CountryGuesserSuccessPage(props) {
@@ -16,8 +15,6 @@ function CountryGuesserSuccessPage(props) {
 
     const [newGameStarted, setNewGameStarted] = useState(false);
     const [borderingCountriesGameStarted, setBorderingCountriesGameStarted] = useState(false);
-    const [newCountryFinderGameStarted, setNewCountryFinderGameStarted] = useState(false);
-    const [allCountriesResponse, setAllCountriesResponse] = useState();
 
     function startBorderingCountriesGame() {
         setBorderingCountriesGameStarted(true);
@@ -25,10 +22,7 @@ function CountryGuesserSuccessPage(props) {
     }
 
     async function startNewGame() {
-        setNewCountryFinderGameStarted(true);
         setNewGameStarted(true);
-        const response = await getAllCountriesRequest();
-        setAllCountriesResponse(response);
     }
 
     // TODO do something better with this?
@@ -63,14 +57,9 @@ function CountryGuesserSuccessPage(props) {
                 map={map}
             />}
 
-            {!newGameStarted && <br />}
-
-            {!newGameStarted && <PlayButton
-                callback={startNewGame}
+            {!borderingCountriesGameStarted && <StartNewGame
                 buttonText='Play again'
-            />}
-            {newGameStarted && allCountriesResponse && newCountryFinderGameStarted && <Country
-                countriesInfo={allCountriesResponse}
+                callback={startNewGame}
             />}
         </div>
     )
