@@ -4,7 +4,7 @@ import BorderingCountriesFeedback from './guessFeedback/borderingCountriesFeedba
 import BorderingCountriesFailurePage from './resultPages/borderingCountriesFailurePage';
 import BorderingCountriesSuccessPage from './resultPages/borderingCountriesSuccessPage';
 import CountryForm from './countryForm';
-import CountryClues from './countryClues';
+import CountryClues from './guessFeedback/countryClues';
 import checkValidGuess from '../helpers/countryValidation';
 import { capitalizeText } from '../helpers/utils';
 
