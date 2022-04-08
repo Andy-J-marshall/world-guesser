@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import BorderingCountriesGuesser from '../borderingCountriesGuesser';
 import PlayButton from '../playButton';
 import StartNewGame from '../startNewGame';
+import CountryGuesserStats from '../countryGuesserStats';
 import { capitalizeText } from '../../helpers/utils';
 
 function CountryGuesserSuccessPage(props) {
@@ -46,18 +47,16 @@ function CountryGuesserSuccessPage(props) {
                 {<img style={{ border: 'solid' }} src={flag} alt='Country Flag' />}
             </div >}
             {!newGameStarted && <br />}
-
+            {!newGameStarted && <CountryGuesserStats />}
             {!newGameStarted && borderingCountries.length > 0 && <PlayButton
                 callback={startBorderingCountriesGame}
                 buttonText='Guess the bordering countries'
             />}
-
             {!borderingCountriesGameStarted && <StartNewGame
                 countriesInfo={countriesInfo}
                 buttonText='Play again'
                 callback={startNewGame}
             />}
-
             {newGameStarted && borderingCountriesGameStarted && <BorderingCountriesGuesser
                 countriesInfo={countriesInfo}
                 name={name}

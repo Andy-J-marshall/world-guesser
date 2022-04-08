@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import StartNewGame from '../startNewGame';
+import CountryGuesserStats from '../countryGuesserStats';
 import { capitalizeText } from '../../helpers/utils';
 
 function CountryGuesserFailurePage(props) {
@@ -25,6 +26,8 @@ function CountryGuesserFailurePage(props) {
                 {<p>Your answer history was: {capitalizeText(guesses)}</p>}
                 <img style={{ border: 'solid' }} src={flag} alt='Country Flag' />
             </div >}
+            {!newGameStarted && <br />}
+            {!newGameStarted && <CountryGuesserStats />}
             <StartNewGame
                 countriesInfo={countriesInfo}
                 buttonText='Try again'

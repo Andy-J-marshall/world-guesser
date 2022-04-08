@@ -19,6 +19,16 @@ Run the following:
 * `npm run deploy`
 
 ## Todo list
+Design a nice UI
 Add check that the country hasn't been used recently. Session storage?
 Create a stats page: stats for each country, also bordering country success
-Design a nice UI
+
+Stats ideas:
+* Win %
+* Total games
+* Total wins
+* Stats per country
+* Avg number of guesses
+* Clear stats button
+* Where to display? On Victory/loss? Separate button?
+* Also do Bordering country stats
