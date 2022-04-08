@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import StartNewGame from '../startNewGame';
 import CountryGuesserStats from '../countryGuesserStats';
 import { capitalizeText } from '../../helpers/utils';
@@ -12,11 +12,17 @@ function CountryGuesserFailurePage(props) {
 
     const [newGameStarted, setNewGameStarted] = useState(false);
 
-    // TODO do something better with this?
-    const numberOfGames = JSON.parse(localStorage.getItem('numberOfGames')) || 0;
-    useEffect(() => {
-        localStorage.setItem('numberOfGames', JSON.stringify(numberOfGames + 1));
-    }, [name]);
+    function updateStats() {
+        const numberOfWins = JSON.parse(localStorage.getItem('numberOfWins')) || 1;
+        const numberOfGames = JSON.parse(localStorage.getItem('numberOfGames')) || 1;
+        const numberOfAttemptsForWins = JSON.parse(localStorage.getItem('numberOfAttemptsForWins')) || 1;
+        const stats = {
+            numberOfWins,
+            numberOfGames: numberOfGames + 1,
+            numberOfAttemptsForWins,
+        };
+        return stats;
+    }
 
     return (
         <div id='failure-page'>
@@ -27,7 +33,9 @@ function CountryGuesserFailurePage(props) {
                 <img style={{ border: 'solid' }} src={flag} alt='Country Flag' />
             </div >}
             {!newGameStarted && <br />}
-            {!newGameStarted && <CountryGuesserStats />}
+            {!newGameStarted && <CountryGuesserStats
+                updateStatsCallback={updateStats}
+            />}
             <StartNewGame
                 countriesInfo={countriesInfo}
                 buttonText='Try again'

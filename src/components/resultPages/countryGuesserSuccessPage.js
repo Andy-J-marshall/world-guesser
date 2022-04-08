@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import BorderingCountriesGuesser from '../borderingCountriesGuesser';
 import PlayButton from '../playButton';
 import StartNewGame from '../startNewGame';
@@ -27,16 +27,17 @@ function CountryGuesserSuccessPage(props) {
         setNewGameStarted(true);
     }
 
-    // TODO do something better with this?
-    const numberOfWins = JSON.parse(localStorage.getItem('numberOfWins')) || 0;
-    const numberOfAttemptsForWins = JSON.parse(localStorage.getItem('numberOfAttemptsForWins')) || 0;
-    const numberOfGames = JSON.parse(localStorage.getItem('numberOfGames')) || 0;
-    useEffect(() => {
-        console.log('THE SUCCESS USEEFFECT')
-        localStorage.setItem('numberOfWins', JSON.stringify(numberOfWins + 1));
-        localStorage.setItem('numberOfGames', JSON.stringify(numberOfGames + 1));
-        localStorage.setItem('numberOfAttemptsForWins', JSON.stringify(numberOfAttemptsForWins + guesses.length));
-    }, [name]);
+    function updateStats() {
+        const numberOfWins = JSON.parse(localStorage.getItem('numberOfWins')) || 0;
+        const numberOfGames = JSON.parse(localStorage.getItem('numberOfGames')) || 1;
+        const numberOfAttemptsForWins = JSON.parse(localStorage.getItem('numberOfAttemptsForWins')) || 0;
+        const stats = {
+            numberOfWins: numberOfWins + 1,
+            numberOfGames: numberOfGames + 1,
+            numberOfAttemptsForWins: numberOfAttemptsForWins + guesses.length,
+        };
+        return stats;
+    }
 
     return (
         <div>
@@ -47,7 +48,9 @@ function CountryGuesserSuccessPage(props) {
                 {<img style={{ border: 'solid' }} src={flag} alt='Country Flag' />}
             </div >}
             {!newGameStarted && <br />}
-            {!newGameStarted && <CountryGuesserStats />}
+            {!newGameStarted && <CountryGuesserStats
+                updateStatsCallback={updateStats}
+            />}
             {!newGameStarted && borderingCountries.length > 0 && <PlayButton
                 callback={startBorderingCountriesGame}
                 buttonText='Guess the bordering countries'
