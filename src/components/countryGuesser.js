@@ -8,17 +8,19 @@ import checkValidGuess from '../helpers/countryValidation';
 
 function CountryGuesser(props) {
     const countriesInfo = props.countriesInfo;
-    const name = props.name;
-    // console.log(name) // TODO delete
-    const population = props.population;
-    const flag = props.flag;
-    const landlocked = props.landlocked;
-    const region = props.region;
-    const subregion = props.subregion;
-    const map = props.map;
-    const capital = props.capital;
+    const country = props.country;
     const possibleCountries = props.possibleCountries;
-    const borderingCountries = props.borderingCountries;
+
+    const name = country.name;
+    const population = country.population;
+    const flag = country.flag;
+    const landlocked = country.landlocked;
+    const region = country.region;
+    const subregion = country.subregion;
+    const map = country.map;
+    const capital = country.capital;
+    const borderingCountries = country.borderingCountries;
+    // console.log(country.name) // TODO delete
 
     const [correctGuess, setCorrectGuess] = useState(false);
     const [incorrectCount, setIncorrectCount] = useState(0);
@@ -38,17 +40,8 @@ function CountryGuesser(props) {
         setDuplicateGuess(duplicateGuess);
         if (isValidCountry && knownCountry && !duplicateGuess) {
             checkGuessIsCorrect(guessedName);
-            isGuessBorderingCountry(guessedName)
         }
     };
-
-    function isGuessBorderingCountry(guessedName) {
-        if (!correctGuess && borderingCountries.find(country => country.toLowerCase() === guessedName)) {
-            setGuessedBorderingCountry(true);
-        } else {
-            setGuessedBorderingCountry(false);
-        }
-    }
 
     function checkGuessIsCorrect(guessedName) {
         setKnownCountry(true);
@@ -58,8 +51,17 @@ function CountryGuesser(props) {
         } else {
             setIncorrectCount(incorrectCount + 1)
             setCorrectGuess(false);
+            isGuessBorderingCountry(guessedName);
         }
         setGuesses([...guesses, guessedName]);
+    }
+
+    function isGuessBorderingCountry(guessedName) {
+        if (!correctGuess && borderingCountries.find(country => country.toLowerCase() === guessedName)) {
+            setGuessedBorderingCountry(true);
+        } else {
+            setGuessedBorderingCountry(false);
+        }
     }
 
     useEffect(() => {

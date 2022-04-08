@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { capitalizeText, numberWithCommas } from '../helpers/utils';
 
 // https://restcountries.com/
 
@@ -35,21 +36,37 @@ async function allCountriesRequest() {
   }
 }
 
-export function selectCountry(countriesArray, countriesResponse) {
+// TODO move this, or rename the file?
+export function selectCountry(countriesArray, countriesResponse, countryCodeMapping) {
   const selectedCountry = countriesArray[Math.floor(Math.random() * countriesArray.length)];
   const country = countriesResponse.find(country => country.name.common.toLowerCase() === selectedCountry.toLowerCase());
   const countryObj = {
     name: country.name.common,
-    borders: country.borders,
-    capital: country.capital,
-    landlocked: country.landlocked,
+    borderingCountries: returnBorderingCountries(country.borders, countryCodeMapping),
+    capital: capitalizeText(country.capital),
+    landlocked: country.landlocked ? 'The country is landlocked' : 'The country is not landlocked',
     map: country.maps.googleMaps,
-    population: country.population,
-    flags: country.flags.png,
+    population: numberWithCommas(country.population),
+    flag: country.flags.png,
     region: country.region,
     subregion: country.subregion,
   };
   return countryObj;
+}
+
+
+function returnBorderingCountries(borderingCountries, countryCodeMapping) {
+  const answerCountries = [];
+  if (borderingCountries) {
+    borderingCountries.forEach(borderingCountry => {
+      countryCodeMapping.find(country => {
+        if (country.code === borderingCountry) {
+          answerCountries.push(country.name);
+        }
+      })
+    });
+  }
+  return answerCountries;
 }
 
 export default allCountriesRequest;
