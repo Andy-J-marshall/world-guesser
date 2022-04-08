@@ -1,21 +1,22 @@
 import React, { useState, useEffect } from 'react';
 import BasicValidation from './guessFeedback/basicValidation';
 import BorderingCountriesFeedback from './guessFeedback/borderingCountriesFeedback';
-import FailurePage from './resultPages/failurePage';
+import BorderingCountriesFailurePage from './resultPages/borderingCountriesFailurePage';
 import BorderingCountriesSuccessPage from './resultPages/borderingCountriesSuccessPage';
 import CountryForm from './countryForm';
-import CountryClues from './countryClues';
+import CountryClues from './guessFeedback/countryClues';
 import checkValidGuess from '../helpers/countryValidation';
 import { capitalizeText } from '../helpers/utils';
 
 function borderingCountriesGuesser(props) {
+    const countriesInfo = props.countriesInfo;
     const name = props.name;
     const borderingCountries = props.borderingCountries;
     const possibleCountries = props.possibleCountries;
     const map = props.map;
 
     const numberOfBorderingCountriesText = borderingCountries.length > 1
-        ? `There are ${borderingCountries.length} bordering countries to find`
+        ? `There are ${borderingCountries.length} bordering countries to find in total`
         : 'There is 1 bordering country to find';
 
     const [correctGuesses, setCorrectGuesses] = useState([]);
@@ -80,7 +81,6 @@ function borderingCountriesGuesser(props) {
     }
 
     useEffect(() => {
-        // TODO or if easy mode is enabled?
         if (incorrectCount >= 6) {
             setFailed(true);
         }
@@ -120,7 +120,8 @@ function borderingCountriesGuesser(props) {
             {!succeeded && !failed && clues && <CountryClues
                 borderingCountryClues={clues}
             />}
-            {failed && !succeeded && <FailurePage
+            {failed && !succeeded && <BorderingCountriesFailurePage
+                countriesInfo={countriesInfo}
                 name={name}
                 map={map}
                 correctGuesses={correctGuesses}
@@ -128,6 +129,7 @@ function borderingCountriesGuesser(props) {
                 guesses={guesses}
             />}
             {succeeded && <BorderingCountriesSuccessPage
+                countriesInfo={countriesInfo}
                 correctGuesses={correctGuesses}
                 incorrectGuesses={incorrectGuesses}
                 name={name}

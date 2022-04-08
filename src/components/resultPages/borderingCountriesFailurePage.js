@@ -3,19 +3,17 @@ import StartNewGame from '../startNewGame';
 import BorderingCountriesStats from '../borderingCountriesStats';
 import { capitalizeText } from '../../helpers/utils';
 
-function BorderingCountriesSuccessPage(props) {
+function BorderingCountriesFailurePage(props) {
     const countriesInfo = props.countriesInfo;
-    const incorrectGuesses = props.incorrectGuesses;
-    const correctGuesses = props.correctGuesses;
     const name = props.name;
     const map = props.map;
+    const borderingCountries = props.borderingCountries;
+    const correctGuesses = props.correctGuesses;
     const guesses = props.guesses;
-    const incorrectCount = incorrectGuesses.length;
-    const answerOrAnswers = incorrectCount === 1 ? 'answer' : 'answers';
 
-    const messageText = correctGuesses.length === 1
-        ? `Well done! You found the only bordering country of ${name} with ${incorrectCount} incorrect ${answerOrAnswers}`
-        : `Well done! You found the ${correctGuesses.length} bordering countries of ${name} with ${incorrectCount} incorrect answers`;
+    const incorrectCount = guesses.length - correctGuesses.length;
+    const borderingCountriesCount = borderingCountries.length;
+    const missingAnswersArray = borderingCountries.filter(countryGuess => !correctGuesses.includes(countryGuess.toLowerCase()));
 
     const [newGameStarted, setNewGameStarted] = useState(false);
 
@@ -26,7 +24,7 @@ function BorderingCountriesSuccessPage(props) {
         const numberOfCorrectAnswers = JSON.parse(localStorage.getItem('numberOfCorrectBorderAnswers')) || 0;
         const numberOfIncorrectAnswers = JSON.parse(localStorage.getItem('numberOfIncorrectBorderAnswers')) || 0;
         const stats = {
-            numberOfWins: numberOfWins + 1,
+            numberOfWins: numberOfWins,
             numberOfGames: numberOfGames + 1,
             numberOfAttempts: numberOfAttempts + guesses.length,
             numberOfCorrectAnswers: numberOfCorrectAnswers + correctGuesses.length,
@@ -36,10 +34,14 @@ function BorderingCountriesSuccessPage(props) {
     }
 
     return (
-        <div>
-            {!newGameStarted && < div id='successful-bordering-countries-game' >
-                <h5 style={{ color: 'green' }}>{messageText}</h5>
-                <p>See <a href={map}>{name}</a> on the map</p>
+        <div id='failure-page'>
+            {borderingCountries && !newGameStarted && < div id='bordering-countries-failure' >
+                <p style={{ color: 'red' }}>You failed. Better luck next time</p>
+                <p>See {name} on the <a href={map}>map</a></p>
+                {correctGuesses.length === 0 && <p>You found none of the bordering countries and missed {borderingCountriesCount}</p>}
+                {correctGuesses.length > 0 && <p>You found {correctGuesses.length} of {borderingCountriesCount}</p>}
+                {correctGuesses.length > 0 && <p>You found: {capitalizeText(correctGuesses)}</p>}
+                {missingAnswersArray && <p>You missed: {capitalizeText(missingAnswersArray)}</p>}
                 {<p>Your answer history was: {capitalizeText(guesses)}</p>}
             </div >}
             {!newGameStarted && <br />}
@@ -48,11 +50,11 @@ function BorderingCountriesSuccessPage(props) {
             />}
             <StartNewGame
                 countriesInfo={countriesInfo}
-                buttonText='Play again'
+                buttonText='Try again'
                 callback={setNewGameStarted}
             />
         </div>
     )
 }
 
-export default BorderingCountriesSuccessPage;
+export default BorderingCountriesFailurePage;

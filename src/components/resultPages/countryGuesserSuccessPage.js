@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
 import BorderingCountriesGuesser from '../borderingCountriesGuesser';
 import PlayButton from '../playButton';
-import Country from '../country';
-import getAllCountriesRequest from '../../helpers/allCountriesRequest';
+import StartNewGame from '../startNewGame';
+import CountryGuesserStats from '../countryGuesserStats';
 import { capitalizeText } from '../../helpers/utils';
 
 function CountryGuesserSuccessPage(props) {
+    const countriesInfo = props.countriesInfo;
     const incorrectCount = props.incorrectCount;
     const guesses = props.guesses;
     const name = props.name;
@@ -16,8 +17,6 @@ function CountryGuesserSuccessPage(props) {
 
     const [newGameStarted, setNewGameStarted] = useState(false);
     const [borderingCountriesGameStarted, setBorderingCountriesGameStarted] = useState(false);
-    const [newCountryFinderGameStarted, setNewCountryFinderGameStarted] = useState(false);
-    const [allCountriesResponse, setAllCountriesResponse] = useState();
 
     function startBorderingCountriesGame() {
         setBorderingCountriesGameStarted(true);
@@ -25,10 +24,19 @@ function CountryGuesserSuccessPage(props) {
     }
 
     async function startNewGame() {
-        setNewCountryFinderGameStarted(true);
         setNewGameStarted(true);
-        const response = await getAllCountriesRequest();
-        setAllCountriesResponse(response);
+    }
+
+    function updateStats() {
+        const numberOfWins = JSON.parse(localStorage.getItem('numberOfWins')) || 0;
+        const numberOfGames = JSON.parse(localStorage.getItem('numberOfGames')) || 0;
+        const numberOfAttempts = JSON.parse(localStorage.getItem('numberOfAttempts')) || 0;
+        const stats = {
+            numberOfWins: numberOfWins + 1,
+            numberOfGames: numberOfGames + 1,
+            numberOfAttempts: numberOfAttempts + guesses.length,
+        };
+        return stats;
     }
 
     return (
@@ -40,26 +48,24 @@ function CountryGuesserSuccessPage(props) {
                 {<img style={{ border: 'solid' }} src={flag} alt='Country Flag' />}
             </div >}
             {!newGameStarted && <br />}
-
+            {!newGameStarted && <CountryGuesserStats
+                updateStatsCallback={updateStats}
+            />}
             {!newGameStarted && borderingCountries.length > 0 && <PlayButton
                 callback={startBorderingCountriesGame}
                 buttonText='Guess the bordering countries'
             />}
+            {!borderingCountriesGameStarted && <StartNewGame
+                countriesInfo={countriesInfo}
+                buttonText='Play again'
+                callback={startNewGame}
+            />}
             {newGameStarted && borderingCountriesGameStarted && <BorderingCountriesGuesser
+                countriesInfo={countriesInfo}
                 name={name}
                 borderingCountries={borderingCountries}
                 possibleCountries={possibleCountries}
                 map={map}
-            />}
-
-            {!newGameStarted && <br />}
-
-            {!newGameStarted && <PlayButton
-                callback={startNewGame}
-                buttonText='Play again'
-            />}
-            {newGameStarted && allCountriesResponse && newCountryFinderGameStarted && <Country
-                countriesInfo={allCountriesResponse}
             />}
         </div>
     )

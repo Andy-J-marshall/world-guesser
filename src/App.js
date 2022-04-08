@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import Country from './components/country';
-import getAllCountriesRequest from './helpers/allCountriesRequest';
+import getAllCountriesRequest from './helpers/countryHelper';
 
 function App() {
   const [allCountriesResponse, setAllCountriesResponse] = useState();

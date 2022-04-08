@@ -19,7 +19,16 @@ Run the following:
 * `npm run deploy`
 
 ## Todo list
-Add clues for country guesser? Maybe add an 'easy' country list to prevent extra clues?
-Maybe randomize the clue order?
-Create a stats page
 Design a nice UI
+Add check that the country hasn't been used recently. Session storage?
+Create a stats page: stats for each country, also bordering country success
+
+Stats ideas:
+* Win %
+* Total games
+* Total wins
+* Stats per country
+* Avg number of guesses
+* Clear stats button
+* Where to display? On Victory/loss? Separate button?
+* Also do Bordering country stats

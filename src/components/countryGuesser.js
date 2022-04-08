@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import FailurePage from './resultPages/failurePage';
+import CountryGuesserFailurePage from './resultPages/countryGuesserFailurePage';
 import CountryGuesserSuccessPage from './resultPages/countryGuesserSuccessPage';
 import BasicValidation from './guessFeedback/basicValidation';
 import CountryGuessFeedback from './guessFeedback/countryGuessFeedback';
@@ -7,16 +7,20 @@ import CountryForm from './countryForm';
 import checkValidGuess from '../helpers/countryValidation';
 
 function CountryGuesser(props) {
-    const name = props.name;
-    const population = props.population;
-    const flag = props.flag;
-    const landlocked = props.landlocked;
-    const region = props.region;
-    const subregion = props.subregion;
-    const map = props.map;
-    const capital = props.capital;
+    const countriesInfo = props.countriesInfo;
+    const country = props.country;
     const possibleCountries = props.possibleCountries;
-    const borderingCountries = props.borderingCountries;
+
+    const name = country.name;
+    const population = country.population;
+    const flag = country.flag;
+    const landlocked = country.landlocked;
+    const region = country.region;
+    const subregion = country.subregion;
+    const map = country.map;
+    const capital = country.capital;
+    const borderingCountries = country.borderingCountries;
+    // console.log(country.name) // TODO delete
 
     const [correctGuess, setCorrectGuess] = useState(false);
     const [incorrectCount, setIncorrectCount] = useState(0);
@@ -36,17 +40,8 @@ function CountryGuesser(props) {
         setDuplicateGuess(duplicateGuess);
         if (isValidCountry && knownCountry && !duplicateGuess) {
             checkGuessIsCorrect(guessedName);
-            isGuessBorderingCountry(guessedName)
         }
     };
-
-    function isGuessBorderingCountry(guessedName) {
-        if (!correctGuess && borderingCountries.find(country => country.toLowerCase() === guessedName)) {
-            setGuessedBorderingCountry(true);
-        } else {
-            setGuessedBorderingCountry(false);
-        }
-    }
 
     function checkGuessIsCorrect(guessedName) {
         setKnownCountry(true);
@@ -56,8 +51,17 @@ function CountryGuesser(props) {
         } else {
             setIncorrectCount(incorrectCount + 1)
             setCorrectGuess(false);
+            isGuessBorderingCountry(guessedName);
         }
         setGuesses([...guesses, guessedName]);
+    }
+
+    function isGuessBorderingCountry(guessedName) {
+        if (!correctGuess && borderingCountries.find(country => country.toLowerCase() === guessedName)) {
+            setGuessedBorderingCountry(true);
+        } else {
+            setGuessedBorderingCountry(false);
+        }
     }
 
     useEffect(() => {
@@ -79,10 +83,6 @@ function CountryGuesser(props) {
                     {<img style={{ border: 'solid' }} src={flag} alt='Country Flag' />}
                 </div>}
                 {incorrectCount >= 5 && <p>Capital city = {capital}</p>}
-                {/* TODO add this behind an 'easy' mode */}
-                {/* {incorrectCount >= 5 && region !== 'Europe' && <CountryClues
-                    countryNameClue={name.charAt(0).toUpperCase()}
-                />} */}
             </div>}
             <div id='country-form'>
                 {!correctGuess && !failed && <CountryForm
@@ -103,6 +103,7 @@ function CountryGuesser(props) {
                 guessedBorderingCountry={guessedBorderingCountry}
             />}
             {correctGuess && !failed && <CountryGuesserSuccessPage
+                countriesInfo={countriesInfo}
                 name={name}
                 map={map}
                 flag={flag}
@@ -111,7 +112,8 @@ function CountryGuesser(props) {
                 borderingCountries={borderingCountries}
                 possibleCountries={possibleCountries}
             />}
-            {failed && <FailurePage
+            {failed && <CountryGuesserFailurePage
+                countriesInfo={countriesInfo}
                 name={name}
                 map={map}
                 flag={flag}
