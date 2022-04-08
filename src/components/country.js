@@ -1,6 +1,6 @@
 import React from 'react';
 import CountryGuesser from './countryGuesser';
-import { selectCountry } from '../helpers/allCountriesRequest';
+import { selectCountry } from '../helpers/countryHelper';
 
 function Country(props) {
   const countriesInfo = props.countriesInfo;

@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { capitalizeText, numberWithCommas } from '../helpers/utils';
+import { capitalizeText, numberWithCommas } from './utils';
 
 // https://restcountries.com/
 
@@ -36,7 +36,6 @@ async function allCountriesRequest() {
   }
 }
 
-// TODO move this, or rename the file?
 export function selectCountry(countriesArray, countriesResponse, countryCodeMapping) {
   const selectedCountry = countriesArray[Math.floor(Math.random() * countriesArray.length)];
   const country = countriesResponse.find(country => country.name.common.toLowerCase() === selectedCountry.toLowerCase());
