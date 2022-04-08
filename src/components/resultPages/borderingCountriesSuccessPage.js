@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import StartNewGame from '../startNewGame';
+import BorderingCountriesStats from '../borderingCountriesStats';
 import { capitalizeText } from '../../helpers/utils';
 
 function BorderingCountriesSuccessPage(props) {
@@ -18,6 +19,22 @@ function BorderingCountriesSuccessPage(props) {
 
     const [newGameStarted, setNewGameStarted] = useState(false);
 
+    function updateStats() {
+        const numberOfWins = JSON.parse(localStorage.getItem('numberOfBorderWins')) || 0;
+        const numberOfGames = JSON.parse(localStorage.getItem('numberOfBorderGames')) || 0;
+        const numberOfAttempts = JSON.parse(localStorage.getItem('numberOfBorderAttempts')) || 0;
+        const numberOfCorrectAnswers = JSON.parse(localStorage.getItem('numberOfCorrectBorderAnswers')) || 0;
+        const numberOfIncorrectAnswers = JSON.parse(localStorage.getItem('numberOfIncorrectBorderAnswers')) || 0;
+        const stats = {
+            numberOfWins: numberOfWins + 1,
+            numberOfGames: numberOfGames + 1,
+            numberOfAttempts: numberOfAttempts + guesses.length,
+            numberOfCorrectAnswers: numberOfCorrectAnswers + correctGuesses.length,
+            numberOfIncorrectAnswers: numberOfIncorrectAnswers + incorrectCount,
+        };
+        return stats;
+    }
+
     return (
         <div>
             {!newGameStarted && < div id='successful-bordering-countries-game' >
@@ -25,7 +42,10 @@ function BorderingCountriesSuccessPage(props) {
                 <p>See <a href={map}>{name}</a> on the map</p>
                 {<p>Your answer history was: {capitalizeText(guesses)}</p>}
             </div >}
-
+            {!newGameStarted && <br />}
+            {!newGameStarted && <BorderingCountriesStats
+                updateStatsCallback={updateStats}
+            />}
             <StartNewGame
                 countriesInfo={countriesInfo}
                 buttonText='Play again'

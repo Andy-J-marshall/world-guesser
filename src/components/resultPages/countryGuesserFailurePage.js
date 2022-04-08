@@ -13,13 +13,13 @@ function CountryGuesserFailurePage(props) {
     const [newGameStarted, setNewGameStarted] = useState(false);
 
     function updateStats() {
-        const numberOfWins = JSON.parse(localStorage.getItem('numberOfWins')) || 1;
-        const numberOfGames = JSON.parse(localStorage.getItem('numberOfGames')) || 1;
-        const numberOfAttemptsForWins = JSON.parse(localStorage.getItem('numberOfAttemptsForWins')) || 1;
+        const numberOfWins = JSON.parse(localStorage.getItem('numberOfWins')) || 0;
+        const numberOfGames = JSON.parse(localStorage.getItem('numberOfGames')) || 0;
+        const numberOfAttempts = JSON.parse(localStorage.getItem('numberOfAttempts')) || 0;
         const stats = {
             numberOfWins,
             numberOfGames: numberOfGames + 1,
-            numberOfAttemptsForWins,
+            numberOfAttempts: numberOfAttempts + guesses.length,
         };
         return stats;
     }

@@ -16,7 +16,7 @@ function borderingCountriesGuesser(props) {
     const map = props.map;
 
     const numberOfBorderingCountriesText = borderingCountries.length > 1
-        ? `There are ${borderingCountries.length} bordering countries to find`
+        ? `There are ${borderingCountries.length} bordering countries to find in total`
         : 'There is 1 bordering country to find';
 
     const [correctGuesses, setCorrectGuesses] = useState([]);

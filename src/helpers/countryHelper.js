@@ -43,7 +43,7 @@ export function selectCountry(countriesArray, countriesResponse, countryCodeMapp
     name: country.name.common,
     borderingCountries: returnBorderingCountries(country.borders, countryCodeMapping),
     capital: capitalizeText(country.capital),
-    landlocked: country.landlocked ? 'The country is landlocked' : 'The country is not landlocked',
+    landlocked: country.landlocked ? 'The country is landlocked' : 'The country has a coastline',
     map: country.maps.googleMaps,
     population: numberWithCommas(country.population),
     flag: country.flags.png,
