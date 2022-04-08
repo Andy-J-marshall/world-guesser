@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
-import BorderingCountriesGuesser from '../borderingCountriesGuesser';
+import BorderingCountriesGuesser from '../borderingCountries/borderingCountriesGuesser';
 import PlayButton from '../playButton';
 import StartNewGame from '../startNewGame';
-import CountryGuesserStats from '../countryGuesserStats';
+import CountryGuesserStats from '../countryGuesser/countryGuesserStats';
 import { capitalizeText } from '../../helpers/utils';
 
 function CountryGuesserSuccessPage(props) {

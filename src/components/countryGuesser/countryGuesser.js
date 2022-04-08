@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react';
-import CountryGuesserFailurePage from './resultPages/countryGuesserFailurePage';
-import CountryGuesserSuccessPage from './resultPages/countryGuesserSuccessPage';
-import BasicValidation from './guessFeedback/basicValidation';
-import CountryGuessFeedback from './guessFeedback/countryGuessFeedback';
-import CountryForm from './countryForm';
-import checkValidGuess from '../helpers/countryValidation';
+import CountryGuesserFailurePage from './countryGuesserFailurePage';
+import CountryGuesserSuccessPage from './countryGuesserSuccessPage';
+import BasicValidation from '../basicValidation';
+import CountryGuessFeedback from './countryGuesserFeedback';
+import CountryForm from '../countryForm';
+import checkValidGuess from '../../helpers/countryValidation';
 
 function CountryGuesser(props) {
     const countriesInfo = props.countriesInfo;
@@ -20,7 +20,8 @@ function CountryGuesser(props) {
     const map = country.map;
     const capital = country.capital;
     const borderingCountries = country.borderingCountries;
-    // console.log(country.name) // TODO delete
+    // console.log(name) // TODO delete
+    // console.log(borderingCountries) // TODO delete
 
     const [correctGuess, setCorrectGuess] = useState(false);
     const [incorrectCount, setIncorrectCount] = useState(0);

@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from 'react';
-import BasicValidation from './guessFeedback/basicValidation';
-import BorderingCountriesFeedback from './guessFeedback/borderingCountriesFeedback';
-import BorderingCountriesFailurePage from './resultPages/borderingCountriesFailurePage';
-import BorderingCountriesSuccessPage from './resultPages/borderingCountriesSuccessPage';
-import CountryForm from './countryForm';
-import CountryClues from './guessFeedback/countryClues';
-import checkValidGuess from '../helpers/countryValidation';
-import { capitalizeText } from '../helpers/utils';
+import BasicValidation from '../basicValidation';
+import BorderingCountriesFeedback from './borderingCountriesFeedback';
+import BorderingCountriesFailurePage from './borderingCountriesFailurePage';
+import BorderingCountriesSuccessPage from '../borderingCountries/borderingCountriesSuccessPage';
+import CountryForm from '../countryForm';
+import BorderingCountriesClue from './borderingCountriesClue';
+import checkValidGuess from '../../helpers/countryValidation';
+import { capitalizeText } from '../../helpers/utils';
 
 function borderingCountriesGuesser(props) {
     const countriesInfo = props.countriesInfo;
@@ -117,8 +117,8 @@ function borderingCountriesGuesser(props) {
                 />
                 {guessedActualCountry && <p style={{ color: 'brown' }}>That's the actual country! Guess the bordering ones instead</p>}
             </div>}
-            {!succeeded && !failed && clues && <CountryClues
-                borderingCountryClues={clues}
+            {!succeeded && !failed && clues && <BorderingCountriesClue
+                clues={clues}
             />}
             {failed && !succeeded && <BorderingCountriesFailurePage
                 countriesInfo={countriesInfo}

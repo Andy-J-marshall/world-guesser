@@ -1,7 +1,7 @@
 import React from 'react';
 import { capitalizeText } from '../../helpers/utils';
 
-function duplicateGuess(props) {
+function CountryGuessFeedback(props) {
     const incorrectCount = props.incorrectCount;
     const guesses = props.guesses;
     const duplicateGuess = props.duplicateGuess;
@@ -16,4 +16,4 @@ function duplicateGuess(props) {
     )
 }
 
-export default duplicateGuess;
+export default CountryGuessFeedback;

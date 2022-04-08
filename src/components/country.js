@@ -1,5 +1,5 @@
 import React from 'react';
-import CountryGuesser from './countryGuesser';
+import CountryGuesser from './countryGuesser/countryGuesser';
 import { selectCountry } from '../helpers/countryHelper';
 
 function Country(props) {

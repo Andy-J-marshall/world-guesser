@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import StartNewGame from '../startNewGame';
-import CountryGuesserStats from '../countryGuesserStats';
+import CountryGuesserStats from './countryGuesserStats';
 import { capitalizeText } from '../../helpers/utils';
 
 function CountryGuesserFailurePage(props) {

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import StartNewGame from '../startNewGame';
-import BorderingCountriesStats from '../borderingCountriesStats';
+import BorderingCountriesStats from './borderingCountriesStats';
 import { capitalizeText } from '../../helpers/utils';
 
 function BorderingCountriesSuccessPage(props) {
