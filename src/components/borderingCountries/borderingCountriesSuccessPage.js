@@ -25,12 +25,14 @@ function BorderingCountriesSuccessPage(props) {
         const numberOfAttempts = JSON.parse(localStorage.getItem('numberOfBorderAttempts')) || 0;
         const numberOfCorrectAnswers = JSON.parse(localStorage.getItem('numberOfCorrectBorderAnswers')) || 0;
         const numberOfIncorrectAnswers = JSON.parse(localStorage.getItem('numberOfIncorrectBorderAnswers')) || 0;
+        const streak = JSON.parse(localStorage.getItem('borderStreak')) || 0;
         const stats = {
             numberOfWins: numberOfWins + 1,
             numberOfGames: numberOfGames + 1,
             numberOfAttempts: numberOfAttempts + guesses.length,
             numberOfCorrectAnswers: numberOfCorrectAnswers + correctGuesses.length,
             numberOfIncorrectAnswers: numberOfIncorrectAnswers + incorrectCount,
+            streak: streak + 1,
         };
         return stats;
     }

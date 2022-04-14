@@ -29,6 +29,7 @@ function BorderingCountriesFailurePage(props) {
             numberOfAttempts: numberOfAttempts + guesses.length,
             numberOfCorrectAnswers: numberOfCorrectAnswers + correctGuesses.length,
             numberOfIncorrectAnswers: numberOfIncorrectAnswers + incorrectCount,
+            streak: 0,
         };
         return stats;
     }

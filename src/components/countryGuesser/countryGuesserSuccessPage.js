@@ -31,10 +31,12 @@ function CountryGuesserSuccessPage(props) {
         const numberOfWins = JSON.parse(localStorage.getItem('numberOfWins')) || 0;
         const numberOfGames = JSON.parse(localStorage.getItem('numberOfGames')) || 0;
         const numberOfAttempts = JSON.parse(localStorage.getItem('numberOfAttempts')) || 0;
+        const streak = JSON.parse(localStorage.getItem('streak')) || 0;
         const stats = {
             numberOfWins: numberOfWins + 1,
             numberOfGames: numberOfGames + 1,
             numberOfAttempts: numberOfAttempts + guesses.length,
+            streak: streak + 1,
         };
         return stats;
     }

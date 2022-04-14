@@ -20,6 +20,7 @@ function CountryGuesserFailurePage(props) {
             numberOfWins,
             numberOfGames: numberOfGames + 1,
             numberOfAttempts: numberOfAttempts + guesses.length,
+            streak: 0,
         };
         return stats;
     }
