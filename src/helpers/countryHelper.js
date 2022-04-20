@@ -1,8 +1,6 @@
 import axios from 'axios';
 import { capitalizeText, numberWithCommas } from './utils';
 
-// https://restcountries.com/
-
 async function allCountriesRequest() {
   try {
     const response = await axios.get(`https://restcountries.com/v3.1/all`);
@@ -38,6 +36,7 @@ async function allCountriesRequest() {
 
 export function selectCountry(countriesArray, countriesResponse, countryCodeMapping) {
   const selectedCountry = countriesArray[Math.floor(Math.random() * countriesArray.length)];
+  // const selectedCountry = 'France'; // TODO revert
   const country = countriesResponse.find(country => country.name.common.toLowerCase() === selectedCountry.toLowerCase());
   const countryObj = {
     name: country.name.common,

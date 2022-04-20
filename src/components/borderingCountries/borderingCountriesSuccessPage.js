@@ -47,6 +47,9 @@ function BorderingCountriesSuccessPage(props) {
             {!newGameStarted && <br />}
             {!newGameStarted && <BorderingCountriesStats
                 updateStatsCallback={updateStats}
+                country={name}
+                numberOfGuesses={guesses.length}
+                succeeded={true}
             />}
             <StartNewGame
                 countriesInfo={countriesInfo}

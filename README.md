@@ -1,6 +1,9 @@
 TODO Complete the readme
 # README
 
+A game where the user gets a series of clues and they have to guess the country. The country stats come from this public API:
+https://restcountries.com/
+
 ## Site is hosted here
 https://andy-j-marshall.github.io/world-guesser/
 
@@ -11,6 +14,7 @@ node
 Run the following:
 * `npm i`
 * `npm run start`
+* Visit: http://localhost:3000/world-guesser
 
 ## To deploy
 Run the following:
@@ -24,11 +28,5 @@ Add check that the country hasn't been used recently. Session storage?
 Create a stats page: stats for each country, also bordering country success
 
 Stats ideas:
-* Win %
-* Total games
-* Total wins
-* Stats per country
-* Avg number of guesses
 * Clear stats button
 * Where to display? On Victory/loss? Separate button?
-* Also do Bordering country stats

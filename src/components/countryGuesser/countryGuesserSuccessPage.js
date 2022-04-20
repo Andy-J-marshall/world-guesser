@@ -54,6 +54,7 @@ function CountryGuesserSuccessPage(props) {
                 updateStatsCallback={updateStats}
                 country={name}
                 numberOfGuesses={guesses.length}
+                succeeded={true}
             />}
             {!newGameStarted && borderingCountries.length > 0 && <PlayButton
                 callback={startBorderingCountriesGame}

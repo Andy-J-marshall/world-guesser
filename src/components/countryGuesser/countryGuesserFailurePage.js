@@ -36,6 +36,9 @@ function CountryGuesserFailurePage(props) {
             {!newGameStarted && <br />}
             {!newGameStarted && <CountryGuesserStats
                 updateStatsCallback={updateStats}
+                country={name}
+                numberOfGuesses={guesses.length}
+                succeeded={false}
             />}
             <StartNewGame
                 countriesInfo={countriesInfo}
