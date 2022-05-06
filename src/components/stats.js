@@ -48,7 +48,7 @@ function Stats() {
                 <p>Number of wins: {numberOfCountryGuesserWins}</p>
                 {numberOfCountryGuesserWins > 0 && <p>Win percentage: {((numberOfCountryGuesserWins / numberOfCountryGuesserGames) * 100).toFixed(1)}%</p>}
                 {numberOfCountryGuesserWins > 0 && <p>Number of guesses per correct answer: {(numberOfCountryGuesserAttempts / numberOfCountryGuesserWins).toFixed(1)}</p>}
-                {numberOfCountryGuesserWins > 0 && countryGuesserStreak > 0 && <p>Streak: {countryGuesserStreak}</p>}
+                {numberOfCountryGuesserWins > 0 && <p>Streak: {countryGuesserStreak}</p>}
 
                 <h2>Bordering Countries Guesser Stats</h2>
                 <p>Total games: {numberOfBorderGames}</p>
@@ -56,14 +56,16 @@ function Stats() {
                 {numberOfBorderWins > 0 && <p>Win percentage: {((numberOfBorderWins / numberOfBorderGames) * 100).toFixed(1)}%</p>}
                 {numberOfCorrectBorderAnswers > 0 && <p>Average number of correct answers per game: {(numberOfCorrectBorderAnswers / numberOfBorderGames).toFixed(1)}</p>}
                 {numberOfIncorrectBorderAnswers > 0 && <p>Average number of incorrect answers per game: {(numberOfIncorrectBorderAnswers / numberOfBorderGames).toFixed(1)}</p>}
-                {numberOfBorderWins > 0 && borderStreak > 0 && <p>Streak: {borderStreak}</p>}
+                {numberOfBorderWins > 0 && <p>Streak: {borderStreak}</p>}
 
                 <h2>Country Stats</h2>
                 <ListGroup>
                     {countryMap.map((c, index) => {
                         if (c.stats.best || c.stats.bestBorders) {
-                            return < ListGroup.Item key={index}><b>{c.name}</b> <br />Country Guesser High Score: {c.stats.best || 'N/A'} <br />
-                                Bordering Countries Guesser High Score: {c.stats.bestBorders || 'N/A'}</ListGroup.Item>
+                            const countryGuesserHighScore = c.stats.best === 99 ? 'FAILED' : c.stats.best;
+                            const borderingCountryHighScore = c.stats.bestBorders === 99 ? 'FAILED' : c.stats.bestBorders;
+                            return < ListGroup.Item key={index}><b>{c.name}</b> <br />Country Guesser High Score: {countryGuesserHighScore || 'N/A'} <br />
+                                Bordering Countries Guesser High Score: {borderingCountryHighScore || 'N/A'}</ListGroup.Item>
                         }
                     })}
                 </ListGroup>
