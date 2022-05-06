@@ -20,7 +20,3 @@ Run the following:
 * `npm i`
 * `npm run build`
 * `npm run deploy`
-
-## Todo list
-Design a nice UI
-Add check that the country hasn't been used recently. Session storage?
