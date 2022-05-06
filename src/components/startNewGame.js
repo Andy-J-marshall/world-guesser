@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import Country from './country';
-import PlayButton from './playButton';
+import Button from './button';
 
 function StartNewGame(props) {
     const countriesInfo = props.countriesInfo;
@@ -17,7 +17,7 @@ function StartNewGame(props) {
     return (
         <div id='start-new-game'>
             {!newGameStarted && <br />}
-            {!newGameStarted && <PlayButton
+            {!newGameStarted && <Button
                 callback={startNewGame}
                 buttonText={buttonText}
             />}

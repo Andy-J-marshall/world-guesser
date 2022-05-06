@@ -10,8 +10,6 @@ function BorderingCountriesStats(props) {
     const [numberOfWins, setNumberOfWins] = useState(0);
     const [numberOfAttempts, setNumberOfAttempts] = useState(0);
     const [numberOfGames, setNumberOfGames] = useState(0);
-    const [numberOfCorrectAnswers, setNumberOfCorrectAnswers] = useState(0);
-    const [numberOfIncorrectAnswers, setNumberOfIncorrectAnswers] = useState(0);
     const [streak, setStreak] = useState(0);
     const [highScore, setHighScore] = useState(false);
 
@@ -24,8 +22,6 @@ function BorderingCountriesStats(props) {
         setNumberOfWins(numberOfWins);
         setNumberOfGames(numberOfGames);
         setNumberOfAttempts(numberOfAttempts);
-        setNumberOfCorrectAnswers(numberOfCorrectAnswers);
-        setNumberOfIncorrectAnswers(numberOfIncorrectAnswers);
         setStreak(streak);
 
         try {
@@ -36,7 +32,6 @@ function BorderingCountriesStats(props) {
             localStorage.setItem('numberOfIncorrectBorderAnswers', JSON.stringify(numberOfIncorrectAnswers));
             localStorage.setItem('borderStreak', JSON.stringify(streak));
 
-            // TODO check this works for success and failure
             const countryBordersHighScores = JSON.parse(localStorage.getItem('countryHighScores')) || allCountryStats;
             if (succeeded) {
                 const previousBestScore = countryBordersHighScores[country].bestBorders;
@@ -60,9 +55,6 @@ function BorderingCountriesStats(props) {
                 {succeeded && highScore && <p>That was your best score for {country}!</p>}
                 <p>Total games: {numberOfGames}</p>
                 <p>Number of wins: {numberOfWins}</p>
-                {numberOfWins > 0 && <p>Win percentage: {((numberOfWins / numberOfGames) * 100).toFixed(1)}%</p>}
-                {numberOfCorrectAnswers > 0 && <p>Average number of correct answers per game: {(numberOfCorrectAnswers / numberOfGames).toFixed(1)}</p>}
-                {numberOfIncorrectAnswers > 0 && <p>Average number of incorrect answers per game: {(numberOfIncorrectAnswers / numberOfGames).toFixed(1)}</p>}
                 {numberOfWins > 0 && streak > 0 && <p>You are on a {streak} game winning streak playing Bordering Countries</p>}
             </div>}
         </div>

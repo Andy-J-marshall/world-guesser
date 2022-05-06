@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import Country from './components/country';
+import Stats from './components/stats';
 import getAllCountriesRequest from './helpers/countryHelper';
 
 function App() {
@@ -22,6 +23,7 @@ function App() {
       {allCountriesResponse && <Country
         countriesInfo={allCountriesResponse}
       />}
+      <Stats />
       <link
         rel='stylesheet'
         href='https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css'

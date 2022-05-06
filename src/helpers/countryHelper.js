@@ -36,7 +36,6 @@ async function allCountriesRequest() {
 
 export function selectCountry(countriesArray, countriesResponse, countryCodeMapping) {
   const selectedCountry = countriesArray[Math.floor(Math.random() * countriesArray.length)];
-  // const selectedCountry = 'France'; // TODO revert
   const country = countriesResponse.find(country => country.name.common.toLowerCase() === selectedCountry.toLowerCase());
   const countryObj = {
     name: country.name.common,

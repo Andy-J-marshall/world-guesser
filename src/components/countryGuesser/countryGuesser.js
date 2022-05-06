@@ -20,8 +20,6 @@ function CountryGuesser(props) {
     const map = country.map;
     const capital = country.capital;
     const borderingCountries = country.borderingCountries;
-    // console.log(name) // TODO delete
-    // console.log(borderingCountries) // TODO delete
 
     const [correctGuess, setCorrectGuess] = useState(false);
     const [incorrectCount, setIncorrectCount] = useState(0);

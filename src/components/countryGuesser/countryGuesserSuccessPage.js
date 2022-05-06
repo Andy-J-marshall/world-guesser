@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import BorderingCountriesGuesser from '../borderingCountries/borderingCountriesGuesser';
-import PlayButton from '../playButton';
+import Button from '../button';
 import StartNewGame from '../startNewGame';
 import CountryGuesserStats from '../countryGuesser/countryGuesserStats';
 import { capitalizeText } from '../../helpers/utils';
@@ -56,7 +56,7 @@ function CountryGuesserSuccessPage(props) {
                 numberOfGuesses={guesses.length}
                 succeeded={true}
             />}
-            {!newGameStarted && borderingCountries.length > 0 && <PlayButton
+            {!newGameStarted && borderingCountries.length > 0 && <Button
                 callback={startBorderingCountriesGame}
                 buttonText='Guess the bordering countries'
             />}

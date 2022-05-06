@@ -28,8 +28,6 @@ function CountryGuesserStats(props) {
             localStorage.setItem('numberOfAttempts', JSON.stringify(numberOfAttempts));
             localStorage.setItem('streak', JSON.stringify(streak));
 
-            // TODO should this live in the updateStats callback? Same with borders too?
-            // TODO need a way of displaying the info (optionally)
             const countryHighScores = JSON.parse(localStorage.getItem('countryHighScores')) || allCountryStats;
             if (succeeded) {
                 const previousBestScore = countryHighScores[country].best;
@@ -53,8 +51,6 @@ function CountryGuesserStats(props) {
                 {succeeded > 0 && highScore && <p>That was your best score for {country}!</p>}
                 <p>Total games: {numberOfGames}</p>
                 <p>Number of wins: {numberOfWins}</p>
-                {numberOfWins > 0 && <p>Win percentage: {((numberOfWins / numberOfGames) * 100).toFixed(1)}%</p>}
-                {numberOfWins > 0 && <p>Number of guesses per correct answer: {(numberOfAttempts / numberOfWins).toFixed(1)}</p>}
                 {numberOfWins > 0 && streak > 0 && <p>You are on a {streak} game winning streak playing Country Guesser</p>}
             </div>}
         </div>
