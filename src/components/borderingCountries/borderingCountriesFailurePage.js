@@ -35,9 +35,9 @@ function BorderingCountriesFailurePage(props) {
     }
 
     return (
-        <div id='failure-page'>
+        <div id='bordering-countries-failure-page'>
             {borderingCountries && !newGameStarted && < div id='bordering-countries-failure' >
-                <p style={{ color: 'red' }}>You failed. Better luck next time</p>
+                <p style={{ color: '#F66B0E' }}>You failed. Better luck next time</p>
                 <p>See {name} on the <a href={map}>map</a></p>
                 {correctGuesses.length === 0 && <p>You found none of the bordering countries and missed {borderingCountriesCount}</p>}
                 {correctGuesses.length > 0 && <p>You found {correctGuesses.length} of {borderingCountriesCount}</p>}

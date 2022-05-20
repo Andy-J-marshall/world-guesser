@@ -47,7 +47,7 @@ function CountryGuesserStats(props) {
     return (
         <div id='country-guesser-stats'>
             {numberOfAttempts > 0 && numberOfGames > 0 && <div>
-                <h1>Stats</h1>
+                <h2>Stats</h2>
                 {succeeded > 0 && highScore && <p>That was your best score for {country}!</p>}
                 <p>Total games: {numberOfGames}</p>
                 <p>Number of wins: {numberOfWins}</p>

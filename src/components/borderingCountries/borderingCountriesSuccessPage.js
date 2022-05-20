@@ -40,7 +40,7 @@ function BorderingCountriesSuccessPage(props) {
     return (
         <div>
             {!newGameStarted && < div id='successful-bordering-countries-game' >
-                <h5 style={{ color: 'green' }}>{messageText}</h5>
+                <h5 style={{ color: '#F66B0E' }}>{messageText}</h5>
                 <p>See <a href={map}>{name}</a> on the map</p>
                 {<p>Your answer history was: {capitalizeText(guesses)}</p>}
             </div >}

@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import Country from './components/country';
 import Stats from './components/stats';
 import getAllCountriesRequest from './helpers/countryHelper';
+import './app.css'
 
 function App() {
   const [allCountriesResponse, setAllCountriesResponse] = useState();
@@ -19,7 +20,9 @@ function App() {
 
   return (
     <div id='app'>
-      <h1>FUN WITH COUNTRIES!</h1>
+      <div id='header'>
+        <h1 style={{ fontSize: '4rem' }}>FUN WITH COUNTRIES!</h1>
+      </div>
       {allCountriesResponse && <Country
         countriesInfo={allCountriesResponse}
       />}

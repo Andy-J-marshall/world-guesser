@@ -43,6 +43,7 @@ function Stats() {
                 buttonText={buttonText}
             />
             {showStats && <div>
+                <br />
                 <h2>Country Guesser Stats</h2>
                 <p>Total games: {numberOfCountryGuesserGames}</p>
                 <p>Number of wins: {numberOfCountryGuesserWins}</p>
@@ -59,7 +60,7 @@ function Stats() {
                 {numberOfBorderWins > 0 && <p>Streak: {borderStreak}</p>}
 
                 <h2>Country Stats</h2>
-                <ListGroup>
+                <ListGroup id='country-stats'>
                     {countryMap.map((c, index) => {
                         if (c.stats.best || c.stats.bestBorders) {
                             const countryGuesserHighScore = c.stats.best === 99 ? 'FAILED' : c.stats.best;

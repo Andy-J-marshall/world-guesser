@@ -5,7 +5,7 @@ function basicValidation(props) {
     const knownCountry = props.knownCountry;
 
     return (
-        <div style={{ color: 'brown' }} id='invalid-guess-feedback'>
+        <div style={{ color: '#F66B0E' }} id='invalid-guess-feedback'>
             {duplicateGuess && <p>You've already tried that country!</p>}
             {!knownCountry && <p>Enter a valid country name</p>}
         </div>

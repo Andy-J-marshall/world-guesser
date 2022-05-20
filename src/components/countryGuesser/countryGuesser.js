@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { Container, Row, Col } from 'react-bootstrap';
 import CountryGuesserFailurePage from './countryGuesserFailurePage';
 import CountryGuesserSuccessPage from './countryGuesserSuccessPage';
 import BasicValidation from '../basicValidation';
@@ -72,18 +73,41 @@ function CountryGuesser(props) {
     return (
         <div id='country-guesser' className='component'>
             {!failed && !correctGuess && <div id='country-info'>
-                <h2>Mystery Country</h2>
-                {<p>Population = {population}</p>}
-                {incorrectCount >= 1 && <p>Region = {region}</p>}
-                {incorrectCount >= 2 && <p>{landlocked}</p>}
-                {incorrectCount >= 3 && <p>Sub region = {subregion}</p>}
-                {incorrectCount >= 4 && <div>
-                    <p>Flag: </p>
-                    {<img style={{ border: 'solid' }} src={flag} alt='Country Flag' />}
-                </div>}
-                {incorrectCount >= 5 && <p>Capital city = {capital}</p>}
+                <h2>Guess the Mystery Country</h2>
+                <br />
+                <Container>
+                    <Row>
+                        <Col>
+                            {<p>Population: {population}</p>}
+                        </Col>
+                        <Col>
+                            {incorrectCount >= 1 && <p>Region: {region}</p>}
+                        </Col>
+                        <Col>
+                            {incorrectCount >= 2 && <p>{landlocked}</p>}
+                        </Col>
+                        <Col>
+                            {incorrectCount >= 3 && <p>Sub region: {subregion}</p>}
+                        </Col>
+                    </Row>
+                    <Row>
+                        <Col>
+                            {incorrectCount >= 4 && <div>
+                                <p>Flag: </p>
+                                {<img style={{ border: 'solid' }} src={flag} alt='Country Flag' />}
+                            </div>}
+                        </Col>
+                    </Row>
+                    <Row>
+                        <Col>
+                            <br />
+                            {incorrectCount >= 5 && <p>Capital city: {capital}</p>}
+                        </Col>
+                    </Row>
+                </Container>
             </div>}
             <div id='country-form'>
+                <br />
                 {!correctGuess && !failed && <CountryForm
                     possibleCountries={possibleCountries}
                     value={value}

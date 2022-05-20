@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Container, Row, Col } from 'react-bootstrap';
 import BorderingCountriesGuesser from '../borderingCountries/borderingCountriesGuesser';
 import Button from '../button';
 import StartNewGame from '../startNewGame';
@@ -44,8 +45,8 @@ function CountryGuesserSuccessPage(props) {
     return (
         <div>
             {!newGameStarted && < div id='successful-country-game' >
-                {incorrectCount === 0 && <h5 style={{ color: 'green' }}>Amazing! You got <a href={map}>{name}</a> in one!</h5>}
-                {incorrectCount > 0 && <h5 style={{ color: 'green' }}>Well done! It took you {incorrectCount + 1} attempts to get <a href={map}>{name}</a></h5>}
+                {incorrectCount === 0 && <h5 style={{ color: '#F66B0E' }}>Amazing! You got <a href={map}>{name}</a> in one!</h5>}
+                {incorrectCount > 0 && <h5 style={{ color: '#F66B0E' }}>Well done! It took you {incorrectCount + 1} attempts to get <a href={map}>{name}</a></h5>}
                 {incorrectCount > 0 && <p>Your answer history was: {capitalizeText(guesses)}</p>}
                 {<img style={{ border: 'solid' }} src={flag} alt='Country Flag' />}
             </div >}
@@ -56,15 +57,28 @@ function CountryGuesserSuccessPage(props) {
                 numberOfGuesses={guesses.length}
                 succeeded={true}
             />}
-            {!newGameStarted && borderingCountries.length > 0 && <Button
-                callback={startBorderingCountriesGame}
-                buttonText='Guess the bordering countries'
-            />}
-            {!borderingCountriesGameStarted && <StartNewGame
-                countriesInfo={countriesInfo}
-                buttonText='Play again'
-                callback={startNewGame}
-            />}
+
+            <Container>
+                <Row>
+                    <Col xs lg='2'></Col>
+                    <Col>
+                        {!borderingCountriesGameStarted && <StartNewGame
+                            countriesInfo={countriesInfo}
+                            buttonText='Play again'
+                            callback={startNewGame}
+                        />}
+                    </Col>
+                    {borderingCountries.length > 0 &&
+                        <Col>
+                            {!newGameStarted && <Button
+                                callback={startBorderingCountriesGame}
+                                buttonText='Guess the bordering countries'
+                            />}
+                        </Col>
+                    }
+                    <Col xs lg='2'></Col>
+                </Row>
+            </Container>
             {newGameStarted && borderingCountriesGameStarted && <BorderingCountriesGuesser
                 countriesInfo={countriesInfo}
                 name={name}

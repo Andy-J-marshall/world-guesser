@@ -51,8 +51,8 @@ function BorderingCountriesStats(props) {
     return (
         <div id='country-guesser-stats'>
             {numberOfGames > 0 && numberOfAttempts > 0 && <div>
-                <h1>Stats</h1>
-                {succeeded && highScore && <p>That was your best score for {country}!</p>}
+                <h2>Stats</h2>
+                {succeeded && highScore && <p style={{ color: '#F66B0E' }}>That was your best score for {country}!</p>}
                 <p>Total games: {numberOfGames}</p>
                 <p>Number of wins: {numberOfWins}</p>
                 {numberOfWins > 0 && streak > 0 && <p>You are on a {streak} game winning streak playing Bordering Countries</p>}

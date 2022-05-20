@@ -16,7 +16,6 @@ function StartNewGame(props) {
 
     return (
         <div id='start-new-game'>
-            {!newGameStarted && <br />}
             {!newGameStarted && <Button
                 callback={startNewGame}
                 buttonText={buttonText}

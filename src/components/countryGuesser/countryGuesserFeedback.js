@@ -9,7 +9,7 @@ function CountryGuessFeedback(props) {
 
     return (
         <div id='country-guess-feedback'>
-            {!duplicateGuess && <p style={{ color: 'red' }}>Incorrect! That was attempt number {incorrectCount}/6.</p>}
+            {!duplicateGuess && <p style={{ color: '#F66B0E' }}>Incorrect! That was attempt number {incorrectCount}/6.</p>}
             {guessedBorderingCountry && <p>You're getting close!</p>}
             {<p>Your answers so far: {capitalizeText(guesses)}</p>}
         </div>

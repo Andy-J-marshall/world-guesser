@@ -5,9 +5,10 @@ function CustomButton(props) {
     const callback = props.callback;
     const buttonText = props.buttonText;
 
+    // TODO refactor this as I don't need a separate component?
     return (
         <div>
-            <Button variant='primary' size='lg' onClick={callback}>{buttonText}</Button>
+            <Button variant='light' size='lg' onClick={callback}>{buttonText}</Button>
         </div>
     );
 }

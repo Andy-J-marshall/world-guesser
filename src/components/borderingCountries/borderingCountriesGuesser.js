@@ -115,7 +115,7 @@ function borderingCountriesGuesser(props) {
                     duplicateGuess={duplicateGuess}
                     knownCountry={knownCountry}
                 />
-                {guessedActualCountry && <p style={{ color: 'brown' }}>That's the actual country! Guess the bordering ones instead</p>}
+                {guessedActualCountry && <p style={{ color: '#F66B0E' }}>That's the actual country! Guess the bordering ones instead</p>}
             </div>}
             {!succeeded && !failed && clues && <BorderingCountriesClue
                 clues={clues}

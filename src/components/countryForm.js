@@ -20,10 +20,11 @@ function CountryForm(props) {
                         options={possibleCountries}
                         placeholder='Select your country'
                         selected={value}
+                        size='lg'
                     />
                 </Form.Group>
             </Fragment>
-            <Button variant='primary' type='submit'>
+            <Button variant='light' type='submit'>
                 Guess
             </Button>
         </Form>

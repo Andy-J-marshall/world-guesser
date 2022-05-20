@@ -26,9 +26,9 @@ function CountryGuesserFailurePage(props) {
     }
 
     return (
-        <div id='failure-page'>
+        <div id='country-guesser-failure-page'>
             {!newGameStarted && < div id='country-failure' >
-                <p style={{ color: 'red' }}>You failed. Better luck next time</p>
+                <p style={{ color: '#F66B0E' }}>You failed. Better luck next time</p>
                 {<p>The answer was <a href={map}>{name}</a></p>}
                 {<p>Your answer history was: {capitalizeText(guesses)}</p>}
                 <img style={{ border: 'solid' }} src={flag} alt='Country Flag' />
