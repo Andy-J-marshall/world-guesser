@@ -80,15 +80,21 @@ function CountryGuesser(props) {
                         <Col>
                             {<p>Population: {population}</p>}
                         </Col>
-                        <Col>
-                            {incorrectCount >= 1 && <p>Region: {region}</p>}
-                        </Col>
-                        <Col>
-                            {incorrectCount >= 2 && <p>{landlocked}</p>}
-                        </Col>
-                        <Col>
-                            {incorrectCount >= 3 && <p>Sub region: {subregion}</p>}
-                        </Col>
+                        {incorrectCount >= 1 &&
+                            <Col>
+                                <p>Region: {region}</p>
+                            </Col>
+                        }
+                        {incorrectCount >= 2 &&
+                            <Col>
+                                <p>{landlocked}</p>
+                            </Col>
+                        }
+                        {incorrectCount >= 3 &&
+                            <Col>
+                                <p>Sub region: {subregion}</p>
+                            </Col>
+                        }
                     </Row>
                     <Row>
                         <Col>
