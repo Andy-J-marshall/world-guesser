@@ -50,6 +50,7 @@ function Stats() {
                 {numberOfCountryGuesserWins > 0 && <p>Win percentage: {((numberOfCountryGuesserWins / numberOfCountryGuesserGames) * 100).toFixed(1)}%</p>}
                 {numberOfCountryGuesserWins > 0 && <p>Number of guesses per correct answer: {(numberOfCountryGuesserAttempts / numberOfCountryGuesserWins).toFixed(1)}</p>}
                 {numberOfCountryGuesserWins > 0 && <p>Streak: {countryGuesserStreak}</p>}
+                <br />
 
                 <h2>Bordering Countries Guesser Stats</h2>
                 <p>Total games: {numberOfBorderGames}</p>
@@ -58,6 +59,7 @@ function Stats() {
                 {numberOfCorrectBorderAnswers > 0 && <p>Average number of correct answers per game: {(numberOfCorrectBorderAnswers / numberOfBorderGames).toFixed(1)}</p>}
                 {numberOfIncorrectBorderAnswers > 0 && <p>Average number of incorrect answers per game: {(numberOfIncorrectBorderAnswers / numberOfBorderGames).toFixed(1)}</p>}
                 {numberOfBorderWins > 0 && <p>Streak: {borderStreak}</p>}
+                <br />
 
                 <h2>Country Stats</h2>
                 <ListGroup id='country-stats'>

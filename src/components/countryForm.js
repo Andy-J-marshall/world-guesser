@@ -18,7 +18,7 @@ function CountryForm(props) {
                         id='country-search'
                         onChange={setValue}
                         options={possibleCountries}
-                        placeholder='Select your country'
+                        placeholder='Countries'
                         selected={value}
                         size='lg'
                     />
