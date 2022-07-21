@@ -19,13 +19,11 @@ test.describe("Country Guesser", () => {
   });
 
   test.describe("Correct guess", () => {
-    test.only("Correct guess shows as success", async () => {
-      await countrySearchBox.click();
+    test("Correct guess shows as success", async () => {
+      await countrySearchBox.type("Democratic Republic of Congo");
       await topCountryInList.click();
       await countrySubmitButton.click();
-      await expect(countryGuessFeedback).toHaveText([
-        "Incorrect! That was attempt number 1/6.Your answers so far: Afghanistan",
-      ]);
+      // TODO check success screen appears
     });
   });
 
