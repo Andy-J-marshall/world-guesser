@@ -4,7 +4,10 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "deploy": "gh-pages -d build"
+    "deploy": "gh-pages -d build",
+    "tests": "npx playwright test",
+    "tests:debug": "PWDEBUG=1  npx playwright test",
+    "test-report": "npx playwright show-report"
   },
   "dependencies": {
     "axios": "^0.26.0",
@@ -26,5 +29,8 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.23.4"
   }
 }
