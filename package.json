@@ -4,7 +4,11 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "deploy": "gh-pages -d build"
+    "deploy": "gh-pages -d build",
+    "tests": "npx playwright test",
+    "tests:debug": "npx playwright test --debug",
+    "test-report": "npx playwright show-report",
+    "test-trace": "npx playwright show-trace test-results/*/trace.zip"
   },
   "dependencies": {
     "axios": "^0.26.0",
@@ -26,5 +30,8 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.23.4"
   }
 }

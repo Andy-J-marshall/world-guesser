@@ -13,9 +13,9 @@ function CountryForm(props) {
     return (
         <Form onSubmit={handleSubmit}>
             <Fragment>
-                <Form.Group className='mb-3'>
+                <Form.Group id='country-search' className='mb-3'>
                     <Typeahead
-                        id='country-search'
+                        id='country-search-typeahead'
                         onChange={setValue}
                         options={possibleCountries}
                         placeholder='Countries'
@@ -24,7 +24,7 @@ function CountryForm(props) {
                     />
                 </Form.Group>
             </Fragment>
-            <Button variant='light' type='submit'>
+            <Button id='guess-button' variant='light' type='submit'>
                 Guess
             </Button>
         </Form>

@@ -35,8 +35,11 @@ async function allCountriesRequest() {
 }
 
 export function selectCountry(countriesArray, countriesResponse, countryCodeMapping) {
-  const selectedCountry = countriesArray[Math.floor(Math.random() * countriesArray.length)];
-  const country = countriesResponse.find(country => country.name.common.toLowerCase() === selectedCountry.toLowerCase());
+  let country = countriesResponse.find(country => country.useThis);
+  if (!country) {
+    const selectedCountry = countriesArray[Math.floor(Math.random() * countriesArray.length)];
+    country = countriesResponse.find(country => country.name.common.toLowerCase() === selectedCountry.toLowerCase());
+  }
   const countryObj = {
     name: country.name.common,
     borderingCountries: returnBorderingCountries(country.borders, countryCodeMapping),
