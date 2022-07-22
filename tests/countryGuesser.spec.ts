@@ -1,42 +1,12 @@
 import { test, expect } from "@playwright/test";
-import fixtures from "../src/fixtures";
-
-// TODO set the useThis flag during the test? and rename
+import fixtures from "./fixtures";
+import { CountryGuesserPage } from "./pages/countryGuesserPage";
 
 test.describe("Country Guesser", () => {
-  let countrySearchBox;
-  let countrySubmitButton;
-  let invalidGuessFeedback;
-  let countryGuessFeedback;
-  let topCountryInList;
-  let successMessage;
-  let successFlag;
-  let bestScoreText;
-
-  let populationClue;
-  let regionClue;
-  let subregionClue;
-  let flagClue;
-  let landlockedClue;
-  let capitalClue;
+  let countryGuesserPage: CountryGuesserPage;
 
   test.beforeEach(async ({ page }) => {
-    countrySearchBox = page.locator("#country-search input:nth-of-type(1)");
-    countrySubmitButton = page.locator("#guess-button");
-    invalidGuessFeedback = page.locator("#invalid-guess-feedback");
-    countryGuessFeedback = page.locator("#country-guess-feedback");
-    successMessage = page.locator("#successful-country-game > h5");
-    successFlag = page.locator("#successful-country-game > img");
-    bestScoreText = page.locator(
-      "#country-guesser-stats > div > p:nth-child(2)"
-    );
-    topCountryInList = page.locator("#country-search-typeahead-item-0");
-    populationClue = page.locator("#population");
-    regionClue = page.locator("#region");
-    subregionClue = page.locator("#subregion");
-    flagClue = page.locator("#flag");
-    landlockedClue = page.locator("#landlocked");
-    capitalClue = page.locator("#capital");
+    countryGuesserPage = new CountryGuesserPage(page);
   });
 
   test.describe("Guessing countries", () => {
@@ -54,97 +24,103 @@ test.describe("Country Guesser", () => {
           body: JSON.stringify(fixtures),
         })
       );
-      await page.goto("/");
+      await countryGuesserPage.goto();
       await expect(page).toHaveTitle(/Fun With Countries/);
     });
 
     test("Correct guess shows the success page", async () => {
-      await countrySearchBox.type(countryName);
-      await topCountryInList.click();
-      await countrySubmitButton.click();
-      await expect(successMessage).toHaveText(
+      await countryGuesserPage.countrySearchBox.type(countryName);
+      await countryGuesserPage.topCountryInList.click();
+      await countryGuesserPage.countrySubmitButton.click();
+      await expect(countryGuesserPage.successMessage).toHaveText(
         `Amazing! You got ${countryName} in one!`
       );
-      await expect(bestScoreText).toHaveText(
+      await expect(countryGuesserPage.bestScoreText).toHaveText(
         `That was your best score for ${countryName}!`
       );
-      await expect(successFlag).toHaveAttribute(
+      await expect(countryGuesserPage.successFlag).toHaveAttribute(
         "src",
         "https://flagcdn.com/w320/cd.png"
       );
     });
 
     test("Correct clues and feedback show after each unsuccessful guess", async () => {
-      await expect(populationClue).toContainText(`108,407,721`);
+      await expect(countryGuesserPage.populationClue).toContainText(
+        `108,407,721`
+      );
 
       // Incorrect guesses
-      await countrySearchBox.type("France");
-      await topCountryInList.click();
-      await countrySubmitButton.click();
-      await expect(countryGuessFeedback).toHaveText(
+      await countryGuesserPage.countrySearchBox.type("France");
+      await countryGuesserPage.topCountryInList.click();
+      await countryGuesserPage.countrySubmitButton.click();
+      await expect(countryGuesserPage.countryGuessFeedback).toHaveText(
         "Incorrect! That was attempt number 1/6.Your answers so far: France"
       );
-      await expect(regionClue).toContainText(`Africa`);
-      await countrySearchBox.click();
-      await topCountryInList.click();
-      await countrySubmitButton.click();
-      await expect(countryGuessFeedback).toHaveText(
+      await expect(countryGuesserPage.regionClue).toContainText(`Africa`);
+      await countryGuesserPage.countrySearchBox.click();
+      await countryGuesserPage.topCountryInList.click();
+      await countryGuesserPage.countrySubmitButton.click();
+      await expect(countryGuesserPage.countryGuessFeedback).toHaveText(
         "Incorrect! That was attempt number 2/6.Your answers so far: France, Afghanistan"
       );
-      await expect(landlockedClue).toContainText(`country has a coastline`);
-      await countrySearchBox.type("Japan");
-      await topCountryInList.click();
-      await countrySubmitButton.click();
-      await expect(countryGuessFeedback).toHaveText(
+      await expect(countryGuesserPage.landlockedClue).toContainText(
+        `country has a coastline`
+      );
+      await countryGuesserPage.countrySearchBox.type("Japan");
+      await countryGuesserPage.topCountryInList.click();
+      await countryGuesserPage.countrySubmitButton.click();
+      await expect(countryGuesserPage.countryGuessFeedback).toHaveText(
         "Incorrect! That was attempt number 3/6.Your answers so far: France, Afghanistan, Japan"
       );
-      await expect(subregionClue).toContainText(`Middle Africa`);
-      await countrySearchBox.type("India");
-      await topCountryInList.click();
-      await countrySubmitButton.click();
-      await expect(countryGuessFeedback).toHaveText(
+      await expect(countryGuesserPage.subregionClue).toContainText(
+        `Middle Africa`
+      );
+      await countryGuesserPage.countrySearchBox.type("India");
+      await countryGuesserPage.topCountryInList.click();
+      await countryGuesserPage.countrySubmitButton.click();
+      await expect(countryGuesserPage.countryGuessFeedback).toHaveText(
         "Incorrect! That was attempt number 4/6.Your answers so far: France, Afghanistan, Japan, India"
       );
-      await expect(flagClue).toHaveAttribute(
+      await expect(countryGuesserPage.flagClue).toHaveAttribute(
         "src",
         "https://flagcdn.com/w320/cd.png"
       );
-      await countrySearchBox.type("Algeria");
-      await topCountryInList.click();
-      await countrySubmitButton.click();
-      await expect(countryGuessFeedback).toHaveText(
+      await countryGuesserPage.countrySearchBox.type("Algeria");
+      await countryGuesserPage.topCountryInList.click();
+      await countryGuesserPage.countrySubmitButton.click();
+      await expect(countryGuesserPage.countryGuessFeedback).toHaveText(
         "Incorrect! That was attempt number 5/6.Your answers so far: France, Afghanistan, Japan, India, Algeria"
       );
-      await expect(capitalClue).toContainText(`Kinshasa`);
+      await expect(countryGuesserPage.capitalClue).toContainText(`Kinshasa`);
 
       // Correct guess
-      await countrySearchBox.type(countryName);
-      await topCountryInList.click();
-      await countrySubmitButton.click();
-      await expect(successMessage).toHaveText(
+      await countryGuesserPage.countrySearchBox.type(countryName);
+      await countryGuesserPage.topCountryInList.click();
+      await countryGuesserPage.countrySubmitButton.click();
+      await expect(countryGuesserPage.successMessage).toHaveText(
         `Well done! It took you 6 attempts to get ${countryName}`
       );
     });
   });
 
   test.describe("Basic guess validation", () => {
-    test.beforeEach(async ({ page }) => {
-      await page.goto("/");
-      await expect(page).toHaveTitle(/Fun With Countries/);
+    test.beforeEach(async () => {
+      await countryGuesserPage.goto();
+      await countryGuesserPage.toHaveTitle();
     });
 
     test("Cannot guess no country", async () => {
-      await countrySubmitButton.click();
-      await expect(invalidGuessFeedback).toHaveText(
+      await countryGuesserPage.countrySubmitButton.click();
+      await expect(countryGuesserPage.invalidGuessFeedback).toHaveText(
         "Enter a valid country name"
       );
     });
 
-    test("Cannot guess invalid country name", async ({ page }) => {
-      await countrySearchBox.type("Invalid Country Name");
-      await page.locator("h1").click();
-      await countrySubmitButton.click();
-      await expect(invalidGuessFeedback).toHaveText(
+    test("Cannot guess invalid country name", async () => {
+      await countryGuesserPage.countrySearchBox.type("Invalid Country Name");
+      await countryGuesserPage.header.click();
+      await countryGuesserPage.countrySubmitButton.click();
+      await expect(countryGuesserPage.invalidGuessFeedback).toHaveText(
         "Enter a valid country name"
       );
     });
