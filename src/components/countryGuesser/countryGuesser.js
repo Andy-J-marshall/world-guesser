@@ -78,21 +78,21 @@ function CountryGuesser(props) {
                 <Container>
                     <Row>
                         <Col>
-                            {<p>Population: {population}</p>}
+                            {<p id='population'>Population: {population}</p>}
                         </Col>
                         {incorrectCount >= 1 &&
                             <Col>
-                                <p>Region: {region}</p>
+                                <p id='region'>Region: {region}</p>
                             </Col>
                         }
                         {incorrectCount >= 2 &&
                             <Col>
-                                <p>{landlocked}</p>
+                                <p id='landlocked'>{landlocked}</p>
                             </Col>
                         }
                         {incorrectCount >= 3 &&
                             <Col>
-                                <p>Sub region: {subregion}</p>
+                                <p id='subregion'>Sub region: {subregion}</p>
                             </Col>
                         }
                     </Row>
@@ -100,14 +100,14 @@ function CountryGuesser(props) {
                         <Col>
                             {incorrectCount >= 4 && <div>
                                 <p>Flag: </p>
-                                {<img style={{ border: 'solid' }} src={flag} alt='Country Flag' />}
+                                {<img id='flag' style={{ border: 'solid' }} src={flag} alt='Country Flag' />}
                             </div>}
                         </Col>
                     </Row>
                     <Row>
                         <Col>
                             <br />
-                            {incorrectCount >= 5 && <p>Capital city: {capital}</p>}
+                            {incorrectCount >= 5 && <p id='capital'>Capital city: {capital}</p>}
                         </Col>
                     </Row>
                 </Container>
