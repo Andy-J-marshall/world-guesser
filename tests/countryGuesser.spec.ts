@@ -8,7 +8,7 @@ test.describe("Country Guesser", () => {
   let topCountryInList;
 
   test.beforeEach(async ({ page }) => {
-    await page.goto("http://localhost:3000/world-guesser");
+    await page.goto("/");
     await expect(page).toHaveTitle(/Fun With Countries/);
 
     countrySearchBox = page.locator("#country-search input:nth-of-type(1)");
