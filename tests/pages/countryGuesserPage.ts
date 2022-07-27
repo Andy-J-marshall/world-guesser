@@ -19,11 +19,13 @@ export class CountryGuesserPage {
   readonly flagClue: Locator;
   readonly landlockedClue: Locator;
   readonly capitalClue: Locator;
+  readonly countryGuesser: Locator;
 
   constructor(page: Page) {
     this.page = page;
 
     this.header = page.locator("h1");
+    this.countryGuesser = page.locator("#country-guesser");
     this.countrySearchBox = page.locator(
       "#country-search input:nth-of-type(1)"
     );
@@ -50,5 +52,9 @@ export class CountryGuesserPage {
 
   async toHaveTitle() {
     await expect(this.page).toHaveTitle(/Fun With Countries/);
+  }
+
+  async visualTest() {
+    await expect(this.countryGuesser).toHaveScreenshot();
   }
 }
