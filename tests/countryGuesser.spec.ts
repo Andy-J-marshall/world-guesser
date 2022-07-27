@@ -39,6 +39,10 @@ test.describe("Country Guesser", () => {
         await expect(page).toHaveTitle(/Fun With Countries/);
       });
 
+      test("Country guesser page looks visually correct", async ({ page }) => {
+        await expect(page).toHaveScreenshot();
+      });
+
       test("Correct guess shows the success page", async () => {
         await countryGuesserPage.countrySearchBox.type(country.name);
         await countryGuesserPage.topCountryInList.click();

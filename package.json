@@ -8,7 +8,8 @@
     "tests": "npx playwright test",
     "tests:debug": "npx playwright test --debug",
     "test-report": "npx playwright show-report",
-    "test-trace": "npx playwright show-trace test-results/*/trace.zip"
+    "test-trace": "npx playwright show-trace test-results/*/trace.zip",
+    "test-update-snapshots": "npx playwright test --update-snapshots"
   },
   "dependencies": {
     "axios": "^0.26.0",
