@@ -5,7 +5,7 @@ import getAllCountriesRequest from './helpers/countryHelper';
 import './app.css'
 
 function App() {
-  const [allCountriesResponse, setAllCountriesResponse] = useState();
+  const [allCountriesResponse, setAllCountriesResponse] = useState<any>();
   const [foundCountry, setFindCountry] = useState(false);
 
   useEffect(() => {

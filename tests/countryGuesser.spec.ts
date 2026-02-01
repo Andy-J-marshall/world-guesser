@@ -24,7 +24,7 @@ test.describe("Country Guesser", () => {
   for (const country of countriesToTest) {
     test.describe("Guessing countries", () => {
       test.beforeEach(async ({ page }) => {
-        fixtures.forEach((c) => {
+        fixtures.forEach((c: any) => {
           if (c.name.common.toLowerCase() === country.name.toLowerCase()) {
             c.useThis = true;
           }

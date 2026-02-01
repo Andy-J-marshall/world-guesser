@@ -22705,4 +22705,4 @@ const fixtures = [
   },
 ];
 
-module.exports = fixtures;
+export default fixtures;

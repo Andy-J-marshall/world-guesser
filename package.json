@@ -2,9 +2,11 @@
   "private": true,
   "homepage": "https://andy-j-marshall.github.io/world-guesser/",
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "deploy": "gh-pages -d build",
+    "dev": "vite",
+    "start": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "deploy": "gh-pages -d dist",
     "tests": "npx playwright test",
     "tests:debug": "npx playwright test --debug",
     "test-report": "npx playwright show-report",
@@ -12,13 +14,12 @@
     "test-update-snapshots": "npx playwright test --update-snapshots"
   },
   "dependencies": {
-    "axios": "^0.26.0",
-    "gh-pages": "^3.2.3",
-    "react": "17.0.2",
-    "react-bootstrap": "^1.5.2",
-    "react-bootstrap-typeahead": "^6.0.0-alpha.9",
-    "react-dom": "17.0.2",
-    "react-scripts": "^4.0.3"
+    "axios": "^1.7.9",
+    "gh-pages": "^6.2.0",
+    "react": "^18.3.1",
+    "react-bootstrap": "^2.10.6",
+    "react-bootstrap-typeahead": "^6.3.2",
+    "react-dom": "^18.3.1"
   },
   "browserslist": {
     "production": [
@@ -33,6 +34,11 @@
     ]
   },
   "devDependencies": {
-    "@playwright/test": "^1.23.4"
+    "@playwright/test": "^1.49.1",
+    "@types/react": "^18.3.18",
+    "@types/react-dom": "^18.3.5",
+    "@vitejs/plugin-react": "^4.3.4",
+    "typescript": "^5.7.3",
+    "vite": "^7.0.5"
   }
 }
