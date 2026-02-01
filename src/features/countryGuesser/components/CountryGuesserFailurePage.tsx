@@ -1,7 +1,7 @@
 import { useState } from 'react';
-import StartNewGame from '../startNewGame';
-import CountryGuesserStats from './countryGuesserStats';
-import { capitalizeText } from '../../helpers/utils';
+import StartNewGame from '../../../components/layout/StartNewGame';
+import CountryGuesserStats from './CountryGuesserStats';
+import { capitalizeText } from '../../../lib/utils';
 
 interface CountryGuesserFailurePageProps {
     countriesInfo: any;

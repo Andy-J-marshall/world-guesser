@@ -1,6 +1,6 @@
 import { useState } from 'react';
-import Country from './country';
-import Button from './button';
+import Country from './Country';
+import Button from '../ui/Button';
 
 interface StartNewGameProps {
   countriesInfo: any;

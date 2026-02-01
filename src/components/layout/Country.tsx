@@ -1,6 +1,6 @@
-import CountryGuesser from './countryGuesser/countryGuesser';
-import { selectCountry } from '../helpers/countryHelper';
-import { CountryProps } from '../types';
+import CountryGuesser from '../../features/countryGuesser/components/CountryGuesser';
+import { selectCountry } from '../../lib/countryApi';
+import { CountryProps } from '../../types';
 
 function Country(props: CountryProps) {
   const countriesInfo = props.countriesInfo;

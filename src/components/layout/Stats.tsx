@@ -1,7 +1,7 @@
 import { useState } from 'react';
-import Button from './button';
+import Button from '../ui/Button';
 import { ListGroup } from 'react-bootstrap';
-import allCountryStats from '../helpers/allCountryDefaultStats';
+import allCountryStats from '../../constants/allCountryDefaultStats';
 
 function Stats() {
     const [showStats, setShowStats] = useState(false);

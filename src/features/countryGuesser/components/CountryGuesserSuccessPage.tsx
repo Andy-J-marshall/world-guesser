@@ -1,10 +1,10 @@
 import { useState } from 'react';
 import { Container, Row, Col } from 'react-bootstrap';
-import BorderingCountriesGuesser from '../borderingCountries/borderingCountriesGuesser';
-import Button from '../button';
-import StartNewGame from '../startNewGame';
-import CountryGuesserStats from '../countryGuesser/countryGuesserStats';
-import { capitalizeText } from '../../helpers/utils';
+import BorderingCountriesGuesser from '../../borderingCountries/components/BorderingCountriesGuesser';
+import Button from '../../../components/ui/Button';
+import StartNewGame from '../../../components/layout/StartNewGame';
+import CountryGuesserStats from './CountryGuesserStats';
+import { capitalizeText } from '../../../lib/utils';
 
 interface CountryGuesserSuccessPageProps {
     countriesInfo: any;

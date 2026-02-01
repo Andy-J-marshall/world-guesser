@@ -1,4 +1,4 @@
-import { capitalizeText } from '../../helpers/utils';
+import { capitalizeText } from '../../../lib/utils';
 
 interface CountryGuessFeedbackProps {
     incorrectCount: number;

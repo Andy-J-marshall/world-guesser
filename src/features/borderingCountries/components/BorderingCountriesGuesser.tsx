@@ -1,12 +1,12 @@
 import { useState, useEffect } from 'react';
-import BasicValidation from '../basicValidation';
-import BorderingCountriesFeedback from './borderingCountriesFeedback';
-import BorderingCountriesFailurePage from './borderingCountriesFailurePage';
-import BorderingCountriesSuccessPage from '../borderingCountries/borderingCountriesSuccessPage';
-import CountryForm from '../countryForm';
-import BorderingCountriesClue from './borderingCountriesClue';
-import checkValidGuess from '../../helpers/countryValidation';
-import { capitalizeText } from '../../helpers/utils';
+import BasicValidation from '../../../components/validation/BasicValidation';
+import BorderingCountriesFeedback from './BorderingCountriesFeedback';
+import BorderingCountriesFailurePage from './BorderingCountriesFailurePage';
+import BorderingCountriesSuccessPage from './BorderingCountriesSuccessPage';
+import CountryForm from '../../../components/ui/CountryForm';
+import BorderingCountriesClue from './BorderingCountriesClue';
+import checkValidGuess from '../../../lib/countryValidation';
+import { capitalizeText } from '../../../lib/utils';
 
 interface BorderingCountriesGuesserProps {
     countriesInfo: any;

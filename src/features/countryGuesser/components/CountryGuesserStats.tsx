@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import allCountryStats from '../../helpers/allCountryDefaultStats';
+import allCountryStats from '../../../constants/allCountryDefaultStats';
 
 interface StatsResult {
     numberOfWins: number;

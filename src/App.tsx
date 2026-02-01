@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
-import Country from './components/country';
-import Stats from './components/stats';
-import getAllCountriesRequest from './helpers/countryHelper';
+import Country from './components/layout/Country';
+import Stats from './components/layout/Stats';
+import getAllCountriesRequest from './lib/countryApi';
 import './app.css'
 
 function App() {

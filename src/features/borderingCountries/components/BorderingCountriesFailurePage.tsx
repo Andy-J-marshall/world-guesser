@@ -1,7 +1,7 @@
 import { useState } from 'react';
-import StartNewGame from '../startNewGame';
-import BorderingCountriesStats from '../borderingCountries/borderingCountriesStats';
-import { capitalizeText } from '../../helpers/utils';
+import StartNewGame from '../../../components/layout/StartNewGame';
+import BorderingCountriesStats from './BorderingCountriesStats';
+import { capitalizeText } from '../../../lib/utils';
 
 interface BorderingCountriesFailurePageProps {
     countriesInfo: any;

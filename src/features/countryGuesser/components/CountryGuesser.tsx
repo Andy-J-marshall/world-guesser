@@ -1,12 +1,12 @@
 import { useState, useEffect } from 'react';
 import { Container, Row, Col } from 'react-bootstrap';
-import CountryGuesserFailurePage from './countryGuesserFailurePage';
-import CountryGuesserSuccessPage from './countryGuesserSuccessPage';
-import BasicValidation from '../basicValidation';
-import CountryGuessFeedback from './countryGuesserFeedback';
-import CountryForm from '../countryForm';
-import checkValidGuess from '../../helpers/countryValidation';
-import { CountryGuesserProps } from '../../types';
+import CountryGuesserFailurePage from './CountryGuesserFailurePage';
+import CountryGuesserSuccessPage from './CountryGuesserSuccessPage';
+import BasicValidation from '../../../components/validation/BasicValidation';
+import CountryGuessFeedback from './CountryGuesserFeedback';
+import CountryForm from '../../../components/ui/CountryForm';
+import checkValidGuess from '../../../lib/countryValidation';
+import { CountryGuesserProps } from '../../../types';
 
 function CountryGuesser(props: CountryGuesserProps) {
     const countriesInfo = props.countriesInfo;
