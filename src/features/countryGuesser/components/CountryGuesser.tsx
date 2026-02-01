@@ -75,66 +75,79 @@ function CountryGuesser(props: CountryGuesserProps) {
     })
 
     return (
-        <div id='country-guesser' className='component'>
-            {!failed && !correctGuess && <div id='country-info'>
-                <h2>Guess the Mystery Country</h2>
-                <br />
-                <Container>
-                    <Row>
-                        <Col>
-                            {<p id='population'>Population: {population}</p>}
-                        </Col>
-                        {incorrectCount >= 1 &&
-                            <Col>
-                                <p id='region'>Region: {region}</p>
+        <div id='country-guesser' className='fade-in'>
+            {!failed && !correctGuess && <>
+                <div id='country-info'>
+                    <h2>Guess the Mystery Country</h2>
+                    <Container>
+                        <Row className="g-3 justify-content-center">
+                            <Col md={6} lg={3}>
+                                <div className="clue-box">
+                                    <p id='population'><strong>Population:</strong> {population}</p>
+                                </div>
                             </Col>
+                            {incorrectCount >= 1 &&
+                                <Col md={6} lg={3} className="fade-in">
+                                    <div className="clue-box">
+                                        <p id='region'><strong>Region:</strong> {region}</p>
+                                    </div>
+                                </Col>
+                            }
+                            {incorrectCount >= 2 &&
+                                <Col md={6} lg={3} className="fade-in">
+                                    <div className="clue-box">
+                                        <p id='landlocked'>{landlocked}</p>
+                                    </div>
+                                </Col>
+                            }
+                            {incorrectCount >= 3 &&
+                                <Col md={6} lg={3} className="fade-in">
+                                    <div className="clue-box">
+                                        <p id='subregion'><strong>Sub region:</strong> {subregion}</p>
+                                    </div>
+                                </Col>
+                            }
+                        </Row>
+                        {incorrectCount >= 4 && 
+                            <Row className="fade-in">
+                                <Col>
+                                    <div className="clue-box mt-3">
+                                        <p><strong>Flag:</strong></p>
+                                        <img id='flag' src={flag} alt='Country Flag' style={{ maxWidth: '400px', marginTop: '1rem' }} />
+                                    </div>
+                                </Col>
+                            </Row>
                         }
-                        {incorrectCount >= 2 &&
-                            <Col>
-                                <p id='landlocked'>{landlocked}</p>
-                            </Col>
+                        {incorrectCount >= 5 && 
+                            <Row className="fade-in">
+                                <Col>
+                                    <div className="clue-box mt-3">
+                                        <p id='capital'><strong>Capital city:</strong> {capital}</p>
+                                    </div>
+                                </Col>
+                            </Row>
                         }
-                        {incorrectCount >= 3 &&
-                            <Col>
-                                <p id='subregion'>Sub region: {subregion}</p>
-                            </Col>
-                        }
-                    </Row>
-                    <Row>
-                        <Col>
-                            {incorrectCount >= 4 && <div>
-                                <p>Flag: </p>
-                                {<img id='flag' style={{ border: 'solid' }} src={flag} alt='Country Flag' />}
-                            </div>}
-                        </Col>
-                    </Row>
-                    <Row>
-                        <Col>
-                            <br />
-                            {incorrectCount >= 5 && <p id='capital'>Capital city: {capital}</p>}
-                        </Col>
-                    </Row>
-                </Container>
-            </div>}
-            <div id='country-form'>
-                <br />
-                {!correctGuess && !failed && <CountryForm
-                    possibleCountries={possibleCountries}
-                    value={value}
-                    setValue={setValue}
-                    handleSubmit={handleSubmit}
+                    </Container>
+                </div>
+                <div id='country-form'>
+                    {!correctGuess && !failed && <CountryForm
+                        possibleCountries={possibleCountries}
+                        value={value}
+                        setValue={setValue}
+                        handleSubmit={handleSubmit}
+                    />}
+                </div>
+                <BasicValidation
+                    duplicateGuess={duplicateGuess}
+                    knownCountry={knownCountry}
+                />
+                {!correctGuess && guesses.length > 0 && !failed && <CountryGuessFeedback
+                    guesses={guesses}
+                    incorrectCount={incorrectCount}
+                    duplicateGuess={duplicateGuess}
+                    guessedBorderingCountry={guessedBorderingCountry}
                 />}
-            </div>
-            <BasicValidation
-                duplicateGuess={duplicateGuess}
-                knownCountry={knownCountry}
-            />
-            {!correctGuess && guesses.length > 0 && !failed && <CountryGuessFeedback
-                guesses={guesses}
-                incorrectCount={incorrectCount}
-                duplicateGuess={duplicateGuess}
-                guessedBorderingCountry={guessedBorderingCountry}
-            />}
+            </>}
             {correctGuess && !failed && <CountryGuesserSuccessPage
                 countriesInfo={countriesInfo}
                 name={name}

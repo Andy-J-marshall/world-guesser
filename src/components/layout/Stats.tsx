@@ -37,42 +37,90 @@ function Stats() {
 
     return (
         <div id='stats-page'>
-            <br />
             <Button
                 callback={showStatsCallback}
                 buttonText={buttonText}
             />
-            {showStats && <div>
-                <br />
-                <h2>Country Guesser Stats</h2>
-                <p>Total games: {numberOfCountryGuesserGames}</p>
-                <p>Number of wins: {numberOfCountryGuesserWins}</p>
-                {numberOfCountryGuesserWins > 0 && <p>Win percentage: {((numberOfCountryGuesserWins / numberOfCountryGuesserGames) * 100).toFixed(1)}%</p>}
-                {numberOfCountryGuesserWins > 0 && <p>Number of guesses per correct answer: {(numberOfCountryGuesserAttempts / numberOfCountryGuesserWins).toFixed(1)}</p>}
-                {numberOfCountryGuesserWins > 0 && <p>Streak: {countryGuesserStreak}</p>}
-                <br />
+            {showStats && <div className='fade-in'>
+                <div className='card' style={{ marginTop: '2rem' }}>
+                    <h2>📊 Country Guesser Stats</h2>
+                    <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '1rem', marginTop: '1.5rem' }}>
+                        <div className='clue-box'>
+                            <strong>Total games</strong>
+                            <p style={{ fontSize: '2rem', color: 'var(--color-primary-light)', margin: '0.5rem 0 0 0' }}>{numberOfCountryGuesserGames}</p>
+                        </div>
+                        <div className='clue-box'>
+                            <strong>Number of wins</strong>
+                            <p style={{ fontSize: '2rem', color: 'var(--color-success)', margin: '0.5rem 0 0 0' }}>{numberOfCountryGuesserWins}</p>
+                        </div>
+                        {numberOfCountryGuesserWins > 0 && <div className='clue-box'>
+                            <strong>Win percentage</strong>
+                            <p style={{ fontSize: '2rem', color: 'var(--color-primary-light)', margin: '0.5rem 0 0 0' }}>{((numberOfCountryGuesserWins / numberOfCountryGuesserGames) * 100).toFixed(1)}%</p>
+                        </div>}
+                        {numberOfCountryGuesserWins > 0 && <div className='clue-box'>
+                            <strong>Avg. guesses per win</strong>
+                            <p style={{ fontSize: '2rem', color: 'var(--color-primary-light)', margin: '0.5rem 0 0 0' }}>{(numberOfCountryGuesserAttempts / numberOfCountryGuesserWins).toFixed(1)}</p>
+                        </div>}
+                        {numberOfCountryGuesserWins > 0 && <div className='clue-box'>
+                            <strong>Streak</strong>
+                            <p style={{ fontSize: '2rem', color: 'var(--color-warning)', margin: '0.5rem 0 0 0' }}>🔥 {countryGuesserStreak}</p>
+                        </div>}
+                    </div>
+                </div>
 
-                <h2>Bordering Countries Guesser Stats</h2>
-                <p>Total games: {numberOfBorderGames}</p>
-                <p>Number of wins: {numberOfBorderWins}</p>
-                {numberOfBorderWins > 0 && <p>Win percentage: {((numberOfBorderWins / numberOfBorderGames) * 100).toFixed(1)}%</p>}
-                {numberOfCorrectBorderAnswers > 0 && <p>Average number of correct answers per game: {(numberOfCorrectBorderAnswers / numberOfBorderGames).toFixed(1)}</p>}
-                {numberOfIncorrectBorderAnswers > 0 && <p>Average number of incorrect answers per game: {(numberOfIncorrectBorderAnswers / numberOfBorderGames).toFixed(1)}</p>}
-                {numberOfBorderWins > 0 && <p>Streak: {borderStreak}</p>}
-                <br />
+                <div className='card' style={{ marginTop: '2rem' }}>
+                    <h2>🌐 Bordering Countries Guesser Stats</h2>
+                    <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '1rem', marginTop: '1.5rem' }}>
+                        <div className='clue-box'>
+                            <strong>Total games</strong>
+                            <p style={{ fontSize: '2rem', color: 'var(--color-primary-light)', margin: '0.5rem 0 0 0' }}>{numberOfBorderGames}</p>
+                        </div>
+                        <div className='clue-box'>
+                            <strong>Number of wins</strong>
+                            <p style={{ fontSize: '2rem', color: 'var(--color-success)', margin: '0.5rem 0 0 0' }}>{numberOfBorderWins}</p>
+                        </div>
+                        {numberOfBorderWins > 0 && <div className='clue-box'>
+                            <strong>Win percentage</strong>
+                            <p style={{ fontSize: '2rem', color: 'var(--color-primary-light)', margin: '0.5rem 0 0 0' }}>{((numberOfBorderWins / numberOfBorderGames) * 100).toFixed(1)}%</p>
+                        </div>}
+                        {numberOfCorrectBorderAnswers > 0 && <div className='clue-box'>
+                            <strong>Avg. correct per game</strong>
+                            <p style={{ fontSize: '2rem', color: 'var(--color-success)', margin: '0.5rem 0 0 0' }}>{(numberOfCorrectBorderAnswers / numberOfBorderGames).toFixed(1)}</p>
+                        </div>}
+                        {numberOfIncorrectBorderAnswers > 0 && <div className='clue-box'>
+                            <strong>Avg. incorrect per game</strong>
+                            <p style={{ fontSize: '2rem', color: 'var(--color-error)', margin: '0.5rem 0 0 0' }}>{(numberOfIncorrectBorderAnswers / numberOfBorderGames).toFixed(1)}</p>
+                        </div>}
+                        {numberOfBorderWins > 0 && <div className='clue-box'>
+                            <strong>Streak</strong>
+                            <p style={{ fontSize: '2rem', color: 'var(--color-warning)', margin: '0.5rem 0 0 0' }}>🔥 {borderStreak}</p>
+                        </div>}
+                    </div>
+                </div>
 
-                <h2>Country Stats</h2>
-                <ListGroup id='country-stats'>
-                    {countryMap.map((c: any, index: number) => {
-                        if (c.stats?.best || c.stats?.bestBorders) {
-                            const countryGuesserHighScore = c.stats.best === 99 ? 'FAILED' : c.stats.best;
-                            const borderingCountryHighScore = c.stats.bestBorders === 99 ? 'FAILED' : c.stats.bestBorders;
-                            return < ListGroup.Item key={index}><b>{c.name}</b> <br />Country Guesser High Score: {countryGuesserHighScore || 'N/A'} <br />
-                                Bordering Countries Guesser High Score: {borderingCountryHighScore || 'N/A'}</ListGroup.Item>
-                        }
-                        return null;
-                    })}
-                </ListGroup>
+                <div className='card' style={{ marginTop: '2rem' }}>
+                    <h2>🗺️ Country Stats</h2>
+                    <ListGroup id='country-stats' style={{ marginTop: '1.5rem' }}>
+                        {countryMap.map((c: any, index: number) => {
+                            if (c.stats?.best || c.stats?.bestBorders) {
+                                const countryGuesserHighScore = c.stats.best === 99 ? 'FAILED' : c.stats.best;
+                                const borderingCountryHighScore = c.stats.bestBorders === 99 ? 'FAILED' : c.stats.bestBorders;
+                                return <ListGroup.Item key={index}>
+                                    <b>{c.name}</b>
+                                    <br />
+                                    <span style={{ color: 'var(--color-text-muted)' }}>
+                                        Country Guesser High Score: <span style={{ color: 'var(--color-primary-light)' }}>{countryGuesserHighScore || 'N/A'}</span>
+                                    </span>
+                                    <br />
+                                    <span style={{ color: 'var(--color-text-muted)' }}>
+                                        Bordering Countries Guesser High Score: <span style={{ color: 'var(--color-primary-light)' }}>{borderingCountryHighScore || 'N/A'}</span>
+                                    </span>
+                                </ListGroup.Item>
+                            }
+                            return null;
+                        })}
+                    </ListGroup>
+                </div>
             </div>}
         </div>
     );

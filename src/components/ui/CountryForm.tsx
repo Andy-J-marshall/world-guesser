@@ -31,9 +31,11 @@ function CountryForm(props: CountryFormProps) {
                     />
                 </Form.Group>
             </Fragment>
-            <Button id='guess-button' variant='light' type='submit'>
-                Guess
-            </Button>
+            <div className='btn-container'>
+                <Button id='guess-button' variant='light' type='submit'>
+                    Guess
+                </Button>
+            </div>
         </Form>
     )
 }

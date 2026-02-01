@@ -34,14 +34,14 @@ function CountryGuesserFailurePage(props: CountryGuesserFailurePageProps) {
     }
 
     return (
-        <div id='country-guesser-failure-page'>
-            {!newGameStarted && < div id='country-failure' >
-                <p style={{ color: '#F66B0E' }}>You failed. Better luck next time</p>
-                {<p>The answer was <a href={map}>{name}</a></p>}
-                {<p>Your answer history was: {capitalizeText(guesses)}</p>}
-                <img style={{ border: 'solid' }} src={flag} alt='Country Flag' />
-            </div >}
-            {!newGameStarted && <br />}
+        <div id='country-guesser-failure-page' className='fade-in'>
+            {!newGameStarted && <div className='card' id='country-failure'>
+                <h2>Game Over</h2>
+                <p className='text-error'>You failed. Better luck next time!</p>
+                <p>The answer was <a href={map} target="_blank" rel="noopener noreferrer" className='text-warning'>{name}</a></p>
+                <p>Your answer history was: {capitalizeText(guesses)}</p>
+                <img src={flag} alt='Country Flag' style={{ maxWidth: '400px', marginTop: '1.5rem' }} />
+            </div>}
             {!newGameStarted && <CountryGuesserStats
                 updateStatsCallback={updateStats}
                 country={name}

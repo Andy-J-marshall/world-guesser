@@ -6,9 +6,7 @@ function CustomButton(props: ButtonProps) {
     const buttonText = props.buttonText;
 
     return (
-        <div>
-            <Button variant='light' size='lg' onClick={callback}>{buttonText}</Button>
-        </div>
+        <Button variant='light' size='lg' onClick={callback}>{buttonText}</Button>
     );
 }
 
