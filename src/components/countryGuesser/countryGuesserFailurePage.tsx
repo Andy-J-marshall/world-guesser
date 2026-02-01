@@ -1,9 +1,17 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import StartNewGame from '../startNewGame';
 import CountryGuesserStats from './countryGuesserStats';
 import { capitalizeText } from '../../helpers/utils';
 
-function CountryGuesserFailurePage(props) {
+interface CountryGuesserFailurePageProps {
+    countriesInfo: any;
+    name: string;
+    flag: string;
+    map: string;
+    guesses: string[];
+}
+
+function CountryGuesserFailurePage(props: CountryGuesserFailurePageProps) {
     const countriesInfo = props.countriesInfo;
     const name = props.name;
     const flag = props.flag;
@@ -13,9 +21,9 @@ function CountryGuesserFailurePage(props) {
     const [newGameStarted, setNewGameStarted] = useState(false);
 
     function updateStats() {
-        const numberOfWins = JSON.parse(localStorage.getItem('numberOfWins')) || 0;
-        const numberOfGames = JSON.parse(localStorage.getItem('numberOfGames')) || 0;
-        const numberOfAttempts = JSON.parse(localStorage.getItem('numberOfAttempts')) || 0;
+        const numberOfWins = JSON.parse(localStorage.getItem('numberOfWins') || '0') || 0;
+        const numberOfGames = JSON.parse(localStorage.getItem('numberOfGames') || '0') || 0;
+        const numberOfAttempts = JSON.parse(localStorage.getItem('numberOfAttempts') || '0') || 0;
         const stats = {
             numberOfWins,
             numberOfGames: numberOfGames + 1,
@@ -43,7 +51,7 @@ function CountryGuesserFailurePage(props) {
             <StartNewGame
                 countriesInfo={countriesInfo}
                 buttonText='Try again'
-                callback={setNewGameStarted}
+                callback={() => setNewGameStarted(true)}
             />
         </div>
     )

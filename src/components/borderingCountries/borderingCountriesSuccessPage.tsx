@@ -1,9 +1,18 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import StartNewGame from '../startNewGame';
 import BorderingCountriesStats from './borderingCountriesStats';
 import { capitalizeText } from '../../helpers/utils';
 
-function BorderingCountriesSuccessPage(props) {
+interface BorderingCountriesSuccessPageProps {
+    countriesInfo: any;
+    incorrectGuesses: string[];
+    correctGuesses: string[];
+    name: string;
+    map: string;
+    guesses: string[];
+}
+
+function BorderingCountriesSuccessPage(props: BorderingCountriesSuccessPageProps) {
     const countriesInfo = props.countriesInfo;
     const incorrectGuesses = props.incorrectGuesses;
     const correctGuesses = props.correctGuesses;
@@ -20,12 +29,12 @@ function BorderingCountriesSuccessPage(props) {
     const [newGameStarted, setNewGameStarted] = useState(false);
 
     function updateStats() {
-        const numberOfWins = JSON.parse(localStorage.getItem('numberOfBorderWins')) || 0;
-        const numberOfGames = JSON.parse(localStorage.getItem('numberOfBorderGames')) || 0;
-        const numberOfAttempts = JSON.parse(localStorage.getItem('numberOfBorderAttempts')) || 0;
-        const numberOfCorrectAnswers = JSON.parse(localStorage.getItem('numberOfCorrectBorderAnswers')) || 0;
-        const numberOfIncorrectAnswers = JSON.parse(localStorage.getItem('numberOfIncorrectBorderAnswers')) || 0;
-        const streak = JSON.parse(localStorage.getItem('borderStreak')) || 0;
+        const numberOfWins = JSON.parse(localStorage.getItem('numberOfBorderWins') || '0') || 0;
+        const numberOfGames = JSON.parse(localStorage.getItem('numberOfBorderGames') || '0') || 0;
+        const numberOfAttempts = JSON.parse(localStorage.getItem('numberOfBorderAttempts') || '0') || 0;
+        const numberOfCorrectAnswers = JSON.parse(localStorage.getItem('numberOfCorrectBorderAnswers') || '0') || 0;
+        const numberOfIncorrectAnswers = JSON.parse(localStorage.getItem('numberOfIncorrectBorderAnswers') || '0') || 0;
+        const streak = JSON.parse(localStorage.getItem('borderStreak') || '0') || 0;
         const stats = {
             numberOfWins: numberOfWins + 1,
             numberOfGames: numberOfGames + 1,
@@ -54,7 +63,7 @@ function BorderingCountriesSuccessPage(props) {
             <StartNewGame
                 countriesInfo={countriesInfo}
                 buttonText='Play again'
-                callback={setNewGameStarted}
+                callback={() => setNewGameStarted(true)}
             />
         </div>
     )

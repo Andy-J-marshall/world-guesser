@@ -1,8 +1,8 @@
-import React from 'react';
 import CountryGuesser from './countryGuesser/countryGuesser';
 import { selectCountry } from '../helpers/countryHelper';
+import { CountryProps } from '../types';
 
-function Country(props) {
+function Country(props: CountryProps) {
   const countriesInfo = props.countriesInfo;
 
   const countryCodeMapping = countriesInfo.countryCodeMapping

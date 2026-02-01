@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { Container, Row, Col } from 'react-bootstrap';
 import BorderingCountriesGuesser from '../borderingCountries/borderingCountriesGuesser';
 import Button from '../button';
@@ -6,7 +6,18 @@ import StartNewGame from '../startNewGame';
 import CountryGuesserStats from '../countryGuesser/countryGuesserStats';
 import { capitalizeText } from '../../helpers/utils';
 
-function CountryGuesserSuccessPage(props) {
+interface CountryGuesserSuccessPageProps {
+    countriesInfo: any;
+    incorrectCount: number;
+    guesses: string[];
+    name: string;
+    borderingCountries: string[];
+    possibleCountries: string[];
+    flag: string;
+    map: string;
+}
+
+function CountryGuesserSuccessPage(props: CountryGuesserSuccessPageProps) {
     const countriesInfo = props.countriesInfo;
     const incorrectCount = props.incorrectCount;
     const guesses = props.guesses;
@@ -29,10 +40,10 @@ function CountryGuesserSuccessPage(props) {
     }
 
     function updateStats() {
-        const numberOfWins = JSON.parse(localStorage.getItem('numberOfWins')) || 0;
-        const numberOfGames = JSON.parse(localStorage.getItem('numberOfGames')) || 0;
-        const numberOfAttempts = JSON.parse(localStorage.getItem('numberOfAttempts')) || 0;
-        const streak = JSON.parse(localStorage.getItem('streak')) || 0;
+        const numberOfWins = JSON.parse(localStorage.getItem('numberOfWins') || '0') || 0;
+        const numberOfGames = JSON.parse(localStorage.getItem('numberOfGames') || '0') || 0;
+        const numberOfAttempts = JSON.parse(localStorage.getItem('numberOfAttempts') || '0') || 0;
+        const streak = JSON.parse(localStorage.getItem('streak') || '0') || 0;
         const stats = {
             numberOfWins: numberOfWins + 1,
             numberOfGames: numberOfGames + 1,

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import BasicValidation from '../basicValidation';
 import BorderingCountriesFeedback from './borderingCountriesFeedback';
 import BorderingCountriesFailurePage from './borderingCountriesFailurePage';
@@ -8,7 +8,15 @@ import BorderingCountriesClue from './borderingCountriesClue';
 import checkValidGuess from '../../helpers/countryValidation';
 import { capitalizeText } from '../../helpers/utils';
 
-function borderingCountriesGuesser(props) {
+interface BorderingCountriesGuesserProps {
+    countriesInfo: any;
+    name: string;
+    borderingCountries: string[];
+    possibleCountries: string[];
+    map: string;
+}
+
+function borderingCountriesGuesser(props: BorderingCountriesGuesserProps) {
     const countriesInfo = props.countriesInfo;
     const name = props.name;
     const borderingCountries = props.borderingCountries;
@@ -19,23 +27,26 @@ function borderingCountriesGuesser(props) {
         ? `There are ${borderingCountries.length} bordering countries to find in total`
         : 'There is 1 bordering country to find';
 
-    const [correctGuesses, setCorrectGuesses] = useState([]);
+    const [correctGuesses, setCorrectGuesses] = useState<string[]>([]);
     const [correctLastGuess, setCorrectLastGuess] = useState(false);
-    const [incorrectGuesses, setIncorrectGuesses] = useState([]);
+    const [incorrectGuesses, setIncorrectGuesses] = useState<string[]>([]);
     const [incorrectCount, setIncorrectCount] = useState(0);
-    const [guesses, setGuesses] = useState([]);
+    const [guesses, setGuesses] = useState<string[]>([]);
     const [duplicateGuess, setDuplicateGuess] = useState(false);
     const [failed, setFailed] = useState(false);
     const [succeeded, setSucceeded] = useState(false);
     const [knownCountry, setKnownCountry] = useState(true);
-    const [value, setValue] = useState([]);
+    const [value, setValue] = useState<string[]>([]);
     const [guessedActualCountry, setGuessedActualCountry] = useState(false);
-    const [clues, setClues] = useState();
+    const [clues, setClues] = useState<string>();
 
-    const handleSubmit = (event) => {
+    const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
         setValue([''])
-        const guessedName = event.target[0].value.toLowerCase().trim();
+        const target = event.target as typeof event.target & {
+            0: { value: string };
+        };
+        const guessedName = target[0].value.toLowerCase().trim();
         let { isValidCountry, knownCountry, duplicateGuess } = checkValidGuess(guessedName, possibleCountries, guesses);
         setCorrectLastGuess(false);
         if (guessedName === name.toLowerCase()) {
@@ -51,8 +62,8 @@ function borderingCountriesGuesser(props) {
         }
     };
 
-    function checkGuessIsCorrect(guessedName) {
-        const lowerCaseBorderingCountryArray = borderingCountries.map(country => country.toLowerCase());
+    function checkGuessIsCorrect(guessedName: string) {
+        const lowerCaseBorderingCountryArray = borderingCountries.map((country: string) => country.toLowerCase());
         if (lowerCaseBorderingCountryArray.includes(guessedName)) {
             setCorrectGuesses([...correctGuesses, guessedName]);
             setCorrectLastGuess(true);
@@ -69,8 +80,8 @@ function borderingCountriesGuesser(props) {
 
     function findStartingLetterOfBorders() {
         if (incorrectGuesses.length >= 4) {
-            const startingLetters = [];
-            borderingCountries.forEach((country) => {
+            const startingLetters: string[] = [];
+            borderingCountries.forEach((country: string) => {
                 if (!correctGuesses.includes(country.toLowerCase())) {
                     const letter = country.charAt(0).toUpperCase();
                     startingLetters.push(letter);

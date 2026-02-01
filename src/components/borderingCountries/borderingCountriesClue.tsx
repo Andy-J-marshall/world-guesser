@@ -1,6 +1,8 @@
-import React from 'react';
+interface BorderingCountriesClueProps {
+    clues: string | undefined;
+}
 
-function BorderingCountriesClue(props) {
+function BorderingCountriesClue(props: BorderingCountriesClueProps) {
     const clues = props.clues;
 
     return (

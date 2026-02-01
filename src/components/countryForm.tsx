@@ -1,10 +1,17 @@
-import React, { Fragment } from 'react';
+import { Fragment } from 'react';
 import { Button, Form } from 'react-bootstrap';
 import { Typeahead } from 'react-bootstrap-typeahead';
 
 import 'react-bootstrap-typeahead/css/Typeahead.css';
 
-function CountryForm(props) {
+interface CountryFormProps {
+    possibleCountries: string[];
+    value: string[];
+    setValue: (value: string[]) => void;
+    handleSubmit: (event: React.FormEvent<HTMLFormElement>) => void;
+}
+
+function CountryForm(props: CountryFormProps) {
     const possibleCountries = props.possibleCountries;
     const value = props.value;
     const setValue = props.setValue;
@@ -16,7 +23,7 @@ function CountryForm(props) {
                 <Form.Group id='country-search' className='mb-3'>
                     <Typeahead
                         id='country-search-typeahead'
-                        onChange={setValue}
+                        onChange={(selected: any) => setValue(selected as string[])}
                         options={possibleCountries}
                         placeholder='Countries'
                         selected={value}

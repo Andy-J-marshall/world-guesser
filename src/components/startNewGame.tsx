@@ -1,8 +1,14 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import Country from './country';
 import Button from './button';
 
-function StartNewGame(props) {
+interface StartNewGameProps {
+  countriesInfo: any;
+  buttonText: string;
+  callback: () => void;
+}
+
+function StartNewGame(props: StartNewGameProps) {
     const countriesInfo = props.countriesInfo;
     const buttonText = props.buttonText;
     const newGameStartedCallback = props.callback;
@@ -11,7 +17,7 @@ function StartNewGame(props) {
 
     async function startNewGame() {
         setNewGameStarted(true);
-        newGameStartedCallback(true);
+        newGameStartedCallback();
     }
 
     return (

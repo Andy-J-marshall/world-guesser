@@ -1,7 +1,21 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import allCountryStats from '../../helpers/allCountryDefaultStats';
 
-function CountryGuesserStats(props) {
+interface StatsResult {
+    numberOfWins: number;
+    numberOfGames: number;
+    numberOfAttempts: number;
+    streak: number;
+}
+
+interface CountryGuesserStatsProps {
+    updateStatsCallback: () => StatsResult;
+    country: string;
+    numberOfGuesses: number;
+    succeeded: boolean;
+}
+
+function CountryGuesserStats(props: CountryGuesserStatsProps) {
     const updateStats = props.updateStatsCallback;
     const country = props.country;
     const numberOfGuesses = props.numberOfGuesses;
@@ -28,7 +42,7 @@ function CountryGuesserStats(props) {
             localStorage.setItem('numberOfAttempts', JSON.stringify(numberOfAttempts));
             localStorage.setItem('streak', JSON.stringify(streak));
 
-            const countryHighScores = JSON.parse(localStorage.getItem('countryHighScores')) || allCountryStats;
+            const countryHighScores = JSON.parse(localStorage.getItem('countryHighScores') || '{}') || allCountryStats;
             if (succeeded) {
                 const previousBestScore = countryHighScores[country].best;
                 if (!previousBestScore || numberOfGuesses < previousBestScore) {
@@ -48,7 +62,7 @@ function CountryGuesserStats(props) {
         <div id='country-guesser-stats'>
             {numberOfAttempts > 0 && numberOfGames > 0 && <div>
                 <h2>Stats</h2>
-                {succeeded > 0 && highScore && <p>That was your best score for {country}!</p>}
+                {succeeded && highScore && <p>That was your best score for {country}!</p>}
                 <p>Total games: {numberOfGames}</p>
                 <p>Number of wins: {numberOfWins}</p>
                 {numberOfWins > 0 && streak > 0 && <p>You are on a {streak} game winning streak playing Country Guesser</p>}

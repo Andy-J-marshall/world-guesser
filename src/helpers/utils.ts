@@ -1,9 +1,10 @@
-export function capitalizeText(stringArray) {
+export function capitalizeText(stringArray: any[] | any): string {
     let stringArrayAsString = '';
-    stringArray.forEach((originalString, index) => {
-        const splitString = originalString.split(' ');
-        splitString.forEach((word, index, array) => {
-            array[index] = array[index].charAt(0).toUpperCase() + array[index].slice(1);
+    const array = Array.isArray(stringArray) ? stringArray : [stringArray];
+    array.forEach((originalString: any, index: number) => {
+        const splitString = originalString.toString().split(' ');
+        splitString.forEach((_: string, idx: number, arr: string[]) => {
+            arr[idx] = arr[idx].charAt(0).toUpperCase() + arr[idx].slice(1);
         })
         const capitalizedString = splitString.join(' ');
         stringArrayAsString = index === 0 ? capitalizedString : stringArrayAsString + ', ' + capitalizedString;
@@ -12,6 +13,6 @@ export function capitalizeText(stringArray) {
     return stringArrayAsString;
 }
 
-export function numberWithCommas(number) {
+export function numberWithCommas(number: number): string {
     return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-  }
+}

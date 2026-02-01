@@ -1,7 +1,7 @@
-import React from 'react';
 import { Button  } from 'react-bootstrap';
+import { ButtonProps } from '../types';
 
-function CustomButton(props) {
+function CustomButton(props: ButtonProps) {
     const callback = props.callback;
     const buttonText = props.buttonText;
 

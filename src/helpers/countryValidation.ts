@@ -1,9 +1,9 @@
-function checkValidGuess(guessedName, possibleCountries, guesses) {
+function checkValidGuess(guessedName: string, possibleCountries: string[], guesses: string[]) {
     let isValidCountry = false;
     let knownCountry = false;
     let duplicateGuess = false;
     if (guessedName.length > 0) {
-        possibleCountries.find(country => {
+        possibleCountries.find((country: string) => {
             if (country.toLowerCase() === guessedName) {
                 knownCountry = true;
                 isValidCountry = true;

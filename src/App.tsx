@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import Country from './components/country';
 import Stats from './components/stats';
 import getAllCountriesRequest from './helpers/countryHelper';

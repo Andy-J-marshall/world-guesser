@@ -1,9 +1,18 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import StartNewGame from '../startNewGame';
 import BorderingCountriesStats from '../borderingCountries/borderingCountriesStats';
 import { capitalizeText } from '../../helpers/utils';
 
-function BorderingCountriesFailurePage(props) {
+interface BorderingCountriesFailurePageProps {
+    countriesInfo: any;
+    name: string;
+    map: string;
+    borderingCountries: string[];
+    correctGuesses: string[];
+    guesses: string[];
+}
+
+function BorderingCountriesFailurePage(props: BorderingCountriesFailurePageProps) {
     const countriesInfo = props.countriesInfo;
     const name = props.name;
     const map = props.map;
@@ -18,11 +27,11 @@ function BorderingCountriesFailurePage(props) {
     const [newGameStarted, setNewGameStarted] = useState(false);
 
     function updateStats() {
-        const numberOfWins = JSON.parse(localStorage.getItem('numberOfBorderWins')) || 0;
-        const numberOfGames = JSON.parse(localStorage.getItem('numberOfBorderGames')) || 0;
-        const numberOfAttempts = JSON.parse(localStorage.getItem('numberOfBorderAttempts')) || 0;
-        const numberOfCorrectAnswers = JSON.parse(localStorage.getItem('numberOfCorrectBorderAnswers')) || 0;
-        const numberOfIncorrectAnswers = JSON.parse(localStorage.getItem('numberOfIncorrectBorderAnswers')) || 0;
+        const numberOfWins = JSON.parse(localStorage.getItem('numberOfBorderWins') || '0') || 0;
+        const numberOfGames = JSON.parse(localStorage.getItem('numberOfBorderGames') || '0') || 0;
+        const numberOfAttempts = JSON.parse(localStorage.getItem('numberOfBorderAttempts') || '0') || 0;
+        const numberOfCorrectAnswers = JSON.parse(localStorage.getItem('numberOfCorrectBorderAnswers') || '0') || 0;
+        const numberOfIncorrectAnswers = JSON.parse(localStorage.getItem('numberOfIncorrectBorderAnswers') || '0') || 0;
         const stats = {
             numberOfWins: numberOfWins,
             numberOfGames: numberOfGames + 1,
@@ -55,7 +64,7 @@ function BorderingCountriesFailurePage(props) {
             <StartNewGame
                 countriesInfo={countriesInfo}
                 buttonText='Try again'
-                callback={setNewGameStarted}
+                callback={() => setNewGameStarted(true)}
             />
         </div>
     )

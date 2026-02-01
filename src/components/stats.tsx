@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import Button from './button';
 import { ListGroup } from 'react-bootstrap';
 import allCountryStats from '../helpers/allCountryDefaultStats';
@@ -7,23 +7,23 @@ function Stats() {
     const [showStats, setShowStats] = useState(false);
     const [buttonText, setButtonText] = useState('Show Stats');
 
-    const countryBordersHighScores = JSON.parse(localStorage.getItem('countryHighScores')) || allCountryStats;
+    const countryBordersHighScores = JSON.parse(localStorage.getItem('countryHighScores') || '{}') || allCountryStats;
     const countryMap = Object.entries(countryBordersHighScores).map((countryObj) => {
         return {
             name: countryObj[0],
             stats: countryObj[1],
         }
     });
-    const numberOfCountryGuesserGames = JSON.parse(localStorage.getItem('numberOfGames'));
-    const numberOfCountryGuesserWins = JSON.parse(localStorage.getItem('numberOfWins'));
-    const numberOfCountryGuesserAttempts = JSON.parse(localStorage.getItem('numberOfAttempts'));
-    const countryGuesserStreak = JSON.parse(localStorage.getItem('streak'));
+    const numberOfCountryGuesserGames = JSON.parse(localStorage.getItem('numberOfGames') || 'null');
+    const numberOfCountryGuesserWins = JSON.parse(localStorage.getItem('numberOfWins') || 'null');
+    const numberOfCountryGuesserAttempts = JSON.parse(localStorage.getItem('numberOfAttempts') || 'null');
+    const countryGuesserStreak = JSON.parse(localStorage.getItem('streak') || 'null');
 
-    const numberOfBorderGames = JSON.parse(localStorage.getItem('numberOfBorderGames'));
-    const numberOfBorderWins = JSON.parse(localStorage.getItem('numberOfBorderWins'));
-    const numberOfCorrectBorderAnswers = JSON.parse(localStorage.getItem('numberOfCorrectBorderAnswers'));
-    const numberOfIncorrectBorderAnswers = JSON.parse(localStorage.getItem('numberOfIncorrectBorderAnswers'));
-    const borderStreak = JSON.parse(localStorage.getItem('borderStreak'));
+    const numberOfBorderGames = JSON.parse(localStorage.getItem('numberOfBorderGames') || 'null');
+    const numberOfBorderWins = JSON.parse(localStorage.getItem('numberOfBorderWins') || 'null');
+    const numberOfCorrectBorderAnswers = JSON.parse(localStorage.getItem('numberOfCorrectBorderAnswers') || 'null');
+    const numberOfIncorrectBorderAnswers = JSON.parse(localStorage.getItem('numberOfIncorrectBorderAnswers') || 'null');
+    const borderStreak = JSON.parse(localStorage.getItem('borderStreak') || 'null');
 
     function showStatsCallback() {
         if (showStats) {
@@ -63,13 +63,14 @@ function Stats() {
 
                 <h2>Country Stats</h2>
                 <ListGroup id='country-stats'>
-                    {countryMap.map((c, index) => {
-                        if (c.stats.best || c.stats.bestBorders) {
+                    {countryMap.map((c: any, index: number) => {
+                        if (c.stats?.best || c.stats?.bestBorders) {
                             const countryGuesserHighScore = c.stats.best === 99 ? 'FAILED' : c.stats.best;
                             const borderingCountryHighScore = c.stats.bestBorders === 99 ? 'FAILED' : c.stats.bestBorders;
                             return < ListGroup.Item key={index}><b>{c.name}</b> <br />Country Guesser High Score: {countryGuesserHighScore || 'N/A'} <br />
                                 Bordering Countries Guesser High Score: {borderingCountryHighScore || 'N/A'}</ListGroup.Item>
                         }
+                        return null;
                     })}
                 </ListGroup>
             </div>}

@@ -1,7 +1,13 @@
-import React from 'react';
 import { capitalizeText } from '../../helpers/utils';
 
-function CountryGuessFeedback(props) {
+interface CountryGuessFeedbackProps {
+    incorrectCount: number;
+    guesses: string[];
+    duplicateGuess: boolean;
+    guessedBorderingCountry: boolean;
+}
+
+function CountryGuessFeedback(props: CountryGuessFeedbackProps) {
     const incorrectCount = props.incorrectCount;
     const guesses = props.guesses;
     const duplicateGuess = props.duplicateGuess;

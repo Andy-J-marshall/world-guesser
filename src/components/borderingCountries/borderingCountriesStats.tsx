@@ -1,7 +1,23 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import allCountryStats from '../../helpers/allCountryDefaultStats';
 
-function BorderingCountriesStats(props) {
+interface BorderStats {
+    numberOfWins: number;
+    numberOfGames: number;
+    numberOfAttempts: number;
+    numberOfCorrectAnswers: number;
+    numberOfIncorrectAnswers: number;
+    streak: number;
+}
+
+interface BorderingCountriesStatsProps {
+    updateStatsCallback: () => BorderStats;
+    country: string;
+    numberOfGuesses: number;
+    succeeded: boolean;
+}
+
+function BorderingCountriesStats(props: BorderingCountriesStatsProps) {
     const updateStats = props.updateStatsCallback;
     const country = props.country;
     const numberOfGuesses = props.numberOfGuesses;
@@ -32,7 +48,7 @@ function BorderingCountriesStats(props) {
             localStorage.setItem('numberOfIncorrectBorderAnswers', JSON.stringify(numberOfIncorrectAnswers));
             localStorage.setItem('borderStreak', JSON.stringify(streak));
 
-            const countryBordersHighScores = JSON.parse(localStorage.getItem('countryHighScores')) || allCountryStats;
+            const countryBordersHighScores = JSON.parse(localStorage.getItem('countryHighScores') || '{}') || allCountryStats;
             if (succeeded) {
                 const previousBestScore = countryBordersHighScores[country].bestBorders;
                 if (!previousBestScore || numberOfGuesses < previousBestScore) {

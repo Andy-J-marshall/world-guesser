@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { Container, Row, Col } from 'react-bootstrap';
 import CountryGuesserFailurePage from './countryGuesserFailurePage';
 import CountryGuesserSuccessPage from './countryGuesserSuccessPage';
@@ -6,8 +6,9 @@ import BasicValidation from '../basicValidation';
 import CountryGuessFeedback from './countryGuesserFeedback';
 import CountryForm from '../countryForm';
 import checkValidGuess from '../../helpers/countryValidation';
+import { CountryGuesserProps } from '../../types';
 
-function CountryGuesser(props) {
+function CountryGuesser(props: CountryGuesserProps) {
     const countriesInfo = props.countriesInfo;
     const country = props.country;
     const possibleCountries = props.possibleCountries;
@@ -24,17 +25,20 @@ function CountryGuesser(props) {
 
     const [correctGuess, setCorrectGuess] = useState(false);
     const [incorrectCount, setIncorrectCount] = useState(0);
-    const [guesses, setGuesses] = useState([]);
+    const [guesses, setGuesses] = useState<string[]>([]);
     const [duplicateGuess, setDuplicateGuess] = useState(false);
     const [failed, setFailed] = useState(false);
     const [knownCountry, setKnownCountry] = useState(true);
-    const [value, setValue] = useState(['']);
+    const [value, setValue] = useState<string[]>(['']);
     const [guessedBorderingCountry, setGuessedBorderingCountry] = useState(false);
 
-    const handleSubmit = (event) => {
+    const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
         setValue(['']);
-        const guessedName = event.target[0].value.toLowerCase().trim();
+        const target = event.target as typeof event.target & {
+            0: { value: string };
+        };
+        const guessedName = target[0].value.toLowerCase().trim();
         const { isValidCountry, knownCountry, duplicateGuess } = checkValidGuess(guessedName, possibleCountries, guesses);
         setKnownCountry(knownCountry);
         setDuplicateGuess(duplicateGuess);
@@ -43,7 +47,7 @@ function CountryGuesser(props) {
         }
     };
 
-    function checkGuessIsCorrect(guessedName) {
+    function checkGuessIsCorrect(guessedName: string) {
         setKnownCountry(true);
         setDuplicateGuess(false);
         if (guessedName === name.toLowerCase()) {
@@ -56,8 +60,8 @@ function CountryGuesser(props) {
         setGuesses([...guesses, guessedName]);
     }
 
-    function isGuessBorderingCountry(guessedName) {
-        if (!correctGuess && borderingCountries.find(country => country.toLowerCase() === guessedName)) {
+    function isGuessBorderingCountry(guessedName: string) {
+        if (!correctGuess && borderingCountries.find((country: string) => country.toLowerCase() === guessedName)) {
             setGuessedBorderingCountry(true);
         } else {
             setGuessedBorderingCountry(false);

@@ -1,6 +1,9 @@
-import React from 'react';
+interface BasicValidationProps {
+    duplicateGuess: boolean;
+    knownCountry: boolean;
+}
 
-function basicValidation(props) {
+function BasicValidation(props: BasicValidationProps) {
     const duplicateGuess = props.duplicateGuess;
     const knownCountry = props.knownCountry;
 
@@ -12,4 +15,4 @@ function basicValidation(props) {
     )
 }
 
-export default basicValidation;
+export default BasicValidation;
