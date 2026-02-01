@@ -149,7 +149,7 @@ function CountryGuesserStats(props: CountryGuesserStatsProps) {
                         fontWeight: '600',
                         fontSize: '1.05rem',
                         margin: 0
-                    }}>🔥 You are on a <span style={{ color: 'var(--color-secondary)', fontWeight: '700' }}>{streak}</span> game winning streak!</p>
+                    }}>You are on a <span style={{ color: 'var(--color-secondary)', fontWeight: '700' }}>{streak}</span> game winning streak!</p>
                 </div>}
             </div>}
         </div>
