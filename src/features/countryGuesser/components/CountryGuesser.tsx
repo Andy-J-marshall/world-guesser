@@ -135,12 +135,10 @@ function CountryGuesser(props: CountryGuesserProps) {
                         value={value}
                         setValue={setValue}
                         handleSubmit={handleSubmit}
+                        duplicateGuess={duplicateGuess}
+                        knownCountry={knownCountry}
                     />}
                 </div>
-                <BasicValidation
-                    duplicateGuess={duplicateGuess}
-                    knownCountry={knownCountry}
-                />
                 {!correctGuess && guesses.length > 0 && !failed && <CountryGuessFeedback
                     guesses={guesses}
                     incorrectCount={incorrectCount}

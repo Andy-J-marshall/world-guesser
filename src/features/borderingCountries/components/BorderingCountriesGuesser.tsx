@@ -112,6 +112,8 @@ function borderingCountriesGuesser(props: BorderingCountriesGuesserProps) {
                         value={value}
                         setValue={setValue}
                         handleSubmit={handleSubmit}
+                        duplicateGuess={duplicateGuess}
+                        knownCountry={knownCountry}
                     />
                 </div>
             </div>}
@@ -121,12 +123,8 @@ function borderingCountriesGuesser(props: BorderingCountriesGuesserProps) {
                 incorrectCount={incorrectCount}
                 borderingCountriesCount={borderingCountries.length}
             />}
-            {!succeeded && !correctLastGuess && <div id='invalid-border-guess-feedback'>
-                <BasicValidation
-                    duplicateGuess={duplicateGuess}
-                    knownCountry={knownCountry}
-                />
-                {guessedActualCountry && <p style={{ color: '#F66B0E' }}>That's the actual country! Guess the bordering ones instead</p>}
+            {!succeeded && !correctLastGuess && guessedActualCountry && <div id='invalid-border-guess-feedback'>
+                <p style={{ color: '#F66B0E', fontSize: '0.9rem', padding: 'var(--spacing-xs) var(--spacing-sm)', marginTop: 'var(--spacing-sm)', marginBottom: 'var(--spacing-md)', textAlign: 'center' }}>That's the actual country! Guess the bordering ones instead</p>
             </div>}
             {!succeeded && !failed && clues && <BorderingCountriesClue
                 clues={clues}

@@ -12,9 +12,16 @@ function BasicValidation(props: BasicValidationProps) {
   }
 
   return (
-    <div style={{ color: "#F66B0E" }} id="invalid-guess-feedback">
-      {duplicateGuess && <p>You've already tried that country!</p>}
-      {!knownCountry && <p>Enter a valid country name</p>}
+    <div style={{ 
+      color: "#F66B0E",
+      fontSize: '0.9rem',
+      padding: 'var(--spacing-xs) var(--spacing-sm)',
+      marginTop: 'var(--spacing-sm)',
+      marginBottom: 'var(--spacing-md)',
+      textAlign: 'center'
+    }} id="invalid-guess-feedback">
+      {duplicateGuess && <p style={{ margin: 0 }}>You've already tried that country!</p>}
+      {!knownCountry && <p style={{ margin: 0 }}>Enter a valid country name</p>}
     </div>
   );
 }
