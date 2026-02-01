@@ -138,13 +138,13 @@ function CountryGuesser(props: CountryGuesserProps) {
                         duplicateGuess={duplicateGuess}
                         knownCountry={knownCountry}
                     />}
+                    {!correctGuess && guesses.length > 0 && !failed && <CountryGuessFeedback
+                        guesses={guesses}
+                        incorrectCount={incorrectCount}
+                        duplicateGuess={duplicateGuess}
+                        guessedBorderingCountry={guessedBorderingCountry}
+                    />}
                 </div>
-                {!correctGuess && guesses.length > 0 && !failed && <CountryGuessFeedback
-                    guesses={guesses}
-                    incorrectCount={incorrectCount}
-                    duplicateGuess={duplicateGuess}
-                    guessedBorderingCountry={guessedBorderingCountry}
-                />}
             </>}
             {correctGuess && !failed && <CountryGuesserSuccessPage
                 countriesInfo={countriesInfo}
