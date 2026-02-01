@@ -3,7 +3,7 @@ import { capitalizeText, numberWithCommas } from './utils';
 
 async function allCountriesRequest() {
   try {
-    const response = await axios.get(`https://restcountries.com/v3.1/all`);
+    const response = await axios.get(`https://restcountries.com/v3.1/all?fields=name,independent,cca3,capital,landlocked,maps,population,flags,region,subregion`);
     const body = response.data;
 
     const countriesArray = [];
@@ -12,7 +12,7 @@ async function allCountriesRequest() {
 
     body.forEach(country => {
       const name = country.name.common;
-      if ((country.unMember && country.independent) || extraCountries.includes(name)) {
+      if (country.independent || extraCountries.includes(name)) {
         countriesArray.push(name);
         const code = country.cca3;
         const countryMappingObj = {
