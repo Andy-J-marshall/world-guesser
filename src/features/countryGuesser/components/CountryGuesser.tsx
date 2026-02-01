@@ -78,7 +78,7 @@ function CountryGuesser(props: CountryGuesserProps) {
         <div id='country-guesser' className='fade-in'>
             {!failed && !correctGuess && <>
                 <div id='country-info'>
-                    <h2>Guess the Mystery Country</h2>
+                    <h2 style={{ marginBottom: 'var(--spacing-xl)' }}>Guess the Mystery Country</h2>
                     <Container>
                         <Row className="g-3 justify-content-center">
                             <Col md={6} lg={3}>
