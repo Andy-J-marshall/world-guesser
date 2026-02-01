@@ -37,10 +37,10 @@ function Stats() {
 
     return (
         <div id='stats-page'>
-            <Button
+            {(numberOfCountryGuesserGames > 0 || numberOfBorderGames > 0) && <Button
                 callback={showStatsCallback}
                 buttonText={buttonText}
-            />
+            />}
             {showStats && <div className='fade-in' style={{ maxWidth: '900px', margin: '0 auto' }}>
                 {numberOfCountryGuesserGames > 0 && <div style={{ 
                     marginTop: 'var(--spacing-xl)',
@@ -122,7 +122,7 @@ function Stats() {
                     </div>
                 </div>}
 
-                <div style={{ 
+                {(numberOfCountryGuesserGames > 0 || numberOfBorderGames > 0) && <div style={{ 
                     marginTop: 'var(--spacing-xl)',
                     background: 'rgba(30, 41, 59, 0.6)',
                     borderRadius: 'var(--border-radius-lg)',
@@ -135,7 +135,7 @@ function Stats() {
                         marginBottom: 'var(--spacing-lg)',
                         color: 'var(--color-primary-light)',
                         textAlign: 'center'
-                    }}>Country Stats</h2>
+                    }}>🗺️ Country Stats</h2>
                     <ListGroup id='country-stats' style={{ marginTop: 'var(--spacing-lg)' }}>
                         {countryMap.map((c: any, index: number) => {
                             if (c.stats?.best || c.stats?.bestBorders) {
@@ -161,7 +161,7 @@ function Stats() {
                             return null;
                         })}
                     </ListGroup>
-                </div>
+                </div>}
             </div>}
         </div>
     );
