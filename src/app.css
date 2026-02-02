@@ -592,14 +592,14 @@ img[alt*="flag"]:hover {
   border-radius: var(--border-radius-lg);
   padding: var(--spacing-xl);
   transition: all var(--transition-base);
-  height: 100%;
+  height: 170px;
   position: relative;
   overflow: hidden;
   text-align: center;
-  min-height: 120px;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: flex-start;
+  align-items: center;
 }
 
 .clue-box::before {

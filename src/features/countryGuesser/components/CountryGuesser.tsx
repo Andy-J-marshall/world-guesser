@@ -106,19 +106,17 @@ function CountryGuesser(props: CountryGuesserProps) {
                                     </div>
                                 </Col>
                             }
-                        </Row>
-                        <Row className="g-3 justify-content-center">
                             {incorrectCount >= 4 && 
                                 <Col md={6} lg={3} className="fade-in">
-                                    <div className="clue-box mt-3">
+                                    <div className="clue-box">
                                         <p><strong>Flag:</strong></p>
-                                        <img id='flag' src={flag} alt='Country Flag' style={{ width: '100%', maxWidth: '180px', marginTop: '0.5rem', display: 'block', marginLeft: 'auto', marginRight: 'auto' }} />
+                                        <img id='flag' src={flag} alt='Country Flag' style={{ width: '100%', maxWidth: '90px', display: 'block', margin: '0 auto' }} />
                                     </div>
                                 </Col>
                             }
                             {incorrectCount >= 5 && 
                                 <Col md={6} lg={3} className="fade-in">
-                                    <div className="clue-box mt-3">
+                                    <div className="clue-box">
                                         <p id='capital'><strong>Capital city:</strong> {capital}</p>
                                     </div>
                                 </Col>
