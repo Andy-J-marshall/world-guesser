@@ -384,6 +384,11 @@ p {
   flex-wrap: wrap;
 }
 
+.stats-panel {
+  width: 100%;
+  flex-basis: 100%;
+}
+
 .btn {
   border-radius: var(--border-radius-lg) !important;
   font-weight: 600 !important;

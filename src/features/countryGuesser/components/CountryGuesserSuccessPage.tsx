@@ -1,10 +1,9 @@
 import { useState } from 'react';
-import { Container, Row, Col } from 'react-bootstrap';
 import BorderingCountriesGuesser from '../../borderingCountries/components/BorderingCountriesGuesser';
 import Button from '../../../components/ui/Button';
 import StartNewGame from '../../../components/layout/StartNewGame';
 import CountryGuesserStats from './CountryGuesserStats';
-import { capitalizeText } from '../../../lib/utils';
+import Stats from '../../../components/layout/Stats';
 
 interface CountryGuesserSuccessPageProps {
     countriesInfo: any;
@@ -96,9 +95,6 @@ function CountryGuesserSuccessPage(props: CountryGuesserSuccessPageProps) {
             </div>}
             {!newGameStarted && <CountryGuesserStats
                 updateStatsCallback={updateStats}
-                country={name}
-                numberOfGuesses={guesses.length}
-                succeeded={true}
             />}
 
             <div className='btn-container'>
@@ -111,6 +107,7 @@ function CountryGuesserSuccessPage(props: CountryGuesserSuccessPageProps) {
                     callback={startBorderingCountriesGame}
                     buttonText='Guess the bordering countries'
                 />}
+                <Stats />
             </div>
             {newGameStarted && borderingCountriesGameStarted && <BorderingCountriesGuesser
                 countriesInfo={countriesInfo}

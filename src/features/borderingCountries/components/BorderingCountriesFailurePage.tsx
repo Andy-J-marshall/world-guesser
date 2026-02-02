@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import StartNewGame from '../../../components/layout/StartNewGame';
 import BorderingCountriesStats from './BorderingCountriesStats';
+import Stats from '../../../components/layout/Stats';
 import { capitalizeText } from '../../../lib/utils';
 
 interface BorderingCountriesFailurePageProps {
@@ -57,15 +58,15 @@ function BorderingCountriesFailurePage(props: BorderingCountriesFailurePageProps
             {!newGameStarted && <br />}
             {!newGameStarted && <BorderingCountriesStats
                 updateStatsCallback={updateStats}
-                country={name}
-                numberOfGuesses={guesses.length}
-                succeeded={false}
             />}
-            <StartNewGame
-                countriesInfo={countriesInfo}
-                buttonText='Try again'
-                callback={() => setNewGameStarted(true)}
-            />
+            <div className='btn-container'>
+                <StartNewGame
+                    countriesInfo={countriesInfo}
+                    buttonText='Try again'
+                    callback={() => setNewGameStarted(true)}
+                />
+                <Stats />
+            </div>
         </div>
     )
 }

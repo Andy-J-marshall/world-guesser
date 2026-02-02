@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import StartNewGame from '../../../components/layout/StartNewGame';
 import CountryGuesserStats from './CountryGuesserStats';
-import { capitalizeText } from '../../../lib/utils';
+import Stats from '../../../components/layout/Stats';
 
 interface CountryGuesserFailurePageProps {
     countriesInfo: any;
@@ -72,15 +72,15 @@ function CountryGuesserFailurePage(props: CountryGuesserFailurePageProps) {
             </div>}
             {!newGameStarted && <CountryGuesserStats
                 updateStatsCallback={updateStats}
-                country={name}
-                numberOfGuesses={guesses.length}
-                succeeded={false}
             />}
-            <StartNewGame
-                countriesInfo={countriesInfo}
-                buttonText='Try again'
-                callback={() => setNewGameStarted(true)}
-            />
+            <div className='btn-container'>
+                <StartNewGame
+                    countriesInfo={countriesInfo}
+                    buttonText='Try again'
+                    callback={() => setNewGameStarted(true)}
+                />
+                <Stats />
+            </div>
         </div>
     )
 }

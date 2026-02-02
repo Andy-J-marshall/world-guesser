@@ -27,12 +27,15 @@ function Stats() {
     }
 
     return (
-        <div id='stats-page'>
-            {(numberOfCountryGuesserGames > 0 || numberOfBorderGames > 0) && <Button
-                callback={showStatsCallback}
-                buttonText={buttonText}
-            />}
-            {showStats && <div className='fade-in' style={{ maxWidth: '900px', margin: '0 auto' }}>
+        <>
+            {(numberOfCountryGuesserGames > 0 || numberOfBorderGames > 0) && (
+                <Button
+                    callback={showStatsCallback}
+                    buttonText={buttonText}
+                />
+            )}
+            {showStats && (numberOfCountryGuesserGames > 0 || numberOfBorderGames > 0) && (
+                <div className='stats-panel fade-in' style={{ maxWidth: '900px', margin: '0 auto', marginTop: 'var(--spacing-xl)' }}>
                 {numberOfCountryGuesserGames > 0 && <div style={{ 
                     marginTop: 'var(--spacing-xl)',
                     background: 'rgba(30, 41, 59, 0.6)',
@@ -112,8 +115,9 @@ function Stats() {
                         </div>}
                     </div>
                 </div>}
-            </div>}
-        </div>
+                </div>
+            )}
+        </>
     );
 }
 
