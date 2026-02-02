@@ -21,7 +21,7 @@ function StartNewGame(props: StartNewGameProps) {
     }
 
     return (
-        <div id='start-new-game'>
+        <div id='start-new-game' style={{ marginTop: 'var(--spacing-lg)' }}>
             {!newGameStarted && <Button
                 callback={startNewGame}
                 buttonText={buttonText}
