@@ -16,19 +16,15 @@ function StartNewGame(props: StartNewGameProps) {
     const [newGameStarted, setNewGameStarted] = useState(false);
 
     async function startNewGame() {
-        setNewGameStarted(true);
-        newGameStartedCallback();
+        window.location.reload();
     }
 
     return (
         <div id='start-new-game' style={{ marginTop: 'var(--spacing-lg)' }}>
-            {!newGameStarted && <Button
+            <Button
                 callback={startNewGame}
                 buttonText={buttonText}
-            />}
-            {newGameStarted && <Country
-                countriesInfo={countriesInfo}
-            />}
+            />
         </div>
     )
 }
