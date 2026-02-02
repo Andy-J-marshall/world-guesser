@@ -135,7 +135,7 @@ function Stats() {
                         marginBottom: 'var(--spacing-lg)',
                         color: 'var(--color-primary-light)',
                         textAlign: 'center'
-                    }}>🗺️ Country Stats</h2>
+                    }}>Country Stats</h2>
                     <ListGroup id='country-stats' style={{ marginTop: 'var(--spacing-lg)' }}>
                         {countryMap.map((c: any, index: number) => {
                             if (c.stats?.best || c.stats?.bestBorders) {
