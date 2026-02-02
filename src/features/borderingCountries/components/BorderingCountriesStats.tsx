@@ -24,9 +24,8 @@ function BorderingCountriesStats(props: BorderingCountriesStatsProps) {
     const called = true;
 
     useEffect(() => {
-        const {
-            numberOfWins, numberOfGames, numberOfAttempts, numberOfCorrectAnswers, numberOfIncorrectAnswers, streak,
-        } = updateStats();
+        const { numberOfWins, numberOfGames, numberOfAttempts, numberOfCorrectAnswers, numberOfIncorrectAnswers, streak } =
+            updateStats();
         setNumberOfWins(numberOfWins);
         setNumberOfGames(numberOfGames);
         setNumberOfAttempts(numberOfAttempts);
@@ -46,12 +45,16 @@ function BorderingCountriesStats(props: BorderingCountriesStatsProps) {
 
     return (
         <div id='country-guesser-stats'>
-            {numberOfGames > 0 && numberOfAttempts > 0 && <div>
-                <h2>Stats</h2>
-                <p>Total games: {numberOfGames}</p>
-                <p>Number of wins: {numberOfWins}</p>
-                {numberOfWins > 0 && streak > 0 && <p>You are on a {streak} game winning streak playing Bordering Countries</p>}
-            </div>}
+            {numberOfGames > 0 && numberOfAttempts > 0 && (
+                <div>
+                    <h2>Stats</h2>
+                    <p>Total games: {numberOfGames}</p>
+                    <p>Number of wins: {numberOfWins}</p>
+                    {numberOfWins > 0 && streak > 0 && (
+                        <p>You are on a {streak} game winning streak playing Bordering Countries</p>
+                    )}
+                </div>
+            )}
         </div>
     );
 }

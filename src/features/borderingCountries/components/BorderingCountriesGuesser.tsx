@@ -21,9 +21,10 @@ function borderingCountriesGuesser(props: BorderingCountriesGuesserProps) {
     const possibleCountries = props.possibleCountries;
     const map = props.map;
 
-    const numberOfBorderingCountriesText = borderingCountries.length > 1
-        ? `There are ${borderingCountries.length} bordering countries to find in total`
-        : 'There is 1 bordering country to find';
+    const numberOfBorderingCountriesText =
+        borderingCountries.length > 1
+            ? `There are ${borderingCountries.length} bordering countries to find in total`
+            : 'There is 1 bordering country to find';
 
     const [correctGuesses, setCorrectGuesses] = useState<string[]>([]);
     const [correctLastGuess, setCorrectLastGuess] = useState(false);
@@ -40,7 +41,7 @@ function borderingCountriesGuesser(props: BorderingCountriesGuesserProps) {
 
     const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
-        setValue([''])
+        setValue(['']);
         const target = event.target as typeof event.target & {
             0: { value: string };
         };
@@ -96,51 +97,70 @@ function borderingCountriesGuesser(props: BorderingCountriesGuesserProps) {
 
         const clues = findStartingLetterOfBorders();
         setClues(clues);
-    })
+    });
 
     return (
         <div id='borders'>
-            {!succeeded && !failed && <div>
-                <h2>Bordering Countries</h2>
-                <p>Your country is: {name}</p>
-                <p>{numberOfBorderingCountriesText}</p>
-                <div id='borders-form'>
-                    <CountryForm
-                        possibleCountries={possibleCountries}
-                        value={value}
-                        setValue={setValue}
-                        handleSubmit={handleSubmit}
-                        duplicateGuess={duplicateGuess}
-                        knownCountry={knownCountry}
-                    />
+            {!succeeded && !failed && (
+                <div>
+                    <h2>Bordering Countries</h2>
+                    <p>Your country is: {name}</p>
+                    <p>{numberOfBorderingCountriesText}</p>
+                    <div id='borders-form'>
+                        <CountryForm
+                            possibleCountries={possibleCountries}
+                            value={value}
+                            setValue={setValue}
+                            handleSubmit={handleSubmit}
+                            duplicateGuess={duplicateGuess}
+                            knownCountry={knownCountry}
+                        />
+                    </div>
                 </div>
-            </div>}
-            {guesses.length > 0 && !failed && !succeeded && <BorderingCountriesFeedback
-                correctGuesses={correctGuesses}
-                incorrectGuesses={incorrectGuesses}
-                incorrectCount={incorrectCount}
-                borderingCountriesCount={borderingCountries.length}
-            />}
-            {!succeeded && !correctLastGuess && guessedActualCountry && <div id='invalid-border-guess-feedback'>
-                <p style={{ color: '#F66B0E', fontSize: '0.9rem', padding: 'var(--spacing-xs) var(--spacing-sm)', marginTop: 'var(--spacing-sm)', marginBottom: 'var(--spacing-md)', textAlign: 'center' }}>That's the actual country! Guess the bordering ones instead</p>
-            </div>}
-            {!succeeded && !failed && clues && <BorderingCountriesClue
-                clues={clues}
-            />}
-            {failed && !succeeded && <BorderingCountriesFailurePage
-                name={name}
-                map={map}
-                correctGuesses={correctGuesses}
-                borderingCountries={borderingCountries}
-                guesses={guesses}
-            />}
-            {succeeded && <BorderingCountriesSuccessPage
-                correctGuesses={correctGuesses}
-                incorrectGuesses={incorrectGuesses}
-                name={name}
-                map={map}
-                guesses={guesses}
-            />}
+            )}
+            {guesses.length > 0 && !failed && !succeeded && (
+                <BorderingCountriesFeedback
+                    correctGuesses={correctGuesses}
+                    incorrectGuesses={incorrectGuesses}
+                    incorrectCount={incorrectCount}
+                    borderingCountriesCount={borderingCountries.length}
+                />
+            )}
+            {!succeeded && !correctLastGuess && guessedActualCountry && (
+                <div id='invalid-border-guess-feedback'>
+                    <p
+                        style={{
+                            color: '#F66B0E',
+                            fontSize: '0.9rem',
+                            padding: 'var(--spacing-xs) var(--spacing-sm)',
+                            marginTop: 'var(--spacing-sm)',
+                            marginBottom: 'var(--spacing-md)',
+                            textAlign: 'center',
+                        }}
+                    >
+                        That's the actual country! Guess the bordering ones instead
+                    </p>
+                </div>
+            )}
+            {!succeeded && !failed && clues && <BorderingCountriesClue clues={clues} />}
+            {failed && !succeeded && (
+                <BorderingCountriesFailurePage
+                    name={name}
+                    map={map}
+                    correctGuesses={correctGuesses}
+                    borderingCountries={borderingCountries}
+                    guesses={guesses}
+                />
+            )}
+            {succeeded && (
+                <BorderingCountriesSuccessPage
+                    correctGuesses={correctGuesses}
+                    incorrectGuesses={incorrectGuesses}
+                    name={name}
+                    map={map}
+                    guesses={guesses}
+                />
+            )}
         </div>
     );
 }

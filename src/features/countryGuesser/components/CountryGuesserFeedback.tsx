@@ -19,7 +19,7 @@ function CountryGuessFeedback(props: CountryGuessFeedbackProps) {
             {guessedBorderingCountry && <p>You're getting close!</p>}
             {<p>Your guesses so far: {capitalizeText(guesses)}</p>}
         </div>
-    )
+    );
 }
 
 export default CountryGuessFeedback;

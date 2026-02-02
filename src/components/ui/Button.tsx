@@ -1,4 +1,4 @@
-import { Button  } from 'react-bootstrap';
+import { Button } from 'react-bootstrap';
 import { ButtonProps } from '../../types';
 
 function CustomButton(props: ButtonProps) {
@@ -6,7 +6,9 @@ function CustomButton(props: ButtonProps) {
     const buttonText = props.buttonText;
 
     return (
-        <Button variant='light' size='lg' onClick={callback}>{buttonText}</Button>
+        <Button variant='light' size='lg' onClick={callback}>
+            {buttonText}
+        </Button>
     );
 }
 

@@ -36,17 +36,14 @@ function CountryForm(props: CountryFormProps) {
                     />
                 </Form.Group>
             </Fragment>
-            <BasicValidation
-                duplicateGuess={duplicateGuess}
-                knownCountry={knownCountry}
-            />
+            <BasicValidation duplicateGuess={duplicateGuess} knownCountry={knownCountry} />
             <div className='btn-container'>
                 <Button id='guess-button' variant='light' type='submit'>
                     Guess
                 </Button>
             </div>
         </Form>
-    )
+    );
 }
 
 export default CountryForm;

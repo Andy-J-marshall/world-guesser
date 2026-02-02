@@ -21,7 +21,7 @@ function BorderingCountriesFailurePage(props: BorderingCountriesFailurePageProps
 
     const incorrectCount = guesses.length - correctGuesses.length;
     const borderingCountriesCount = borderingCountries.length;
-    const missingAnswersArray = borderingCountries.filter(countryGuess => !correctGuesses.includes(countryGuess.toLowerCase()));
+    const missingAnswersArray = borderingCountries.filter((countryGuess) => !correctGuesses.includes(countryGuess.toLowerCase()));
 
     const [newGameStarted, setNewGameStarted] = useState(false);
 
@@ -44,28 +44,33 @@ function BorderingCountriesFailurePage(props: BorderingCountriesFailurePageProps
 
     return (
         <div id='bordering-countries-failure-page'>
-            {borderingCountries && !newGameStarted && < div id='bordering-countries-failure' >
-                <p style={{ color: '#F66B0E' }}>You failed. Better luck next time</p>
-                <p>See {name} on the <a href={map}>map</a></p>
-                {correctGuesses.length === 0 && <p>You found none of the bordering countries and missed {borderingCountriesCount}</p>}
-                {correctGuesses.length > 0 && <p>You found {correctGuesses.length} of {borderingCountriesCount}</p>}
-                {correctGuesses.length > 0 && <p>You found: {capitalizeText(correctGuesses)}</p>}
-                {missingAnswersArray && <p>You missed: {capitalizeText(missingAnswersArray)}</p>}
-                {<p>Your answer history was: {capitalizeText(guesses)}</p>}
-            </div >}
+            {borderingCountries && !newGameStarted && (
+                <div id='bordering-countries-failure'>
+                    <p style={{ color: '#F66B0E' }}>You failed. Better luck next time</p>
+                    <p>
+                        See {name} on the <a href={map}>map</a>
+                    </p>
+                    {correctGuesses.length === 0 && (
+                        <p>You found none of the bordering countries and missed {borderingCountriesCount}</p>
+                    )}
+                    {correctGuesses.length > 0 && (
+                        <p>
+                            You found {correctGuesses.length} of {borderingCountriesCount}
+                        </p>
+                    )}
+                    {correctGuesses.length > 0 && <p>You found: {capitalizeText(correctGuesses)}</p>}
+                    {missingAnswersArray && <p>You missed: {capitalizeText(missingAnswersArray)}</p>}
+                    {<p>Your answer history was: {capitalizeText(guesses)}</p>}
+                </div>
+            )}
             {!newGameStarted && <br />}
-            {!newGameStarted && <BorderingCountriesStats
-                updateStatsCallback={updateStats}
-            />}
+            {!newGameStarted && <BorderingCountriesStats updateStatsCallback={updateStats} />}
             <div className='btn-container'>
-                <StartNewGame
-                    buttonText='Try again'
-                    callback={() => setNewGameStarted(true)}
-                />
+                <StartNewGame buttonText='Try again' callback={() => setNewGameStarted(true)} />
                 <Stats />
             </div>
         </div>
-    )
+    );
 }
 
 export default BorderingCountriesFailurePage;

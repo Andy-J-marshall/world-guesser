@@ -21,9 +21,10 @@ function BorderingCountriesSuccessPage(props: BorderingCountriesSuccessPageProps
     const incorrectCount = incorrectGuesses.length;
     const answerOrAnswers = incorrectCount === 1 ? 'answer' : 'answers';
 
-    const messageText = correctGuesses.length === 1
-        ? `Well done! You found the only bordering country of ${name} with ${incorrectCount} incorrect ${answerOrAnswers}`
-        : `Well done! You found the ${correctGuesses.length} bordering countries of ${name} with ${incorrectCount} incorrect answers`;
+    const messageText =
+        correctGuesses.length === 1
+            ? `Well done! You found the only bordering country of ${name} with ${incorrectCount} incorrect ${answerOrAnswers}`
+            : `Well done! You found the ${correctGuesses.length} bordering countries of ${name} with ${incorrectCount} incorrect answers`;
 
     const [newGameStarted, setNewGameStarted] = useState(false);
 
@@ -47,24 +48,23 @@ function BorderingCountriesSuccessPage(props: BorderingCountriesSuccessPageProps
 
     return (
         <div>
-            {!newGameStarted && < div id='successful-bordering-countries-game' >
-                <h5 style={{ color: '#F66B0E' }}>{messageText}</h5>
-                <p>See <a href={map}>{name}</a> on the map</p>
-                {<p>Your answer history was: {capitalizeText(guesses)}</p>}
-            </div >}
+            {!newGameStarted && (
+                <div id='successful-bordering-countries-game'>
+                    <h5 style={{ color: '#F66B0E' }}>{messageText}</h5>
+                    <p>
+                        See <a href={map}>{name}</a> on the map
+                    </p>
+                    {<p>Your answer history was: {capitalizeText(guesses)}</p>}
+                </div>
+            )}
             {!newGameStarted && <br />}
-            {!newGameStarted && <BorderingCountriesStats
-                updateStatsCallback={updateStats}
-            />}
+            {!newGameStarted && <BorderingCountriesStats updateStatsCallback={updateStats} />}
             <div className='btn-container'>
-                <StartNewGame
-                    buttonText='Play again'
-                    callback={() => setNewGameStarted(true)}
-                />
+                <StartNewGame buttonText='Play again' callback={() => setNewGameStarted(true)} />
                 <Stats />
             </div>
         </div>
-    )
+    );
 }
 
 export default BorderingCountriesSuccessPage;

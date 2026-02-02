@@ -17,7 +17,7 @@ function checkValidGuess(guessedName: string, possibleCountries: string[], guess
         isValidCountry,
         knownCountry,
         duplicateGuess,
-    }
+    };
     return returnObj;
 }
 
