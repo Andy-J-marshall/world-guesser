@@ -1,5 +1,4 @@
 import { useState, useEffect } from 'react';
-import BasicValidation from '../../../components/validation/BasicValidation';
 import BorderingCountriesFeedback from './BorderingCountriesFeedback';
 import BorderingCountriesFailurePage from './BorderingCountriesFailurePage';
 import BorderingCountriesSuccessPage from './BorderingCountriesSuccessPage';
@@ -17,7 +16,6 @@ interface BorderingCountriesGuesserProps {
 }
 
 function borderingCountriesGuesser(props: BorderingCountriesGuesserProps) {
-    const countriesInfo = props.countriesInfo;
     const name = props.name;
     const borderingCountries = props.borderingCountries;
     const possibleCountries = props.possibleCountries;
@@ -130,7 +128,6 @@ function borderingCountriesGuesser(props: BorderingCountriesGuesserProps) {
                 clues={clues}
             />}
             {failed && !succeeded && <BorderingCountriesFailurePage
-                countriesInfo={countriesInfo}
                 name={name}
                 map={map}
                 correctGuesses={correctGuesses}
@@ -138,7 +135,6 @@ function borderingCountriesGuesser(props: BorderingCountriesGuesserProps) {
                 guesses={guesses}
             />}
             {succeeded && <BorderingCountriesSuccessPage
-                countriesInfo={countriesInfo}
                 correctGuesses={correctGuesses}
                 incorrectGuesses={incorrectGuesses}
                 name={name}

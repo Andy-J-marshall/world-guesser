@@ -1,6 +1,5 @@
 import { useState, useEffect } from 'react';
 import Country from './components/layout/Country';
-import Stats from './components/layout/Stats';
 import getAllCountriesRequest from './lib/countryApi';
 import './app.css'
 

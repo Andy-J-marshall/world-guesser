@@ -4,7 +4,6 @@ import CountryGuesserStats from './CountryGuesserStats';
 import Stats from '../../../components/layout/Stats';
 
 interface CountryGuesserFailurePageProps {
-    countriesInfo: any;
     name: string;
     flag: string;
     map: string;
@@ -12,7 +11,6 @@ interface CountryGuesserFailurePageProps {
 }
 
 function CountryGuesserFailurePage(props: CountryGuesserFailurePageProps) {
-    const countriesInfo = props.countriesInfo;
     const name = props.name;
     const flag = props.flag;
     const map = props.map;
@@ -75,7 +73,6 @@ function CountryGuesserFailurePage(props: CountryGuesserFailurePageProps) {
             />}
             <div className='btn-container'>
                 <StartNewGame
-                    countriesInfo={countriesInfo}
                     buttonText='Try again'
                     callback={() => setNewGameStarted(true)}
                 />

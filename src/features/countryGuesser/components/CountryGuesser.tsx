@@ -152,7 +152,6 @@ function CountryGuesser(props: CountryGuesserProps) {
                 possibleCountries={possibleCountries}
             />}
             {failed && <CountryGuesserFailurePage
-                countriesInfo={countriesInfo}
                 name={name}
                 map={map}
                 flag={flag}

@@ -5,7 +5,6 @@ import Stats from '../../../components/layout/Stats';
 import { capitalizeText } from '../../../lib/utils';
 
 interface BorderingCountriesFailurePageProps {
-    countriesInfo: any;
     name: string;
     map: string;
     borderingCountries: string[];
@@ -14,7 +13,6 @@ interface BorderingCountriesFailurePageProps {
 }
 
 function BorderingCountriesFailurePage(props: BorderingCountriesFailurePageProps) {
-    const countriesInfo = props.countriesInfo;
     const name = props.name;
     const map = props.map;
     const borderingCountries = props.borderingCountries;
@@ -61,7 +59,6 @@ function BorderingCountriesFailurePage(props: BorderingCountriesFailurePageProps
             />}
             <div className='btn-container'>
                 <StartNewGame
-                    countriesInfo={countriesInfo}
                     buttonText='Try again'
                     callback={() => setNewGameStarted(true)}
                 />
