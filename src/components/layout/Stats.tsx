@@ -35,9 +35,8 @@ function Stats() {
                 />
             )}
             {showStats && (numberOfCountryGuesserGames > 0 || numberOfBorderGames > 0) && (
-                <div className='stats-panel fade-in' style={{ maxWidth: '900px', margin: '0 auto', marginTop: 'var(--spacing-sm)' }}>
+                <div className='stats-panel fade-in' style={{ maxWidth: '900px', margin: '0 auto', marginTop: 'var(--spacing-xs)' }}>
                 {numberOfCountryGuesserGames > 0 && <div style={{ 
-                    marginTop: 'var(--spacing-xl)',
                     background: 'rgba(30, 41, 59, 0.6)',
                     borderRadius: 'var(--border-radius-lg)',
                     padding: 'var(--spacing-xl)',
