@@ -18,7 +18,7 @@ interface Country {
     png: string;
   };
   region: string;
-  subregion?: string;
+  subregion: string;
   useThis?: boolean;
 }
 
@@ -97,7 +97,7 @@ export function selectCountry(countriesArray: string[], countriesResponse: Count
     population: numberWithCommas(country.population),
     flag: country.flags.png,
     region: country.region,
-    subregion: country.subregion || 'N/A', // TODO is this sometimes null?
+    subregion: country.subregion,
   };
   return countryObj;
 }
