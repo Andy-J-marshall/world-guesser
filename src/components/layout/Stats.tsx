@@ -1,19 +1,10 @@
 import { useState } from 'react';
 import Button from '../ui/Button';
-import { ListGroup } from 'react-bootstrap';
-import allCountryStats from '../../constants/allCountryDefaultStats';
 
 function Stats() {
     const [showStats, setShowStats] = useState(false);
     const [buttonText, setButtonText] = useState('Show Stats');
 
-    const countryBordersHighScores = JSON.parse(localStorage.getItem('countryHighScores') || '{}') || allCountryStats;
-    const countryMap = Object.entries(countryBordersHighScores).map((countryObj) => {
-        return {
-            name: countryObj[0],
-            stats: countryObj[1],
-        }
-    });
     const numberOfCountryGuesserGames = JSON.parse(localStorage.getItem('numberOfGames') || 'null');
     const numberOfCountryGuesserWins = JSON.parse(localStorage.getItem('numberOfWins') || 'null');
     const numberOfCountryGuesserAttempts = JSON.parse(localStorage.getItem('numberOfAttempts') || 'null');
@@ -120,47 +111,6 @@ function Stats() {
                             <p style={{ fontSize: '2rem', color: 'var(--color-warning)', margin: '0.5rem 0 0 0', fontWeight: '700' }}>{borderStreak}</p>
                         </div>}
                     </div>
-                </div>}
-
-                {(numberOfCountryGuesserGames > 0 || numberOfBorderGames > 0) && <div style={{ 
-                    marginTop: 'var(--spacing-xl)',
-                    background: 'rgba(30, 41, 59, 0.6)',
-                    borderRadius: 'var(--border-radius-lg)',
-                    padding: 'var(--spacing-xl)',
-                    border: '1px solid rgba(129, 140, 248, 0.3)',
-                    backdropFilter: 'blur(10px)'
-                }}>
-                    <h2 style={{ 
-                        fontSize: '2rem', 
-                        marginBottom: 'var(--spacing-lg)',
-                        color: 'var(--color-primary-light)',
-                        textAlign: 'center'
-                    }}>Country Stats</h2>
-                    <ListGroup id='country-stats' style={{ marginTop: 'var(--spacing-lg)' }}>
-                        {countryMap.map((c: any, index: number) => {
-                            if (c.stats?.best || c.stats?.bestBorders) {
-                                const countryGuesserHighScore = c.stats.best === 99 ? 'FAILED' : c.stats.best;
-                                const borderingCountryHighScore = c.stats.bestBorders === 99 ? 'FAILED' : c.stats.bestBorders;
-                                return <ListGroup.Item key={index} style={{
-                                    background: 'rgba(15, 23, 42, 0.6)',
-                                    border: '1px solid rgba(129, 140, 248, 0.2)',
-                                    color: 'var(--color-text-primary)',
-                                    marginBottom: 'var(--spacing-xs)'
-                                }}>
-                                    <b style={{ color: 'var(--color-primary-light)' }}>{c.name}</b>
-                                    <br />
-                                    <span style={{ color: 'var(--color-text-secondary)', fontSize: '0.9rem' }}>
-                                        Country Guesser High Score: <span style={{ color: 'var(--color-primary-light)', fontWeight: '600' }}>{countryGuesserHighScore || 'N/A'}</span>
-                                    </span>
-                                    <br />
-                                    <span style={{ color: 'var(--color-text-secondary)', fontSize: '0.9rem' }}>
-                                        Bordering Countries Guesser High Score: <span style={{ color: 'var(--color-primary-light)', fontWeight: '600' }}>{borderingCountryHighScore || 'N/A'}</span>
-                                    </span>
-                                </ListGroup.Item>
-                            }
-                            return null;
-                        })}
-                    </ListGroup>
                 </div>}
             </div>}
         </div>

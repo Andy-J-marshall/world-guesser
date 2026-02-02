@@ -1,5 +1,4 @@
 import { useState, useEffect } from 'react';
-import allCountryStats from '../../../constants/allCountryDefaultStats';
 
 interface StatsResult {
     numberOfWins: number;
@@ -10,22 +9,15 @@ interface StatsResult {
 
 interface CountryGuesserStatsProps {
     updateStatsCallback: () => StatsResult;
-    country: string;
-    numberOfGuesses: number;
-    succeeded: boolean;
 }
 
 function CountryGuesserStats(props: CountryGuesserStatsProps) {
     const updateStats = props.updateStatsCallback;
-    const country = props.country;
-    const numberOfGuesses = props.numberOfGuesses;
-    const succeeded = props.succeeded;
 
     const [numberOfWins, setNumberOfWins] = useState(0);
     const [numberOfAttempts, setNumberOfAttempts] = useState(0);
     const [numberOfGames, setNumberOfGames] = useState(0);
     const [streak, setStreak] = useState(0);
-    const [highScore, setHighScore] = useState(false);
 
     const called = true;
 
@@ -41,18 +33,6 @@ function CountryGuesserStats(props: CountryGuesserStatsProps) {
             localStorage.setItem('numberOfGames', JSON.stringify(numberOfGames));
             localStorage.setItem('numberOfAttempts', JSON.stringify(numberOfAttempts));
             localStorage.setItem('streak', JSON.stringify(streak));
-
-            const countryHighScores = JSON.parse(localStorage.getItem('countryHighScores') || '{}') || allCountryStats;
-            if (succeeded) {
-                const previousBestScore = countryHighScores[country].best;
-                if (!previousBestScore || numberOfGuesses < previousBestScore) {
-                    countryHighScores[country].best = numberOfGuesses;
-                    setHighScore(true);
-                }
-            } else {
-                countryHighScores[country].best = 99;
-            }
-            localStorage.setItem('countryHighScores', JSON.stringify(countryHighScores));
         } catch (error) {
             console.log('Unable to update stats');
         }
@@ -74,22 +54,6 @@ function CountryGuesserStats(props: CountryGuesserStatsProps) {
                     textAlign: 'center'
                 }}>Stats</h2>
                 
-                {succeeded && highScore && <div style={{
-                    background: 'linear-gradient(135deg, rgba(52, 211, 153, 0.2), rgba(16, 185, 129, 0.2))',
-                    padding: 'var(--spacing-md)',
-                    borderRadius: 'var(--border-radius-md)',
-                    marginBottom: 'var(--spacing-lg)',
-                    border: '1px solid rgba(52, 211, 153, 0.4)',
-                    textAlign: 'center'
-                }}>
-                    <p style={{ 
-                        color: 'var(--color-success)', 
-                        fontWeight: '600',
-                        fontSize: '1.1rem',
-                        margin: 0
-                    }}>🏆 That was your best score for {country}!</p>
-                </div>}
-
                 <div style={{
                     display: 'grid',
                     gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))',
