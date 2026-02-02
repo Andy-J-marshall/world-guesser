@@ -92,12 +92,12 @@ export function selectCountry(countriesArray: string[], countriesResponse: Count
     name: country.name.common,
     borderingCountries: returnBorderingCountries(country.borders, countryCodeMapping),
     capital: capitalizeText(country.capital),
-    landlocked: country.landlocked ? 'The country is landlocked' : 'The country has a coastline',
+    landlocked: country.landlocked ? 'Yes' : 'No',
     map: country.maps.googleMaps,
     population: numberWithCommas(country.population),
     flag: country.flags.png,
     region: country.region,
-    subregion: country.subregion || 'N/A',
+    subregion: country.subregion || 'N/A', // TODO is this sometimes null?
   };
   return countryObj;
 }

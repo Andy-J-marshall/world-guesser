@@ -2,7 +2,6 @@ import { useState, useEffect } from 'react';
 import { Container, Row, Col } from 'react-bootstrap';
 import CountryGuesserFailurePage from './CountryGuesserFailurePage';
 import CountryGuesserSuccessPage from './CountryGuesserSuccessPage';
-import BasicValidation from '../../../components/validation/BasicValidation';
 import CountryGuessFeedback from './CountryGuesserFeedback';
 import CountryForm from '../../../components/ui/CountryForm';
 import checkValidGuess from '../../../lib/countryValidation';
@@ -96,7 +95,7 @@ function CountryGuesser(props: CountryGuesserProps) {
                             {incorrectCount >= 2 &&
                                 <Col md={6} lg={3} className="fade-in">
                                     <div className="clue-box">
-                                        <p id='landlocked'>{landlocked}</p>
+                                        <p id='landlocked'><strong>Landlocked:</strong> {landlocked}</p>
                                     </div>
                                 </Col>
                             }
