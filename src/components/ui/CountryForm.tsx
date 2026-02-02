@@ -30,7 +30,7 @@ function CountryForm(props: CountryFormProps) {
                         id='country-search-typeahead'
                         onChange={(selected: any) => setValue(selected as string[])}
                         options={possibleCountries}
-                        placeholder='Countries'
+                        placeholder='Countries...'
                         selected={value}
                         size='lg'
                     />
