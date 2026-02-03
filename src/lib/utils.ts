@@ -16,3 +16,15 @@ export function capitalizeText(stringArray: any[] | any): string {
 export function numberWithCommas(number: number): string {
     return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
 }
+
+export function getFromLocalStorage<T>(key: string, defaultValue: T): T {
+    const item = localStorage.getItem(key);
+    if (item === null) {
+        return defaultValue;
+    }
+    try {
+        return JSON.parse(item) as T;
+    } catch {
+        return defaultValue;
+    }
+}

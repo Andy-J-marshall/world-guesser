@@ -1,51 +1,8 @@
 import axios from 'axios';
 import { capitalizeText, numberWithCommas } from './utils';
+import { Country, CountryCodeMapping, CountriesInfo, CountryInfo } from '../types';
 
-interface Country {
-    name: {
-        common: string;
-    };
-    independent?: boolean;
-    cca3: string;
-    borders?: string[];
-    capital?: string[];
-    landlocked: boolean;
-    maps: {
-        googleMaps: string;
-    };
-    population: number;
-    flags: {
-        png: string;
-    };
-    region: string;
-    subregion: string;
-    useThis?: boolean;
-}
-
-interface CountryCodeMapping {
-    name: string;
-    code: string;
-}
-
-interface AllCountriesResponse {
-    countriesArray: string[];
-    countryCodeMapping: CountryCodeMapping[];
-    responseBody: Country[];
-}
-
-interface CountryObj {
-    name: string;
-    borderingCountries: string[];
-    capital: string;
-    landlocked: string;
-    map: string;
-    population: string;
-    flag: string;
-    region: string;
-    subregion: string;
-}
-
-async function allCountriesRequest(): Promise<AllCountriesResponse | undefined> {
+async function allCountriesRequest(): Promise<CountriesInfo | undefined> {
     try {
         const response = await axios.get<Country[]>(
             `https://restcountries.com/v3.1/all?fields=name,independent,cca3,capital,landlocked,maps,population,flags,region,subregion`,
@@ -69,7 +26,7 @@ async function allCountriesRequest(): Promise<AllCountriesResponse | undefined> 
             }
         });
 
-        const returnObject: AllCountriesResponse = {
+        const returnObject: CountriesInfo = {
             countriesArray: countriesArray.sort(),
             countryCodeMapping,
             responseBody: body,
@@ -84,7 +41,7 @@ export function selectCountry(
     countriesArray: string[],
     countriesResponse: Country[],
     countryCodeMapping: CountryCodeMapping[],
-): CountryObj {
+): CountryInfo {
     let country = countriesResponse.find((c: Country) => c.useThis);
     if (!country) {
         const selectedCountry = countriesArray[Math.floor(Math.random() * countriesArray.length)];
@@ -94,7 +51,7 @@ export function selectCountry(
         throw new Error('No country found');
     }
 
-    const countryObj: CountryObj = {
+    const countryObj: CountryInfo = {
         name: country.name.common,
         borderingCountries: returnBorderingCountries(country.borders, countryCodeMapping),
         capital: capitalizeText(country.capital),

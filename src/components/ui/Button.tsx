@@ -1,10 +1,7 @@
 import { Button } from 'react-bootstrap';
 import { ButtonProps } from '../../types';
 
-function CustomButton(props: ButtonProps) {
-    const callback = props.callback;
-    const buttonText = props.buttonText;
-
+function CustomButton({ callback, buttonText }: ButtonProps) {
     return (
         <Button variant='light' size='lg' onClick={callback}>
             {buttonText}

@@ -1,5 +1,28 @@
 // Common types used across components
 
+// Raw country data from REST Countries API
+export interface Country {
+    name: {
+        common: string;
+    };
+    independent?: boolean;
+    cca3: string;
+    borders?: string[];
+    capital?: string[];
+    landlocked: boolean;
+    maps: {
+        googleMaps: string;
+    };
+    population: number;
+    flags: {
+        png: string;
+    };
+    region: string;
+    subregion: string;
+    useThis?: boolean;
+}
+
+// Processed country information for display
 export interface CountryInfo {
     name: string;
     borderingCountries: string[];
@@ -12,10 +35,15 @@ export interface CountryInfo {
     subregion: string;
 }
 
+export interface CountryCodeMapping {
+    name: string;
+    code: string;
+}
+
 export interface CountriesInfo {
     countriesArray: string[];
-    countryCodeMapping: Array<{ name: string; code: string }>;
-    responseBody: any[];
+    countryCodeMapping: CountryCodeMapping[];
+    responseBody: Country[];
 }
 
 export interface ButtonProps {
@@ -33,13 +61,14 @@ export interface CountryGuesserProps {
     possibleCountries: string[];
 }
 
-export interface BasicValidationProps {
-    children: React.ReactNode;
-    display: boolean;
+export interface ValidationErrorsProps {
+    duplicateGuess?: boolean;
+    knownCountry?: boolean;
+    children?: React.ReactNode;
 }
 
 export interface StartNewGameProps {
-    newGameCallback: () => void;
+    buttonText: string;
 }
 
 export interface CountryFormProps {

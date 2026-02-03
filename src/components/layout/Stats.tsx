@@ -1,20 +1,21 @@
 import { useState } from 'react';
 import Button from '../ui/Button';
+import { getFromLocalStorage } from '../../lib/utils';
 
 function Stats() {
     const [showStats, setShowStats] = useState(false);
     const [buttonText, setButtonText] = useState('Show Stats');
 
-    const numberOfCountryGuesserGames = JSON.parse(localStorage.getItem('numberOfGames') || 'null');
-    const numberOfCountryGuesserWins = JSON.parse(localStorage.getItem('numberOfWins') || 'null');
-    const numberOfCountryGuesserAttempts = JSON.parse(localStorage.getItem('numberOfAttempts') || 'null');
-    const countryGuesserStreak = JSON.parse(localStorage.getItem('streak') || 'null');
+    const numberOfCountryGuesserGames = getFromLocalStorage<number>('numberOfGames', 0);
+    const numberOfCountryGuesserWins = getFromLocalStorage<number>('numberOfWins', 0);
+    const numberOfCountryGuesserAttempts = getFromLocalStorage<number>('numberOfAttempts', 0);
+    const countryGuesserStreak = getFromLocalStorage<number>('streak', 0);
 
-    const numberOfBorderGames = JSON.parse(localStorage.getItem('numberOfBorderGames') || 'null');
-    const numberOfBorderWins = JSON.parse(localStorage.getItem('numberOfBorderWins') || 'null');
-    const numberOfCorrectBorderAnswers = JSON.parse(localStorage.getItem('numberOfCorrectBorderAnswers') || 'null');
-    const numberOfIncorrectBorderAnswers = JSON.parse(localStorage.getItem('numberOfIncorrectBorderAnswers') || 'null');
-    const borderStreak = JSON.parse(localStorage.getItem('borderStreak') || 'null');
+    const numberOfBorderGames = getFromLocalStorage<number>('numberOfBorderGames', 0);
+    const numberOfBorderWins = getFromLocalStorage<number>('numberOfBorderWins', 0);
+    const numberOfCorrectBorderAnswers = getFromLocalStorage<number>('numberOfCorrectBorderAnswers', 0);
+    const numberOfIncorrectBorderAnswers = getFromLocalStorage<number>('numberOfIncorrectBorderAnswers', 0);
+    const borderStreak = getFromLocalStorage<number>('borderStreak', 0);
 
     function showStatsCallback() {
         if (showStats) {

@@ -4,24 +4,24 @@ import getAllCountriesRequest from './lib/countryApi';
 import './app.css';
 
 function App() {
-    const [allCountriesResponse, setAllCountriesResponse] = useState<any>();
-    const [foundCountry, setFindCountry] = useState(false);
+    const [countriesData, setCountriesData] = useState<any>();
+    const [foundCountry, setFoundCountry] = useState(false);
 
     useEffect(() => {
         if (!foundCountry) {
-            getAllCountriesRequest().then((allCountriesResponse) => {
-                setFindCountry(true);
-                setAllCountriesResponse(allCountriesResponse);
+            getAllCountriesRequest().then((countriesData) => {
+                setFoundCountry(true);
+                setCountriesData(countriesData);
             });
         }
-    });
+    }, [foundCountry]);
 
     return (
         <div id='app'>
             <div id='header'>
                 <h1 style={{ fontSize: '4rem' }}>Fun With Countries</h1>
             </div>
-            {allCountriesResponse && <Country countriesInfo={allCountriesResponse} />}
+            {countriesData && <Country countriesInfo={countriesData} />}
             <link
                 rel='stylesheet'
                 href='https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css'

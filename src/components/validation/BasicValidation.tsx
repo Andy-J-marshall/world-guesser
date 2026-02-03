@@ -1,13 +1,11 @@
-interface BasicValidationProps {
-    duplicateGuess: boolean;
-    knownCountry: boolean;
+interface ValidationErrorsProps {
+    duplicateGuess?: boolean;
+    knownCountry?: boolean;
+    children?: React.ReactNode;
 }
 
-function BasicValidation(props: BasicValidationProps) {
-    const duplicateGuess = props.duplicateGuess;
-    const knownCountry = props.knownCountry;
-
-    if (!duplicateGuess && knownCountry) {
+function ValidationErrors({ duplicateGuess, knownCountry, children }: ValidationErrorsProps) {
+    if (!duplicateGuess && knownCountry && !children) {
         return null;
     }
 
@@ -25,8 +23,9 @@ function BasicValidation(props: BasicValidationProps) {
         >
             {duplicateGuess && <p style={{ margin: 0 }}>You've already tried that country!</p>}
             {!knownCountry && <p style={{ margin: 0 }}>Enter a valid country name</p>}
+            {children}
         </div>
     );
 }
 
-export default BasicValidation;
+export default ValidationErrors;

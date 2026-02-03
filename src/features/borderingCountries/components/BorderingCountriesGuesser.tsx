@@ -4,6 +4,7 @@ import BorderingCountriesFailurePage from './BorderingCountriesFailurePage';
 import BorderingCountriesSuccessPage from './BorderingCountriesSuccessPage';
 import CountryForm from '../../../components/ui/CountryForm';
 import BorderingCountriesClue from './BorderingCountriesClue';
+import ValidationErrors from '../../../components/validation/BasicValidation';
 import checkValidGuess from '../../../lib/countryValidation';
 import { capitalizeText } from '../../../lib/utils';
 
@@ -127,20 +128,9 @@ function borderingCountriesGuesser(props: BorderingCountriesGuesserProps) {
                 />
             )}
             {!succeeded && !correctLastGuess && guessedActualCountry && (
-                <div id='invalid-border-guess-feedback'>
-                    <p
-                        style={{
-                            color: '#F66B0E',
-                            fontSize: '0.9rem',
-                            padding: 'var(--spacing-xs) var(--spacing-sm)',
-                            marginTop: 'var(--spacing-sm)',
-                            marginBottom: 'var(--spacing-md)',
-                            textAlign: 'center',
-                        }}
-                    >
-                        That's the actual country! Guess the bordering ones instead
-                    </p>
-                </div>
+                <ValidationErrors>
+                    <p style={{ margin: 0 }}>That's the actual country! Guess the bordering ones instead</p>
+                </ValidationErrors>
             )}
             {!succeeded && !failed && clues && <BorderingCountriesClue clues={clues} />}
             {failed && !succeeded && (

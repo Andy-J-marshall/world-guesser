@@ -2,12 +2,9 @@ import Button from '../ui/Button';
 
 interface StartNewGameProps {
     buttonText: string;
-    callback: () => void;
 }
 
-function StartNewGame(props: StartNewGameProps) {
-    const buttonText = props.buttonText;
-
+function StartNewGame({ buttonText }: StartNewGameProps) {
     async function startNewGame() {
         window.location.reload();
     }

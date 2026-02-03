@@ -66,7 +66,7 @@ function BorderingCountriesFailurePage(props: BorderingCountriesFailurePageProps
             {!newGameStarted && <br />}
             {!newGameStarted && <BorderingCountriesStats updateStatsCallback={updateStats} />}
             <div className='btn-container'>
-                <StartNewGame buttonText='Try again' callback={() => setNewGameStarted(true)} />
+                <StartNewGame buttonText='Try again' />
                 <Stats />
             </div>
         </div>
