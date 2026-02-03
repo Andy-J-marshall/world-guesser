@@ -24,8 +24,14 @@ function BorderingCountriesStats(props: BorderingCountriesStatsProps) {
     const called = true;
 
     useEffect(() => {
-        const { numberOfWins, numberOfGames, numberOfAttempts, numberOfCorrectAnswers, numberOfIncorrectAnswers, streak } =
-            updateStats();
+        const {
+            numberOfWins,
+            numberOfGames,
+            numberOfAttempts,
+            numberOfCorrectAnswers,
+            numberOfIncorrectAnswers,
+            streak,
+        } = updateStats();
         setNumberOfWins(numberOfWins);
         setNumberOfGames(numberOfGames);
         setNumberOfAttempts(numberOfAttempts);

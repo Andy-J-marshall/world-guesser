@@ -133,7 +133,8 @@ function CountryGuesserStats(props: CountryGuesserStatsProps) {
                     {numberOfWins > 0 && streak > 0 && (
                         <div
                             style={{
-                                background: 'linear-gradient(135deg, rgba(192, 132, 252, 0.15), rgba(129, 140, 248, 0.15))',
+                                background:
+                                    'linear-gradient(135deg, rgba(192, 132, 252, 0.15), rgba(129, 140, 248, 0.15))',
                                 padding: 'var(--spacing-md)',
                                 borderRadius: 'var(--border-radius-md)',
                                 border: '1px solid rgba(192, 132, 252, 0.3)',
@@ -148,7 +149,8 @@ function CountryGuesserStats(props: CountryGuesserStatsProps) {
                                     margin: 0,
                                 }}
                             >
-                                You are on a <span style={{ color: 'var(--color-secondary)', fontWeight: '700' }}>{streak}</span>{' '}
+                                You are on a{' '}
+                                <span style={{ color: 'var(--color-secondary)', fontWeight: '700' }}>{streak}</span>{' '}
                                 game winning streak!
                             </p>
                         </div>

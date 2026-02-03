@@ -15,7 +15,9 @@ function CountryGuessFeedback(props: CountryGuessFeedbackProps) {
 
     return (
         <div id='country-guess-feedback' style={{ marginTop: 'var(--spacing-md)' }}>
-            {!duplicateGuess && <p style={{ color: '#F66B0E' }}>Incorrect! That was attempt number {incorrectCount}/6.</p>}
+            {!duplicateGuess && (
+                <p style={{ color: '#F66B0E' }}>Incorrect! That was attempt number {incorrectCount}/6.</p>
+            )}
             {guessedBorderingCountry && <p>You're getting close!</p>}
             {<p>Your guesses so far: {capitalizeText(guesses)}</p>}
         </div>

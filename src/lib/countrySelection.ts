@@ -30,7 +30,10 @@ export function selectCountry(
     return countryObj;
 }
 
-function getBorderingCountries(borderingCountries: string[] | undefined, countryCodeMapping: CountryCodeMapping[]): string[] {
+function getBorderingCountries(
+    borderingCountries: string[] | undefined,
+    countryCodeMapping: CountryCodeMapping[],
+): string[] {
     const answerCountries: string[] = [];
     if (borderingCountries) {
         borderingCountries.forEach((borderingCountry: string) => {

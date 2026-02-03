@@ -6,6 +6,7 @@ import CountryForm from '../../../components/ui/CountryForm';
 import BorderingCountriesClue from './BorderingCountriesClue';
 import ValidationErrors from '../../../components/validation/BasicValidation';
 import checkValidGuess from '../../../lib/countryValidation';
+import { parseFormGuess } from '../../../lib/formUtils';
 import { capitalizeText } from '../../../lib/utils';
 import { CountriesInfo } from '../../../types';
 import { MAX_ATTEMPTS } from '../../../constants';
@@ -18,7 +19,12 @@ interface BorderingCountriesGuesserProps {
     map: string;
 }
 
-function BorderingCountriesGuesser({ name, borderingCountries, possibleCountries, map }: BorderingCountriesGuesserProps) {
+function BorderingCountriesGuesser({
+    name,
+    borderingCountries,
+    possibleCountries,
+    map,
+}: BorderingCountriesGuesserProps) {
     const numberOfBorderingCountriesText =
         borderingCountries.length > 1
             ? `There are ${borderingCountries.length} bordering countries to find in total`
@@ -40,20 +46,22 @@ function BorderingCountriesGuesser({ name, borderingCountries, possibleCountries
     const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
         setValue(['']);
-        const target = event.target as typeof event.target & {
-            0: { value: string };
-        };
-        const guessedName = target[0].value.toLowerCase().trim();
+
+        const guessedName = parseFormGuess(event);
         let { isValidCountry, knownCountry, duplicateGuess } = checkValidGuess(guessedName, possibleCountries, guesses);
+
         setCorrectLastGuess(false);
+
         if (guessedName === name.toLowerCase()) {
             setGuessedActualCountry(true);
-            isValidCountry = false;
+            return;
         } else {
             setGuessedActualCountry(false);
         }
+
         setKnownCountry(knownCountry);
         setDuplicateGuess(duplicateGuess);
+
         if (isValidCountry && knownCountry && !duplicateGuess) {
             checkGuessIsCorrect(guessedName);
         }

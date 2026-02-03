@@ -5,6 +5,7 @@ import CountryGuesserSuccessPage from './CountryGuesserSuccessPage';
 import CountryGuessFeedback from './CountryGuesserFeedback';
 import CountryForm from '../../../components/ui/CountryForm';
 import checkValidGuess from '../../../lib/countryValidation';
+import { parseFormGuess } from '../../../lib/formUtils';
 import { CountryGuesserProps } from '../../../types';
 import { MAX_ATTEMPTS } from '../../../constants';
 
@@ -23,21 +24,23 @@ function CountryGuesser({ countriesInfo, country, possibleCountries }: CountryGu
     const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
         setValue(['']);
-        const target = event.target as typeof event.target & {
-            0: { value: string };
-        };
-        const guessedName = target[0].value.toLowerCase().trim();
-        const { isValidCountry, knownCountry, duplicateGuess } = checkValidGuess(guessedName, possibleCountries, guesses);
+
+        const guessedName = parseFormGuess(event);
+        const { isValidCountry, knownCountry, duplicateGuess } = checkValidGuess(
+            guessedName,
+            possibleCountries,
+            guesses,
+        );
+
         setKnownCountry(knownCountry);
         setDuplicateGuess(duplicateGuess);
+
         if (isValidCountry && knownCountry && !duplicateGuess) {
             checkGuessIsCorrect(guessedName);
         }
     };
 
     function checkGuessIsCorrect(guessedName: string) {
-        setKnownCountry(true);
-        setDuplicateGuess(false);
         if (guessedName === name.toLowerCase()) {
             setCorrectGuess(true);
         } else {
@@ -114,7 +117,12 @@ function CountryGuesser({ countriesInfo, country, possibleCountries }: CountryGu
                                                 id='flag'
                                                 src={flag}
                                                 alt='Country Flag'
-                                                style={{ width: '100%', maxWidth: '90px', display: 'block', margin: '0 auto' }}
+                                                style={{
+                                                    width: '100%',
+                                                    maxWidth: '90px',
+                                                    display: 'block',
+                                                    margin: '0 auto',
+                                                }}
                                             />
                                         </div>
                                     </Col>

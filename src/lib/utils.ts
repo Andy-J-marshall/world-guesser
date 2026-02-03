@@ -4,25 +4,21 @@ export function capitalizeString(str: string | string[] | undefined): string {
         return capitalizeStringArray(str);
     }
     const words = str.toString().split(' ');
-    const capitalizedWords = words.map(word => 
-        word.charAt(0).toUpperCase() + word.slice(1)
-    );
+    const capitalizedWords = words.map((word) => word.charAt(0).toUpperCase() + word.slice(1));
     return capitalizedWords.join(' ').replace(' And ', ' & ');
 }
 
 export function capitalizeStringArray(stringArray: string[]): string {
     if (!stringArray || stringArray.length === 0) return '';
     return stringArray
-        .map(str => capitalizeString(str))
+        .map((str) => capitalizeString(str))
         .join(', ')
         .replace(' And ', ' & ');
 }
 
 export function capitalizeText(stringArray: string[] | string | undefined): string {
     if (!stringArray) return '';
-    return Array.isArray(stringArray) 
-        ? capitalizeStringArray(stringArray)
-        : capitalizeString(stringArray);
+    return Array.isArray(stringArray) ? capitalizeStringArray(stringArray) : capitalizeString(stringArray);
 }
 
 export function numberWithCommas(number: number): string {

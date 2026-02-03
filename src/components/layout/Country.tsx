@@ -10,7 +10,9 @@ function Country({ countriesInfo }: CountryProps) {
 
     return (
         <div id='country'>
-            {country && <CountryGuesser countriesInfo={countriesInfo} country={country} possibleCountries={possibleCountries} />}
+            {country && (
+                <CountryGuesser countriesInfo={countriesInfo} country={country} possibleCountries={possibleCountries} />
+            )}
         </div>
     );
 }

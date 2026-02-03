@@ -129,7 +129,10 @@ function Stats() {
                                                 fontWeight: '700',
                                             }}
                                         >
-                                            {((numberOfCountryGuesserWins / numberOfCountryGuesserGames) * 100).toFixed(1)}%
+                                            {((numberOfCountryGuesserWins / numberOfCountryGuesserGames) * 100).toFixed(
+                                                1,
+                                            )}
+                                            %
                                         </p>
                                     </div>
                                 )}

@@ -60,10 +60,23 @@ function CountryGuesserFailurePage(props: CountryGuesserFailurePageProps) {
                             border: '1px solid rgba(129, 140, 248, 0.3)',
                         }}
                     >
-                        <p style={{ color: 'var(--color-text-primary)', marginBottom: 'var(--spacing-sm)', fontWeight: '600' }}>
+                        <p
+                            style={{
+                                color: 'var(--color-text-primary)',
+                                marginBottom: 'var(--spacing-sm)',
+                                fontWeight: '600',
+                            }}
+                        >
                             Your answer history:
                         </p>
-                        <div style={{ display: 'flex', flexWrap: 'wrap', gap: 'var(--spacing-sm)', justifyContent: 'center' }}>
+                        <div
+                            style={{
+                                display: 'flex',
+                                flexWrap: 'wrap',
+                                gap: 'var(--spacing-sm)',
+                                justifyContent: 'center',
+                            }}
+                        >
                             {guesses.map((guess, index) => (
                                 <span
                                     key={index}

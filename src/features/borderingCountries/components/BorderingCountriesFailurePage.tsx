@@ -21,7 +21,9 @@ function BorderingCountriesFailurePage(props: BorderingCountriesFailurePageProps
 
     const incorrectCount = guesses.length - correctGuesses.length;
     const borderingCountriesCount = borderingCountries.length;
-    const missingAnswersArray = borderingCountries.filter((countryGuess) => !correctGuesses.includes(countryGuess.toLowerCase()));
+    const missingAnswersArray = borderingCountries.filter(
+        (countryGuess) => !correctGuesses.includes(countryGuess.toLowerCase()),
+    );
 
     const [newGameStarted, setNewGameStarted] = useState(false);
 

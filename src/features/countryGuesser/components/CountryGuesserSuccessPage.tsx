@@ -58,7 +58,13 @@ function CountryGuesserSuccessPage(props: CountryGuesserSuccessPageProps) {
                 <div id='successful-country-game' style={{ maxWidth: '700px', margin: '0 auto' }}>
                     <h2 style={{ fontSize: '3rem', marginBottom: 'var(--spacing-lg)' }}>🎉 Success!</h2>
                     {incorrectCount === 0 && (
-                        <h3 style={{ color: 'var(--color-success)', fontSize: '1.5rem', marginBottom: 'var(--spacing-xl)' }}>
+                        <h3
+                            style={{
+                                color: 'var(--color-success)',
+                                fontSize: '1.5rem',
+                                marginBottom: 'var(--spacing-xl)',
+                            }}
+                        >
                             Amazing! You got{' '}
                             <a
                                 href={map}
@@ -72,7 +78,13 @@ function CountryGuesserSuccessPage(props: CountryGuesserSuccessPageProps) {
                         </h3>
                     )}
                     {incorrectCount > 0 && (
-                        <h3 style={{ color: 'var(--color-success)', fontSize: '1.5rem', marginBottom: 'var(--spacing-xl)' }}>
+                        <h3
+                            style={{
+                                color: 'var(--color-success)',
+                                fontSize: '1.5rem',
+                                marginBottom: 'var(--spacing-xl)',
+                            }}
+                        >
                             Well done! It took you {incorrectCount + 1} attempts to get{' '}
                             <a
                                 href={map}
@@ -104,7 +116,12 @@ function CountryGuesserSuccessPage(props: CountryGuesserSuccessPageProps) {
                                 Your answer history:
                             </p>
                             <div
-                                style={{ display: 'flex', flexWrap: 'wrap', gap: 'var(--spacing-sm)', justifyContent: 'center' }}
+                                style={{
+                                    display: 'flex',
+                                    flexWrap: 'wrap',
+                                    gap: 'var(--spacing-sm)',
+                                    justifyContent: 'center',
+                                }}
                             >
                                 {guesses.map((guess, index) => (
                                     <span
