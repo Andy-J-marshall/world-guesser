@@ -1,6 +1,5 @@
 import axios from 'axios';
-import { capitalizeText, numberWithCommas } from './utils';
-import { Country, CountryCodeMapping, CountriesInfo, CountryInfo } from '../types';
+import { Country, CountryCodeMapping, CountriesInfo } from '../types';
 
 async function allCountriesRequest(): Promise<CountriesInfo | undefined> {
     try {
@@ -35,48 +34,6 @@ async function allCountriesRequest(): Promise<CountriesInfo | undefined> {
     } catch (error) {
         console.log(error);
     }
-}
-
-export function selectCountry(
-    countriesArray: string[],
-    countriesResponse: Country[],
-    countryCodeMapping: CountryCodeMapping[],
-): CountryInfo {
-    let country = countriesResponse.find((c: Country) => c.useThis);
-    if (!country) {
-        const selectedCountry = countriesArray[Math.floor(Math.random() * countriesArray.length)];
-        country = countriesResponse.find((c: Country) => c.name.common.toLowerCase() === selectedCountry.toLowerCase());
-    }
-    if (!country) {
-        throw new Error('No country found');
-    }
-
-    const countryObj: CountryInfo = {
-        name: country.name.common,
-        borderingCountries: returnBorderingCountries(country.borders, countryCodeMapping),
-        capital: capitalizeText(country.capital),
-        landlocked: country.landlocked ? 'Yes' : 'No',
-        map: country.maps.googleMaps,
-        population: numberWithCommas(country.population),
-        flag: country.flags.png,
-        region: country.region,
-        subregion: country.subregion,
-    };
-    return countryObj;
-}
-
-function returnBorderingCountries(borderingCountries: string[] | undefined, countryCodeMapping: CountryCodeMapping[]): string[] {
-    const answerCountries: string[] = [];
-    if (borderingCountries) {
-        borderingCountries.forEach((borderingCountry: string) => {
-            countryCodeMapping.find((country: CountryCodeMapping) => {
-                if (country.code === borderingCountry) {
-                    answerCountries.push(country.name);
-                }
-            });
-        });
-    }
-    return answerCountries;
 }
 
 export default allCountriesRequest;

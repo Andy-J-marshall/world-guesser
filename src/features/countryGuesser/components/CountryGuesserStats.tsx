@@ -95,7 +95,7 @@ function CountryGuesserStats(props: CountryGuesserStatsProps) {
                                     margin: 0,
                                 }}
                             >
-                                Total games
+                                Games
                             </p>
                         </div>
 
@@ -125,7 +125,7 @@ function CountryGuesserStats(props: CountryGuesserStatsProps) {
                                     margin: 0,
                                 }}
                             >
-                                Number of wins
+                                Wins
                             </p>
                         </div>
                     </div>

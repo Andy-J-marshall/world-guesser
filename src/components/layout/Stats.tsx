@@ -74,7 +74,7 @@ function Stats() {
                                             letterSpacing: '0.5px',
                                         }}
                                     >
-                                        Total games
+                                        Games
                                     </strong>
                                     <p
                                         style={{
@@ -96,7 +96,7 @@ function Stats() {
                                             letterSpacing: '0.5px',
                                         }}
                                     >
-                                        Number of wins
+                                        Wins
                                     </strong>
                                     <p
                                         style={{

@@ -48,8 +48,8 @@ function BorderingCountriesStats(props: BorderingCountriesStatsProps) {
             {numberOfGames > 0 && numberOfAttempts > 0 && (
                 <div>
                     <h2>Stats</h2>
-                    <p>Total games: {numberOfGames}</p>
-                    <p>Number of wins: {numberOfWins}</p>
+                    <p>Games: {numberOfGames}</p>
+                    <p>Wins: {numberOfWins}</p>
                     {numberOfWins > 0 && streak > 0 && (
                         <p>You are on a {streak} game winning streak playing Bordering Countries</p>
                     )}

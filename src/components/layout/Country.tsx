@@ -1,10 +1,8 @@
 import CountryGuesser from '../../features/countryGuesser/components/CountryGuesser';
-import { selectCountry } from '../../lib/countryApi';
+import { selectCountry } from '../../lib/countrySelection';
 import { CountryProps } from '../../types';
 
-function Country(props: CountryProps) {
-    const countriesInfo = props.countriesInfo;
-
+function Country({ countriesInfo }: CountryProps) {
     const countryCodeMapping = countriesInfo.countryCodeMapping;
     const possibleCountries = countriesInfo.countriesArray;
     const allCountriesResponseBody = countriesInfo.responseBody;

@@ -1,16 +1,28 @@
-export function capitalizeText(stringArray: any[] | any): string {
-    let stringArrayAsString = '';
-    const array = Array.isArray(stringArray) ? stringArray : [stringArray];
-    array.forEach((originalString: any, index: number) => {
-        const splitString = originalString.toString().split(' ');
-        splitString.forEach((_: string, idx: number, arr: string[]) => {
-            arr[idx] = arr[idx].charAt(0).toUpperCase() + arr[idx].slice(1);
-        });
-        const capitalizedString = splitString.join(' ');
-        stringArrayAsString = index === 0 ? capitalizedString : stringArrayAsString + ', ' + capitalizedString;
-        stringArrayAsString = stringArrayAsString.replace(' And ', ' & ');
-    });
-    return stringArrayAsString;
+export function capitalizeString(str: string | string[] | undefined): string {
+    if (!str) return '';
+    if (Array.isArray(str)) {
+        return capitalizeStringArray(str);
+    }
+    const words = str.toString().split(' ');
+    const capitalizedWords = words.map(word => 
+        word.charAt(0).toUpperCase() + word.slice(1)
+    );
+    return capitalizedWords.join(' ').replace(' And ', ' & ');
+}
+
+export function capitalizeStringArray(stringArray: string[]): string {
+    if (!stringArray || stringArray.length === 0) return '';
+    return stringArray
+        .map(str => capitalizeString(str))
+        .join(', ')
+        .replace(' And ', ' & ');
+}
+
+export function capitalizeText(stringArray: string[] | string | undefined): string {
+    if (!stringArray) return '';
+    return Array.isArray(stringArray) 
+        ? capitalizeStringArray(stringArray)
+        : capitalizeString(stringArray);
 }
 
 export function numberWithCommas(number: number): string {

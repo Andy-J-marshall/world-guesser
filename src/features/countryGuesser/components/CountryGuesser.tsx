@@ -6,21 +6,10 @@ import CountryGuessFeedback from './CountryGuesserFeedback';
 import CountryForm from '../../../components/ui/CountryForm';
 import checkValidGuess from '../../../lib/countryValidation';
 import { CountryGuesserProps } from '../../../types';
+import { MAX_ATTEMPTS } from '../../../constants';
 
-function CountryGuesser(props: CountryGuesserProps) {
-    const countriesInfo = props.countriesInfo;
-    const country = props.country;
-    const possibleCountries = props.possibleCountries;
-
-    const name = country.name;
-    const population = country.population;
-    const flag = country.flag;
-    const landlocked = country.landlocked;
-    const region = country.region;
-    const subregion = country.subregion;
-    const map = country.map;
-    const capital = country.capital;
-    const borderingCountries = country.borderingCountries;
+function CountryGuesser({ countriesInfo, country, possibleCountries }: CountryGuesserProps) {
+    const { name, population, flag, landlocked, region, subregion, map, capital, borderingCountries } = country;
 
     const [correctGuess, setCorrectGuess] = useState(false);
     const [incorrectCount, setIncorrectCount] = useState(0);
@@ -68,10 +57,10 @@ function CountryGuesser(props: CountryGuesserProps) {
     }
 
     useEffect(() => {
-        if (incorrectCount >= 6) {
+        if (incorrectCount >= MAX_ATTEMPTS) {
             setFailed(true);
         }
-    });
+    }, [incorrectCount]);
 
     return (
         <div id='country-guesser' className='fade-in'>

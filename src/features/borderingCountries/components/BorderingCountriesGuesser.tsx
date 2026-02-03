@@ -7,21 +7,18 @@ import BorderingCountriesClue from './BorderingCountriesClue';
 import ValidationErrors from '../../../components/validation/BasicValidation';
 import checkValidGuess from '../../../lib/countryValidation';
 import { capitalizeText } from '../../../lib/utils';
+import { CountriesInfo } from '../../../types';
+import { MAX_ATTEMPTS } from '../../../constants';
 
 interface BorderingCountriesGuesserProps {
-    countriesInfo: any;
+    countriesInfo: CountriesInfo;
     name: string;
     borderingCountries: string[];
     possibleCountries: string[];
     map: string;
 }
 
-function borderingCountriesGuesser(props: BorderingCountriesGuesserProps) {
-    const name = props.name;
-    const borderingCountries = props.borderingCountries;
-    const possibleCountries = props.possibleCountries;
-    const map = props.map;
-
+function BorderingCountriesGuesser({ name, borderingCountries, possibleCountries, map }: BorderingCountriesGuesserProps) {
     const numberOfBorderingCountriesText =
         borderingCountries.length > 1
             ? `There are ${borderingCountries.length} bordering countries to find in total`
@@ -92,13 +89,13 @@ function borderingCountriesGuesser(props: BorderingCountriesGuesserProps) {
     }
 
     useEffect(() => {
-        if (incorrectCount >= 6) {
+        if (incorrectCount >= MAX_ATTEMPTS) {
             setFailed(true);
         }
 
         const clues = findStartingLetterOfBorders();
         setClues(clues);
-    });
+    }, [incorrectCount, incorrectGuesses.length, correctGuesses]);
 
     return (
         <div id='borders'>
@@ -155,4 +152,4 @@ function borderingCountriesGuesser(props: BorderingCountriesGuesserProps) {
     );
 }
 
-export default borderingCountriesGuesser;
+export default BorderingCountriesGuesser;
