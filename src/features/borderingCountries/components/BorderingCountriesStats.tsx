@@ -68,6 +68,18 @@ function BorderingCountriesStats({ updateStatsCallback }: BorderingCountriesStat
             backgroundColor: 'rgba(52, 211, 153, 0.1)',
         },
         {
+            value: `${Math.round((numberOfWins / numberOfGames) * 100)}%`,
+            label: 'Win Rate',
+            color: 'rgb(168, 85, 247)',
+            backgroundColor: 'rgba(168, 85, 247, 0.1)',
+        },
+        {
+            value: streak,
+            label: 'Current Streak',
+            color: 'var(--color-accent)',
+            backgroundColor: 'rgba(192, 132, 252, 0.1)',
+        },
+        {
             value: numberOfCorrectAnswers,
             label: 'Correct Answers',
             color: 'var(--color-success)',
@@ -79,24 +91,6 @@ function BorderingCountriesStats({ updateStatsCallback }: BorderingCountriesStat
             color: 'rgb(239, 68, 68)',
             backgroundColor: 'rgba(239, 68, 68, 0.1)',
         },
-        {
-            value: numberOfAttempts,
-            label: 'Total Guesses',
-            color: 'rgb(251, 191, 36)',
-            backgroundColor: 'rgba(251, 191, 36, 0.1)',
-        },
-        {
-            value: `${Math.round((numberOfWins / numberOfGames) * 100)}%`,
-            label: 'Win Rate',
-            color: 'rgb(168, 85, 247)',
-            backgroundColor: 'rgba(168, 85, 247, 0.1)',
-        },
-        {
-            value: streak,
-            label: 'Current Streak',
-            color: 'var(--color-accent)',
-            backgroundColor: 'rgba(192, 132, 252, 0.1)',
-        }
     ];
 
     return <StatsDisplay title='Stats' stats={stats} streak={streak} />;

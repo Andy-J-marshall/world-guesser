@@ -53,18 +53,6 @@ function CountryGuesserStats({ updateStatsCallback }: CountryGuesserStatsProps) 
             backgroundColor: 'rgba(52, 211, 153, 0.1)',
         },
         {
-            value: numberOfAttempts,
-            label: 'Total Guesses',
-            color: 'rgb(251, 191, 36)',
-            backgroundColor: 'rgba(251, 191, 36, 0.1)',
-        },
-        {
-            value: (numberOfAttempts / numberOfGames).toFixed(1),
-            label: 'Average Guesses',
-            color: 'rgb(59, 130, 246)',
-            backgroundColor: 'rgba(59, 130, 246, 0.1)',
-        },
-        {
             value: `${Math.round((numberOfWins / numberOfGames) * 100)}%`,
             label: 'Win Rate',
             color: 'rgb(168, 85, 247)',
@@ -75,7 +63,19 @@ function CountryGuesserStats({ updateStatsCallback }: CountryGuesserStatsProps) 
             label: 'Current Streak',
             color: 'var(--color-accent)',
             backgroundColor: 'rgba(192, 132, 252, 0.1)',
-        }
+        },
+        {
+            value: numberOfAttempts,
+            label: 'Total Attempts',
+            color: 'rgb(251, 191, 36)',
+            backgroundColor: 'rgba(251, 191, 36, 0.1)',
+        },
+        {
+            value: (numberOfAttempts / numberOfGames).toFixed(1),
+            label: 'Average Attempts',
+            color: 'rgb(59, 130, 246)',
+            backgroundColor: 'rgba(59, 130, 246, 0.1)',
+        },
     ];
 
     return <StatsDisplay title='Stats' stats={stats} streak={streak} />;
