@@ -47,98 +47,103 @@ function CountryGuesserSuccessPage(props: CountryGuesserSuccessPageProps) {
     }
 
     return (
-        <div className='fade-in'>
+        <>
             {!newGameStarted && (
-                <div id='successful-country-game' style={{ maxWidth: '700px', margin: '0 auto' }}>
-                    <h2 className='success-title'>🎉 Success!</h2>
-                    {incorrectCount === 0 && (
-                        <h3
-                            style={{
-                                color: 'var(--color-success)',
-                                marginBottom: 'var(--spacing-xl)',
-                            }}
-                        >
-                            Amazing! You got {name} in one!
-                        </h3>
-                    )}
-                    {incorrectCount > 0 && (
-                        <h3
-                            style={{
-                                color: 'var(--color-success)',
-                                marginBottom: 'var(--spacing-xl)',
-                            }}
-                        >
-                            Well done! It took you {incorrectCount + 1} attempts to get {name}
-                        </h3>
-                    )}
-                    {incorrectCount > 0 && (
-                        <div
-                            style={{
-                                background: 'rgba(129, 140, 248, 0.15)',
-                                borderRadius: 'var(--border-radius-lg)',
-                                padding: 'var(--spacing-lg)',
-                                marginBottom: 'var(--spacing-xl)',
-                                border: '1px solid rgba(129, 140, 248, 0.3)',
-                            }}
-                        >
-                            <p
+                <div className='fade-in'>
+                    <div id='successful-country-game' style={{ maxWidth: '700px', margin: '0 auto' }}>
+                        <h2 className='success-title'>🎉 Success!</h2>
+                        {incorrectCount === 0 && (
+                            <h3
                                 style={{
-                                    color: 'var(--color-text-primary)',
-                                    marginBottom: 'var(--spacing-sm)',
-                                    fontWeight: '600',
+                                    color: 'var(--color-success)',
+                                    marginBottom: 'var(--spacing-xl)',
                                 }}
                             >
-                                Your answer history:
-                            </p>
+                                Amazing! You got {name} in one!
+                            </h3>
+                        )}
+                        {incorrectCount > 0 && (
+                            <h3
+                                style={{
+                                    color: 'var(--color-success)',
+                                    marginBottom: 'var(--spacing-xl)',
+                                }}
+                            >
+                                Well done! It took you {incorrectCount + 1} attempts to get {name}
+                            </h3>
+                        )}
+                        {incorrectCount > 0 && (
                             <div
                                 style={{
-                                    display: 'flex',
-                                    flexWrap: 'wrap',
-                                    gap: 'var(--spacing-sm)',
-                                    justifyContent: 'center',
+                                    background: 'rgba(129, 140, 248, 0.15)',
+                                    borderRadius: 'var(--border-radius-lg)',
+                                    padding: 'var(--spacing-lg)',
+                                    marginBottom: 'var(--spacing-xl)',
+                                    border: '1px solid rgba(129, 140, 248, 0.3)',
                                 }}
                             >
-                                {guesses.map((guess, index) => (
-                                    <span
-                                        key={index}
-                                        style={{
-                                            background: 'rgba(30, 41, 59, 0.8)',
-                                            padding: 'var(--spacing-xs) var(--spacing-md)',
-                                            borderRadius: 'var(--border-radius-md)',
-                                            color: 'var(--color-text-secondary)',
-                                            border: '1px solid rgba(129, 140, 248, 0.2)',
-                                            textTransform: 'capitalize',
-                                        }}
-                                    >
-                                        {index + 1}. {guess}
-                                    </span>
-                                ))}
+                                <p
+                                    style={{
+                                        color: 'var(--color-text-primary)',
+                                        marginBottom: 'var(--spacing-sm)',
+                                        fontWeight: '600',
+                                    }}
+                                >
+                                    Your answer history:
+                                </p>
+                                <div
+                                    style={{
+                                        display: 'flex',
+                                        flexWrap: 'wrap',
+                                        gap: 'var(--spacing-sm)',
+                                        justifyContent: 'center',
+                                    }}
+                                >
+                                    {guesses.map((guess, index) => (
+                                        <span
+                                            key={index}
+                                            style={{
+                                                background: 'rgba(30, 41, 59, 0.8)',
+                                                padding: 'var(--spacing-xs) var(--spacing-md)',
+                                                borderRadius: 'var(--border-radius-md)',
+                                                color: 'var(--color-text-secondary)',
+                                                border: '1px solid rgba(129, 140, 248, 0.2)',
+                                                textTransform: 'capitalize',
+                                            }}
+                                        >
+                                            {index + 1}. {guess}
+                                        </span>
+                                    ))}
+                                </div>
                             </div>
-                        </div>
-                    )}
-                    <img
-                        src={flag}
-                        alt='Country Flag'
-                        style={{
-                            maxWidth: '300px',
-                            marginTop: 'var(--spacing-lg)',
-                            display: 'block',
-                            marginLeft: 'auto',
-                            marginRight: 'auto',
-                            borderRadius: 'var(--border-radius-lg)',
-                        }}
-                    />
+                        )}
+                        <img
+                            src={flag}
+                            alt='Country Flag'
+                            style={{
+                                maxWidth: '300px',
+                                marginTop: 'var(--spacing-lg)',
+                                display: 'block',
+                                marginLeft: 'auto',
+                                marginRight: 'auto',
+                                borderRadius: 'var(--border-radius-lg)',
+                            }}
+                        />
+                    </div>
+                    {!newGameStarted && <CountryGuesserStats updateStatsCallback={updateStats} />}
                 </div>
             )}
-            {!newGameStarted && <CountryGuesserStats updateStatsCallback={updateStats} />}
 
-            <div className='btn-container'>
-                {!borderingCountriesGameStarted && <StartNewGame buttonText='Play again' />}
-                {borderingCountries.length > 0 && !newGameStarted && (
-                    <Button callback={startBorderingCountriesGame} buttonText='Guess the bordering countries' />
-                )}
-                {!newGameStarted && <Stats />}
-            </div>
+            {!newGameStarted && (
+                <div className='btn-container'>
+                    {!borderingCountriesGameStarted && <StartNewGame buttonText='Play again' />}
+                    {borderingCountries.length > 0 && (
+                        <Button callback={startBorderingCountriesGame} buttonText='Guess the bordering countries' />
+                    )}
+                    <Stats />
+                </div>
+            )}
+
             {newGameStarted && borderingCountriesGameStarted && (
                 <BorderingCountriesGuesser
                     countriesInfo={countriesInfo}
@@ -147,7 +152,7 @@ function CountryGuesserSuccessPage(props: CountryGuesserSuccessPageProps) {
                     possibleCountries={possibleCountries}
                 />
             )}
-        </div>
+        </>
     );
 }
 
