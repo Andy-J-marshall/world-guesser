@@ -100,11 +100,11 @@ function BorderingCountriesGuesser({ name, borderingCountries, possibleCountries
     }, [incorrectCount, incorrectGuesses.length, correctGuesses]);
 
     return (
-        <div id='borders'>
+        <div id='borders' className='fade-in'>
             {!succeeded && !failed && (
                 <div>
-                    <h2>{name}'s bordering Countries</h2>
-                    <p>{numberOfBorderingCountriesText}</p>
+                    <h2 className='game-over-title'>{name}'s bordering Countries</h2>
+                    <p style={{ marginBottom: 'var(--spacing-xl)' }}>{numberOfBorderingCountriesText}</p>
                     <div id='borders-form'>
                         <CountryForm
                             possibleCountries={possibleCountries}

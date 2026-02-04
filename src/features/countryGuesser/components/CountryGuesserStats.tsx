@@ -52,7 +52,6 @@ function CountryGuesserStats(props: CountryGuesserStatsProps) {
                 >
                     <h2
                         style={{
-                            fontSize: '2rem',
                             marginBottom: 'var(--spacing-lg)',
                             color: 'var(--color-primary-light)',
                             textAlign: 'center',
@@ -79,8 +78,8 @@ function CountryGuesserStats(props: CountryGuesserStatsProps) {
                             }}
                         >
                             <p
+                                className='large-stat'
                                 style={{
-                                    fontSize: '2rem',
                                     fontWeight: '700',
                                     color: 'var(--color-primary-light)',
                                     margin: '0 0 var(--spacing-xs) 0',
@@ -89,9 +88,9 @@ function CountryGuesserStats(props: CountryGuesserStatsProps) {
                                 {numberOfGames}
                             </p>
                             <p
+                                className='small-text'
                                 style={{
                                     color: 'var(--color-text-secondary)',
-                                    fontSize: '0.9rem',
                                     margin: 0,
                                 }}
                             >
@@ -109,8 +108,8 @@ function CountryGuesserStats(props: CountryGuesserStatsProps) {
                             }}
                         >
                             <p
+                                className='large-stat'
                                 style={{
-                                    fontSize: '2rem',
                                     fontWeight: '700',
                                     color: 'var(--color-success)',
                                     margin: '0 0 var(--spacing-xs) 0',
@@ -119,9 +118,9 @@ function CountryGuesserStats(props: CountryGuesserStatsProps) {
                                 {numberOfWins}
                             </p>
                             <p
+                                className='small-text'
                                 style={{
                                     color: 'var(--color-text-secondary)',
-                                    fontSize: '0.9rem',
                                     margin: 0,
                                 }}
                             >
@@ -145,7 +144,6 @@ function CountryGuesserStats(props: CountryGuesserStatsProps) {
                                 style={{
                                     color: 'var(--color-text-primary)',
                                     fontWeight: '600',
-                                    fontSize: '1.05rem',
                                     margin: 0,
                                 }}
                             >

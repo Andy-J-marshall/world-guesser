@@ -50,12 +50,11 @@ function CountryGuesserSuccessPage(props: CountryGuesserSuccessPageProps) {
         <div className='fade-in'>
             {!newGameStarted && (
                 <div id='successful-country-game' style={{ maxWidth: '700px', margin: '0 auto' }}>
-                    <h2 style={{ fontSize: '3rem', marginBottom: 'var(--spacing-lg)' }}>🎉 Success!</h2>
+                    <h2 className='success-title'>🎉 Success!</h2>
                     {incorrectCount === 0 && (
                         <h3
                             style={{
                                 color: 'var(--color-success)',
-                                fontSize: '1.5rem',
                                 marginBottom: 'var(--spacing-xl)',
                             }}
                         >
@@ -66,7 +65,6 @@ function CountryGuesserSuccessPage(props: CountryGuesserSuccessPageProps) {
                         <h3
                             style={{
                                 color: 'var(--color-success)',
-                                fontSize: '1.5rem',
                                 marginBottom: 'var(--spacing-xl)',
                             }}
                         >
@@ -109,7 +107,6 @@ function CountryGuesserSuccessPage(props: CountryGuesserSuccessPageProps) {
                                             borderRadius: 'var(--border-radius-md)',
                                             color: 'var(--color-text-secondary)',
                                             border: '1px solid rgba(129, 140, 248, 0.2)',
-                                            fontSize: '0.95rem',
                                             textTransform: 'capitalize',
                                         }}
                                     >

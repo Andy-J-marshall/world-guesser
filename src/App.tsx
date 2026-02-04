@@ -19,7 +19,7 @@ function App() {
     return (
         <div id='app'>
             <div id='header'>
-                <h1 style={{ fontSize: '4rem' }}>Fun With Countries</h1>
+                <h1>Fun With Countries</h1>
             </div>
             {countriesData && <Country countriesInfo={countriesData} />}
             <link

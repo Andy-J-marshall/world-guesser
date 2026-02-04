@@ -29,11 +29,11 @@ function CountryGuesserFailurePage(props: CountryGuesserFailurePageProps) {
     return (
         <div id='country-guesser-failure-page' className='fade-in'>
             <div id='country-failure' style={{ maxWidth: '700px', margin: '0 auto' }}>
-                <h2 style={{ fontSize: '2.5rem', marginBottom: 'var(--spacing-lg)' }}>Game Over</h2>
-                <p style={{ color: '#f87171', fontSize: '1.3rem', marginBottom: 'var(--spacing-lg)' }}>
+                <h2 className='game-over-title'>Game Over</h2>
+                <p className='error-message' style={{ marginBottom: 'var(--spacing-lg)' }}>
                     You failed. Better luck next time!
                 </p>
-                <p style={{ fontSize: '1.1rem', marginBottom: 'var(--spacing-lg)' }}>The answer was {name}.</p>
+                <p style={{ marginBottom: 'var(--spacing-lg)' }}>The answer was {name}.</p>
 
                 <div
                     style={{
@@ -64,13 +64,13 @@ function CountryGuesserFailurePage(props: CountryGuesserFailurePageProps) {
                         {guesses.map((guess, index) => (
                             <span
                                 key={index}
+                                className='small-text'
                                 style={{
                                     background: 'rgba(30, 41, 59, 0.8)',
                                     padding: 'var(--spacing-xs) var(--spacing-md)',
                                     borderRadius: 'var(--border-radius-md)',
                                     color: 'var(--color-text-secondary)',
                                     border: '1px solid rgba(129, 140, 248, 0.2)',
-                                    fontSize: '0.95rem',
                                     textTransform: 'capitalize',
                                 }}
                             >

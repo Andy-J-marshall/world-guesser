@@ -11,9 +11,9 @@ function ValidationErrors({ duplicateGuess, knownCountry, children }: Validation
 
     return (
         <div
+            className='small-text'
             style={{
                 color: '#F66B0E',
-                fontSize: '0.9rem',
                 padding: 'var(--spacing-xs) var(--spacing-sm)',
                 marginTop: 'var(--spacing-sm)',
                 marginBottom: 'var(--spacing-md)',

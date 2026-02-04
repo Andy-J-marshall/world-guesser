@@ -28,15 +28,13 @@ function borderingCountriesFeedback(props: BorderingCountriesFeedbackProps) {
     return (
         <div id='bordering-countries-guess-feedback'>
             {correctGuesses.length > 0 && (
-                <p style={{ color: '#F66B0E' }}>Correct answers so far: {capitalizeText(correctGuesses)}</p>
+                <p style={{ color: 'green' }}>Correct answers so far: {capitalizeText(correctGuesses)}</p>
             )}
             {incorrectGuesses.length > 0 && (
                 <p style={{ color: '#F66B0E' }}>Incorrect answers so far: {capitalizeText(incorrectGuesses)}</p>
             )}
-            <br />
             <p>{guessesRemainingText}</p>
             <p>{countriesRemainingText}</p>
-            <br />
         </div>
     );
 }

@@ -48,8 +48,8 @@ function Stats() {
                             }}
                         >
                             <h2
+                                className='large-stat'
                                 style={{
-                                    fontSize: '2rem',
                                     marginBottom: 'var(--spacing-lg)',
                                     color: 'var(--color-primary-light)',
                                     textAlign: 'center',
@@ -65,67 +65,79 @@ function Stats() {
                                     marginTop: 'var(--spacing-lg)',
                                 }}
                             >
-                                <div className='clue-box'>
-                                    <strong
-                                        style={{
-                                            color: 'var(--color-text-secondary)',
-                                            fontSize: '0.9rem',
-                                            textTransform: 'uppercase',
-                                            letterSpacing: '0.5px',
-                                        }}
-                                    >
-                                        Games
-                                    </strong>
+                                <div
+                                    style={{
+                                        background: 'rgba(129, 140, 248, 0.1)',
+                                        padding: 'var(--spacing-md)',
+                                        borderRadius: 'var(--border-radius-md)',
+                                        border: '1px solid rgba(129, 140, 248, 0.2)',
+                                        textAlign: 'center',
+                                    }}
+                                >
                                     <p
+                                        className='large-stat'
                                         style={{
-                                            fontSize: '2rem',
                                             color: 'var(--color-primary-light)',
-                                            margin: '0.5rem 0 0 0',
+                                            margin: '0 0 var(--spacing-xs) 0',
                                             fontWeight: '700',
                                         }}
                                     >
                                         {numberOfCountryGuesserGames}
                                     </p>
-                                </div>
-                                <div className='clue-box'>
-                                    <strong
+                                    <p
+                                        className='small-text'
                                         style={{
                                             color: 'var(--color-text-secondary)',
-                                            fontSize: '0.9rem',
-                                            textTransform: 'uppercase',
-                                            letterSpacing: '0.5px',
+                                            margin: 0,
                                         }}
                                     >
-                                        Wins
-                                    </strong>
+                                        Games
+                                    </p>
+                                </div>
+                                <div
+                                    style={{
+                                        background: 'rgba(52, 211, 153, 0.1)',
+                                        padding: 'var(--spacing-md)',
+                                        borderRadius: 'var(--border-radius-md)',
+                                        border: '1px solid rgba(52, 211, 153, 0.2)',
+                                        textAlign: 'center',
+                                    }}
+                                >
                                     <p
+                                        className='large-stat'
                                         style={{
-                                            fontSize: '2rem',
                                             color: 'var(--color-success)',
-                                            margin: '0.5rem 0 0 0',
+                                            margin: '0 0 var(--spacing-xs) 0',
                                             fontWeight: '700',
                                         }}
                                     >
                                         {numberOfCountryGuesserWins}
                                     </p>
+                                    <p
+                                        className='small-text'
+                                        style={{
+                                            color: 'var(--color-text-secondary)',
+                                            margin: 0,
+                                        }}
+                                    >
+                                        Wins
+                                    </p>
                                 </div>
                                 {numberOfCountryGuesserWins > 0 && (
-                                    <div className='clue-box'>
-                                        <strong
-                                            style={{
-                                                color: 'var(--color-text-secondary)',
-                                                fontSize: '0.9rem',
-                                                textTransform: 'uppercase',
-                                                letterSpacing: '0.5px',
-                                            }}
-                                        >
-                                            Win percentage
-                                        </strong>
+                                    <div
+                                        style={{
+                                            background: 'rgba(129, 140, 248, 0.1)',
+                                            padding: 'var(--spacing-md)',
+                                            borderRadius: 'var(--border-radius-md)',
+                                            border: '1px solid rgba(129, 140, 248, 0.2)',
+                                            textAlign: 'center',
+                                        }}
+                                    >
                                         <p
+                                            className='large-stat'
                                             style={{
-                                                fontSize: '2rem',
                                                 color: 'var(--color-primary-light)',
-                                                margin: '0.5rem 0 0 0',
+                                                margin: '0 0 var(--spacing-xs) 0',
                                                 fontWeight: '700',
                                             }}
                                         >
@@ -134,53 +146,76 @@ function Stats() {
                                             )}
                                             %
                                         </p>
+                                        <p
+                                            className='small-text'
+                                            style={{
+                                                color: 'var(--color-text-secondary)',
+                                                margin: 0,
+                                            }}
+                                        >
+                                            Win percentage
+                                        </p>
                                     </div>
                                 )}
                                 {numberOfCountryGuesserWins > 0 && (
-                                    <div className='clue-box'>
-                                        <strong
-                                            style={{
-                                                color: 'var(--color-text-secondary)',
-                                                fontSize: '0.9rem',
-                                                textTransform: 'uppercase',
-                                                letterSpacing: '0.5px',
-                                            }}
-                                        >
-                                            Avg. guesses per win
-                                        </strong>
+                                    <div
+                                        style={{
+                                            background: 'rgba(129, 140, 248, 0.1)',
+                                            padding: 'var(--spacing-md)',
+                                            borderRadius: 'var(--border-radius-md)',
+                                            border: '1px solid rgba(129, 140, 248, 0.2)',
+                                            textAlign: 'center',
+                                        }}
+                                    >
                                         <p
+                                            className='large-stat'
                                             style={{
-                                                fontSize: '2rem',
                                                 color: 'var(--color-primary-light)',
-                                                margin: '0.5rem 0 0 0',
+                                                margin: '0 0 var(--spacing-xs) 0',
                                                 fontWeight: '700',
                                             }}
                                         >
                                             {(numberOfCountryGuesserAttempts / numberOfCountryGuesserWins).toFixed(1)}
                                         </p>
+                                        <p
+                                            className='small-text'
+                                            style={{
+                                                color: 'var(--color-text-secondary)',
+                                                margin: 0,
+                                            }}
+                                        >
+                                            Avg. guesses per win
+                                        </p>
                                     </div>
                                 )}
                                 {numberOfCountryGuesserWins > 0 && (
-                                    <div className='clue-box'>
-                                        <strong
-                                            style={{
-                                                color: 'var(--color-text-secondary)',
-                                                fontSize: '0.9rem',
-                                                textTransform: 'uppercase',
-                                                letterSpacing: '0.5px',
-                                            }}
-                                        >
-                                            Streak
-                                        </strong>
+                                    <div
+                                        style={{
+                                            background: 'rgba(251, 191, 36, 0.1)',
+                                            padding: 'var(--spacing-md)',
+                                            borderRadius: 'var(--border-radius-md)',
+                                            border: '1px solid rgba(251, 191, 36, 0.2)',
+                                            textAlign: 'center',
+                                        }}
+                                    >
                                         <p
+                                            className='large-stat'
                                             style={{
-                                                fontSize: '2rem',
                                                 color: 'var(--color-warning)',
-                                                margin: '0.5rem 0 0 0',
+                                                margin: '0 0 var(--spacing-xs) 0',
                                                 fontWeight: '700',
                                             }}
                                         >
                                             {countryGuesserStreak}
+                                        </p>
+                                        <p
+                                            className='small-text'
+                                            style={{
+                                                color: 'var(--color-text-secondary)',
+                                                margin: 0,
+                                            }}
+                                        >
+                                            Streak
                                         </p>
                                     </div>
                                 )}
@@ -200,8 +235,8 @@ function Stats() {
                             }}
                         >
                             <h2
+                                className='large-stat'
                                 style={{
-                                    fontSize: '2rem',
                                     marginBottom: 'var(--spacing-lg)',
                                     color: 'var(--color-primary-light)',
                                     textAlign: 'center',
@@ -217,143 +252,185 @@ function Stats() {
                                     marginTop: 'var(--spacing-lg)',
                                 }}
                             >
-                                <div className='clue-box'>
-                                    <strong
-                                        style={{
-                                            color: 'var(--color-text-secondary)',
-                                            fontSize: '0.9rem',
-                                            textTransform: 'uppercase',
-                                            letterSpacing: '0.5px',
-                                        }}
-                                    >
-                                        Total games
-                                    </strong>
+                                <div
+                                    style={{
+                                        background: 'rgba(129, 140, 248, 0.1)',
+                                        padding: 'var(--spacing-md)',
+                                        borderRadius: 'var(--border-radius-md)',
+                                        border: '1px solid rgba(129, 140, 248, 0.2)',
+                                        textAlign: 'center',
+                                    }}
+                                >
                                     <p
+                                        className='large-stat'
                                         style={{
-                                            fontSize: '2rem',
                                             color: 'var(--color-primary-light)',
-                                            margin: '0.5rem 0 0 0',
+                                            margin: '0 0 var(--spacing-xs) 0',
                                             fontWeight: '700',
                                         }}
                                     >
                                         {numberOfBorderGames}
                                     </p>
-                                </div>
-                                <div className='clue-box'>
-                                    <strong
+                                    <p
+                                        className='small-text'
                                         style={{
                                             color: 'var(--color-text-secondary)',
-                                            fontSize: '0.9rem',
-                                            textTransform: 'uppercase',
-                                            letterSpacing: '0.5px',
+                                            margin: 0,
                                         }}
                                     >
-                                        Number of wins
-                                    </strong>
+                                        Total games
+                                    </p>
+                                </div>
+                                <div
+                                    style={{
+                                        background: 'rgba(52, 211, 153, 0.1)',
+                                        padding: 'var(--spacing-md)',
+                                        borderRadius: 'var(--border-radius-md)',
+                                        border: '1px solid rgba(52, 211, 153, 0.2)',
+                                        textAlign: 'center',
+                                    }}
+                                >
                                     <p
+                                        className='large-stat'
                                         style={{
-                                            fontSize: '2rem',
                                             color: 'var(--color-success)',
-                                            margin: '0.5rem 0 0 0',
+                                            margin: '0 0 var(--spacing-xs) 0',
                                             fontWeight: '700',
                                         }}
                                     >
                                         {numberOfBorderWins}
                                     </p>
+                                    <p
+                                        className='small-text'
+                                        style={{
+                                            color: 'var(--color-text-secondary)',
+                                            margin: 0,
+                                        }}
+                                    >
+                                        Wins
+                                    </p>
                                 </div>
                                 {numberOfBorderWins > 0 && (
-                                    <div className='clue-box'>
-                                        <strong
-                                            style={{
-                                                color: 'var(--color-text-secondary)',
-                                                fontSize: '0.9rem',
-                                                textTransform: 'uppercase',
-                                                letterSpacing: '0.5px',
-                                            }}
-                                        >
-                                            Win percentage
-                                        </strong>
+                                    <div
+                                        style={{
+                                            background: 'rgba(129, 140, 248, 0.1)',
+                                            padding: 'var(--spacing-md)',
+                                            borderRadius: 'var(--border-radius-md)',
+                                            border: '1px solid rgba(129, 140, 248, 0.2)',
+                                            textAlign: 'center',
+                                        }}
+                                    >
                                         <p
+                                            className='large-stat'
                                             style={{
-                                                fontSize: '2rem',
                                                 color: 'var(--color-primary-light)',
-                                                margin: '0.5rem 0 0 0',
+                                                margin: '0 0 var(--spacing-xs) 0',
                                                 fontWeight: '700',
                                             }}
                                         >
                                             {((numberOfBorderWins / numberOfBorderGames) * 100).toFixed(1)}%
                                         </p>
+                                        <p
+                                            className='small-text'
+                                            style={{
+                                                color: 'var(--color-text-secondary)',
+                                                margin: 0,
+                                            }}
+                                        >
+                                            Win percentage
+                                        </p>
                                     </div>
                                 )}
                                 {numberOfCorrectBorderAnswers > 0 && (
-                                    <div className='clue-box'>
-                                        <strong
-                                            style={{
-                                                color: 'var(--color-text-secondary)',
-                                                fontSize: '0.9rem',
-                                                textTransform: 'uppercase',
-                                                letterSpacing: '0.5px',
-                                            }}
-                                        >
-                                            Avg. correct per game
-                                        </strong>
+                                    <div
+                                        style={{
+                                            background: 'rgba(52, 211, 153, 0.1)',
+                                            padding: 'var(--spacing-md)',
+                                            borderRadius: 'var(--border-radius-md)',
+                                            border: '1px solid rgba(52, 211, 153, 0.2)',
+                                            textAlign: 'center',
+                                        }}
+                                    >
                                         <p
+                                            className='large-stat'
                                             style={{
-                                                fontSize: '2rem',
                                                 color: 'var(--color-success)',
-                                                margin: '0.5rem 0 0 0',
+                                                margin: '0 0 var(--spacing-xs) 0',
                                                 fontWeight: '700',
                                             }}
                                         >
                                             {(numberOfCorrectBorderAnswers / numberOfBorderGames).toFixed(1)}
                                         </p>
+                                        <p
+                                            className='small-text'
+                                            style={{
+                                                color: 'var(--color-text-secondary)',
+                                                margin: 0,
+                                            }}
+                                        >
+                                            Avg. correct per game
+                                        </p>
                                     </div>
                                 )}
                                 {numberOfIncorrectBorderAnswers > 0 && (
-                                    <div className='clue-box'>
-                                        <strong
-                                            style={{
-                                                color: 'var(--color-text-secondary)',
-                                                fontSize: '0.9rem',
-                                                textTransform: 'uppercase',
-                                                letterSpacing: '0.5px',
-                                            }}
-                                        >
-                                            Avg. incorrect per game
-                                        </strong>
+                                    <div
+                                        style={{
+                                            background: 'rgba(248, 113, 113, 0.1)',
+                                            padding: 'var(--spacing-md)',
+                                            borderRadius: 'var(--border-radius-md)',
+                                            border: '1px solid rgba(248, 113, 113, 0.2)',
+                                            textAlign: 'center',
+                                        }}
+                                    >
                                         <p
+                                            className='large-stat'
                                             style={{
-                                                fontSize: '2rem',
                                                 color: 'var(--color-error)',
-                                                margin: '0.5rem 0 0 0',
+                                                margin: '0 0 var(--spacing-xs) 0',
                                                 fontWeight: '700',
                                             }}
                                         >
                                             {(numberOfIncorrectBorderAnswers / numberOfBorderGames).toFixed(1)}
                                         </p>
+                                        <p
+                                            className='small-text'
+                                            style={{
+                                                color: 'var(--color-text-secondary)',
+                                                margin: 0,
+                                            }}
+                                        >
+                                            Avg. incorrect per game
+                                        </p>
                                     </div>
                                 )}
                                 {numberOfBorderWins > 0 && (
-                                    <div className='clue-box'>
-                                        <strong
-                                            style={{
-                                                color: 'var(--color-text-secondary)',
-                                                fontSize: '0.9rem',
-                                                textTransform: 'uppercase',
-                                                letterSpacing: '0.5px',
-                                            }}
-                                        >
-                                            Streak
-                                        </strong>
+                                    <div
+                                        style={{
+                                            background: 'rgba(251, 191, 36, 0.1)',
+                                            padding: 'var(--spacing-md)',
+                                            borderRadius: 'var(--border-radius-md)',
+                                            border: '1px solid rgba(251, 191, 36, 0.2)',
+                                            textAlign: 'center',
+                                        }}
+                                    >
                                         <p
+                                            className='large-stat'
                                             style={{
-                                                fontSize: '2rem',
                                                 color: 'var(--color-warning)',
-                                                margin: '0.5rem 0 0 0',
+                                                margin: '0 0 var(--spacing-xs) 0',
                                                 fontWeight: '700',
                                             }}
                                         >
                                             {borderStreak}
+                                        </p>
+                                        <p
+                                            className='small-text'
+                                            style={{
+                                                color: 'var(--color-text-secondary)',
+                                                margin: 0,
+                                            }}
+                                        >
+                                            Streak
                                         </p>
                                     </div>
                                 )}
