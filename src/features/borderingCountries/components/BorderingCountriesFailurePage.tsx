@@ -4,18 +4,12 @@ import Stats from '../../../components/layout/Stats';
 import { capitalizeText } from '../../../lib/utils';
 
 interface BorderingCountriesFailurePageProps {
-    name: string;
     borderingCountries: string[];
     correctGuesses: string[];
     guesses: string[];
 }
 
-function BorderingCountriesFailurePage(props: BorderingCountriesFailurePageProps) {
-    // TODO refactor to use props destructuring for bordering countries too
-    const borderingCountries = props.borderingCountries;
-    const correctGuesses = props.correctGuesses;
-    const guesses = props.guesses;
-
+function BorderingCountriesFailurePage({ borderingCountries, correctGuesses, guesses }: BorderingCountriesFailurePageProps) {
     const incorrectCount = guesses.length - correctGuesses.length;
     const borderingCountriesCount = borderingCountries.length;
     const missingAnswersArray = borderingCountries.filter(

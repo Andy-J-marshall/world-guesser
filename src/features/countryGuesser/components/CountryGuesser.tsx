@@ -7,7 +7,7 @@ import CountryForm from '../../../components/ui/CountryForm';
 import checkValidGuess from '../../../lib/countryValidation';
 import { parseFormGuess } from '../../../lib/formUtils';
 import { CountryGuesserProps } from '../../../types';
-import { MAX_ATTEMPTS } from '../../../constants';
+import { MAX_ATTEMPTS_COUNTRY_GUESSER } from '../../../constants';
 
 function CountryGuesser({ countriesInfo, country, possibleCountries }: CountryGuesserProps) {
     const { name, population, flag, landlocked, region, subregion, capital, borderingCountries } = country;
@@ -60,7 +60,7 @@ function CountryGuesser({ countriesInfo, country, possibleCountries }: CountryGu
     }
 
     useEffect(() => {
-        if (incorrectCount >= MAX_ATTEMPTS) {
+        if (incorrectCount >= MAX_ATTEMPTS_COUNTRY_GUESSER) {
             setFailed(true);
         }
     }, [incorrectCount]);

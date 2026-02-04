@@ -9,11 +9,7 @@ interface BorderingCountriesSuccessPageProps {
     guesses: string[];
 }
 
-function BorderingCountriesSuccessPage(props: BorderingCountriesSuccessPageProps) {
-    const incorrectGuesses = props.incorrectGuesses;
-    const correctGuesses = props.correctGuesses;
-    const name = props.name;
-    const guesses = props.guesses;
+function BorderingCountriesSuccessPage({ incorrectGuesses, correctGuesses, name, guesses }: BorderingCountriesSuccessPageProps) {
     const incorrectCount = incorrectGuesses.length;
     const answerOrAnswers = incorrectCount === 1 ? 'answer' : 'answers';
 

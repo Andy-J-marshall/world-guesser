@@ -13,15 +13,11 @@ interface BorderingCountriesStatsProps {
     updateStatsCallback: () => BorderStats;
 }
 
-function BorderingCountriesStats(props: BorderingCountriesStatsProps) {
-    const updateStats = props.updateStatsCallback;
-
+function BorderingCountriesStats({ updateStatsCallback }: BorderingCountriesStatsProps) {
     const [numberOfWins, setNumberOfWins] = useState(0);
     const [numberOfAttempts, setNumberOfAttempts] = useState(0);
     const [numberOfGames, setNumberOfGames] = useState(0);
     const [streak, setStreak] = useState(0);
-
-    const called = true;
 
     useEffect(() => {
         const {
@@ -31,7 +27,7 @@ function BorderingCountriesStats(props: BorderingCountriesStatsProps) {
             numberOfCorrectAnswers,
             numberOfIncorrectAnswers,
             streak,
-        } = updateStats();
+        } = updateStatsCallback();
         setNumberOfWins(numberOfWins);
         setNumberOfGames(numberOfGames);
         setNumberOfAttempts(numberOfAttempts);
@@ -47,7 +43,7 @@ function BorderingCountriesStats(props: BorderingCountriesStatsProps) {
         } catch (error) {
             console.log('Unable to update stats');
         }
-    }, [called]);
+    }, [updateStatsCallback]);
 
     return (
         <div id='country-guesser-stats' style={{ maxWidth: '700px', margin: '0 auto', marginTop: 'var(--spacing-xl)' }}>

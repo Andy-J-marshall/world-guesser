@@ -1,4 +1,5 @@
 import { capitalizeText } from '../../../lib/utils';
+import { MAX_ATTEMPTS_BORDERING_COUNTRIES } from '../../../constants';
 
 interface BorderingCountriesFeedbackProps {
     correctGuesses: string[];
@@ -7,15 +8,10 @@ interface BorderingCountriesFeedbackProps {
     incorrectCount: number;
 }
 
-function borderingCountriesFeedback(props: BorderingCountriesFeedbackProps) {
-    const correctGuesses = props.correctGuesses;
-    const incorrectGuesses = props.incorrectGuesses;
-    const borderingCountriesCount = props.borderingCountriesCount;
-    const incorrectCount = props.incorrectCount;
-
-    const guessesRemainingCount = 6 - incorrectCount;
+function BorderingCountriesFeedback({ correctGuesses, incorrectGuesses, borderingCountriesCount, incorrectCount }: BorderingCountriesFeedbackProps) {
+    const guessesRemainingCount = MAX_ATTEMPTS_BORDERING_COUNTRIES - incorrectCount;
     const guessesRemainingText =
-        incorrectCount >= 5
+        incorrectCount >= MAX_ATTEMPTS_BORDERING_COUNTRIES - 1
             ? `You have ${guessesRemainingCount} life remaining`
             : `You have ${guessesRemainingCount} lives remaining`;
 
@@ -39,4 +35,4 @@ function borderingCountriesFeedback(props: BorderingCountriesFeedbackProps) {
     );
 }
 
-export default borderingCountriesFeedback;
+export default BorderingCountriesFeedback;

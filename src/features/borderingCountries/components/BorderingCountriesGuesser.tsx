@@ -9,7 +9,7 @@ import checkValidGuess from '../../../lib/countryValidation';
 import { parseFormGuess } from '../../../lib/formUtils';
 import { capitalizeText } from '../../../lib/utils';
 import { CountriesInfo } from '../../../types';
-import { MAX_ATTEMPTS } from '../../../constants';
+import { MAX_ATTEMPTS_BORDERING_COUNTRIES } from '../../../constants';
 
 interface BorderingCountriesGuesserProps {
     countriesInfo: CountriesInfo;
@@ -91,7 +91,7 @@ function BorderingCountriesGuesser({ name, borderingCountries, possibleCountries
     }
 
     useEffect(() => {
-        if (incorrectCount >= MAX_ATTEMPTS) {
+        if (incorrectCount >= MAX_ATTEMPTS_BORDERING_COUNTRIES) {
             setFailed(true);
         }
 
@@ -135,7 +135,6 @@ function BorderingCountriesGuesser({ name, borderingCountries, possibleCountries
             {!succeeded && !failed && clues && <BorderingCountriesClue clues={clues} />}
             {failed && !succeeded && (
                 <BorderingCountriesFailurePage
-                    name={name}
                     correctGuesses={correctGuesses}
                     borderingCountries={borderingCountries}
                     guesses={guesses}
