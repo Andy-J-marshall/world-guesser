@@ -70,9 +70,15 @@ function CountryGuesserStats({ updateStatsCallback }: CountryGuesserStatsProps) 
             color: 'rgb(168, 85, 247)',
             backgroundColor: 'rgba(168, 85, 247, 0.1)',
         },
+        {
+            value: streak,
+            label: 'Current Streak',
+            color: 'var(--color-accent)',
+            backgroundColor: 'rgba(192, 132, 252, 0.1)',
+        }
     ];
 
-    return <StatsDisplay title='Stats' stats={stats} streak={numberOfWins > 0 ? streak : undefined} />;
+    return <StatsDisplay title='Stats' stats={stats} streak={streak} />;
 }
 
 export default CountryGuesserStats;

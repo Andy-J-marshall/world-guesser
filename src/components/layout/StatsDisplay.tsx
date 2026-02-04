@@ -8,7 +8,7 @@ interface StatsDisplayProps {
         color: string;
         backgroundColor: string;
     }>;
-    streak?: number;
+    streak: number;
 }
 
 function StatsDisplay({ title, stats, streak }: StatsDisplayProps) {
@@ -38,38 +38,13 @@ function StatsDisplay({ title, stats, streak }: StatsDisplayProps) {
                         display: 'grid',
                         gridTemplateColumns: 'repeat(3, 1fr)',
                         gap: 'var(--spacing-md)',
-                        marginBottom: streak && streak > 0 ? 'var(--spacing-lg)' : '0',
+                        marginBottom: streak > 0 ? 'var(--spacing-lg)' : 0,
                     }}
                 >
                     {stats.map((stat) => (
                         <StatCard key={stat.label} {...stat} />
                     ))}
                 </div>
-
-                {streak && streak > 0 && (
-                    <div
-                        style={{
-                            background:
-                                'linear-gradient(135deg, rgba(192, 132, 252, 0.15), rgba(129, 140, 248, 0.15))',
-                            padding: 'var(--spacing-md)',
-                            borderRadius: 'var(--border-radius-md)',
-                            border: '1px solid rgba(192, 132, 252, 0.3)',
-                            textAlign: 'center',
-                        }}
-                    >
-                        <p
-                            style={{
-                                color: 'var(--color-text-primary)',
-                                fontWeight: '600',
-                                margin: 0,
-                            }}
-                        >
-                            You are on a{' '}
-                            <span style={{ color: 'var(--color-secondary)', fontWeight: '700' }}>{streak}</span> game
-                            winning streak!
-                        </p>
-                    </div>
-                )}
             </div>
         </div>
     );
