@@ -1,6 +1,5 @@
 import StartNewGame from '../../../components/layout/StartNewGame';
 import BorderingCountriesStats from './BorderingCountriesStats';
-import Stats from '../../../components/layout/Stats';
 
 interface BorderingCountriesSuccessPageProps {
     incorrectGuesses: string[];
@@ -39,7 +38,7 @@ function BorderingCountriesSuccessPage({ incorrectGuesses, correctGuesses, name,
     return (
         <div className='fade-in'>
             <div id='successful-bordering-countries-game' style={{ maxWidth: '700px', margin: '0 auto' }}>
-                <h2 className='success-title'>🎉 Success!</h2>
+                <h2 className='success-title'>Success!</h2>
                 <h3
                     style={{
                         color: 'var(--color-success)',
@@ -96,7 +95,6 @@ function BorderingCountriesSuccessPage({ incorrectGuesses, correctGuesses, name,
             <BorderingCountriesStats updateStatsCallback={updateStats} />
             <div className='btn-container'>
                 <StartNewGame buttonText='Play again' />
-                <Stats />
             </div>
         </div>
     );

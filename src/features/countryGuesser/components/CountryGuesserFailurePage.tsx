@@ -1,6 +1,5 @@
 import StartNewGame from '../../../components/layout/StartNewGame';
 import CountryGuesserStats from './CountryGuesserStats';
-import Stats from '../../../components/layout/Stats';
 
 interface CountryGuesserFailurePageProps {
     name: string;
@@ -96,7 +95,6 @@ function CountryGuesserFailurePage(props: CountryGuesserFailurePageProps) {
             <CountryGuesserStats updateStatsCallback={updateStats} />
             <div className='btn-container'>
                 <StartNewGame buttonText='Try again' />
-                <Stats />
             </div>
         </div>
     );

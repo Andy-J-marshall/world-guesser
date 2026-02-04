@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { StatsDisplay } from '../../../components/layout/Stats';
 
 interface StatsResult {
     numberOfWins: number;
@@ -11,18 +12,14 @@ interface CountryGuesserStatsProps {
     updateStatsCallback: () => StatsResult;
 }
 
-function CountryGuesserStats(props: CountryGuesserStatsProps) {
-    const updateStats = props.updateStatsCallback;
-
+function CountryGuesserStats({ updateStatsCallback }: CountryGuesserStatsProps) {
     const [numberOfWins, setNumberOfWins] = useState(0);
     const [numberOfAttempts, setNumberOfAttempts] = useState(0);
     const [numberOfGames, setNumberOfGames] = useState(0);
     const [streak, setStreak] = useState(0);
 
-    const called = true;
-
     useEffect(() => {
-        const { numberOfWins, numberOfGames, numberOfAttempts, streak } = updateStats();
+        const { numberOfWins, numberOfGames, numberOfAttempts, streak } = updateStatsCallback();
         setNumberOfWins(numberOfWins);
         setNumberOfGames(numberOfGames);
         setNumberOfAttempts(numberOfAttempts);
@@ -36,127 +33,46 @@ function CountryGuesserStats(props: CountryGuesserStatsProps) {
         } catch (error) {
             console.log('Unable to update stats');
         }
-    }, [called]);
+    }, [updateStatsCallback]);
 
-    return (
-        <div id='country-guesser-stats' style={{ maxWidth: '700px', margin: '0 auto', marginTop: 'var(--spacing-xl)' }}>
-            {numberOfAttempts > 0 && numberOfGames > 0 && (
-                <div
-                    style={{
-                        background: 'rgba(30, 41, 59, 0.6)',
-                        borderRadius: 'var(--border-radius-lg)',
-                        padding: 'var(--spacing-xl)',
-                        border: '1px solid rgba(129, 140, 248, 0.3)',
-                        backdropFilter: 'blur(10px)',
-                    }}
-                >
-                    <h2
-                        style={{
-                            marginBottom: 'var(--spacing-lg)',
-                            color: 'var(--color-primary-light)',
-                            textAlign: 'center',
-                        }}
-                    >
-                        Stats
-                    </h2>
+    if (numberOfAttempts === 0 || numberOfGames === 0) {
+        return null;
+    }
 
-                    <div
-                        style={{
-                            display: 'grid',
-                            gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))',
-                            gap: 'var(--spacing-md)',
-                            marginBottom: numberOfWins > 0 && streak > 0 ? 'var(--spacing-lg)' : '0',
-                        }}
-                    >
-                        <div
-                            style={{
-                                background: 'rgba(129, 140, 248, 0.1)',
-                                padding: 'var(--spacing-md)',
-                                borderRadius: 'var(--border-radius-md)',
-                                border: '1px solid rgba(129, 140, 248, 0.2)',
-                                textAlign: 'center',
-                            }}
-                        >
-                            <p
-                                className='large-stat'
-                                style={{
-                                    fontWeight: '700',
-                                    color: 'var(--color-primary-light)',
-                                    margin: '0 0 var(--spacing-xs) 0',
-                                }}
-                            >
-                                {numberOfGames}
-                            </p>
-                            <p
-                                className='small-text'
-                                style={{
-                                    color: 'var(--color-text-secondary)',
-                                    margin: 0,
-                                }}
-                            >
-                                Games
-                            </p>
-                        </div>
+    const stats = [
+        {
+            value: numberOfGames,
+            label: 'Games',
+            color: 'var(--color-primary-light)',
+            backgroundColor: 'rgba(129, 140, 248, 0.1)',
+        },
+        {
+            value: numberOfWins,
+            label: 'Wins',
+            color: 'var(--color-success)',
+            backgroundColor: 'rgba(52, 211, 153, 0.1)',
+        },
+        {
+            value: numberOfAttempts,
+            label: 'Total Guesses',
+            color: 'rgb(251, 191, 36)',
+            backgroundColor: 'rgba(251, 191, 36, 0.1)',
+        },
+        {
+            value: (numberOfAttempts / numberOfGames).toFixed(1),
+            label: 'Average Guesses',
+            color: 'rgb(59, 130, 246)',
+            backgroundColor: 'rgba(59, 130, 246, 0.1)',
+        },
+        {
+            value: `${Math.round((numberOfWins / numberOfGames) * 100)}%`,
+            label: 'Win Rate',
+            color: 'rgb(168, 85, 247)',
+            backgroundColor: 'rgba(168, 85, 247, 0.1)',
+        },
+    ];
 
-                        <div
-                            style={{
-                                background: 'rgba(52, 211, 153, 0.1)',
-                                padding: 'var(--spacing-md)',
-                                borderRadius: 'var(--border-radius-md)',
-                                border: '1px solid rgba(52, 211, 153, 0.2)',
-                                textAlign: 'center',
-                            }}
-                        >
-                            <p
-                                className='large-stat'
-                                style={{
-                                    fontWeight: '700',
-                                    color: 'var(--color-success)',
-                                    margin: '0 0 var(--spacing-xs) 0',
-                                }}
-                            >
-                                {numberOfWins}
-                            </p>
-                            <p
-                                className='small-text'
-                                style={{
-                                    color: 'var(--color-text-secondary)',
-                                    margin: 0,
-                                }}
-                            >
-                                Wins
-                            </p>
-                        </div>
-                    </div>
-
-                    {numberOfWins > 0 && streak > 0 && (
-                        <div
-                            style={{
-                                background:
-                                    'linear-gradient(135deg, rgba(192, 132, 252, 0.15), rgba(129, 140, 248, 0.15))',
-                                padding: 'var(--spacing-md)',
-                                borderRadius: 'var(--border-radius-md)',
-                                border: '1px solid rgba(192, 132, 252, 0.3)',
-                                textAlign: 'center',
-                            }}
-                        >
-                            <p
-                                style={{
-                                    color: 'var(--color-text-primary)',
-                                    fontWeight: '600',
-                                    margin: 0,
-                                }}
-                            >
-                                You are on a{' '}
-                                <span style={{ color: 'var(--color-secondary)', fontWeight: '700' }}>{streak}</span>{' '}
-                                game winning streak!
-                            </p>
-                        </div>
-                    )}
-                </div>
-            )}
-        </div>
-    );
+    return <StatsDisplay title='Stats' stats={stats} streak={numberOfWins > 0 ? streak : undefined} />;
 }
 
 export default CountryGuesserStats;

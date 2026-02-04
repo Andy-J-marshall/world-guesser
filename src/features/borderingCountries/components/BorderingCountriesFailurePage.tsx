@@ -1,6 +1,5 @@
 import StartNewGame from '../../../components/layout/StartNewGame';
 import BorderingCountriesStats from './BorderingCountriesStats';
-import Stats from '../../../components/layout/Stats';
 import { capitalizeText } from '../../../lib/utils';
 
 interface BorderingCountriesFailurePageProps {
@@ -104,7 +103,6 @@ function BorderingCountriesFailurePage({
             <BorderingCountriesStats updateStatsCallback={updateStats} />
             <div className='btn-container'>
                 <StartNewGame buttonText='Try again' />
-                <Stats />
             </div>
         </div>
     );

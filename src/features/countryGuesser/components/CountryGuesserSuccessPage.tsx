@@ -3,7 +3,6 @@ import BorderingCountriesGuesser from '../../borderingCountries/components/Borde
 import Button from '../../../components/ui/Button';
 import StartNewGame from '../../../components/layout/StartNewGame';
 import CountryGuesserStats from './CountryGuesserStats';
-import Stats from '../../../components/layout/Stats';
 
 interface CountryGuesserSuccessPageProps {
     countriesInfo: any;
@@ -51,7 +50,7 @@ function CountryGuesserSuccessPage(props: CountryGuesserSuccessPageProps) {
             {!newGameStarted && (
                 <div className='fade-in'>
                     <div id='successful-country-game' style={{ maxWidth: '700px', margin: '0 auto' }}>
-                        <h2 className='success-title'>🎉 Success!</h2>
+                        <h2 className='success-title'>Success!</h2>
                         {incorrectCount === 0 && (
                             <h3
                                 style={{
@@ -140,7 +139,6 @@ function CountryGuesserSuccessPage(props: CountryGuesserSuccessPageProps) {
                     {borderingCountries.length > 0 && (
                         <Button callback={startBorderingCountriesGame} buttonText='Guess the bordering countries' />
                     )}
-                    <Stats />
                 </div>
             )}
 
