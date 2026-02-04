@@ -4,9 +4,9 @@
   "scripts": {
     "dev": "vite",
     "start": "vite",
-    "build": "vite build",
     "preview": "vite preview",
-    "deploy": "gh-pages -d dist",
+    "build": "vite build",
+    "deploy": "npm run build && gh-pages -d dist",
     "tests": "npx playwright test",
     "tests:debug": "npx playwright test --debug",
     "test-report": "npx playwright show-report",
