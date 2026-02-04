@@ -1,11 +1,11 @@
 interface ValidationErrorsProps {
     duplicateGuess?: boolean;
     knownCountry?: boolean;
-    children?: React.ReactNode;
+    actualCountry?: boolean;
 }
 
-function ValidationErrors({ duplicateGuess, knownCountry, children }: ValidationErrorsProps) {
-    if (!duplicateGuess && knownCountry && !children) {
+function ValidationErrors({ duplicateGuess, knownCountry, actualCountry }: ValidationErrorsProps) {
+    if (!duplicateGuess && knownCountry && !actualCountry) {
         return null;
     }
 
@@ -23,7 +23,7 @@ function ValidationErrors({ duplicateGuess, knownCountry, children }: Validation
         >
             {duplicateGuess && <p style={{ margin: 0 }}>You've already tried that country!</p>}
             {!knownCountry && <p style={{ margin: 0 }}>Enter a valid country name</p>}
-            {children}
+            {actualCountry && <p style={{ margin: 0 }}>That's the actual country! Guess the bordering ones instead</p>}
         </div>
     );
 }

@@ -4,7 +4,6 @@ import BorderingCountriesFailurePage from './BorderingCountriesFailurePage';
 import BorderingCountriesSuccessPage from './BorderingCountriesSuccessPage';
 import CountryForm from '../../../components/ui/CountryForm';
 import BorderingCountriesClue from './BorderingCountriesClue';
-import ValidationErrors from '../../../components/validation/BasicValidation';
 import checkValidGuess from '../../../lib/countryValidation';
 import { parseFormGuess } from '../../../lib/formUtils';
 import { capitalizeText } from '../../../lib/utils';
@@ -25,7 +24,6 @@ function BorderingCountriesGuesser({ name, borderingCountries, possibleCountries
             : 'There is 1 bordering country to find';
 
     const [correctGuesses, setCorrectGuesses] = useState<string[]>([]);
-    const [correctLastGuess, setCorrectLastGuess] = useState(false);
     const [incorrectGuesses, setIncorrectGuesses] = useState<string[]>([]);
     const [incorrectCount, setIncorrectCount] = useState(0);
     const [guesses, setGuesses] = useState<string[]>([]);
@@ -39,19 +37,20 @@ function BorderingCountriesGuesser({ name, borderingCountries, possibleCountries
 
     const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
-        setValue(['']);
 
         const guessedName = parseFormGuess(event);
-        let { isValidCountry, knownCountry, duplicateGuess } = checkValidGuess(guessedName, possibleCountries, guesses);
-
-        setCorrectLastGuess(false);
 
         if (guessedName === name.toLowerCase()) {
             setGuessedActualCountry(true);
+            setValue(['']);
             return;
         } else {
             setGuessedActualCountry(false);
         }
+
+        setValue(['']);
+
+        let { isValidCountry, knownCountry, duplicateGuess } = checkValidGuess(guessedName, possibleCountries, guesses);
 
         setKnownCountry(knownCountry);
         setDuplicateGuess(duplicateGuess);
@@ -65,14 +64,12 @@ function BorderingCountriesGuesser({ name, borderingCountries, possibleCountries
         const lowerCaseBorderingCountryArray = borderingCountries.map((country: string) => country.toLowerCase());
         if (lowerCaseBorderingCountryArray.includes(guessedName)) {
             setCorrectGuesses([...correctGuesses, guessedName]);
-            setCorrectLastGuess(true);
             if (correctGuesses.length + 1 === borderingCountries.length) {
                 setSucceeded(true);
             }
         } else {
             setIncorrectGuesses([...incorrectGuesses, guessedName]);
             setIncorrectCount(incorrectCount + 1);
-            setCorrectLastGuess(false);
         }
         setGuesses([...guesses, guessedName]);
     }
@@ -104,7 +101,7 @@ function BorderingCountriesGuesser({ name, borderingCountries, possibleCountries
             {!succeeded && !failed && (
                 <>
                     <div>
-                        <h2 style={{ marginBottom: 'var(--spacing-xl)' }}>{name}'s bordering Countries</h2>
+                        <h2 style={{ marginBottom: 'var(--spacing-lg)' }}>{name}'s bordering Countries</h2>
                         <p>{numberOfBorderingCountriesText}</p>
                     </div>
                     <div id='borders-form'>
@@ -115,22 +112,18 @@ function BorderingCountriesGuesser({ name, borderingCountries, possibleCountries
                             handleSubmit={handleSubmit}
                             duplicateGuess={duplicateGuess}
                             knownCountry={knownCountry}
+                            actualCountry={guessedActualCountry}
                         />
+                        {guesses.length > 0 && (
+                            <BorderingCountriesFeedback
+                                correctGuesses={correctGuesses}
+                                incorrectGuesses={incorrectGuesses}
+                                incorrectCount={incorrectCount}
+                                borderingCountriesCount={borderingCountries.length}
+                            />
+                        )}
                     </div>
                 </>
-            )}
-            {guesses.length > 0 && !failed && !succeeded && (
-                <BorderingCountriesFeedback
-                    correctGuesses={correctGuesses}
-                    incorrectGuesses={incorrectGuesses}
-                    incorrectCount={incorrectCount}
-                    borderingCountriesCount={borderingCountries.length}
-                />
-            )}
-            {!succeeded && !correctLastGuess && guessedActualCountry && (
-                <ValidationErrors>
-                    <p style={{ margin: 0 }}>That's the actual country! Guess the bordering ones instead</p>
-                </ValidationErrors>
             )}
             {!succeeded && !failed && clues && <BorderingCountriesClue clues={clues} />}
             {failed && !succeeded && (

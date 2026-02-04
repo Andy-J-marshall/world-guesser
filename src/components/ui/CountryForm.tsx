@@ -12,6 +12,7 @@ interface CountryFormProps {
     handleSubmit: (event: React.FormEvent<HTMLFormElement>) => void;
     duplicateGuess?: boolean;
     knownCountry?: boolean;
+    actualCountry?: boolean;
 }
 
 function CountryForm({
@@ -21,6 +22,7 @@ function CountryForm({
     handleSubmit,
     duplicateGuess = false,
     knownCountry = true,
+    actualCountry = false,
 }: CountryFormProps) {
     return (
         <Form onSubmit={handleSubmit}>
@@ -36,7 +38,11 @@ function CountryForm({
                     />
                 </Form.Group>
             </Fragment>
-            <ValidationErrors duplicateGuess={duplicateGuess} knownCountry={knownCountry} />
+            <ValidationErrors
+                actualCountry={actualCountry}
+                duplicateGuess={duplicateGuess}
+                knownCountry={knownCountry}
+            />
             <div className='btn-container'>
                 <Button id='guess-button' variant='light' type='submit'>
                     Guess
