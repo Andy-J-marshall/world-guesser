@@ -410,7 +410,7 @@ p.large-stat {
     display: flex;
     justify-content: center;
     gap: var(--spacing-md);
-    margin: var(--spacing-xl) 0;
+    margin: var(--spacing-sm) 0;
     flex-wrap: wrap;
 }
 
