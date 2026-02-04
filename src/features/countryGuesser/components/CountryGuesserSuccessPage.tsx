@@ -140,7 +140,7 @@ function CountryGuesserSuccessPage(props: CountryGuesserSuccessPageProps) {
                 {borderingCountries.length > 0 && !newGameStarted && (
                     <Button callback={startBorderingCountriesGame} buttonText='Guess the bordering countries' />
                 )}
-                <Stats />
+                {!newGameStarted && <Stats />}
             </div>
             {newGameStarted && borderingCountriesGameStarted && (
                 <BorderingCountriesGuesser
