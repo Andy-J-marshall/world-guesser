@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { StatsDisplay } from '../../../components/layout/Stats';
+import { StatsDisplay } from '../../../components/layout/StatsDisplay';
 
 interface StatsResult {
     numberOfWins: number;
