@@ -9,12 +9,13 @@ interface BorderingCountriesFailurePageProps {
     guesses: string[];
 }
 
-function BorderingCountriesFailurePage({ borderingCountries, correctGuesses, guesses }: BorderingCountriesFailurePageProps) {
+function BorderingCountriesFailurePage({
+    borderingCountries,
+    correctGuesses,
+    guesses,
+}: BorderingCountriesFailurePageProps) {
     const incorrectCount = guesses.length - correctGuesses.length;
     const borderingCountriesCount = borderingCountries.length;
-    const missingAnswersArray = borderingCountries.filter(
-        (countryGuess) => !correctGuesses.includes(countryGuess.toLowerCase()),
-    );
 
     function updateStats() {
         const numberOfWins = JSON.parse(localStorage.getItem('numberOfBorderWins') || '0') || 0;
@@ -42,12 +43,12 @@ function BorderingCountriesFailurePage({ borderingCountries, correctGuesses, gue
                         You failed. Better luck next time!
                     </p>
                     {correctGuesses.length === 0 && (
-                        <p  style={{ marginBottom: 'var(--spacing-lg)' }}>
+                        <p style={{ marginBottom: 'var(--spacing-lg)' }}>
                             You found none of the {borderingCountriesCount} bordering countries.
                         </p>
                     )}
                     {correctGuesses.length > 0 && (
-                        <p  style={{ marginBottom: 'var(--spacing-lg)' }}>
+                        <p style={{ marginBottom: 'var(--spacing-lg)' }}>
                             You found {correctGuesses.length} of {borderingCountriesCount} bordering countries.
                         </p>
                     )}
@@ -63,46 +64,14 @@ function BorderingCountriesFailurePage({ borderingCountries, correctGuesses, gue
                     >
                         {correctGuesses.length > 0 && (
                             <div style={{ marginBottom: 'var(--spacing-md)' }}>
-                                <p
-                                    style={{
-                                        color: 'var(--color-success)',
-                                        marginBottom: 'var(--spacing-xs)',
-                                        fontWeight: '600',
-                                    }}
-                                >
-                                    You found:
-                                </p>
+                                <p>You found:</p>
                                 <p style={{ color: 'var(--color-text-secondary)', textTransform: 'capitalize' }}>
                                     {capitalizeText(correctGuesses)}
                                 </p>
                             </div>
                         )}
-                        {missingAnswersArray && missingAnswersArray.length > 0 && (
-                            <div style={{ marginBottom: 'var(--spacing-md)' }}>
-                                <p
-                                    style={{
-                                        color: '#f87171',
-                                        marginBottom: 'var(--spacing-xs)',
-                                        fontWeight: '600',
-                                    }}
-                                >
-                                    You missed:
-                                </p>
-                                <p style={{ color: 'var(--color-text-secondary)', textTransform: 'capitalize' }}>
-                                    {capitalizeText(missingAnswersArray)}
-                                </p>
-                            </div>
-                        )}
                         <div>
-                            <p
-                                style={{
-                                    color: 'var(--color-text-primary)',
-                                    marginBottom: 'var(--spacing-xs)',
-                                    fontWeight: '600',
-                                }}
-                            >
-                                Your answer history:
-                            </p>
+                            <p>Your answer history:</p>
                             <div
                                 style={{
                                     display: 'flex',
