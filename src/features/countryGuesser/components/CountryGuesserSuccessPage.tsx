@@ -13,7 +13,6 @@ interface CountryGuesserSuccessPageProps {
     borderingCountries: string[];
     possibleCountries: string[];
     flag: string;
-    map: string;
 }
 
 function CountryGuesserSuccessPage(props: CountryGuesserSuccessPageProps) {
@@ -24,17 +23,12 @@ function CountryGuesserSuccessPage(props: CountryGuesserSuccessPageProps) {
     const borderingCountries = props.borderingCountries;
     const possibleCountries = props.possibleCountries;
     const flag = props.flag;
-    const map = props.map;
 
     const [newGameStarted, setNewGameStarted] = useState(false);
     const [borderingCountriesGameStarted, setBorderingCountriesGameStarted] = useState(false);
 
     function startBorderingCountriesGame() {
         setBorderingCountriesGameStarted(true);
-        setNewGameStarted(true);
-    }
-
-    async function startNewGame() {
         setNewGameStarted(true);
     }
 
@@ -65,16 +59,7 @@ function CountryGuesserSuccessPage(props: CountryGuesserSuccessPageProps) {
                                 marginBottom: 'var(--spacing-xl)',
                             }}
                         >
-                            Amazing! You got{' '}
-                            <a
-                                href={map}
-                                target='_blank'
-                                rel='noopener noreferrer'
-                                style={{ color: 'var(--color-primary-light)', textDecoration: 'underline' }}
-                            >
-                                {name}
-                            </a>{' '}
-                            in one!
+                            Amazing! You got {name} in one!
                         </h3>
                     )}
                     {incorrectCount > 0 && (
@@ -85,15 +70,7 @@ function CountryGuesserSuccessPage(props: CountryGuesserSuccessPageProps) {
                                 marginBottom: 'var(--spacing-xl)',
                             }}
                         >
-                            Well done! It took you {incorrectCount + 1} attempts to get{' '}
-                            <a
-                                href={map}
-                                target='_blank'
-                                rel='noopener noreferrer'
-                                style={{ color: 'var(--color-primary-light)', textDecoration: 'underline' }}
-                            >
-                                {name}
-                            </a>
+                            Well done! It took you {incorrectCount + 1} attempts to get {name}
                         </h3>
                     )}
                     {incorrectCount > 0 && (
@@ -171,7 +148,6 @@ function CountryGuesserSuccessPage(props: CountryGuesserSuccessPageProps) {
                     name={name}
                     borderingCountries={borderingCountries}
                     possibleCountries={possibleCountries}
-                    map={map}
                 />
             )}
         </div>

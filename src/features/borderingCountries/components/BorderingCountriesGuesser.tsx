@@ -16,18 +16,12 @@ interface BorderingCountriesGuesserProps {
     name: string;
     borderingCountries: string[];
     possibleCountries: string[];
-    map: string;
 }
 
-function BorderingCountriesGuesser({
-    name,
-    borderingCountries,
-    possibleCountries,
-    map,
-}: BorderingCountriesGuesserProps) {
+function BorderingCountriesGuesser({ name, borderingCountries, possibleCountries }: BorderingCountriesGuesserProps) {
     const numberOfBorderingCountriesText =
         borderingCountries.length > 1
-            ? `There are ${borderingCountries.length} bordering countries to find in total`
+            ? `There are ${borderingCountries.length} bordering countries to find`
             : 'There is 1 bordering country to find';
 
     const [correctGuesses, setCorrectGuesses] = useState<string[]>([]);
@@ -109,8 +103,7 @@ function BorderingCountriesGuesser({
         <div id='borders'>
             {!succeeded && !failed && (
                 <div>
-                    <h2>Bordering Countries</h2>
-                    <p>Your country is: {name}</p>
+                    <h2>{name}'s bordering Countries</h2>
                     <p>{numberOfBorderingCountriesText}</p>
                     <div id='borders-form'>
                         <CountryForm
@@ -141,7 +134,6 @@ function BorderingCountriesGuesser({
             {failed && !succeeded && (
                 <BorderingCountriesFailurePage
                     name={name}
-                    map={map}
                     correctGuesses={correctGuesses}
                     borderingCountries={borderingCountries}
                     guesses={guesses}
@@ -152,7 +144,6 @@ function BorderingCountriesGuesser({
                     correctGuesses={correctGuesses}
                     incorrectGuesses={incorrectGuesses}
                     name={name}
-                    map={map}
                     guesses={guesses}
                 />
             )}

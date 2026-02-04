@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import StartNewGame from '../../../components/layout/StartNewGame';
 import BorderingCountriesStats from './BorderingCountriesStats';
 import Stats from '../../../components/layout/Stats';
@@ -6,15 +5,13 @@ import { capitalizeText } from '../../../lib/utils';
 
 interface BorderingCountriesFailurePageProps {
     name: string;
-    map: string;
     borderingCountries: string[];
     correctGuesses: string[];
     guesses: string[];
 }
 
 function BorderingCountriesFailurePage(props: BorderingCountriesFailurePageProps) {
-    const name = props.name;
-    const map = props.map;
+    // TODO refactor to use props destructuring for bordering countries too
     const borderingCountries = props.borderingCountries;
     const correctGuesses = props.correctGuesses;
     const guesses = props.guesses;
@@ -24,8 +21,6 @@ function BorderingCountriesFailurePage(props: BorderingCountriesFailurePageProps
     const missingAnswersArray = borderingCountries.filter(
         (countryGuess) => !correctGuesses.includes(countryGuess.toLowerCase()),
     );
-
-    const [newGameStarted, setNewGameStarted] = useState(false);
 
     function updateStats() {
         const numberOfWins = JSON.parse(localStorage.getItem('numberOfBorderWins') || '0') || 0;
@@ -46,12 +41,9 @@ function BorderingCountriesFailurePage(props: BorderingCountriesFailurePageProps
 
     return (
         <div id='bordering-countries-failure-page'>
-            {borderingCountries && !newGameStarted && (
+            {borderingCountries && (
                 <div id='bordering-countries-failure'>
                     <p style={{ color: '#F66B0E' }}>You failed. Better luck next time</p>
-                    <p>
-                        See {name} on the <a href={map}>map</a>
-                    </p>
                     {correctGuesses.length === 0 && (
                         <p>You found none of the bordering countries and missed {borderingCountriesCount}</p>
                     )}
@@ -62,11 +54,11 @@ function BorderingCountriesFailurePage(props: BorderingCountriesFailurePageProps
                     )}
                     {correctGuesses.length > 0 && <p>You found: {capitalizeText(correctGuesses)}</p>}
                     {missingAnswersArray && <p>You missed: {capitalizeText(missingAnswersArray)}</p>}
-                    {<p>Your answer history was: {capitalizeText(guesses)}</p>}
+                    {<p>Your guesses were: {capitalizeText(guesses)}</p>}
                 </div>
             )}
-            {!newGameStarted && <br />}
-            {!newGameStarted && <BorderingCountriesStats updateStatsCallback={updateStats} />}
+            <br />
+            <BorderingCountriesStats updateStatsCallback={updateStats} />
             <div className='btn-container'>
                 <StartNewGame buttonText='Try again' />
                 <Stats />

@@ -10,7 +10,7 @@ import { CountryGuesserProps } from '../../../types';
 import { MAX_ATTEMPTS } from '../../../constants';
 
 function CountryGuesser({ countriesInfo, country, possibleCountries }: CountryGuesserProps) {
-    const { name, population, flag, landlocked, region, subregion, map, capital, borderingCountries } = country;
+    const { name, population, flag, landlocked, region, subregion, capital, borderingCountries } = country;
 
     const [correctGuess, setCorrectGuess] = useState(false);
     const [incorrectCount, setIncorrectCount] = useState(0);
@@ -165,7 +165,6 @@ function CountryGuesser({ countriesInfo, country, possibleCountries }: CountryGu
                 <CountryGuesserSuccessPage
                     countriesInfo={countriesInfo}
                     name={name}
-                    map={map}
                     flag={flag}
                     incorrectCount={incorrectCount}
                     guesses={guesses}
@@ -173,7 +172,7 @@ function CountryGuesser({ countriesInfo, country, possibleCountries }: CountryGu
                     possibleCountries={possibleCountries}
                 />
             )}
-            {failed && <CountryGuesserFailurePage name={name} map={map} flag={flag} guesses={guesses} />}
+            {failed && <CountryGuesserFailurePage name={name} flag={flag} guesses={guesses} />}
         </div>
     );
 }

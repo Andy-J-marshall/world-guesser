@@ -4,7 +4,7 @@ import { Country, CountryCodeMapping, CountriesInfo } from '../types';
 async function allCountriesRequest(): Promise<CountriesInfo | undefined> {
     try {
         const response = await axios.get<Country[]>(
-            `https://restcountries.com/v3.1/all?fields=name,independent,cca3,capital,landlocked,maps,population,flags,region,subregion`,
+            `https://restcountries.com/v3.1/all?fields=name,independent,cca3,capital,landlocked,borders,population,flags,region,subregion`,
         );
         const body = response.data;
 

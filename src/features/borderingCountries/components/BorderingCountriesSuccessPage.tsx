@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import StartNewGame from '../../../components/layout/StartNewGame';
 import BorderingCountriesStats from './BorderingCountriesStats';
 import Stats from '../../../components/layout/Stats';
@@ -8,7 +7,6 @@ interface BorderingCountriesSuccessPageProps {
     incorrectGuesses: string[];
     correctGuesses: string[];
     name: string;
-    map: string;
     guesses: string[];
 }
 
@@ -16,7 +14,6 @@ function BorderingCountriesSuccessPage(props: BorderingCountriesSuccessPageProps
     const incorrectGuesses = props.incorrectGuesses;
     const correctGuesses = props.correctGuesses;
     const name = props.name;
-    const map = props.map;
     const guesses = props.guesses;
     const incorrectCount = incorrectGuesses.length;
     const answerOrAnswers = incorrectCount === 1 ? 'answer' : 'answers';
@@ -25,8 +22,6 @@ function BorderingCountriesSuccessPage(props: BorderingCountriesSuccessPageProps
         correctGuesses.length === 1
             ? `Well done! You found the only bordering country of ${name} with ${incorrectCount} incorrect ${answerOrAnswers}`
             : `Well done! You found the ${correctGuesses.length} bordering countries of ${name} with ${incorrectCount} incorrect answers`;
-
-    const [newGameStarted, setNewGameStarted] = useState(false);
 
     function updateStats() {
         const numberOfWins = JSON.parse(localStorage.getItem('numberOfBorderWins') || '0') || 0;
@@ -48,17 +43,14 @@ function BorderingCountriesSuccessPage(props: BorderingCountriesSuccessPageProps
 
     return (
         <div>
-            {!newGameStarted && (
+            {
                 <div id='successful-bordering-countries-game'>
                     <h5 style={{ color: '#F66B0E' }}>{messageText}</h5>
-                    <p>
-                        See <a href={map}>{name}</a> on the map
-                    </p>
                     {<p>Your answer history was: {capitalizeText(guesses)}</p>}
                 </div>
-            )}
-            {!newGameStarted && <br />}
-            {!newGameStarted && <BorderingCountriesStats updateStatsCallback={updateStats} />}
+            }
+            {<br />}
+            {<BorderingCountriesStats updateStatsCallback={updateStats} />}
             <div className='btn-container'>
                 <StartNewGame buttonText='Play again' />
                 <Stats />

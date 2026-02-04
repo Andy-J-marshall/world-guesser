@@ -7,12 +7,9 @@ export interface Country {
     };
     independent?: boolean;
     cca3: string;
-    borders?: string[];
-    capital?: string[];
+    borders: string[];
+    capital: string[];
     landlocked: boolean;
-    maps: {
-        googleMaps: string;
-    };
     population: number;
     flags: {
         png: string;
@@ -28,7 +25,6 @@ export interface CountryInfo {
     borderingCountries: string[];
     capital: string;
     landlocked: string;
-    map: string;
     population: string;
     flag: string;
     region: string;

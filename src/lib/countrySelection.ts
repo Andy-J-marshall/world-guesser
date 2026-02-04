@@ -21,7 +21,6 @@ export function selectCountry(
         borderingCountries: getBorderingCountries(country.borders, countryCodeMapping),
         capital: capitalValue ? capitalizeString(capitalValue) : 'N/A',
         landlocked: country.landlocked ? 'Yes' : 'No',
-        map: country.maps.googleMaps,
         population: numberWithCommas(country.population),
         flag: country.flags.png,
         region: country.region,
