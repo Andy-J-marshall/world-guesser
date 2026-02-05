@@ -10,7 +10,7 @@ h1 {
     -webkit-text-fill-color: transparent;
     background-clip: text;
     margin: 0;
-    padding: var(--spacing-xl) 0 var(--spacing-md) 0;
+    padding: var(--spacing-xl) 0 var(--spacing-xs) 0;
     filter: drop-shadow(0 0 20px var(--color-shadow-primary-medium));
 }
 
@@ -19,7 +19,7 @@ h2 {
     font-weight: 700;
     color: var(--color-primary);
     margin: 0 auto var(--spacing-xl) auto;
-    padding: var(--spacing-lg) 0;
+    padding: var(--spacing-sm) 0;
     letter-spacing: -0.01em;
     text-align: center;
     max-width: 900px;
