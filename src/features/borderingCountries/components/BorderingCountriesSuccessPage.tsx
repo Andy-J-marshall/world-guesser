@@ -8,7 +8,12 @@ interface BorderingCountriesSuccessPageProps {
     guesses: string[];
 }
 
-function BorderingCountriesSuccessPage({ incorrectGuesses, correctGuesses, name, guesses }: BorderingCountriesSuccessPageProps) {
+function BorderingCountriesSuccessPage({
+    incorrectGuesses,
+    correctGuesses,
+    name,
+    guesses,
+}: BorderingCountriesSuccessPageProps) {
     const incorrectCount = incorrectGuesses.length;
     const answerOrAnswers = incorrectCount === 1 ? 'answer' : 'answers';
 
@@ -39,19 +44,19 @@ function BorderingCountriesSuccessPage({ incorrectGuesses, correctGuesses, name,
         <div className='fade-in'>
             <div id='successful-bordering-countries-game' className='game-container'>
                 <h2 className='success-title'>Success!</h2>
-                <h3 className='success-subtitle'>
-                    {messageText}
-                </h3>
+                <h3 className='success-subtitle'>{messageText}</h3>
                 <div className='answer-history-container'>
-                    <p className='answer-history-title'>
-                        Your answer history:
-                    </p>
+                    <p className='answer-history-title'>Your answer history:</p>
                     <div className='answer-history-grid'>
-                        {guesses.map((guess, index) => (
-                            <span key={index} className='small-text answer-badge'>
-                                {index + 1}. {guess}
-                            </span>
-                        ))}
+                        {guesses.map((guess, index) => {
+                            const isCorrect = correctGuesses.includes(guess);
+                            const badgeClass = isCorrect ? 'correct-badge' : 'incorrect-badge';
+                            return (
+                                <span key={index} className={`small-text answer-badge ${badgeClass}`}>
+                                    {index + 1}. {guess}
+                                </span>
+                            );
+                        })}
                     </div>
                 </div>
             </div>

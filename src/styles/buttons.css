@@ -5,8 +5,9 @@
     display: flex;
     justify-content: center;
     gap: var(--spacing-md);
-    margin: var(--spacing-sm) 0;
+    margin: var(--spacing-xl) 0;
     flex-wrap: wrap;
+    width: 100%;
 }
 
 .stats-panel {
@@ -26,6 +27,10 @@
     letter-spacing: 0.02em;
     text-transform: none;
     min-width: 200px;
+}
+
+#guess-button {
+    width: 100%;
 }
 
 .btn::before {

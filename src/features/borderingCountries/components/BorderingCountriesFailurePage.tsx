@@ -1,6 +1,5 @@
 import StartNewGame from '../../../components/layout/StartNewGame';
 import BorderingCountriesStats from './BorderingCountriesStats';
-import { capitalizeText } from '../../../lib/utils';
 
 interface BorderingCountriesFailurePageProps {
     borderingCountries: string[];
@@ -38,9 +37,7 @@ function BorderingCountriesFailurePage({
             {borderingCountries && (
                 <div id='bordering-countries-failure' className='game-container'>
                     <h2 className='game-over-title'>Game Over</h2>
-                    <p className='error-message failure-message'>
-                        You failed. Better luck next time!
-                    </p>
+                    <p className='error-message failure-message'>You failed. Better luck next time!</p>
                     {correctGuesses.length === 0 && (
                         <p className='failure-message'>
                             You found none of the {borderingCountriesCount} bordering countries.
@@ -56,19 +53,27 @@ function BorderingCountriesFailurePage({
                         {correctGuesses.length > 0 && (
                             <div className='answer-section'>
                                 <p>You found:</p>
-                                <p className='text-capitalize-list'>
-                                    {capitalizeText(correctGuesses)}
-                                </p>
+                                <div className='answer-history-grid'>
+                                    {correctGuesses.map((guess, index) => (
+                                        <span key={index} className='answer-badge correct-badge'>
+                                            {guess}
+                                        </span>
+                                    ))}
+                                </div>
                             </div>
                         )}
                         <div>
                             <p>Your answer history:</p>
                             <div className='answer-history-grid'>
-                                {guesses.map((guess, index) => (
-                                    <span key={index} className='small-text answer-badge'>
-                                        {index + 1}. {guess}
-                                    </span>
-                                ))}
+                                {guesses.map((guess, index) => {
+                                    const isCorrect = correctGuesses.includes(guess);
+                                    const badgeClass = isCorrect ? 'correct-badge' : 'incorrect-badge';
+                                    return (
+                                        <span key={index} className={`small-text answer-badge ${badgeClass}`}>
+                                            {index + 1}. {guess}
+                                        </span>
+                                    );
+                                })}
                             </div>
                         </div>
                     </div>

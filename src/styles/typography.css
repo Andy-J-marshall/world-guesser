@@ -19,6 +19,7 @@ h2 {
     font-weight: 700;
     color: var(--color-primary);
     margin: 0 auto var(--spacing-xl) auto;
+    padding: var(--spacing-lg) 0;
     letter-spacing: -0.01em;
     text-align: center;
     max-width: 900px;

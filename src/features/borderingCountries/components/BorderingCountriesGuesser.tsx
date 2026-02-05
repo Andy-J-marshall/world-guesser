@@ -3,10 +3,8 @@ import BorderingCountriesFeedback from './BorderingCountriesFeedback';
 import BorderingCountriesFailurePage from './BorderingCountriesFailurePage';
 import BorderingCountriesSuccessPage from './BorderingCountriesSuccessPage';
 import CountryForm from '../../../components/ui/CountryForm';
-import BorderingCountriesClue from './BorderingCountriesClue';
 import checkValidGuess from '../../../lib/countryValidation';
 import { parseFormGuess } from '../../../lib/formUtils';
-import { capitalizeText } from '../../../lib/utils';
 import { CountriesInfo } from '../../../types';
 import { MAX_ATTEMPTS_BORDERING_COUNTRIES } from '../../../constants';
 
@@ -18,11 +16,6 @@ interface BorderingCountriesGuesserProps {
 }
 
 function BorderingCountriesGuesser({ name, borderingCountries, possibleCountries }: BorderingCountriesGuesserProps) {
-    const numberOfBorderingCountriesText =
-        borderingCountries.length > 1
-            ? `There are ${borderingCountries.length} bordering countries to find`
-            : 'There is 1 bordering country to find';
-
     const [correctGuesses, setCorrectGuesses] = useState<string[]>([]);
     const [incorrectGuesses, setIncorrectGuesses] = useState<string[]>([]);
     const [incorrectCount, setIncorrectCount] = useState(0);
@@ -33,7 +26,6 @@ function BorderingCountriesGuesser({ name, borderingCountries, possibleCountries
     const [knownCountry, setKnownCountry] = useState(true);
     const [value, setValue] = useState<string[]>([]);
     const [guessedActualCountry, setGuessedActualCountry] = useState(false);
-    const [clues, setClues] = useState<string>();
 
     const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
@@ -74,26 +66,10 @@ function BorderingCountriesGuesser({ name, borderingCountries, possibleCountries
         setGuesses([...guesses, guessedName]);
     }
 
-    function findStartingLetterOfBorders() {
-        if (incorrectGuesses.length >= 4) {
-            const startingLetters: string[] = [];
-            borderingCountries.forEach((country: string) => {
-                if (!correctGuesses.includes(country.toLowerCase())) {
-                    const letter = country.charAt(0).toUpperCase();
-                    startingLetters.push(letter);
-                }
-            });
-            return capitalizeText(startingLetters);
-        }
-    }
-
     useEffect(() => {
         if (incorrectCount >= MAX_ATTEMPTS_BORDERING_COUNTRIES) {
             setFailed(true);
         }
-
-        const clues = findStartingLetterOfBorders();
-        setClues(clues);
     }, [incorrectCount, incorrectGuesses.length, correctGuesses]);
 
     return (
@@ -101,8 +77,7 @@ function BorderingCountriesGuesser({ name, borderingCountries, possibleCountries
             {!succeeded && !failed && (
                 <>
                     <div id='borders-form'>
-                        <h2 className='heading-margin-sm'>{name}'s bordering Countries</h2>
-                        <p className='heading-margin-lg'>{numberOfBorderingCountriesText}</p>
+                        <h2>Find {name}'s bordering countries</h2>
                         <CountryForm
                             possibleCountries={possibleCountries}
                             value={value}
@@ -123,7 +98,6 @@ function BorderingCountriesGuesser({ name, borderingCountries, possibleCountries
                     </div>
                 </>
             )}
-            {!succeeded && !failed && clues && <BorderingCountriesClue clues={clues} />}
             {failed && !succeeded && (
                 <BorderingCountriesFailurePage
                     correctGuesses={correctGuesses}
