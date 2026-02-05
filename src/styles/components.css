@@ -97,13 +97,13 @@
 .stats-display-card {
     background: var(--color-bg-card);
     border-radius: var(--border-radius-lg);
-    padding: var(--spacing-xl);
+    padding: var(--spacing-lg);
     border: 1px solid var(--color-border-primary);
     backdrop-filter: blur(10px);
 }
 
 .stats-display-title {
-    margin-bottom: var(--spacing-lg);
+    margin-bottom: var(--spacing-md);
     color: var(--color-primary-light);
     text-align: center;
 }
@@ -112,11 +112,6 @@
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: var(--spacing-md);
-    margin-bottom: 0;
-}
-
-.stats-display-grid.with-streak {
-    margin-bottom: var(--spacing-lg);
 }
 
 .stat-card {
