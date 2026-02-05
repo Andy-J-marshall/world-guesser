@@ -1,0 +1,23 @@
+/* ========================================
+   Utilities
+   ======================================== */
+.text-capitalize-list {
+    color: var(--color-text-secondary);
+    text-transform: capitalize;
+}
+
+.answer-section {
+    margin-bottom: var(--spacing-md);
+}
+
+.heading-margin-sm {
+    margin-bottom: var(--spacing-sm);
+}
+
+.heading-margin-lg {
+    margin-bottom: var(--spacing-lg);
+}
+
+.heading-margin-xl {
+    margin-bottom: var(--spacing-xl);
+}

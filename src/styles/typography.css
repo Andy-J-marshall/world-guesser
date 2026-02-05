@@ -1,0 +1,53 @@
+/* ========================================
+   Typography
+   ======================================== */
+h1 {
+    font-size: clamp(2.5rem, 6vw, 4.5rem);
+    font-weight: 800;
+    letter-spacing: -0.03em;
+    background: linear-gradient(135deg, var(--color-primary-light) 0%, var(--color-secondary) 50%, var(--color-accent) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin: 0;
+    padding: var(--spacing-2xl) 0 var(--spacing-xl) 0;
+    filter: drop-shadow(0 0 20px var(--color-shadow-primary-medium));
+}
+
+h2 {
+    font-size: clamp(1.75rem, 4vw, 2.5rem);
+    font-weight: 700;
+    color: var(--color-primary);
+    margin: 0 auto var(--spacing-3xl) auto;
+    letter-spacing: -0.01em;
+    text-align: center;
+    max-width: 900px;
+}
+
+h3 {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: var(--color-text-primary);
+    margin: var(--spacing-lg) 0;
+    letter-spacing: -0.01em;
+}
+
+p {
+    padding: var(--spacing-xs);
+    line-height: 1.6;
+    color: var(--color-text-secondary);
+    margin: var(--spacing-sm) 0;
+}
+
+p.error-message {
+    font-size: 1.3rem;
+    color: var(--color-error);
+}
+
+p.small-text {
+    font-size: 0.9rem;
+}
+
+p.large-stat {
+    font-size: 2rem;
+}

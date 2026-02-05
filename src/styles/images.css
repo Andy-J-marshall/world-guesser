@@ -1,0 +1,27 @@
+/* ========================================
+   Images
+   ======================================== */
+img[alt*='flag'] {
+    border-radius: var(--border-radius-lg);
+    box-shadow: 0 8px 32px var(--color-shadow-dark);
+    max-width: 100%;
+    height: auto;
+    margin: var(--spacing-xl) 0;
+    border: 2px solid var(--color-border-primary-light);
+    transition: all var(--transition-base);
+}
+
+img[alt*='flag']:hover {
+    transform: scale(1.02);
+    box-shadow: 0 12px 48px var(--color-shadow-dark-strong);
+    border-color: var(--color-border-primary-strong);
+}
+
+.flag-image {
+    max-width: 300px;
+    margin-top: var(--spacing-lg);
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    border-radius: var(--border-radius-lg);
+}

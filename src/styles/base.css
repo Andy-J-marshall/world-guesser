@@ -1,0 +1,78 @@
+/* ========================================
+   Base & Reset
+   ======================================== */
+* {
+    box-sizing: border-box;
+}
+
+body {
+    background: radial-gradient(ellipse at top, var(--color-bg-secondary) 0%, var(--color-bg-primary) 50%, var(--color-bg-darker) 100%);
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    min-height: 100vh;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    position: relative;
+}
+
+body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background:
+        radial-gradient(circle at 20% 30%, var(--color-overlay-ambient-1) 0%, transparent 50%),
+        radial-gradient(circle at 80% 70%, var(--color-overlay-ambient-2) 0%, transparent 50%);
+    pointer-events: none;
+    z-index: 0;
+}
+
+#root {
+    background: transparent;
+    color: var(--color-text-primary);
+    font-size: 18px;
+    min-height: 100vh;
+    margin: 0 auto;
+    text-align: center;
+    padding: 0;
+    position: relative;
+    z-index: 1;
+}
+
+/* Bootstrap Overrides */
+.container,
+.container-fluid,
+.col,
+[class*='col-'] {
+    background: transparent !important;
+}
+
+.row {
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+}
+
+.col,
+[class*='col-'] {
+    padding-left: var(--spacing-sm) !important;
+    padding-right: var(--spacing-sm) !important;
+}
+
+/* Accessibility */
+.visually-hidden {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border-width: 0;
+}
+
+*:focus-visible {
+    outline: 2px solid var(--color-primary);
+    outline-offset: 2px;
+}

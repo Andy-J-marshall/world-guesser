@@ -1,0 +1,72 @@
+/* ========================================
+   Buttons
+   ======================================== */
+.btn-container {
+    display: flex;
+    justify-content: center;
+    gap: var(--spacing-md);
+    margin: var(--spacing-sm) 0;
+    flex-wrap: wrap;
+}
+
+.stats-panel {
+    width: 100%;
+    flex-basis: 100%;
+}
+
+.btn {
+    border-radius: var(--border-radius-lg) !important;
+    font-weight: 600 !important;
+    padding: var(--spacing-lg) var(--spacing-3xl) !important;
+    font-size: 1.1rem !important;
+    transition: all var(--transition-base) !important;
+    border: none !important;
+    position: relative;
+    overflow: hidden;
+    letter-spacing: 0.02em;
+    text-transform: none;
+    min-width: 200px;
+}
+
+.btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, var(--color-overlay-white), transparent);
+    transition: left var(--transition-slow);
+}
+
+.btn:hover::before {
+    left: 100%;
+}
+
+.btn-light {
+    background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-secondary) 100%) !important;
+    color: var(--color-white) !important;
+    box-shadow: 0 4px 16px var(--color-shadow-primary-medium) !important;
+}
+
+.btn-light:hover {
+    transform: translateY(-2px) !important;
+    box-shadow: 0 8px 24px var(--color-shadow-primary-strong) !important;
+    background: linear-gradient(135deg, var(--color-primary-dark) 0%, var(--color-secondary) 100%) !important;
+}
+
+.btn-light:active {
+    transform: translateY(0) !important;
+    box-shadow: 0 2px 8px var(--color-shadow-primary-medium) !important;
+}
+
+.btn-primary {
+    background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-dark) 100%) !important;
+    border: none !important;
+    box-shadow: 0 4px 16px var(--color-shadow-primary-medium) !important;
+}
+
+.btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px var(--color-shadow-primary-strong) !important;
+}

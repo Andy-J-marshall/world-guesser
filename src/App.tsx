@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import Country from './components/layout/Country';
 import getAllCountriesRequest from './lib/countryApi';
-import './app.css';
+import './styles/index.css';
 
 function App() {
     const [countriesData, setCountriesData] = useState<any>();

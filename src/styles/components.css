@@ -1,0 +1,201 @@
+/* ========================================
+   Components
+   ======================================== */
+
+/* Cards */
+.card {
+    background: transparent;
+    backdrop-filter: none;
+    border: none;
+    border-radius: 0;
+    padding: 0;
+    margin: 0 auto;
+    box-shadow: none;
+    transition: all var(--transition-base);
+    max-width: 900px;
+    width: 100%;
+    position: relative;
+}
+
+.card::before {
+    display: none;
+}
+
+.card:hover {
+    transform: none;
+    box-shadow: none;
+    border-color: transparent;
+}
+
+/* Clue Boxes */
+.clue-box {
+    background: var(--color-bg-card-solid);
+    border: 1px solid var(--color-border-primary);
+    border-radius: var(--border-radius-lg);
+    padding: var(--spacing-xl);
+    transition: all var(--transition-base);
+    height: 170px;
+    position: relative;
+    overflow: hidden;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.clue-box::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, var(--color-overlay-primary-subtle) 0%, var(--color-overlay-secondary) 100%);
+    opacity: 0;
+    transition: opacity var(--transition-base);
+}
+
+.clue-box:hover {
+    background: linear-gradient(135deg, var(--color-overlay-primary) 0%, var(--color-overlay-secondary-strong) 100%);
+    border-color: var(--color-border-primary-strong);
+    transform: translateY(-4px) scale(1.02);
+    box-shadow: 0 8px 24px var(--color-shadow-primary);
+}
+
+.clue-box:hover::before {
+    opacity: 1;
+}
+
+.clue-box p {
+    margin: 0;
+    color: var(--color-white);
+    font-weight: 600;
+    font-size: 1.1rem;
+}
+
+.clue-box strong {
+    color: var(--color-primary-light);
+    display: block;
+    margin-bottom: var(--spacing-sm);
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    font-weight: 700;
+}
+
+.clue-flag {
+    width: 100%;
+    max-width: 90px;
+    display: block;
+    margin: 0 auto;
+}
+
+/* Stats Components */
+.stats-display-container {
+    max-width: 700px;
+    margin: var(--spacing-xl) auto 0;
+}
+
+.stats-display-card {
+    background: var(--color-bg-card);
+    border-radius: var(--border-radius-lg);
+    padding: var(--spacing-xl);
+    border: 1px solid var(--color-border-primary);
+    backdrop-filter: blur(10px);
+}
+
+.stats-display-title {
+    margin-bottom: var(--spacing-lg);
+    color: var(--color-primary-light);
+    text-align: center;
+}
+
+.stats-display-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--spacing-md);
+    margin-bottom: 0;
+}
+
+.stats-display-grid.with-streak {
+    margin-bottom: var(--spacing-lg);
+}
+
+.stat-card {
+    background: var(--color-bg-card-solid);
+    padding: var(--spacing-md);
+    border-radius: var(--border-radius-md);
+    border: 1px solid var(--color-border-success);
+    text-align: center;
+}
+
+.stat-card-value {
+    font-weight: 700;
+    margin: 0 0 var(--spacing-xs) 0;
+}
+
+.stat-card-label {
+    color: var(--color-text-secondary);
+    margin: 0;
+}
+
+#country-stats .list-group-item {
+    background: var(--color-bg-card-solid);
+    border: 1px solid var(--color-border-primary-light);
+    color: var(--color-text-secondary);
+    margin-bottom: var(--spacing-md);
+    border-radius: var(--border-radius-lg);
+    transition: all var(--transition-base);
+    padding: var(--spacing-lg);
+}
+
+#country-stats .list-group-item:hover {
+    background: var(--color-bg-hover);
+    border-color: var(--color-border-primary-strong);
+    transform: translateX(4px);
+}
+
+#country-stats .list-group-item b {
+    color: var(--color-primary-light);
+    font-size: 1.1em;
+}
+
+/* Answer History */
+.answer-history-container {
+    background: var(--color-overlay-primary);
+    border-radius: var(--border-radius-lg);
+    padding: var(--spacing-lg);
+    margin-bottom: var(--spacing-xl);
+    border: 1px solid var(--color-border-primary);
+}
+
+.answer-history-title {
+    color: var(--color-text-primary);
+    margin-bottom: var(--spacing-sm);
+    font-weight: 600;
+}
+
+.answer-history-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--spacing-sm);
+    justify-content: center;
+}
+
+.answer-badge {
+    background: var(--color-bg-card-solid);
+    padding: var(--spacing-xs) var(--spacing-md);
+    border-radius: var(--border-radius-md);
+    color: var(--color-text-secondary);
+    border: 1px solid var(--color-border-primary-light);
+    text-transform: capitalize;
+}
+
+/* Loading Spinner */
+.loading {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    border: 3px solid var(--color-border-primary-light);
+    border-radius: 50%;
+    border-top-color: var(--color-primary);
+    animation: spin 0.6s linear infinite;
+}

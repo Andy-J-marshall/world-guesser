@@ -1,0 +1,70 @@
+/* ========================================
+   Forms & Inputs
+   ======================================== */
+#borders-form,
+#country-form {
+    margin: var(--spacing-xs) auto;
+    width: 100%;
+    max-width: 600px;
+    padding: 0;
+}
+
+.form-group,
+.mb-3 {
+    margin-bottom: var(--spacing-lg);
+}
+
+.form-control,
+.rbt-input {
+    background: var(--color-bg-card-light) !important;
+    border: 1.5px solid var(--color-border-primary) !important;
+    border-radius: var(--border-radius-lg) !important;
+    color: var(--color-white) !important;
+    font-size: 1.1rem !important;
+    padding: var(--spacing-lg) var(--spacing-xl) !important;
+    transition: all var(--transition-base) !important;
+    backdrop-filter: blur(10px);
+    font-weight: 500;
+}
+
+.form-control:focus,
+.rbt-input:focus {
+    background: var(--color-bg-tertiary) !important;
+    border-color: var(--color-primary) !important;
+    box-shadow: 0 0 0 4px var(--color-overlay-primary-focus), 0 4px 12px var(--color-shadow-primary) !important;
+    outline: none !important;
+    transform: translateY(-1px);
+}
+
+.form-control::placeholder,
+.rbt-input::placeholder {
+    color: var(--color-text-placeholder) !important;
+    opacity: 1;
+}
+
+/* Typeahead Dropdown */
+.rbt-menu {
+    background: var(--color-bg-card-lighter) !important;
+    backdrop-filter: blur(20px) !important;
+    border: 1px solid var(--color-border-primary-light) !important;
+    border-radius: var(--border-radius-lg) !important;
+    box-shadow: 0 12px 32px var(--color-shadow-dark) !important;
+    margin-top: var(--spacing-sm) !important;
+    overflow: hidden;
+}
+
+.rbt-menu .dropdown-item {
+    color: var(--color-text-secondary) !important;
+    padding: var(--spacing-md) var(--spacing-lg) !important;
+    transition: all var(--transition-fast) !important;
+    font-weight: 500;
+    border-left: 3px solid transparent;
+}
+
+.rbt-menu .dropdown-item:hover,
+.rbt-menu .dropdown-item.active {
+    background: var(--color-overlay-primary) !important;
+    color: var(--color-text-primary) !important;
+    border-left-color: var(--color-primary);
+    transform: translateX(4px);
+}

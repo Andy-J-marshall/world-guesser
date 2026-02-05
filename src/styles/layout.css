@@ -1,0 +1,74 @@
+/* ========================================
+   Layout & Containers
+   ======================================== */
+#app {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: var(--spacing-xl);
+    text-align: center;
+}
+
+#header {
+    padding-bottom: var(--spacing-lg);
+    margin-bottom: var(--spacing-xs);
+    position: relative;
+}
+
+#header::after {
+    content: '';
+    position: absolute;
+    bottom: var(--spacing-xl);
+    left: 50%;
+    transform: translateX(-50%);
+    width: 120px;
+    height: 3px;
+    background: linear-gradient(90deg, transparent, var(--color-primary), var(--color-secondary), transparent);
+    border-radius: 2px;
+    box-shadow: 0 0 20px var(--color-shadow-primary-glow);
+}
+
+/* Game Sections */
+#country,
+#borders {
+    background: transparent;
+    color: var(--color-text-primary);
+    text-align: center;
+    padding: 0;
+    max-width: 900px;
+    margin: 0 auto;
+    width: 100%;
+}
+
+#country-guesser,
+#borders {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--spacing-2xl);
+    max-width: 900px;
+    margin: 0 auto;
+    width: 100%;
+}
+
+#country-info {
+    width: 100%;
+    max-width: 900px;
+}
+
+.game-container {
+    max-width: 700px;
+    margin: 0 auto;
+}
+
+#stats-page {
+    background: transparent;
+    padding: 0;
+    max-width: 900px;
+    margin: var(--spacing-3xl) auto;
+    text-align: center;
+}
+
+#country-stats {
+    background: transparent;
+    margin-top: var(--spacing-2xl);
+}
