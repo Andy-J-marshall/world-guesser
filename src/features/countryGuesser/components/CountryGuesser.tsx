@@ -70,7 +70,7 @@ function CountryGuesser({ countriesInfo, country, possibleCountries }: CountryGu
             {!failed && !correctGuess && (
                 <>
                     <div id='country-info'>
-                        <h2 style={{ marginBottom: 'var(--spacing-xl)' }}>Guess the Mystery Country</h2>
+                        <h2 className='heading-margin-xl'>Guess the Mystery Country</h2>
                         <Container>
                             <Row className='g-3 justify-content-center'>
                                 <Col md={6} lg={3}>
@@ -117,12 +117,7 @@ function CountryGuesser({ countriesInfo, country, possibleCountries }: CountryGu
                                                 id='flag'
                                                 src={flag}
                                                 alt='Country Flag'
-                                                style={{
-                                                    width: '100%',
-                                                    maxWidth: '90px',
-                                                    display: 'block',
-                                                    margin: '0 auto',
-                                                }}
+                                                className='clue-flag'
                                             />
                                         </div>
                                     </Col>

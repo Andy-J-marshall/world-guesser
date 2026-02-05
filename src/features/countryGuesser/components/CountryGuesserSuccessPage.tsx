@@ -49,67 +49,26 @@ function CountryGuesserSuccessPage(props: CountryGuesserSuccessPageProps) {
         <>
             {!newGameStarted && (
                 <div className='fade-in'>
-                    <div id='successful-country-game' style={{ maxWidth: '700px', margin: '0 auto' }}>
+                    <div id='successful-country-game' className='game-container'>
                         <h2 className='success-title'>Success!</h2>
                         {incorrectCount === 0 && (
-                            <h3
-                                style={{
-                                    color: 'var(--color-success)',
-                                    marginBottom: 'var(--spacing-xl)',
-                                }}
-                            >
+                            <h3 className='success-subtitle'>
                                 Amazing! You got {name} in one!
                             </h3>
                         )}
                         {incorrectCount > 0 && (
-                            <h3
-                                style={{
-                                    color: 'var(--color-success)',
-                                    marginBottom: 'var(--spacing-xl)',
-                                }}
-                            >
+                            <h3 className='success-subtitle'>
                                 Well done! It took you {incorrectCount + 1} attempts to get {name}
                             </h3>
                         )}
                         {incorrectCount > 0 && (
-                            <div
-                                style={{
-                                    background: 'rgba(129, 140, 248, 0.15)',
-                                    borderRadius: 'var(--border-radius-lg)',
-                                    padding: 'var(--spacing-lg)',
-                                    marginBottom: 'var(--spacing-xl)',
-                                    border: '1px solid rgba(129, 140, 248, 0.3)',
-                                }}
-                            >
-                                <p
-                                    style={{
-                                        color: 'var(--color-text-primary)',
-                                        marginBottom: 'var(--spacing-sm)',
-                                        fontWeight: '600',
-                                    }}
-                                >
+                            <div className='answer-history-container'>
+                                <p className='answer-history-title'>
                                     Your answer history:
                                 </p>
-                                <div
-                                    style={{
-                                        display: 'flex',
-                                        flexWrap: 'wrap',
-                                        gap: 'var(--spacing-sm)',
-                                        justifyContent: 'center',
-                                    }}
-                                >
+                                <div className='answer-history-grid'>
                                     {guesses.map((guess, index) => (
-                                        <span
-                                            key={index}
-                                            style={{
-                                                background: 'rgba(30, 41, 59, 0.8)',
-                                                padding: 'var(--spacing-xs) var(--spacing-md)',
-                                                borderRadius: 'var(--border-radius-md)',
-                                                color: 'var(--color-text-secondary)',
-                                                border: '1px solid rgba(129, 140, 248, 0.2)',
-                                                textTransform: 'capitalize',
-                                            }}
-                                        >
+                                        <span key={index} className='answer-badge'>
                                             {index + 1}. {guess}
                                         </span>
                                     ))}
@@ -119,14 +78,7 @@ function CountryGuesserSuccessPage(props: CountryGuesserSuccessPageProps) {
                         <img
                             src={flag}
                             alt='Country Flag'
-                            style={{
-                                maxWidth: '300px',
-                                marginTop: 'var(--spacing-lg)',
-                                display: 'block',
-                                marginLeft: 'auto',
-                                marginRight: 'auto',
-                                borderRadius: 'var(--border-radius-lg)',
-                            }}
+                            className='flag-image'
                         />
                     </div>
                     {!newGameStarted && <CountryGuesserStats updateStatsCallback={updateStats} />}

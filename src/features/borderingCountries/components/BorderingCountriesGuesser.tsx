@@ -101,8 +101,8 @@ function BorderingCountriesGuesser({ name, borderingCountries, possibleCountries
             {!succeeded && !failed && (
                 <>
                     <div id='borders-form'>
-                        <h2 style={{ marginBottom: 'var(--spacing-sm)' }}>{name}'s bordering Countries</h2>
-                        <p style={{ marginBottom: 'var(--spacing-lg)' }}>{numberOfBorderingCountriesText}</p>
+                        <h2 className='heading-margin-sm'>{name}'s bordering Countries</h2>
+                        <p className='heading-margin-lg'>{numberOfBorderingCountriesText}</p>
                         <CountryForm
                             possibleCountries={possibleCountries}
                             value={value}

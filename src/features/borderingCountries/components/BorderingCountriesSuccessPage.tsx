@@ -37,55 +37,18 @@ function BorderingCountriesSuccessPage({ incorrectGuesses, correctGuesses, name,
 
     return (
         <div className='fade-in'>
-            <div id='successful-bordering-countries-game' style={{ maxWidth: '700px', margin: '0 auto' }}>
+            <div id='successful-bordering-countries-game' className='game-container'>
                 <h2 className='success-title'>Success!</h2>
-                <h3
-                    style={{
-                        color: 'var(--color-success)',
-                        marginBottom: 'var(--spacing-xl)',
-                    }}
-                >
+                <h3 className='success-subtitle'>
                     {messageText}
                 </h3>
-                <div
-                    style={{
-                        background: 'rgba(129, 140, 248, 0.15)',
-                        borderRadius: 'var(--border-radius-lg)',
-                        padding: 'var(--spacing-lg)',
-                        marginBottom: 'var(--spacing-xl)',
-                        border: '1px solid rgba(129, 140, 248, 0.3)',
-                    }}
-                >
-                    <p
-                        style={{
-                            color: 'var(--color-text-primary)',
-                            marginBottom: 'var(--spacing-sm)',
-                            fontWeight: '600',
-                        }}
-                    >
+                <div className='answer-history-container'>
+                    <p className='answer-history-title'>
                         Your answer history:
                     </p>
-                    <div
-                        style={{
-                            display: 'flex',
-                            flexWrap: 'wrap',
-                            gap: 'var(--spacing-sm)',
-                            justifyContent: 'center',
-                        }}
-                    >
+                    <div className='answer-history-grid'>
                         {guesses.map((guess, index) => (
-                            <span
-                                key={index}
-                                className='small-text'
-                                style={{
-                                    background: 'rgba(30, 41, 59, 0.8)',
-                                    padding: 'var(--spacing-xs) var(--spacing-md)',
-                                    borderRadius: 'var(--border-radius-md)',
-                                    color: 'var(--color-text-secondary)',
-                                    border: '1px solid rgba(129, 140, 248, 0.2)',
-                                    textTransform: 'capitalize',
-                                }}
-                            >
+                            <span key={index} className='small-text answer-badge'>
                                 {index + 1}. {guess}
                             </span>
                         ))}

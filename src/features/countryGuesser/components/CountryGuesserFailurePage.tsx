@@ -27,52 +27,20 @@ function CountryGuesserFailurePage(props: CountryGuesserFailurePageProps) {
 
     return (
         <div id='country-guesser-failure-page' className='fade-in'>
-            <div id='country-failure' style={{ maxWidth: '700px', margin: '0 auto' }}>
+            <div id='country-failure' className='game-container'>
                 <h2 className='game-over-title'>Game Over</h2>
-                <p className='error-message' style={{ marginBottom: 'var(--spacing-lg)' }}>
+                <p className='error-message failure-message'>
                     You failed. Better luck next time!
                 </p>
-                <p style={{ marginBottom: 'var(--spacing-lg)' }}>The answer was {name}.</p>
+                <p className='failure-message'>The answer was {name}.</p>
 
-                <div
-                    style={{
-                        background: 'rgba(129, 140, 248, 0.15)',
-                        borderRadius: 'var(--border-radius-lg)',
-                        padding: 'var(--spacing-lg)',
-                        marginBottom: 'var(--spacing-xl)',
-                        border: '1px solid rgba(129, 140, 248, 0.3)',
-                    }}
-                >
-                    <p
-                        style={{
-                            color: 'var(--color-text-primary)',
-                            marginBottom: 'var(--spacing-sm)',
-                            fontWeight: '600',
-                        }}
-                    >
+                <div className='answer-history-container'>
+                    <p className='answer-history-title'>
                         Your answer history:
                     </p>
-                    <div
-                        style={{
-                            display: 'flex',
-                            flexWrap: 'wrap',
-                            gap: 'var(--spacing-sm)',
-                            justifyContent: 'center',
-                        }}
-                    >
+                    <div className='answer-history-grid'>
                         {guesses.map((guess, index) => (
-                            <span
-                                key={index}
-                                className='small-text'
-                                style={{
-                                    background: 'rgba(30, 41, 59, 0.8)',
-                                    padding: 'var(--spacing-xs) var(--spacing-md)',
-                                    borderRadius: 'var(--border-radius-md)',
-                                    color: 'var(--color-text-secondary)',
-                                    border: '1px solid rgba(129, 140, 248, 0.2)',
-                                    textTransform: 'capitalize',
-                                }}
-                            >
+                            <span key={index} className='small-text answer-badge'>
                                 {index + 1}. {guess}
                             </span>
                         ))}
@@ -82,14 +50,7 @@ function CountryGuesserFailurePage(props: CountryGuesserFailurePageProps) {
                 <img
                     src={flag}
                     alt='Country Flag'
-                    style={{
-                        maxWidth: '300px',
-                        marginTop: 'var(--spacing-lg)',
-                        display: 'block',
-                        marginLeft: 'auto',
-                        marginRight: 'auto',
-                        borderRadius: 'var(--border-radius-lg)',
-                    }}
+                    className='flag-image'
                 />
             </div>
             <CountryGuesserStats updateStatsCallback={updateStats} />

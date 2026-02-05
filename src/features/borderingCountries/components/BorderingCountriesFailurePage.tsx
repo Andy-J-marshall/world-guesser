@@ -36,62 +36,36 @@ function BorderingCountriesFailurePage({
     return (
         <div id='bordering-countries-failure-page' className='fade-in'>
             {borderingCountries && (
-                <div id='bordering-countries-failure' style={{ maxWidth: '700px', margin: '0 auto' }}>
+                <div id='bordering-countries-failure' className='game-container'>
                     <h2 className='game-over-title'>Game Over</h2>
-                    <p className='error-message' style={{ marginBottom: 'var(--spacing-lg)' }}>
+                    <p className='error-message failure-message'>
                         You failed. Better luck next time!
                     </p>
                     {correctGuesses.length === 0 && (
-                        <p style={{ marginBottom: 'var(--spacing-lg)' }}>
+                        <p className='failure-message'>
                             You found none of the {borderingCountriesCount} bordering countries.
                         </p>
                     )}
                     {correctGuesses.length > 0 && (
-                        <p style={{ marginBottom: 'var(--spacing-lg)' }}>
+                        <p className='failure-message'>
                             You found {correctGuesses.length} of {borderingCountriesCount} bordering countries.
                         </p>
                     )}
 
-                    <div
-                        style={{
-                            background: 'rgba(129, 140, 248, 0.15)',
-                            borderRadius: 'var(--border-radius-lg)',
-                            padding: 'var(--spacing-lg)',
-                            marginBottom: 'var(--spacing-xl)',
-                            border: '1px solid rgba(129, 140, 248, 0.3)',
-                        }}
-                    >
+                    <div className='answer-history-container'>
                         {correctGuesses.length > 0 && (
-                            <div style={{ marginBottom: 'var(--spacing-md)' }}>
+                            <div className='answer-section'>
                                 <p>You found:</p>
-                                <p style={{ color: 'var(--color-text-secondary)', textTransform: 'capitalize' }}>
+                                <p className='text-capitalize-list'>
                                     {capitalizeText(correctGuesses)}
                                 </p>
                             </div>
                         )}
                         <div>
                             <p>Your answer history:</p>
-                            <div
-                                style={{
-                                    display: 'flex',
-                                    flexWrap: 'wrap',
-                                    gap: 'var(--spacing-sm)',
-                                    justifyContent: 'center',
-                                }}
-                            >
+                            <div className='answer-history-grid'>
                                 {guesses.map((guess, index) => (
-                                    <span
-                                        key={index}
-                                        className='small-text'
-                                        style={{
-                                            background: 'rgba(30, 41, 59, 0.8)',
-                                            padding: 'var(--spacing-xs) var(--spacing-md)',
-                                            borderRadius: 'var(--border-radius-md)',
-                                            color: 'var(--color-text-secondary)',
-                                            border: '1px solid rgba(129, 140, 248, 0.2)',
-                                            textTransform: 'capitalize',
-                                        }}
-                                    >
+                                    <span key={index} className='small-text answer-badge'>
                                         {index + 1}. {guess}
                                     </span>
                                 ))}
