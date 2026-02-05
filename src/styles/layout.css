@@ -9,7 +9,7 @@
 }
 
 #header {
-    padding-bottom: var(--spacing-lg);
+    padding-bottom: var(--spacing-md);
     margin-bottom: var(--spacing-xs);
     position: relative;
 }
@@ -17,7 +17,7 @@
 #header::after {
     content: '';
     position: absolute;
-    bottom: var(--spacing-xl);
+    bottom: var(--spacing-md);
     left: 50%;
     transform: translateX(-50%);
     width: 120px;
