@@ -60,10 +60,10 @@ function BorderingCountriesSuccessPage({
                     </div>
                 </div>
             </div>
-            <BorderingCountriesStats updateStatsCallback={updateStats} />
             <div className='btn-container'>
                 <StartNewGame buttonText='Play again' />
             </div>
+            <BorderingCountriesStats updateStatsCallback={updateStats} />
         </div>
     );
 }

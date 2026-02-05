@@ -79,10 +79,10 @@ function BorderingCountriesFailurePage({
                     </div>
                 </div>
             )}
-            <BorderingCountriesStats updateStatsCallback={updateStats} />
             <div className='btn-container'>
                 <StartNewGame buttonText='Try again' />
             </div>
+            <BorderingCountriesStats updateStatsCallback={updateStats} />
         </div>
     );
 }
