@@ -122,20 +122,3 @@
 .validation-error-message {
     margin: 0;
 }
-
-/* Text Status Messages */
-.text-success {
-    color: var(--color-success) !important;
-    font-weight: 600;
-}
-
-.text-danger,
-.text-error {
-    color: var(--color-error) !important;
-    font-weight: 600;
-}
-
-.text-warning {
-    color: var(--color-warning) !important;
-    font-weight: 600;
-}

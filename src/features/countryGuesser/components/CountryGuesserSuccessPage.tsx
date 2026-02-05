@@ -51,21 +51,15 @@ function CountryGuesserSuccessPage(props: CountryGuesserSuccessPageProps) {
                 <div className='fade-in'>
                     <div id='successful-country-game' className='game-container'>
                         <h2 className='success-title'>Success!</h2>
-                        {incorrectCount === 0 && (
-                            <h3 className='success-subtitle'>
-                                Amazing! You got {name} in one!
-                            </h3>
-                        )}
+                        {incorrectCount === 0 && <p>Amazing! You got {name} in one!</p>}
                         {incorrectCount > 0 && (
-                            <h3 className='success-subtitle'>
-                                Well done! It took you {incorrectCount + 1} attempts to get {name}
-                            </h3>
+                            <p>
+                                Well done! It took you {guesses.length} attempts to get {name}
+                            </p>
                         )}
                         {incorrectCount > 0 && (
                             <div className='answer-history-container'>
-                                <p className='answer-history-title'>
-                                    Your answer history:
-                                </p>
+                                <p className='answer-history-title'>Your answer history:</p>
                                 <div className='answer-history-grid'>
                                     {guesses.map((guess, index) => (
                                         <span key={index} className='answer-badge'>
@@ -75,21 +69,19 @@ function CountryGuesserSuccessPage(props: CountryGuesserSuccessPageProps) {
                                 </div>
                             </div>
                         )}
-                        <img
-                            src={flag}
-                            alt='Country Flag'
-                            className='flag-image'
-                        />
+                        <img src={flag} alt='Country Flag' className='flag-image' />
                     </div>
                     {!newGameStarted && <CountryGuesserStats updateStatsCallback={updateStats} />}
                 </div>
             )}
-
             {!newGameStarted && (
                 <div className='btn-container'>
                     {!borderingCountriesGameStarted && <StartNewGame buttonText='Play again' />}
                     {borderingCountries.length > 0 && (
-                        <Button callback={startBorderingCountriesGame} buttonText='Guess the bordering countries' />
+                        <Button
+                            callback={startBorderingCountriesGame}
+                            buttonText='Guess the bordering countries'
+                        />
                     )}
                 </div>
             )}
