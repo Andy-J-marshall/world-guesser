@@ -73,6 +73,11 @@ function CountryGuesser({ countriesInfo, country, possibleCountries }: CountryGu
                         )}
                     </div>
                     <div id='country-info'>
+                        {incorrectCount > 0 && (
+                            <div className='attempt-indicator'>
+                                Attempt {incorrectCount} of {MAX_ATTEMPTS_COUNTRY_GUESSER}
+                            </div>
+                        )}
                         <div className='clues-grid'>
                             {(incorrectCount >= 5 || incorrectCount === 4) && (
                                 <div

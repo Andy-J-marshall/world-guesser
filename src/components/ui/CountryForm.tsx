@@ -28,9 +28,6 @@ function CountryForm({
     attemptCount,
     maxAttempts,
 }: CountryFormProps) {
-    const buttonText = attemptCount !== undefined && maxAttempts !== undefined
-        ? `Guess (${attemptCount}/${maxAttempts} attempts)`
-        : 'Guess';
     return (
         <Form onSubmit={handleSubmit}>
             <Fragment>
@@ -52,7 +49,7 @@ function CountryForm({
             />
             <div className='btn-container'>
                 <Button id='guess-button' variant='light' type='submit'>
-                    {buttonText}
+                    Guess
                 </Button>
             </div>
         </Form>
