@@ -71,14 +71,13 @@ function CountryGuesserSuccessPage(props: CountryGuesserSuccessPageProps) {
                         )}
                         <img src={flag} alt='Country Flag' className='flag-image' />
                     </div>
-                </div>
-            )}
-            {!newGameStarted && (
-                <div className='btn-container'>
-                    {!borderingCountriesGameStarted && <StartNewGame buttonText='Play again' />}
-                    {borderingCountries.length > 0 && (
-                        <Button callback={startBorderingCountriesGame} buttonText='Guess the bordering countries' />
-                    )}
+                    <div className='btn-container'>
+                        {!borderingCountriesGameStarted && <StartNewGame buttonText='Play again' />}
+                        {borderingCountries.length > 0 && (
+                            <Button callback={startBorderingCountriesGame} buttonText='Guess the bordering countries' />
+                        )}
+                    </div>
+                    <CountryGuesserStats updateStatsCallback={updateStats} />
                 </div>
             )}
 
@@ -90,7 +89,6 @@ function CountryGuesserSuccessPage(props: CountryGuesserSuccessPageProps) {
                     possibleCountries={possibleCountries}
                 />
             )}
-            {!newGameStarted && <CountryGuesserStats updateStatsCallback={updateStats} />}
         </>
     );
 }

@@ -19,4 +19,5 @@ img[alt*='flag']:hover {
 
 .flag-image {
     border-radius: var(--border-radius-lg);
+    margin-bottom: var(--spacing-lg);
 }
