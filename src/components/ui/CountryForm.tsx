@@ -13,8 +13,7 @@ interface CountryFormProps {
     duplicateGuess?: boolean;
     knownCountry?: boolean;
     actualCountry?: boolean;
-    attemptCount?: number;
-    maxAttempts?: number;
+    isLastAttempt?: boolean;
 }
 
 function CountryForm({
@@ -25,17 +24,14 @@ function CountryForm({
     duplicateGuess = false,
     knownCountry = true,
     actualCountry = false,
-    attemptCount,
-    maxAttempts,
+    isLastAttempt = false,
 }: CountryFormProps) {
     return (
         <Form onSubmit={handleSubmit}>
             <Fragment>
-                {attemptCount !== undefined && maxAttempts !== undefined && attemptCount > 0 && (
-                    <div className='attempt-indicator-container'>
-                        <div className='attempt-indicator'>
-                            Attempt {attemptCount} of {maxAttempts}
-                        </div>
+                {isLastAttempt && (
+                    <div className='last-attempt-warning'>
+                        FINAL ATTEMPT
                     </div>
                 )}
                 <Form.Group id='country-search' className='mb-3'>

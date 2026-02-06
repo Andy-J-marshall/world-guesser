@@ -67,8 +67,7 @@ function CountryGuesser({ countriesInfo, country, possibleCountries }: CountryGu
                                 handleSubmit={handleSubmit}
                                 duplicateGuess={duplicateGuess}
                                 knownCountry={knownCountry}
-                                attemptCount={incorrectCount}
-                                maxAttempts={MAX_ATTEMPTS_COUNTRY_GUESSER}
+                                isLastAttempt={incorrectCount === MAX_ATTEMPTS_COUNTRY_GUESSER - 1}
                             />
                         )}
                     </div>
