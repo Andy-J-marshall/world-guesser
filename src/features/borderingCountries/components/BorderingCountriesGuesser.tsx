@@ -86,6 +86,8 @@ function BorderingCountriesGuesser({ name, borderingCountries, possibleCountries
                             duplicateGuess={duplicateGuess}
                             knownCountry={knownCountry}
                             actualCountry={guessedActualCountry}
+                            attemptCount={incorrectCount}
+                            maxAttempts={MAX_ATTEMPTS_BORDERING_COUNTRIES}
                         />
                         {guesses.length > 0 && (
                             <BorderingCountriesFeedback
