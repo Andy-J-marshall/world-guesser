@@ -13,6 +13,8 @@ interface CountryFormProps {
     duplicateGuess?: boolean;
     knownCountry?: boolean;
     actualCountry?: boolean;
+    attemptCount?: number;
+    maxAttempts?: number;
 }
 
 function CountryForm({
@@ -23,7 +25,12 @@ function CountryForm({
     duplicateGuess = false,
     knownCountry = true,
     actualCountry = false,
+    attemptCount,
+    maxAttempts,
 }: CountryFormProps) {
+    const buttonText = attemptCount !== undefined && maxAttempts !== undefined
+        ? `Guess (${attemptCount}/${maxAttempts} attempts)`
+        : 'Guess';
     return (
         <Form onSubmit={handleSubmit}>
             <Fragment>
@@ -45,7 +52,7 @@ function CountryForm({
             />
             <div className='btn-container'>
                 <Button id='guess-button' variant='light' type='submit'>
-                    Guess
+                    {buttonText}
                 </Button>
             </div>
         </Form>

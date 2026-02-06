@@ -83,6 +83,33 @@
     background: linear-gradient(135deg, var(--color-overlay-secondary) 0%, var(--color-overlay-primary) 100%);
 }
 
+.clue-box.locked {
+    background: var(--color-overlay-primary-subtle);
+    border-color: var(--color-border-primary);
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.clue-box.locked:hover {
+    transform: none;
+    box-shadow: none;
+    background: var(--color-overlay-primary-subtle);
+}
+
+.clue-box.locked::before {
+    display: none;
+}
+
+.clue-box.locked p {
+    color: var(--color-text-secondary);
+}
+
+.locked-icon {
+    font-size: 2rem;
+    margin-bottom: var(--spacing-md) !important;
+    opacity: 0.6;
+}
+
 .clue-box p {
     margin: 0;
     color: var(--color-white);

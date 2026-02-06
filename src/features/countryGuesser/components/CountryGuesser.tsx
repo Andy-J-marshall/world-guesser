@@ -1,7 +1,6 @@
 import { useState, useEffect } from 'react';
 import CountryGuesserFailurePage from './CountryGuesserFailurePage';
 import CountryGuesserSuccessPage from './CountryGuesserSuccessPage';
-import CountryGuessFeedback from './CountryGuesserFeedback';
 import CountryForm from '../../../components/ui/CountryForm';
 import checkValidGuess from '../../../lib/countryValidation';
 import { parseFormGuess } from '../../../lib/formUtils';
@@ -18,7 +17,6 @@ function CountryGuesser({ countriesInfo, country, possibleCountries }: CountryGu
     const [failed, setFailed] = useState(false);
     const [knownCountry, setKnownCountry] = useState(true);
     const [value, setValue] = useState<string[]>(['']);
-    const [guessedBorderingCountry, setGuessedBorderingCountry] = useState(false);
 
     const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
@@ -45,17 +43,8 @@ function CountryGuesser({ countriesInfo, country, possibleCountries }: CountryGu
         } else {
             setIncorrectCount(incorrectCount + 1);
             setCorrectGuess(false);
-            isGuessBorderingCountry(guessedName);
         }
         setGuesses([...guesses, guessedName]);
-    }
-
-    function isGuessBorderingCountry(guessedName: string) {
-        if (!correctGuess && borderingCountries.find((country: string) => country.toLowerCase() === guessedName)) {
-            setGuessedBorderingCountry(true);
-        } else {
-            setGuessedBorderingCountry(false);
-        }
     }
 
     useEffect(() => {
@@ -78,53 +67,104 @@ function CountryGuesser({ countriesInfo, country, possibleCountries }: CountryGu
                                 handleSubmit={handleSubmit}
                                 duplicateGuess={duplicateGuess}
                                 knownCountry={knownCountry}
-                            />
-                        )}
-                        {!correctGuess && guesses.length > 0 && !failed && (
-                            <CountryGuessFeedback
-                                guesses={guesses}
-                                incorrectCount={incorrectCount}
-                                duplicateGuess={duplicateGuess}
-                                guessedBorderingCountry={guessedBorderingCountry}
+                                attemptCount={incorrectCount}
+                                maxAttempts={MAX_ATTEMPTS_COUNTRY_GUESSER}
                             />
                         )}
                     </div>
                     <div id='country-info'>
                         <div className='clues-grid'>
-                            {incorrectCount >= 5 && (
-                                <div className={`clue-box fade-in ${incorrectCount === 5 ? 'latest-clue' : ''}`}>
-                                    <p id='capital'>
-                                        <strong>Capital city:</strong> {capital}
-                                    </p>
+                            {(incorrectCount >= 5 || incorrectCount === 4) && (
+                                <div
+                                    className={`clue-box ${incorrectCount >= 5 ? (incorrectCount === 5 ? 'latest-clue' : '') : 'locked'}`}
+                                >
+                                    {incorrectCount >= 5 ? (
+                                        <p id='capital'>
+                                            <strong>Capital city:</strong> {capital}
+                                        </p>
+                                    ) : (
+                                        <>
+                                            <p className='locked-icon'>🔒</p>
+                                            <p>
+                                                <strong>Capital city</strong>
+                                            </p>
+                                        </>
+                                    )}
                                 </div>
                             )}
-                            {incorrectCount >= 4 && (
-                                <div className={`clue-box fade-in ${incorrectCount === 4 ? 'latest-clue' : ''}`}>
-                                    <p>
-                                        <strong>Flag:</strong>
-                                    </p>
-                                    <img id='flag' src={flag} alt='Country Flag' className='clue-flag' />
+                            {(incorrectCount >= 4 || incorrectCount === 3) && (
+                                <div
+                                    className={`clue-box ${incorrectCount >= 4 ? (incorrectCount === 4 ? 'latest-clue' : '') : 'locked'}`}
+                                >
+                                    {incorrectCount >= 4 ? (
+                                        <>
+                                            <p>
+                                                <strong>Flag:</strong>
+                                            </p>
+                                            <img id='flag' src={flag} alt='Country Flag' className='clue-flag' />
+                                        </>
+                                    ) : (
+                                        <>
+                                            <p className='locked-icon'>🔒</p>
+                                            <p>
+                                                <strong>Flag</strong>
+                                            </p>
+                                        </>
+                                    )}
                                 </div>
                             )}
-                            {incorrectCount >= 3 && (
-                                <div className={`clue-box fade-in ${incorrectCount === 3 ? 'latest-clue' : ''}`}>
-                                    <p id='subregion'>
-                                        <strong>Sub region:</strong> {subregion}
-                                    </p>
+                            {(incorrectCount >= 3 || incorrectCount === 2) && (
+                                <div
+                                    className={`clue-box ${incorrectCount >= 3 ? (incorrectCount === 3 ? 'latest-clue' : '') : 'locked'}`}
+                                >
+                                    {incorrectCount >= 3 ? (
+                                        <p id='subregion'>
+                                            <strong>Sub region:</strong> {subregion}
+                                        </p>
+                                    ) : (
+                                        <>
+                                            <p className='locked-icon'>🔒</p>
+                                            <p>
+                                                <strong>Sub region</strong>
+                                            </p>
+                                        </>
+                                    )}
                                 </div>
                             )}
-                            {incorrectCount >= 2 && (
-                                <div className={`clue-box fade-in ${incorrectCount === 2 ? 'latest-clue' : ''}`}>
-                                    <p id='landlocked'>
-                                        <strong>Landlocked:</strong> {landlocked}
-                                    </p>
+                            {(incorrectCount >= 2 || incorrectCount === 1) && (
+                                <div
+                                    className={`clue-box ${incorrectCount >= 2 ? (incorrectCount === 2 ? 'latest-clue' : '') : 'locked'}`}
+                                >
+                                    {incorrectCount >= 2 ? (
+                                        <p id='landlocked'>
+                                            <strong>Landlocked:</strong> {landlocked}
+                                        </p>
+                                    ) : (
+                                        <>
+                                            <p className='locked-icon'>🔒</p>
+                                            <p>
+                                                <strong>Landlocked</strong>
+                                            </p>
+                                        </>
+                                    )}
                                 </div>
                             )}
-                            {incorrectCount >= 1 && (
-                                <div className={`clue-box fade-in ${incorrectCount === 1 ? 'latest-clue' : ''}`}>
-                                    <p id='region'>
-                                        <strong>Region:</strong> {region}
-                                    </p>
+                            {(incorrectCount >= 1 || incorrectCount === 0) && (
+                                <div
+                                    className={`clue-box ${incorrectCount >= 1 ? (incorrectCount === 1 ? 'latest-clue' : '') : 'locked'}`}
+                                >
+                                    {incorrectCount >= 1 ? (
+                                        <p id='region'>
+                                            <strong>Region:</strong> {region}
+                                        </p>
+                                    ) : (
+                                        <>
+                                            <p className='locked-icon'>🔒</p>
+                                            <p>
+                                                <strong>Region</strong>
+                                            </p>
+                                        </>
+                                    )}
                                 </div>
                             )}
                             <div className={`clue-box ${incorrectCount === 0 ? 'latest-clue' : ''}`}>

@@ -14,7 +14,7 @@ function CountryGuessFeedback(props: CountryGuessFeedbackProps) {
     const guessedBorderingCountry = props.guessedBorderingCountry;
 
     return (
-        <div id='country-guess-feedback' className='feedback-margin-top'>
+        <div id='country-guess-feedback'>
             {!duplicateGuess && (
                 <p className='feedback-incorrect'>Incorrect! That was attempt number {incorrectCount}/6.</p>
             )}
