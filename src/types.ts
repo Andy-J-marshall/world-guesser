@@ -45,6 +45,7 @@ export interface CountriesInfo {
 export interface ButtonProps {
     callback: () => void;
     buttonText: string;
+    variant?: 'light' | 'primary';
 }
 
 export interface CountryProps {

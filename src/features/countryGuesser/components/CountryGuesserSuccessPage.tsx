@@ -76,9 +76,15 @@ function CountryGuesserSuccessPage(props: CountryGuesserSuccessPageProps) {
                             </div>
                         )}
                         <div className='btn-container'>
-                            {!borderingCountriesGameStarted && <StartNewGame buttonText='Play again' />}
+                            {!borderingCountriesGameStarted && (
+                                <StartNewGame buttonText='Play again' variant='primary' />
+                            )}
                             {borderingCountries.length > 0 && (
-                                <Button callback={startBorderingCountriesGame} buttonText='Find the Borders' />
+                                <Button
+                                    callback={startBorderingCountriesGame}
+                                    buttonText='Find the Borders'
+                                    variant='light'
+                                />
                             )}
                         </div>
                         <CountryGuesserStats updateStatsCallback={updateStats} />

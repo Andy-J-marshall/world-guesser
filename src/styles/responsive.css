@@ -33,6 +33,16 @@
         font-size: 0.9rem !important;
     }
 
+    .btn-container {
+        flex-direction: column;
+        gap: var(--spacing-md);
+    }
+
+    .btn-container .btn {
+        width: 100%;
+        max-width: 100%;
+    }
+
     #country-stats .list-group-item {
         font-size: 0.9rem;
     }

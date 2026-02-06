@@ -105,7 +105,7 @@
 .stats-display-title {
     margin-bottom: var(--spacing-md);
     color: var(--color-primary-light);
-    text-align: center;
+    text-align: left;
 }
 
 .stats-display-grid {

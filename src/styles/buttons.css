@@ -3,8 +3,9 @@
    ======================================== */
 .btn-container {
     display: flex;
-    justify-content: center;
+    justify-content: flex-start;
     gap: var(--spacing-md);
+    margin: var(--spacing-md) 0 var(--spacing-sm) 0;
     flex-wrap: wrap;
     width: 100%;
 }
@@ -26,6 +27,7 @@
     letter-spacing: 0.02em;
     text-transform: none;
     min-width: 160px;
+    max-width: 280px;
 }
 
 #guess-button {
@@ -67,10 +69,16 @@
 .btn-primary {
     background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-dark) 100%) !important;
     border: none !important;
-    box-shadow: 0 4px 16px var(--color-shadow-primary-medium) !important;
+    box-shadow: 0 6px 20px var(--color-shadow-primary-medium) !important;
+    font-weight: 700 !important;
 }
 
 .btn-primary:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 8px 24px var(--color-shadow-primary-strong) !important;
+    transform: translateY(-2px) !important;
+    box-shadow: 0 10px 28px var(--color-shadow-primary-strong) !important;
+}
+
+.btn-primary:active {
+    transform: translateY(0) !important;
+    box-shadow: 0 4px 12px var(--color-shadow-primary-medium) !important;
 }
