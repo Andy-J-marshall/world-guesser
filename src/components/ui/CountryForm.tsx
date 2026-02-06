@@ -31,6 +31,13 @@ function CountryForm({
     return (
         <Form onSubmit={handleSubmit}>
             <Fragment>
+                {attemptCount !== undefined && maxAttempts !== undefined && attemptCount > 0 && (
+                    <div className='attempt-indicator-container'>
+                        <div className='attempt-indicator'>
+                            Attempt {attemptCount} of {maxAttempts}
+                        </div>
+                    </div>
+                )}
                 <Form.Group id='country-search' className='mb-3'>
                     <Typeahead
                         id='country-search-typeahead'

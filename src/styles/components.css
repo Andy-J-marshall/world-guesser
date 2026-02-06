@@ -37,10 +37,15 @@
     margin: 0;
 }
 
+.attempt-indicator-container {
+    display: flex;
+    justify-content: flex-start;
+    margin-bottom: var(--spacing-sm);
+}
+
 .attempt-indicator {
     font-size: 0.8rem;
     color: var(--color-text-secondary);
-    margin-bottom: var(--spacing-md);
     opacity: 0.9;
     font-weight: 600;
     text-transform: uppercase;
