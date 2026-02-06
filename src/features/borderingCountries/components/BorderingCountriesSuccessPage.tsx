@@ -42,7 +42,7 @@ function BorderingCountriesSuccessPage({
 
     return (
         <div className='fade-in'>
-            <div id='successful-bordering-countries-game' className='game-container'>
+            <div id='successful-bordering-countries-game' className='game-container success-page-container'>
                 <h2 className='success-title'>Success!</h2>
                 <h3 className='success-subtitle'>{messageText}</h3>
                 <div className='answer-history-container'>
@@ -59,11 +59,11 @@ function BorderingCountriesSuccessPage({
                         })}
                     </div>
                 </div>
+                <div className='btn-container'>
+                    <StartNewGame buttonText='Play again' />
+                </div>
+                <BorderingCountriesStats updateStatsCallback={updateStats} />
             </div>
-            <div className='btn-container'>
-                <StartNewGame buttonText='Play again' />
-            </div>
-            <BorderingCountriesStats updateStatsCallback={updateStats} />
         </div>
     );
 }

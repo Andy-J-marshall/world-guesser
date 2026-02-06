@@ -32,7 +32,8 @@
     color: var(--color-success);
     font-size: clamp(1.75rem, 4vw, 2.5rem);
     font-weight: 700;
-    margin: 0 auto var(--spacing-lg) auto;
+    margin: 0 0 var(--spacing-lg) 0;
+    text-align: left;
 }
 
 .game-over-title {
@@ -43,6 +44,7 @@
 .success-subtitle {
     color: var(--color-success);
     margin-bottom: var(--spacing-xl);
+    text-align: left;
 }
 
 .failure-message {

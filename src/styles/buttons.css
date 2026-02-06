@@ -17,15 +17,15 @@
 .btn {
     border-radius: var(--border-radius-lg) !important;
     font-weight: 600 !important;
-    padding: var(--spacing-lg) var(--spacing-3xl) !important;
-    font-size: 1.1rem !important;
+    padding: var(--spacing-md) var(--spacing-xl) !important;
+    font-size: 1rem !important;
     transition: all var(--transition-base) !important;
     border: none !important;
     position: relative;
     overflow: hidden;
     letter-spacing: 0.02em;
     text-transform: none;
-    min-width: 200px;
+    min-width: 160px;
 }
 
 #guess-button {

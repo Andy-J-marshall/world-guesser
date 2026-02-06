@@ -49,12 +49,18 @@ function CountryGuesserSuccessPage(props: CountryGuesserSuccessPageProps) {
         <>
             {!newGameStarted && (
                 <div className='fade-in'>
-                    <div id='successful-country-game' className='game-container'>
+                    <div id='successful-country-game' className='game-container success-page-container'>
                         <h2 className='success-title'>Success!</h2>
-                        {incorrectCount === 0 && <p>Amazing! You got {name} in one!</p>}
+                        {incorrectCount === 0 && (
+                            <p>
+                                Amazing! You got {name} in one!
+                                <img src={flag} className='inline-flag' />
+                            </p>
+                        )}
                         {incorrectCount > 0 && (
                             <p>
-                                Well done! It took you {guesses.length} attempts to get {name}
+                                Well done! It took you {guesses.length} attempts to get {name}{' '}
+                                <img src={flag} className='inline-flag' />
                             </p>
                         )}
                         {incorrectCount > 0 && (
@@ -69,15 +75,14 @@ function CountryGuesserSuccessPage(props: CountryGuesserSuccessPageProps) {
                                 </div>
                             </div>
                         )}
-                        <img src={flag} alt='Country Flag' className='flag-image' />
+                        <div className='btn-container'>
+                            {!borderingCountriesGameStarted && <StartNewGame buttonText='Play again' />}
+                            {borderingCountries.length > 0 && (
+                                <Button callback={startBorderingCountriesGame} buttonText='Find the Borders' />
+                            )}
+                        </div>
+                        <CountryGuesserStats updateStatsCallback={updateStats} />
                     </div>
-                    <div className='btn-container'>
-                        {!borderingCountriesGameStarted && <StartNewGame buttonText='Play again' />}
-                        {borderingCountries.length > 0 && (
-                            <Button callback={startBorderingCountriesGame} buttonText='Guess the bordering countries' />
-                        )}
-                    </div>
-                    <CountryGuesserStats updateStatsCallback={updateStats} />
                 </div>
             )}
 
