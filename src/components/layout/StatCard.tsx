@@ -1,14 +1,13 @@
 interface StatCardProps {
     value: string | number;
     label: string;
-    color: string;
-    backgroundColor: string;
+    highlight?: boolean;
 }
 
-function StatCard({ value, label, color, backgroundColor }: StatCardProps) {
+function StatCard({ value, label, highlight = false }: StatCardProps) {
     return (
-        <div className='stat-card' style={{ background: backgroundColor }}>
-            <p className='large-stat stat-card-value' style={{ color: color }}>
+        <div className={`stat-card ${highlight ? 'stat-card-highlight' : ''}`}>
+            <p className='large-stat stat-card-value'>
                 {value}
             </p>
             <p className='small-text stat-card-label'>

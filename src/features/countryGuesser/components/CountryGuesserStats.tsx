@@ -43,38 +43,27 @@ function CountryGuesserStats({ updateStatsCallback }: CountryGuesserStatsProps) 
         {
             value: numberOfGames,
             label: 'Games',
-            color: 'var(--color-primary-light)',
-            backgroundColor: 'var(--color-overlay-primary-focus)',
         },
         {
             value: numberOfWins,
             label: 'Wins',
-            color: 'var(--color-success)',
-            backgroundColor: 'var(--color-overlay-success)',
         },
         {
             value: `${Math.round((numberOfWins / numberOfGames) * 100)}%`,
             label: 'Win Rate',
-            color: 'var(--color-purple)',
-            backgroundColor: 'var(--color-overlay-purple)',
+            highlight: true,
         },
         {
             value: streak,
             label: 'Streak',
-            color: 'var(--color-accent)',
-            backgroundColor: 'var(--color-overlay-secondary-medium)',
         },
         {
             value: numberOfAttempts,
             label: 'Attempts',
-            color: 'var(--color-warning)',
-            backgroundColor: 'var(--color-overlay-warning)',
         },
         {
             value: (numberOfAttempts / numberOfGames).toFixed(1),
             label: 'Per Game',
-            color: 'var(--color-blue)',
-            backgroundColor: 'var(--color-overlay-blue)',
         },
     ];
 

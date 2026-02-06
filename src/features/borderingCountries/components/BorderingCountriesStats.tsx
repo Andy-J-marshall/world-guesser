@@ -58,38 +58,27 @@ function BorderingCountriesStats({ updateStatsCallback }: BorderingCountriesStat
         {
             value: numberOfGames,
             label: 'Games',
-            color: 'var(--color-primary-light)',
-            backgroundColor: 'var(--color-overlay-primary-focus)',
         },
         {
             value: numberOfWins,
             label: 'Wins',
-            color: 'var(--color-success)',
-            backgroundColor: 'var(--color-overlay-success)',
         },
         {
             value: `${Math.round((numberOfWins / numberOfGames) * 100)}%`,
             label: 'Win Rate',
-            color: 'var(--color-purple)',
-            backgroundColor: 'var(--color-overlay-purple)',
+            highlight: true,
         },
         {
             value: streak,
             label: 'Streak',
-            color: 'var(--color-accent)',
-            backgroundColor: 'var(--color-overlay-secondary-medium)',
         },
         {
             value: numberOfCorrectAnswers,
             label: 'Correct',
-            color: 'var(--color-success)',
-            backgroundColor: 'var(--color-overlay-success)',
         },
         {
             value: numberOfIncorrectAnswers,
             label: 'Incorrect',
-            color: 'var(--color-red)',
-            backgroundColor: 'var(--color-overlay-red)',
         },
     ];
 

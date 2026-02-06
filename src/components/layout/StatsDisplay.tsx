@@ -5,8 +5,7 @@ interface StatsDisplayProps {
     stats: Array<{
         value: string | number;
         label: string;
-        color: string;
-        backgroundColor: string;
+        highlight?: boolean;
     }>;
     streak: number;
 }
