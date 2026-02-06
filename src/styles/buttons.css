@@ -26,8 +26,8 @@
     overflow: hidden;
     letter-spacing: 0.02em;
     text-transform: none;
-    min-width: 160px;
-    max-width: 280px;
+    min-width: 240px;
+    max-width: 320px;
 }
 
 #guess-button {

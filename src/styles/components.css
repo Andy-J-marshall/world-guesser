@@ -33,7 +33,7 @@
     grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
     gap: var(--spacing-md);
     width: 100%;
-    max-width: 600px;
+    max-width: 900px;
     margin: 0 auto;
 }
 
@@ -42,7 +42,7 @@
     border: 1px solid var(--color-border-primary);
     border-radius: var(--border-radius-lg);
     padding: var(--spacing-xl);
-    transition: all var(--transition-base);
+    transition: background 0.4s ease, border-color 0.4s ease, box-shadow 0.4s ease, transform 0.3s ease;
     height: 170px;
     position: relative;
     overflow: hidden;
@@ -77,6 +77,7 @@
     background: var(--color-overlay-secondary-strong);
     border-color: var(--color-secondary);
     box-shadow: 0 4px 16px rgba(192, 132, 252, 0.3);
+    animation: highlight-pulse 0.8s ease-out;
 }
 
 .clue-box.latest-clue::before {
