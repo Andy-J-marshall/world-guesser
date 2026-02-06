@@ -60,19 +60,19 @@ function CountryGuesserStats({ updateStatsCallback }: CountryGuesserStatsProps) 
         },
         {
             value: streak,
-            label: 'Current Streak',
+            label: 'Streak',
             color: 'var(--color-accent)',
             backgroundColor: 'var(--color-overlay-secondary-medium)',
         },
         {
             value: numberOfAttempts,
-            label: 'Total Attempts',
+            label: 'Attempts',
             color: 'var(--color-warning)',
             backgroundColor: 'var(--color-overlay-warning)',
         },
         {
             value: (numberOfAttempts / numberOfGames).toFixed(1),
-            label: 'Average Attempts',
+            label: 'Per Game',
             color: 'var(--color-blue)',
             backgroundColor: 'var(--color-overlay-blue)',
         },

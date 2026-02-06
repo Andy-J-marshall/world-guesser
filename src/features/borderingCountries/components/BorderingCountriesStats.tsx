@@ -75,19 +75,19 @@ function BorderingCountriesStats({ updateStatsCallback }: BorderingCountriesStat
         },
         {
             value: streak,
-            label: 'Current Streak',
+            label: 'Streak',
             color: 'var(--color-accent)',
             backgroundColor: 'var(--color-overlay-secondary-medium)',
         },
         {
             value: numberOfCorrectAnswers,
-            label: 'Correct Answers',
+            label: 'Correct',
             color: 'var(--color-success)',
             backgroundColor: 'var(--color-overlay-success)',
         },
         {
             value: numberOfIncorrectAnswers,
-            label: 'Incorrect Answers',
+            label: 'Incorrect',
             color: 'var(--color-red)',
             backgroundColor: 'var(--color-overlay-red)',
         },
