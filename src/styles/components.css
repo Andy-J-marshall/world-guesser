@@ -97,13 +97,13 @@
 .stats-display-card {
     background: var(--color-bg-card);
     border-radius: var(--border-radius-lg);
-    padding: var(--spacing-lg);
+    padding: var(--spacing-xs) var(--spacing-md);
     border: 1px solid var(--color-border-primary);
     backdrop-filter: blur(10px);
 }
 
 .stats-display-title {
-    margin-bottom: var(--spacing-md);
+    margin: var(--spacing-xs);
     color: var(--color-primary-light);
     text-align: left;
 }
@@ -169,6 +169,7 @@
     background: var(--color-overlay-primary);
     border-radius: var(--border-radius-lg);
     padding: var(--spacing-lg);
+    margin-top: var(--spacing-xl);
     margin-bottom: var(--spacing-xl);
     border: 1px solid var(--color-border-primary);
 }
@@ -183,7 +184,7 @@
     display: flex;
     flex-wrap: wrap;
     gap: var(--spacing-sm);
-    justify-content: center;
+    justify-content: flex-start;
 }
 
 .answer-badge {

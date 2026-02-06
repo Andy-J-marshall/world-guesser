@@ -63,18 +63,6 @@ function CountryGuesserSuccessPage(props: CountryGuesserSuccessPageProps) {
                                 <img src={flag} className='inline-flag' />
                             </p>
                         )}
-                        {incorrectCount > 0 && (
-                            <div className='answer-history-container'>
-                                <p className='answer-history-title'>Your answer history:</p>
-                                <div className='answer-history-grid'>
-                                    {guesses.map((guess, index) => (
-                                        <span key={index} className='answer-badge'>
-                                            {index + 1}. {guess}
-                                        </span>
-                                    ))}
-                                </div>
-                            </div>
-                        )}
                         <div className='btn-container'>
                             {!borderingCountriesGameStarted && (
                                 <StartNewGame buttonText='Play again' variant='primary' />
@@ -87,6 +75,18 @@ function CountryGuesserSuccessPage(props: CountryGuesserSuccessPageProps) {
                                 />
                             )}
                         </div>
+                        {incorrectCount > 0 && (
+                            <div className='answer-history-container'>
+                                <p className='answer-history-title'>Your answer history:</p>
+                                <div className='answer-history-grid'>
+                                    {guesses.map((guess, index) => (
+                                        <span key={index} className='answer-badge'>
+                                            {index + 1}. {guess}
+                                        </span>
+                                    ))}
+                                </div>
+                            </div>
+                        )}
                         <CountryGuesserStats updateStatsCallback={updateStats} />
                     </div>
                 </div>

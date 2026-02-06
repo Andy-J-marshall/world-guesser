@@ -45,6 +45,9 @@ function BorderingCountriesSuccessPage({
             <div id='successful-bordering-countries-game' className='game-container success-page-container'>
                 <h2 className='success-title'>Success!</h2>
                 <h3 className='success-subtitle'>{messageText}</h3>
+                <div className='btn-container'>
+                    <StartNewGame buttonText='Play again' />
+                </div>
                 <div className='answer-history-container'>
                     <p className='answer-history-title'>Your answer history:</p>
                     <div className='answer-history-grid'>
@@ -58,9 +61,6 @@ function BorderingCountriesSuccessPage({
                             );
                         })}
                     </div>
-                </div>
-                <div className='btn-container'>
-                    <StartNewGame buttonText='Play again' />
                 </div>
                 <BorderingCountriesStats updateStatsCallback={updateStats} />
             </div>
