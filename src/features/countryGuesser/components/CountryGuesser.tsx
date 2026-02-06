@@ -1,5 +1,4 @@
 import { useState, useEffect } from 'react';
-import { Container, Row, Col } from 'react-bootstrap';
 import CountryGuesserFailurePage from './CountryGuesserFailurePage';
 import CountryGuesserSuccessPage from './CountryGuesserSuccessPage';
 import CountryGuessFeedback from './CountryGuesserFeedback';
@@ -69,71 +68,7 @@ function CountryGuesser({ countriesInfo, country, possibleCountries }: CountryGu
         <div id='country-guesser' className='fade-in'>
             {!failed && !correctGuess && (
                 <>
-                    <div id='country-info'>
-                        <h2 className='heading-margin-xl'>Guess the Mystery Country</h2>
-                        <Container>
-                            <Row className='g-3 justify-content-center'>
-                                <Col md={6} lg={3}>
-                                    <div className='clue-box'>
-                                        <p id='population'>
-                                            <strong>Population:</strong> {population}
-                                        </p>
-                                    </div>
-                                </Col>
-                                {incorrectCount >= 1 && (
-                                    <Col md={6} lg={3} className='fade-in'>
-                                        <div className='clue-box'>
-                                            <p id='region'>
-                                                <strong>Region:</strong> {region}
-                                            </p>
-                                        </div>
-                                    </Col>
-                                )}
-                                {incorrectCount >= 2 && (
-                                    <Col md={6} lg={3} className='fade-in'>
-                                        <div className='clue-box'>
-                                            <p id='landlocked'>
-                                                <strong>Landlocked:</strong> {landlocked}
-                                            </p>
-                                        </div>
-                                    </Col>
-                                )}
-                                {incorrectCount >= 3 && (
-                                    <Col md={6} lg={3} className='fade-in'>
-                                        <div className='clue-box'>
-                                            <p id='subregion'>
-                                                <strong>Sub region:</strong> {subregion}
-                                            </p>
-                                        </div>
-                                    </Col>
-                                )}
-                                {incorrectCount >= 4 && (
-                                    <Col md={6} lg={3} className='fade-in'>
-                                        <div className='clue-box'>
-                                            <p>
-                                                <strong>Flag:</strong>
-                                            </p>
-                                            <img
-                                                id='flag'
-                                                src={flag}
-                                                alt='Country Flag'
-                                                className='clue-flag'
-                                            />
-                                        </div>
-                                    </Col>
-                                )}
-                                {incorrectCount >= 5 && (
-                                    <Col md={6} lg={3} className='fade-in'>
-                                        <div className='clue-box'>
-                                            <p id='capital'>
-                                                <strong>Capital city:</strong> {capital}
-                                            </p>
-                                        </div>
-                                    </Col>
-                                )}
-                            </Row>
-                        </Container>
-                    </div>
+                    <h2>Guess the Mystery Country</h2>
                     <div id='country-form'>
                         {!correctGuess && !failed && (
                             <CountryForm
@@ -153,6 +88,56 @@ function CountryGuesser({ countriesInfo, country, possibleCountries }: CountryGu
                                 guessedBorderingCountry={guessedBorderingCountry}
                             />
                         )}
+                    </div>
+                    <div id='country-info'>
+                        <div className='clues-grid'>
+                            <div className='clue-box'>
+                                <p id='population'>
+                                    <strong>Population:</strong> {population}
+                                </p>
+                            </div>
+                            {incorrectCount >= 1 && (
+                                <div className='clue-box fade-in'>
+                                    <p id='region'>
+                                        <strong>Region:</strong> {region}
+                                    </p>
+                                </div>
+                            )}
+                            {incorrectCount >= 2 && (
+                                <div className='clue-box fade-in'>
+                                    <p id='landlocked'>
+                                        <strong>Landlocked:</strong> {landlocked}
+                                    </p>
+                                </div>
+                            )}
+                            {incorrectCount >= 3 && (
+                                <div className='clue-box fade-in'>
+                                    <p id='subregion'>
+                                        <strong>Sub region:</strong> {subregion}
+                                    </p>
+                                </div>
+                            )}
+                            {incorrectCount >= 4 && (
+                                <div className='clue-box fade-in'>
+                                    <p>
+                                        <strong>Flag:</strong>
+                                    </p>
+                                    <img
+                                        id='flag'
+                                        src={flag}
+                                        alt='Country Flag'
+                                        className='clue-flag'
+                                    />
+                                </div>
+                            )}
+                            {incorrectCount >= 5 && (
+                                <div className='clue-box fade-in'>
+                                    <p id='capital'>
+                                        <strong>Capital city:</strong> {capital}
+                                    </p>
+                                </div>
+                            )}
+                        </div>
                     </div>
                 </>
             )}

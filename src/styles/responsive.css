@@ -2,12 +2,6 @@
    Responsive Design
    ======================================== */
 @media (max-width: 768px) {
-    #borders-form,
-    #country-form {
-        width: 100%;
-        padding: var(--spacing-md);
-    }
-
     .card {
         padding: var(--spacing-lg);
         margin: var(--spacing-md);
@@ -49,5 +43,9 @@
 
     .stats-display-grid {
         grid-template-columns: repeat(2, 1fr);
+    }
+
+    .clues-grid {
+        grid-template-columns: 1fr;
     }
 }

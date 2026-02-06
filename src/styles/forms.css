@@ -3,7 +3,7 @@
    ======================================== */
 #borders-form,
 #country-form {
-    margin: var(--spacing-xs) auto;
+    margin: 0 auto;
     width: 100%;
     max-width: 600px;
     padding: 0;
