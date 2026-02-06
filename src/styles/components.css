@@ -73,6 +73,16 @@
     opacity: 1;
 }
 
+.clue-box.latest-clue {
+    background: var(--color-overlay-secondary-strong);
+    border-color: var(--color-secondary);
+    box-shadow: 0 4px 16px rgba(192, 132, 252, 0.3);
+}
+
+.clue-box.latest-clue::before {
+    background: linear-gradient(135deg, var(--color-overlay-secondary) 0%, var(--color-overlay-primary) 100%);
+}
+
 .clue-box p {
     margin: 0;
     color: var(--color-white);
