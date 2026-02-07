@@ -3,6 +3,7 @@ import BorderingCountriesFeedback from './BorderingCountriesFeedback';
 import BorderingCountriesFailurePage from './BorderingCountriesFailurePage';
 import BorderingCountriesSuccessPage from './BorderingCountriesSuccessPage';
 import CountryForm from '../../../components/ui/CountryForm';
+import FeedbackToast from '../../../components/ui/FeedbackToast';
 import checkValidGuess from '../../../lib/countryValidation';
 import { parseFormGuess } from '../../../lib/formUtils';
 import { CountriesInfo } from '../../../types';
@@ -26,6 +27,9 @@ function BorderingCountriesGuesser({ name, borderingCountries, possibleCountries
     const [knownCountry, setKnownCountry] = useState(true);
     const [value, setValue] = useState<string[]>([]);
     const [guessedActualCountry, setGuessedActualCountry] = useState(false);
+    const [showIncorrectToast, setShowIncorrectToast] = useState(false);
+    const [lastIncorrectGuess, setLastIncorrectGuess] = useState('');
+    const [finalAttemptWarningDismissed, setFinalAttemptWarningDismissed] = useState(false);
 
     const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
@@ -48,6 +52,9 @@ function BorderingCountriesGuesser({ name, borderingCountries, possibleCountries
         setDuplicateGuess(duplicateGuess);
 
         if (isValidCountry && knownCountry && !duplicateGuess) {
+            if (incorrectCount === MAX_ATTEMPTS_BORDERING_COUNTRIES - 1) {
+                setFinalAttemptWarningDismissed(true);
+            }
             checkGuessIsCorrect(guessedName);
         }
     };
@@ -62,6 +69,8 @@ function BorderingCountriesGuesser({ name, borderingCountries, possibleCountries
         } else {
             setIncorrectGuesses([...incorrectGuesses, guessedName]);
             setIncorrectCount(incorrectCount + 1);
+            setLastIncorrectGuess(guessedName);
+            setShowIncorrectToast(true);
         }
         setGuesses([...guesses, guessedName]);
     }
@@ -77,7 +86,12 @@ function BorderingCountriesGuesser({ name, borderingCountries, possibleCountries
             {!succeeded && !failed && (
                 <>
                     <div id='borders-form'>
-                        <h2>Find {name}'s bordering countries</h2>
+                        <h2>
+                            Find {name}'s borders{' '}
+                            <span className='progress-count'>
+                                ({correctGuesses.length}/{borderingCountries.length})
+                            </span>
+                        </h2>
                         <CountryForm
                             possibleCountries={possibleCountries}
                             value={value}
@@ -86,7 +100,9 @@ function BorderingCountriesGuesser({ name, borderingCountries, possibleCountries
                             duplicateGuess={duplicateGuess}
                             knownCountry={knownCountry}
                             actualCountry={guessedActualCountry}
-                            isLastAttempt={incorrectCount === MAX_ATTEMPTS_BORDERING_COUNTRIES - 1}
+                            isLastAttempt={
+                                incorrectCount === MAX_ATTEMPTS_BORDERING_COUNTRIES - 1 && !finalAttemptWarningDismissed
+                            }
                         />
                         {guesses.length > 0 && (
                             <BorderingCountriesFeedback
@@ -96,6 +112,11 @@ function BorderingCountriesGuesser({ name, borderingCountries, possibleCountries
                                 borderingCountriesCount={borderingCountries.length}
                             />
                         )}
+                        <FeedbackToast
+                            message={`Incorrect! ${lastIncorrectGuess.charAt(0).toUpperCase() + lastIncorrectGuess.slice(1)} doesn't border ${name}`}
+                            show={showIncorrectToast}
+                            type='error'
+                        />
                     </div>
                 </>
             )}
