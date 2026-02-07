@@ -2,17 +2,10 @@ import { MAX_ATTEMPTS_BORDERING_COUNTRIES } from '../../../constants';
 
 interface BorderingCountriesFeedbackProps {
     correctGuesses: string[];
-    incorrectGuesses: string[];
-    borderingCountriesCount: number;
     incorrectCount: number;
 }
 
-function BorderingCountriesFeedback({
-    correctGuesses,
-    incorrectGuesses,
-    borderingCountriesCount,
-    incorrectCount,
-}: BorderingCountriesFeedbackProps) {
+function BorderingCountriesFeedback({ correctGuesses, incorrectCount }: BorderingCountriesFeedbackProps) {
     const guessesRemainingCount = MAX_ATTEMPTS_BORDERING_COUNTRIES - incorrectCount;
     const livesWord = guessesRemainingCount === 1 ? 'life' : 'lives';
 

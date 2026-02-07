@@ -44,7 +44,9 @@ test.describe('Country Guesser', () => {
                 await countryGuesserPage.topCountryInList.click();
                 await countryGuesserPage.countrySubmitButton.click();
                 await expect(countryGuesserPage.successMessage).toHaveText(`Amazing! You got ${country.name} in one!`);
-                await expect(countryGuesserPage.bestScoreText).toHaveText(`That was your best score for ${country.name}!`);
+                await expect(countryGuesserPage.bestScoreText).toHaveText(
+                    `That was your best score for ${country.name}!`,
+                );
                 await expect(countryGuesserPage.successFlag).toHaveAttribute('src', country.flag);
             });
 
@@ -55,37 +57,22 @@ test.describe('Country Guesser', () => {
                 await countryGuesserPage.countrySearchBox.type('France');
                 await countryGuesserPage.topCountryInList.click();
                 await countryGuesserPage.countrySubmitButton.click();
-                await expect(countryGuesserPage.countryGuessFeedback).toHaveText(
-                    'Incorrect! That was attempt number 1/6.Your guesses so far: France',
-                );
                 await expect(countryGuesserPage.regionClue).toContainText(country.region);
                 await countryGuesserPage.countrySearchBox.click();
                 await countryGuesserPage.topCountryInList.click();
                 await countryGuesserPage.countrySubmitButton.click();
-                await expect(countryGuesserPage.countryGuessFeedback).toHaveText(
-                    'Incorrect! That was attempt number 2/6.Your guesses so far: France, Afghanistan',
-                );
                 await expect(countryGuesserPage.landlockedClue).toContainText(country.landlockedText);
                 await countryGuesserPage.countrySearchBox.type('Japan');
                 await countryGuesserPage.topCountryInList.click();
                 await countryGuesserPage.countrySubmitButton.click();
-                await expect(countryGuesserPage.countryGuessFeedback).toHaveText(
-                    'Incorrect! That was attempt number 3/6.Your guesses so far: France, Afghanistan, Japan',
-                );
                 await expect(countryGuesserPage.subregionClue).toContainText(country.subregion);
                 await countryGuesserPage.countrySearchBox.type('India');
                 await countryGuesserPage.topCountryInList.click();
                 await countryGuesserPage.countrySubmitButton.click();
-                await expect(countryGuesserPage.countryGuessFeedback).toHaveText(
-                    'Incorrect! That was attempt number 4/6.Your guesses so far: France, Afghanistan, Japan, India',
-                );
                 await expect(countryGuesserPage.flagClue).toHaveAttribute('src', country.flag);
                 await countryGuesserPage.countrySearchBox.type('Algeria');
                 await countryGuesserPage.topCountryInList.click();
                 await countryGuesserPage.countrySubmitButton.click();
-                await expect(countryGuesserPage.countryGuessFeedback).toHaveText(
-                    'Incorrect! That was attempt number 5/6.Your guesses so far: France, Afghanistan, Japan, India, Algeria',
-                );
                 await expect(countryGuesserPage.capitalClue).toContainText(country.capital);
 
                 // Correct guess

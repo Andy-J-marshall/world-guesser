@@ -107,9 +107,7 @@ function BorderingCountriesGuesser({ name, borderingCountries, possibleCountries
                         {guesses.length > 0 && (
                             <BorderingCountriesFeedback
                                 correctGuesses={correctGuesses}
-                                incorrectGuesses={incorrectGuesses}
                                 incorrectCount={incorrectCount}
-                                borderingCountriesCount={borderingCountries.length}
                             />
                         )}
                         <FeedbackToast
