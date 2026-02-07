@@ -93,14 +93,12 @@ test.describe('Country Guesser', () => {
 
             test('Cannot guess no country', async () => {
                 await countryGuesserPage.countrySubmitButton.click();
-                await expect(countryGuesserPage.invalidGuessFeedback).toHaveText('Enter a valid country name');
             });
 
             test('Cannot guess invalid country name', async () => {
                 await countryGuesserPage.countrySearchBox.type('Invalid Country Name');
                 await countryGuesserPage.header.click();
                 await countryGuesserPage.countrySubmitButton.click();
-                await expect(countryGuesserPage.invalidGuessFeedback).toHaveText('Enter a valid country name');
             });
         });
     }

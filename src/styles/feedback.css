@@ -2,18 +2,6 @@
    Feedback & Messages
    ======================================== */
 
-#invalid-guess-feedback {
-    margin: var(--spacing-xl) auto;
-    padding: var(--spacing-xl);
-    background: var(--color-overlay-error);
-    border-radius: var(--border-radius-lg);
-    border: 1px solid var(--color-border-error);
-    color: var(--color-error);
-    backdrop-filter: blur(10px);
-    max-width: 900px;
-    width: 100%;
-}
-
 /* Success/Failure Titles */
 .success-title {
     color: var(--color-success);

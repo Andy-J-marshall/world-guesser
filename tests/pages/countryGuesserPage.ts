@@ -6,7 +6,6 @@ export class CountryGuesserPage {
     readonly header: Locator;
     readonly countrySearchBox: Locator;
     readonly countrySubmitButton: Locator;
-    readonly invalidGuessFeedback: Locator;
     readonly topCountryInList: Locator;
     readonly successMessage: Locator;
     readonly successFlag: Locator;
@@ -27,7 +26,6 @@ export class CountryGuesserPage {
         this.countryGuesser = page.locator('#country-guesser');
         this.countrySearchBox = page.locator('#country-search input:nth-of-type(1)');
         this.countrySubmitButton = page.locator('#guess-button');
-        this.invalidGuessFeedback = page.locator('#invalid-guess-feedback');
         this.successMessage = page.locator('#successful-country-game > h5');
         this.successFlag = page.locator('#successful-country-game > img');
         this.bestScoreText = page.locator('#country-guesser-stats > div > p:nth-child(2)');

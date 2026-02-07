@@ -2,11 +2,6 @@
    Responsive Design
    ======================================== */
 @media (max-width: 768px) {
-    .card {
-        padding: var(--spacing-lg);
-        margin: var(--spacing-md);
-    }
-
     h1 {
         font-size: 2rem;
         padding: var(--spacing-lg) 0;
@@ -39,10 +34,6 @@
     .btn-container .btn {
         width: 100%;
         max-width: 100%;
-    }
-
-    #country-stats .list-group-item {
-        font-size: 0.9rem;
     }
 
     .stats-display-grid {

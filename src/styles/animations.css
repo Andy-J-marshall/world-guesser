@@ -12,17 +12,6 @@
     }
 }
 
-@keyframes slideIn {
-    from {
-        opacity: 0;
-        transform: translateX(-30px);
-    }
-    to {
-        opacity: 1;
-        transform: translateX(0);
-    }
-}
-
 @keyframes glow {
     0%, 100% {
         box-shadow: 0 0 20px var(--color-shadow-primary-medium);
@@ -47,16 +36,6 @@
     }
 }
 
-@keyframes spin {
-    to {
-        transform: rotate(360deg);
-    }
-}
-
 .fade-in {
     animation: fadeIn 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-.slide-in {
-    animation: slideIn 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 }
