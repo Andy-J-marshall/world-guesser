@@ -1,6 +1,3 @@
-// Common types used across components
-
-// Raw country data from REST Countries API
 export interface Country {
     name: {
         common: string;
@@ -56,12 +53,6 @@ export interface CountryGuesserProps {
     countriesInfo: CountriesInfo;
     country: CountryInfo;
     possibleCountries: string[];
-}
-
-export interface ValidationErrorsProps {
-    duplicateGuess?: boolean;
-    knownCountry?: boolean;
-    children?: React.ReactNode;
 }
 
 export interface StartNewGameProps {
