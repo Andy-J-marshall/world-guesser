@@ -1,7 +1,7 @@
 import { Fragment } from 'react';
 import { Button, Form } from 'react-bootstrap';
 import { Typeahead } from 'react-bootstrap-typeahead';
-import ValidationErrors from '../validation/BasicValidation';
+import ValidationToast from './ValidationToast';
 
 import 'react-bootstrap-typeahead/css/Typeahead.css';
 
@@ -45,7 +45,7 @@ function CountryForm({
                     />
                 </Form.Group>
             </Fragment>
-            <ValidationErrors
+            <ValidationToast
                 actualCountry={actualCountry}
                 duplicateGuess={duplicateGuess}
                 knownCountry={knownCountry}
