@@ -23,7 +23,6 @@ function GameStats({ storageKeys }: GameStatsProps) {
     const [streak, setStreak] = useState(0);
 
     useEffect(() => {
-        // Read from localStorage
         const wins = JSON.parse(localStorage.getItem(storageKeys.wins) || '0') || 0;
         const games = JSON.parse(localStorage.getItem(storageKeys.games) || '0') || 0;
         const attempts = JSON.parse(localStorage.getItem(storageKeys.attempts) || '0') || 0;
@@ -69,7 +68,6 @@ function GameStats({ storageKeys }: GameStatsProps) {
         },
     ];
 
-    // Add border-specific stats if they exist
     if (storageKeys.correctAnswers && numberOfCorrectAnswers > 0) {
         baseStats.push(
             {
