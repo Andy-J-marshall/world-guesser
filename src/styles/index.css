@@ -33,8 +33,5 @@
 /* Animations */
 @import './animations.css';
 
-/* Utilities */
-@import './utilities.css';
-
 /* Responsive - Must be last to override */
 @import './responsive.css';
