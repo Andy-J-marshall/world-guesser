@@ -42,6 +42,31 @@
 
     .clues-grid {
         grid-template-columns: 1fr;
+        gap: var(--spacing-sm);
+    }
+
+    .clue-box {
+        height: 100px;
+        padding: var(--spacing-md);
+        justify-content: center;
+    }
+
+    .clue-box p {
+        font-size: 0.95rem;
+    }
+
+    .clue-box strong {
+        font-size: 0.65rem;
+        margin-bottom: 4px;
+    }
+
+    .locked-icon {
+        font-size: 1.5rem !important;
+        margin-bottom: var(--spacing-sm) !important;
+    }
+
+    .clue-flag {
+        max-width: 60px;
     }
 
     #bordering-countries-guess-feedback > div[style*="text-align"] {
