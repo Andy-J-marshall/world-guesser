@@ -9,12 +9,7 @@ interface BorderingCountriesSuccessPageProps {
     guesses: string[];
 }
 
-function BorderingCountriesSuccessPage({
-    name,
-    flag,
-    correctGuesses,
-    guesses,
-}: BorderingCountriesSuccessPageProps) {
+function BorderingCountriesSuccessPage({ name, flag, correctGuesses, guesses }: BorderingCountriesSuccessPageProps) {
     const totalBorders = correctGuesses.length;
     const [streak, setStreak] = useState(0);
 
@@ -34,7 +29,7 @@ function BorderingCountriesSuccessPage({
             <div id='successful-bordering-countries-game' className='game-container success-page-container'>
                 <div className='success-stat-hero'>
                     <div className='success-stat-number'>
-                        All {totalBorders} borders found!
+                        {totalBorders === 1 ? 'Border found!' : `All ${totalBorders} borders found!`}
                     </div>
                     <div className='success-country-display'>
                         <img src={flag} className='success-flag' alt={`${name} flag`} />
