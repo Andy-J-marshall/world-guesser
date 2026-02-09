@@ -131,7 +131,6 @@ function BorderingCountriesGuesser({ name, flag, borderingCountries, possibleCou
                     name={name}
                     flag={flag}
                     correctGuesses={correctGuesses}
-                    incorrectGuesses={incorrectGuesses}
                     guesses={guesses}
                 />
             )}

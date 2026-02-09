@@ -5,7 +5,6 @@ import StreakDisplay from '../../../components/layout/StreakDisplay';
 interface BorderingCountriesSuccessPageProps {
     name: string;
     flag: string;
-    incorrectGuesses: string[];
     correctGuesses: string[];
     guesses: string[];
 }
@@ -13,19 +12,11 @@ interface BorderingCountriesSuccessPageProps {
 function BorderingCountriesSuccessPage({
     name,
     flag,
-    incorrectGuesses,
     correctGuesses,
     guesses,
 }: BorderingCountriesSuccessPageProps) {
-    const incorrectCount = incorrectGuesses.length;
     const totalBorders = correctGuesses.length;
     const [streak, setStreak] = useState(0);
-
-    const getSubtext = () => {
-        if (incorrectCount === 0) return 'Flawless!';
-        if (incorrectCount <= 2) return 'Well done!';
-        return 'Completed!';
-    };
 
     useEffect(() => {
         const currentStreak = JSON.parse(localStorage.getItem('borderStreak') || '0') || 0;
@@ -42,9 +33,8 @@ function BorderingCountriesSuccessPage({
         <div className='fade-in'>
             <div id='successful-bordering-countries-game' className='game-container success-page-container'>
                 <div className='success-stat-hero'>
-                    <div className='success-celebration'>{getSubtext()}</div>
                     <div className='success-stat-number'>
-                        All {totalBorders} BORDERS FOUND!
+                        All {totalBorders} borders found!
                     </div>
                     <div className='success-country-display'>
                         <img src={flag} className='success-flag' alt={`${name} flag`} />
