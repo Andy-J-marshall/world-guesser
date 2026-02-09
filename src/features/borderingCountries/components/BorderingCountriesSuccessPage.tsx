@@ -46,21 +46,21 @@ function BorderingCountriesSuccessPage({
                 <div className='btn-container'>
                     <StartNewGame buttonText='Play again' />
                 </div>
-                <StreakDisplay streak={streak} />
                 <div className='answer-history-container'>
-                    <p className='answer-history-title'>Your answer history:</p>
+                    <p className='answer-history-title'>Your guesses:</p>
                     <div className='answer-history-grid'>
                         {guesses.map((guess, index) => {
                             const isCorrect = correctGuesses.includes(guess);
                             const badgeClass = isCorrect ? 'correct-badge' : 'incorrect-badge';
                             return (
-                                <span key={index} className={`small-text answer-badge ${badgeClass}`}>
-                                    {index + 1}. {guess}
+                                <span key={index} className={`answer-badge ${badgeClass}`}>
+                                    {guess}
                                 </span>
                             );
                         })}
                     </div>
                 </div>
+                <StreakDisplay streak={streak} />
             </div>
         </div>
     );

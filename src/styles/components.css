@@ -194,32 +194,35 @@
 .answer-history-container {
     background: var(--color-overlay-primary);
     border-radius: var(--border-radius-lg);
-    padding: var(--spacing-lg);
-    margin-top: var(--spacing-xl);
-    margin-bottom: var(--spacing-xl);
+    padding: var(--spacing-md) var(--spacing-lg);
+    margin-top: var(--spacing-lg);
     border: 1px solid var(--color-border-primary);
 }
 
 .answer-history-title {
-    color: var(--color-text-primary);
+    color: var(--color-text-secondary);
     margin-bottom: var(--spacing-sm);
     font-weight: 600;
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
 }
 
 .answer-history-grid {
     display: flex;
     flex-wrap: wrap;
-    gap: var(--spacing-sm);
-    justify-content: flex-start;
+    gap: var(--spacing-xs);
+    justify-content: center;
 }
 
 .answer-badge {
     background: var(--color-bg-card-solid);
-    padding: var(--spacing-xs) var(--spacing-md);
-    border-radius: var(--border-radius-md);
+    padding: var(--spacing-xs) var(--spacing-sm);
+    border-radius: var(--border-radius-sm);
     color: var(--color-text-secondary);
     border: 1px solid var(--color-border-primary-light);
     text-transform: capitalize;
+    font-size: 0.9rem;
     transition: all 0.2s ease;
     cursor: default;
 }

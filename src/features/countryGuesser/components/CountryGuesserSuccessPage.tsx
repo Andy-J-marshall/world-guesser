@@ -79,19 +79,19 @@ function CountryGuesserSuccessPage(props: CountryGuesserSuccessPageProps) {
                                 />
                             )}
                         </div>
-                        <StreakDisplay streak={streak} />
                         {incorrectCount > 0 && (
                             <div className='answer-history-container'>
-                                <p className='answer-history-title'>Your answer history:</p>
+                                <p className='answer-history-title'>Your guesses:</p>
                                 <div className='answer-history-grid'>
                                     {guesses.map((guess, index) => (
                                         <span key={index} className='answer-badge'>
-                                            {index + 1}. {guess}
+                                            {guess}
                                         </span>
                                     ))}
                                 </div>
                             </div>
                         )}
+                        <StreakDisplay streak={streak} />
                     </div>
                 </div>
             )}
