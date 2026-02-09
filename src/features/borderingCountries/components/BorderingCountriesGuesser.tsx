@@ -12,11 +12,12 @@ import { MAX_ATTEMPTS_BORDERING_COUNTRIES } from '../../../constants';
 interface BorderingCountriesGuesserProps {
     countriesInfo: CountriesInfo;
     name: string;
+    flag: string;
     borderingCountries: string[];
     possibleCountries: string[];
 }
 
-function BorderingCountriesGuesser({ name, borderingCountries, possibleCountries }: BorderingCountriesGuesserProps) {
+function BorderingCountriesGuesser({ name, flag, borderingCountries, possibleCountries }: BorderingCountriesGuesserProps) {
     const [correctGuesses, setCorrectGuesses] = useState<string[]>([]);
     const [incorrectGuesses, setIncorrectGuesses] = useState<string[]>([]);
     const [incorrectCount, setIncorrectCount] = useState(0);
@@ -127,6 +128,8 @@ function BorderingCountriesGuesser({ name, borderingCountries, possibleCountries
             )}
             {succeeded && (
                 <BorderingCountriesSuccessPage
+                    name={name}
+                    flag={flag}
                     correctGuesses={correctGuesses}
                     incorrectGuesses={incorrectGuesses}
                     guesses={guesses}

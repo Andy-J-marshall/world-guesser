@@ -100,6 +100,7 @@ function CountryGuesserSuccessPage(props: CountryGuesserSuccessPageProps) {
                 <BorderingCountriesGuesser
                     countriesInfo={countriesInfo}
                     name={name}
+                    flag={flag}
                     borderingCountries={borderingCountries}
                     possibleCountries={possibleCountries}
                 />

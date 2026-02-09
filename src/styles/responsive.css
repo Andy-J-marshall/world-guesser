@@ -165,9 +165,13 @@
         text-align: center;
     }
 
+    .answer-history-grid {
+        gap: var(--spacing-sm);
+    }
+
     .answer-badge {
         font-size: 0.85rem;
-        padding: 6px 12px;
+        padding: 8px 14px;
     }
 
     @keyframes slideInTopMobile {

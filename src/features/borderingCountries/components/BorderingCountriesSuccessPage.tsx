@@ -3,12 +3,16 @@ import StartNewGame from '../../../components/layout/StartNewGame';
 import StreakDisplay from '../../../components/layout/StreakDisplay';
 
 interface BorderingCountriesSuccessPageProps {
+    name: string;
+    flag: string;
     incorrectGuesses: string[];
     correctGuesses: string[];
     guesses: string[];
 }
 
 function BorderingCountriesSuccessPage({
+    name,
+    flag,
     incorrectGuesses,
     correctGuesses,
     guesses,
@@ -19,8 +23,8 @@ function BorderingCountriesSuccessPage({
 
     const getSubtext = () => {
         if (incorrectCount === 0) return 'Flawless!';
-        if (incorrectCount === 1) return '1 wrong guess';
-        return `${incorrectCount} wrong guesses`;
+        if (incorrectCount <= 2) return 'Well done!';
+        return 'Completed!';
     };
 
     useEffect(() => {
@@ -40,7 +44,11 @@ function BorderingCountriesSuccessPage({
                 <div className='success-stat-hero'>
                     <div className='success-celebration'>{getSubtext()}</div>
                     <div className='success-stat-number'>
-                        {totalBorders}/{totalBorders} BORDERS
+                        All {totalBorders} BORDERS FOUND!
+                    </div>
+                    <div className='success-country-display'>
+                        <img src={flag} className='success-flag' alt={`${name} flag`} />
+                        <div className='success-country-name'>{name}</div>
                     </div>
                 </div>
                 <div className='btn-container'>
