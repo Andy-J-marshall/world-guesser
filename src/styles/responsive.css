@@ -42,7 +42,7 @@
 
     .clues-grid {
         grid-template-columns: 1fr;
-        gap: var(--spacing-sm);
+        gap: var(--spacing-md);
     }
 
     .clue-box {

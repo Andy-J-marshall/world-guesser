@@ -6,7 +6,7 @@
 .clues-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-    gap: var(--spacing-md);
+    gap: var(--spacing-lg);
     width: 100%;
     max-width: 900px;
     margin: 0;
