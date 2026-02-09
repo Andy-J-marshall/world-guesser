@@ -107,6 +107,45 @@
         padding: var(--spacing-sm) var(--spacing-md);
     }
 
+    .success-page-container {
+        padding: var(--spacing-lg) var(--spacing-md);
+    }
+
+    .success-stat-hero {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+
+    .success-stat-number {
+        font-size: clamp(2rem, 10vw, 3rem);
+        text-align: center;
+        width: 100%;
+    }
+
+    .success-country-display {
+        width: 100%;
+        flex-direction: row;
+        gap: var(--spacing-sm);
+    }
+
+    .success-flag {
+        width: 60px;
+    }
+
+    .success-country-name {
+        font-size: clamp(1.25rem, 6vw, 1.75rem);
+        text-align: center;
+    }
+
+    .success-subtext {
+        font-size: 1rem;
+        text-align: center;
+        width: 100%;
+    }
+
     @keyframes slideInTopMobile {
         from {
             transform: translateY(-100px);

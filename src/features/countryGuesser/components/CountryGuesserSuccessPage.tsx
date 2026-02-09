@@ -45,24 +45,30 @@ function CountryGuesserSuccessPage(props: CountryGuesserSuccessPageProps) {
         return stats;
     }
 
+    const guessCount = guesses.length;
+
+    const getSubtext = () => {
+        if (guessCount === 1) return 'Perfect!';
+        if (guessCount <= 3) return 'Excellent!';
+        if (guessCount <= 6) return 'Nice work!';
+        return 'You got it!';
+    };
+
     return (
         <>
             {!newGameStarted && (
                 <div className='fade-in'>
                     <div id='successful-country-game' className='game-container success-page-container'>
-                        <h2 className='success-title'>Success!</h2>
-                        {incorrectCount === 0 && (
-                            <p>
-                                Amazing! You got {name} in one!
-                                <img src={flag} className='inline-flag' />
-                            </p>
-                        )}
-                        {incorrectCount > 0 && (
-                            <p>
-                                Well done! It took you {guesses.length} attempts to get {name}{' '}
-                                <img src={flag} className='inline-flag' />
-                            </p>
-                        )}
+                        <div className='success-stat-hero'>
+                            <div className='success-stat-number'>
+                                {guessCount} {guessCount === 1 ? 'GUESS' : 'GUESSES'}
+                            </div>
+                            <div className='success-country-display'>
+                                <img src={flag} className='success-flag' alt={`${name} flag`} />
+                                <div className='success-country-name'>{name}</div>
+                            </div>
+                            <div className='success-subtext'>{getSubtext()}</div>
+                        </div>
                         <div className='btn-container'>
                             {!borderingCountriesGameStarted && (
                                 <StartNewGame buttonText='Play again' variant='primary' />

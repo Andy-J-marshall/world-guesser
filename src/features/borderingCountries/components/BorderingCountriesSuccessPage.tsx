@@ -4,23 +4,22 @@ import BorderingCountriesStats from './BorderingCountriesStats';
 interface BorderingCountriesSuccessPageProps {
     incorrectGuesses: string[];
     correctGuesses: string[];
-    name: string;
     guesses: string[];
 }
 
 function BorderingCountriesSuccessPage({
     incorrectGuesses,
     correctGuesses,
-    name,
     guesses,
 }: BorderingCountriesSuccessPageProps) {
     const incorrectCount = incorrectGuesses.length;
-    const answerOrAnswers = incorrectCount === 1 ? 'answer' : 'answers';
+    const totalBorders = correctGuesses.length;
 
-    const messageText =
-        correctGuesses.length === 1
-            ? `Well done! You found the only bordering country of ${name} with ${incorrectCount} incorrect ${answerOrAnswers}`
-            : `Well done! You found the ${correctGuesses.length} bordering countries of ${name} with ${incorrectCount} incorrect answers`;
+    const getSubtext = () => {
+        if (incorrectCount === 0) return 'Flawless!';
+        if (incorrectCount === 1) return '1 wrong guess';
+        return `${incorrectCount} wrong guesses`;
+    };
 
     function updateStats() {
         const numberOfWins = JSON.parse(localStorage.getItem('numberOfBorderWins') || '0') || 0;
@@ -43,8 +42,12 @@ function BorderingCountriesSuccessPage({
     return (
         <div className='fade-in'>
             <div id='successful-bordering-countries-game' className='game-container success-page-container'>
-                <h2 className='success-title'>Success!</h2>
-                <h3 className='success-subtitle'>{messageText}</h3>
+                <div className='success-stat-hero'>
+                    <div className='success-stat-number'>
+                        {totalBorders}/{totalBorders} BORDERS
+                    </div>
+                    <div className='success-subtext'>{getSubtext()}</div>
+                </div>
                 <div className='btn-container'>
                     <StartNewGame buttonText='Play again' />
                 </div>

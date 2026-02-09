@@ -129,7 +129,6 @@ function BorderingCountriesGuesser({ name, borderingCountries, possibleCountries
                 <BorderingCountriesSuccessPage
                     correctGuesses={correctGuesses}
                     incorrectGuesses={incorrectGuesses}
-                    name={name}
                     guesses={guesses}
                 />
             )}

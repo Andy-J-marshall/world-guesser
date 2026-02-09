@@ -22,6 +22,58 @@
     text-align: left;
 }
 
+/* Success Stat Hero - Performance-focused display */
+.success-stat-hero {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    margin-bottom: var(--spacing-xl);
+}
+
+.success-stat-number {
+    font-size: clamp(2.5rem, 6vw, 4rem);
+    font-weight: 800;
+    color: var(--color-success);
+    letter-spacing: 0.02em;
+    margin-bottom: var(--spacing-md);
+    line-height: 1.1;
+    width: 100%;
+}
+
+.success-country-display {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--spacing-md);
+    margin: var(--spacing-xs) 0;
+    width: 100%;
+}
+
+.success-flag {
+    width: 80px;
+    height: auto;
+    border-radius: var(--border-radius-sm);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+.success-country-name {
+    font-size: clamp(1.5rem, 4vw, 2rem);
+    font-weight: 700;
+    color: var(--color-white);
+    text-align: center;
+}
+
+.success-subtext {
+    font-size: clamp(1rem, 2.5vw, 1.25rem);
+    color: var(--color-text-secondary);
+    font-weight: 600;
+    margin-top: var(--spacing-md);
+    text-align: center;
+    width: 100%;
+}
+
 .failure-message {
     margin-bottom: var(--spacing-lg);
 }
