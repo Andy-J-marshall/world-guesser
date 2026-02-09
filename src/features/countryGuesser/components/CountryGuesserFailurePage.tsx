@@ -22,26 +22,28 @@ function CountryGuesserFailurePage(props: CountryGuesserFailurePageProps) {
 
     return (
         <div id='country-guesser-failure-page' className='fade-in'>
-            <div id='country-failure' className='game-container'>
-                <h2 className='game-over-title'>Game Over</h2>
-                <p className='error-message failure-message'>You failed. Better luck next time!</p>
-                <p className='failure-message'>The answer was {name}.</p>
-
+            <div id='country-failure' className='game-container success-page-container'>
+                <div className='success-stat-hero'>
+                    <h2 className='game-over-title'>Game Over</h2>
+                    <p className='error-message failure-message'>You failed. Better luck next time!</p>
+                    <div className='success-country-display'>
+                        <img src={flag} className='success-flag' alt={`${name} flag`} />
+                        <div className='success-country-name'>{name}</div>
+                    </div>
+                </div>
+                <div className='btn-container'>
+                    <StartNewGame buttonText='Try again' />
+                </div>
                 <div className='answer-history-container'>
-                    <p className='answer-history-title'>Your answer history:</p>
+                    <p className='answer-history-title'>Your guesses:</p>
                     <div className='answer-history-grid'>
                         {guesses.map((guess, index) => (
-                            <span key={index} className='small-text answer-badge'>
-                                {index + 1}. {guess}
+                            <span key={index} className='answer-badge'>
+                                {guess}
                             </span>
                         ))}
                     </div>
                 </div>
-
-                <img src={flag} alt='Country Flag' className='flag-image' />
-            </div>
-            <div className='btn-container'>
-                <StartNewGame buttonText='Try again' />
             </div>
         </div>
     );
