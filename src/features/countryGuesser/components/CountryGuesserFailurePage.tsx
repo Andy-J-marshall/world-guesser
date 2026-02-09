@@ -1,5 +1,5 @@
+import { useEffect } from 'react';
 import StartNewGame from '../../../components/layout/StartNewGame';
-import CountryGuesserStats from './CountryGuesserStats';
 
 interface CountryGuesserFailurePageProps {
     name: string;
@@ -12,18 +12,13 @@ function CountryGuesserFailurePage(props: CountryGuesserFailurePageProps) {
     const flag = props.flag;
     const guesses = props.guesses;
 
-    function updateStats() {
-        const numberOfWins = JSON.parse(localStorage.getItem('numberOfWins') || '0') || 0;
-        const numberOfGames = JSON.parse(localStorage.getItem('numberOfGames') || '0') || 0;
-        const numberOfAttempts = JSON.parse(localStorage.getItem('numberOfAttempts') || '0') || 0;
-        const stats = {
-            numberOfWins,
-            numberOfGames: numberOfGames + 1,
-            numberOfAttempts: numberOfAttempts + guesses.length,
-            streak: 0,
-        };
-        return stats;
-    }
+    useEffect(() => {
+        try {
+            localStorage.setItem('streak', '0');
+        } catch (error) {
+            console.log('Unable to reset streak');
+        }
+    }, []);
 
     return (
         <div id='country-guesser-failure-page' className='fade-in'>
@@ -48,7 +43,6 @@ function CountryGuesserFailurePage(props: CountryGuesserFailurePageProps) {
             <div className='btn-container'>
                 <StartNewGame buttonText='Try again' />
             </div>
-            <CountryGuesserStats updateStatsCallback={updateStats} />
         </div>
     );
 }

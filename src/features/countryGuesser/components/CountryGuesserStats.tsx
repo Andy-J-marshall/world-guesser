@@ -1,6 +1,31 @@
 import { useState, useEffect } from 'react';
 import { StatsDisplay } from '../../../components/layout/StatsDisplay';
 
+/*
+ * TODO: Future stats update logic reference:
+ * 
+ * function updateStats(guesses: string[]) {
+ *     const numberOfWins = JSON.parse(localStorage.getItem('numberOfWins') || '0') || 0;
+ *     const numberOfGames = JSON.parse(localStorage.getItem('numberOfGames') || '0') || 0;
+ *     const numberOfAttempts = JSON.parse(localStorage.getItem('numberOfAttempts') || '0') || 0;
+ *     const streak = JSON.parse(localStorage.getItem('streak') || '0') || 0;
+ *     const stats = {
+ *         numberOfWins: numberOfWins + 1,
+ *         numberOfGames: numberOfGames + 1,
+ *         numberOfAttempts: numberOfAttempts + guesses.length,
+ *         streak: streak + 1,
+ *     };
+ *     // Update localStorage with new stats
+ *     localStorage.setItem('numberOfWins', JSON.stringify(stats.numberOfWins));
+ *     localStorage.setItem('numberOfGames', JSON.stringify(stats.numberOfGames));
+ *     localStorage.setItem('numberOfAttempts', JSON.stringify(stats.numberOfAttempts));
+ *     localStorage.setItem('streak', JSON.stringify(stats.streak));
+ *     return stats;
+ * }
+ * 
+ * For failure: set streak to 0, don't increment numberOfWins
+ */
+
 interface StatsResult {
     numberOfWins: number;
     numberOfGames: number;

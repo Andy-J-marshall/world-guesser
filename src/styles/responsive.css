@@ -146,6 +146,18 @@
         width: 100%;
     }
 
+    .success-streak-display {
+        margin: var(--spacing-lg) auto 0;
+    }
+
+    .success-streak-card {
+        padding: var(--spacing-md) var(--spacing-sm);
+    }
+
+    .success-streak-number {
+        font-size: clamp(2.5rem, 12vw, 3.5rem);
+    }
+
     @keyframes slideInTopMobile {
         from {
             transform: translateY(-100px);

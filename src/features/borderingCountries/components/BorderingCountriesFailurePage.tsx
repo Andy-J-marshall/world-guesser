@@ -1,5 +1,5 @@
+import { useEffect } from 'react';
 import StartNewGame from '../../../components/layout/StartNewGame';
-import BorderingCountriesStats from './BorderingCountriesStats';
 
 interface BorderingCountriesFailurePageProps {
     borderingCountries: string[];
@@ -12,25 +12,15 @@ function BorderingCountriesFailurePage({
     correctGuesses,
     guesses,
 }: BorderingCountriesFailurePageProps) {
-    const incorrectCount = guesses.length - correctGuesses.length;
     const borderingCountriesCount = borderingCountries.length;
 
-    function updateStats() {
-        const numberOfWins = JSON.parse(localStorage.getItem('numberOfBorderWins') || '0') || 0;
-        const numberOfGames = JSON.parse(localStorage.getItem('numberOfBorderGames') || '0') || 0;
-        const numberOfAttempts = JSON.parse(localStorage.getItem('numberOfBorderAttempts') || '0') || 0;
-        const numberOfCorrectAnswers = JSON.parse(localStorage.getItem('numberOfCorrectBorderAnswers') || '0') || 0;
-        const numberOfIncorrectAnswers = JSON.parse(localStorage.getItem('numberOfIncorrectBorderAnswers') || '0') || 0;
-        const stats = {
-            numberOfWins: numberOfWins,
-            numberOfGames: numberOfGames + 1,
-            numberOfAttempts: numberOfAttempts + guesses.length,
-            numberOfCorrectAnswers: numberOfCorrectAnswers + correctGuesses.length,
-            numberOfIncorrectAnswers: numberOfIncorrectAnswers + incorrectCount,
-            streak: 0,
-        };
-        return stats;
-    }
+    useEffect(() => {
+        try {
+            localStorage.setItem('borderStreak', '0');
+        } catch (error) {
+            console.log('Unable to reset streak');
+        }
+    }, []);
 
     return (
         <div id='bordering-countries-failure-page' className='fade-in'>
@@ -82,7 +72,6 @@ function BorderingCountriesFailurePage({
             <div className='btn-container'>
                 <StartNewGame buttonText='Try again' />
             </div>
-            <BorderingCountriesStats updateStatsCallback={updateStats} />
         </div>
     );
 }

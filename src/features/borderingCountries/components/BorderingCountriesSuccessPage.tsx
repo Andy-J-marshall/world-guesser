@@ -1,5 +1,6 @@
+import { useState, useEffect } from 'react';
 import StartNewGame from '../../../components/layout/StartNewGame';
-import BorderingCountriesStats from './BorderingCountriesStats';
+import StreakDisplay from '../../../components/layout/StreakDisplay';
 
 interface BorderingCountriesSuccessPageProps {
     incorrectGuesses: string[];
@@ -14,6 +15,7 @@ function BorderingCountriesSuccessPage({
 }: BorderingCountriesSuccessPageProps) {
     const incorrectCount = incorrectGuesses.length;
     const totalBorders = correctGuesses.length;
+    const [streak, setStreak] = useState(0);
 
     const getSubtext = () => {
         if (incorrectCount === 0) return 'Flawless!';
@@ -21,23 +23,16 @@ function BorderingCountriesSuccessPage({
         return `${incorrectCount} wrong guesses`;
     };
 
-    function updateStats() {
-        const numberOfWins = JSON.parse(localStorage.getItem('numberOfBorderWins') || '0') || 0;
-        const numberOfGames = JSON.parse(localStorage.getItem('numberOfBorderGames') || '0') || 0;
-        const numberOfAttempts = JSON.parse(localStorage.getItem('numberOfBorderAttempts') || '0') || 0;
-        const numberOfCorrectAnswers = JSON.parse(localStorage.getItem('numberOfCorrectBorderAnswers') || '0') || 0;
-        const numberOfIncorrectAnswers = JSON.parse(localStorage.getItem('numberOfIncorrectBorderAnswers') || '0') || 0;
-        const streak = JSON.parse(localStorage.getItem('borderStreak') || '0') || 0;
-        const stats = {
-            numberOfWins: numberOfWins + 1,
-            numberOfGames: numberOfGames + 1,
-            numberOfAttempts: numberOfAttempts + guesses.length,
-            numberOfCorrectAnswers: numberOfCorrectAnswers + correctGuesses.length,
-            numberOfIncorrectAnswers: numberOfIncorrectAnswers + incorrectCount,
-            streak: streak + 1,
-        };
-        return stats;
-    }
+    useEffect(() => {
+        const currentStreak = JSON.parse(localStorage.getItem('borderStreak') || '0') || 0;
+        setStreak(currentStreak + 1);
+
+        try {
+            localStorage.setItem('borderStreak', JSON.stringify(currentStreak + 1));
+        } catch (error) {
+            console.log('Unable to update streak');
+        }
+    }, []);
 
     return (
         <div className='fade-in'>
@@ -51,6 +46,7 @@ function BorderingCountriesSuccessPage({
                 <div className='btn-container'>
                     <StartNewGame buttonText='Play again' />
                 </div>
+                <StreakDisplay streak={streak} />
                 <div className='answer-history-container'>
                     <p className='answer-history-title'>Your answer history:</p>
                     <div className='answer-history-grid'>
@@ -65,7 +61,6 @@ function BorderingCountriesSuccessPage({
                         })}
                     </div>
                 </div>
-                <BorderingCountriesStats updateStatsCallback={updateStats} />
             </div>
         </div>
     );

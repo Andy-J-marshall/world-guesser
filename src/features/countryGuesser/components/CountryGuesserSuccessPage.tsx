@@ -1,8 +1,8 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import BorderingCountriesGuesser from '../../borderingCountries/components/BorderingCountriesGuesser';
 import Button from '../../../components/ui/Button';
 import StartNewGame from '../../../components/layout/StartNewGame';
-import CountryGuesserStats from './CountryGuesserStats';
+import StreakDisplay from '../../../components/layout/StreakDisplay';
 
 interface CountryGuesserSuccessPageProps {
     countriesInfo: any;
@@ -25,24 +25,11 @@ function CountryGuesserSuccessPage(props: CountryGuesserSuccessPageProps) {
 
     const [newGameStarted, setNewGameStarted] = useState(false);
     const [borderingCountriesGameStarted, setBorderingCountriesGameStarted] = useState(false);
+    const [streak, setStreak] = useState(0);
 
     function startBorderingCountriesGame() {
         setBorderingCountriesGameStarted(true);
         setNewGameStarted(true);
-    }
-
-    function updateStats() {
-        const numberOfWins = JSON.parse(localStorage.getItem('numberOfWins') || '0') || 0;
-        const numberOfGames = JSON.parse(localStorage.getItem('numberOfGames') || '0') || 0;
-        const numberOfAttempts = JSON.parse(localStorage.getItem('numberOfAttempts') || '0') || 0;
-        const streak = JSON.parse(localStorage.getItem('streak') || '0') || 0;
-        const stats = {
-            numberOfWins: numberOfWins + 1,
-            numberOfGames: numberOfGames + 1,
-            numberOfAttempts: numberOfAttempts + guesses.length,
-            streak: streak + 1,
-        };
-        return stats;
     }
 
     const guessCount = guesses.length;
@@ -53,6 +40,17 @@ function CountryGuesserSuccessPage(props: CountryGuesserSuccessPageProps) {
         if (guessCount <= 6) return 'Nice work!';
         return 'You got it!';
     };
+
+    useEffect(() => {
+        const currentStreak = JSON.parse(localStorage.getItem('streak') || '0') || 0;
+        setStreak(currentStreak + 1);
+
+        try {
+            localStorage.setItem('streak', JSON.stringify(currentStreak + 1));
+        } catch (error) {
+            console.log('Unable to update streak');
+        }
+    }, []);
 
     return (
         <>
@@ -81,6 +79,7 @@ function CountryGuesserSuccessPage(props: CountryGuesserSuccessPageProps) {
                                 />
                             )}
                         </div>
+                        <StreakDisplay streak={streak} />
                         {incorrectCount > 0 && (
                             <div className='answer-history-container'>
                                 <p className='answer-history-title'>Your answer history:</p>
@@ -93,7 +92,6 @@ function CountryGuesserSuccessPage(props: CountryGuesserSuccessPageProps) {
                                 </div>
                             </div>
                         )}
-                        <CountryGuesserStats updateStatsCallback={updateStats} />
                     </div>
                 </div>
             )}
