@@ -17,11 +17,6 @@ img[alt*='flag']:hover {
     border-color: var(--color-border-primary-strong);
 }
 
-.flag-image {
-    border-radius: var(--border-radius-lg);
-    margin-bottom: var(--spacing-lg);
-}
-
 .inline-flag {
     height: 1.2em;
     width: auto;

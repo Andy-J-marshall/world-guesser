@@ -74,10 +74,3 @@
     text-align: center;
     padding: 0;
 }
-
-.success-page-container .flag-image {
-    display: block;
-    max-width: 280px;
-    border: 2px solid var(--color-border-primary);
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
-}

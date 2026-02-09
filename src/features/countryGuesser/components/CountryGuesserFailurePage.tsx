@@ -24,8 +24,7 @@ function CountryGuesserFailurePage(props: CountryGuesserFailurePageProps) {
         <div id='country-guesser-failure-page' className='fade-in'>
             <div id='country-failure' className='game-container success-page-container'>
                 <div className='success-stat-hero'>
-                    <h2 className='game-over-title'>Game Over</h2>
-                    <p className='error-message failure-message'>You failed. Better luck next time!</p>
+                    <div className='success-celebration'>Not quite!</div>
                     <div className='success-country-display'>
                         <img src={flag} className='success-flag' alt={`${name} flag`} />
                         <div className='success-country-name'>{name}</div>
