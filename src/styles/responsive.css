@@ -140,10 +140,8 @@
         text-align: center;
     }
 
-    .success-subtext {
-        font-size: 1rem;
-        text-align: center;
-        width: 100%;
+    .success-celebration {
+        font-size: clamp(1rem, 4vw, 1.25rem);
     }
 
     .success-streak-display {

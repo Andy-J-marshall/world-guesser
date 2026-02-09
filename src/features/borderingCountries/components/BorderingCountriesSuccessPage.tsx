@@ -38,10 +38,10 @@ function BorderingCountriesSuccessPage({
         <div className='fade-in'>
             <div id='successful-bordering-countries-game' className='game-container success-page-container'>
                 <div className='success-stat-hero'>
+                    <div className='success-celebration'>{getSubtext()}</div>
                     <div className='success-stat-number'>
                         {totalBorders}/{totalBorders} BORDERS
                     </div>
-                    <div className='success-subtext'>{getSubtext()}</div>
                 </div>
                 <div className='btn-container'>
                     <StartNewGame buttonText='Play again' />

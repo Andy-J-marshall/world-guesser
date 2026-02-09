@@ -32,6 +32,15 @@
     margin-bottom: var(--spacing-xl);
 }
 
+.success-celebration {
+    font-size: clamp(1.25rem, 3vw, 1.5rem);
+    font-weight: 600;
+    color: var(--color-text-secondary);
+    margin-bottom: var(--spacing-md);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
 .success-stat-number {
     font-size: clamp(2.5rem, 6vw, 4rem);
     font-weight: 800;
