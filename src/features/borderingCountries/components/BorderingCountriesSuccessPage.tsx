@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import StartNewGame from '../../../components/layout/StartNewGame';
 import StreakDisplay from '../../../components/layout/StreakDisplay';
+import AnswerHistory from '../../../components/layout/AnswerHistory';
 
 interface BorderingCountriesSuccessPageProps {
     name: string;
@@ -39,20 +40,7 @@ function BorderingCountriesSuccessPage({ name, flag, correctGuesses, guesses }: 
                 <div className='btn-container'>
                     <StartNewGame buttonText='Play again' />
                 </div>
-                <div className='answer-history-container'>
-                    <p className='answer-history-title'>Your guesses:</p>
-                    <div className='answer-history-grid'>
-                        {guesses.map((guess, index) => {
-                            const isCorrect = correctGuesses.includes(guess);
-                            const badgeClass = isCorrect ? 'correct-badge' : 'incorrect-badge';
-                            return (
-                                <span key={index} className={`answer-badge ${badgeClass}`}>
-                                    {guess}
-                                </span>
-                            );
-                        })}
-                    </div>
-                </div>
+                <AnswerHistory guesses={guesses} correctGuesses={correctGuesses} />
                 <StreakDisplay streak={streak} />
             </div>
         </div>

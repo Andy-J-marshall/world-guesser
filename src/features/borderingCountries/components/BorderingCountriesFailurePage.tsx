@@ -1,5 +1,6 @@
 import { useEffect } from 'react';
 import StartNewGame from '../../../components/layout/StartNewGame';
+import AnswerHistory from '../../../components/layout/AnswerHistory';
 
 interface BorderingCountriesFailurePageProps {
     borderingCountries: string[];
@@ -40,22 +41,7 @@ function BorderingCountriesFailurePage({
                     <div className='btn-container'>
                         <StartNewGame buttonText='Try again' />
                     </div>
-                    <div className='answer-history-container'>
-                        <div>
-                            <p className='answer-history-title'>Your guesses:</p>
-                            <div className='answer-history-grid'>
-                                {guesses.map((guess, index) => {
-                                    const isCorrect = correctGuesses.includes(guess);
-                                    const badgeClass = isCorrect ? 'correct-badge' : 'incorrect-badge';
-                                    return (
-                                        <span key={index} className={`answer-badge ${badgeClass}`}>
-                                            {guess}
-                                        </span>
-                                    );
-                                })}
-                            </div>
-                        </div>
-                    </div>
+                    <AnswerHistory guesses={guesses} correctGuesses={correctGuesses} />
                 </div>
             )}
         </div>

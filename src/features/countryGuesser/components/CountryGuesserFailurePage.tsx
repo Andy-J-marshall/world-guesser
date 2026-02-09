@@ -1,5 +1,6 @@
 import { useEffect } from 'react';
 import StartNewGame from '../../../components/layout/StartNewGame';
+import AnswerHistory from '../../../components/layout/AnswerHistory';
 
 interface CountryGuesserFailurePageProps {
     name: string;
@@ -33,16 +34,7 @@ function CountryGuesserFailurePage(props: CountryGuesserFailurePageProps) {
                 <div className='btn-container'>
                     <StartNewGame buttonText='Try again' />
                 </div>
-                <div className='answer-history-container'>
-                    <p className='answer-history-title'>Your guesses:</p>
-                    <div className='answer-history-grid'>
-                        {guesses.map((guess, index) => (
-                            <span key={index} className='answer-badge'>
-                                {guess}
-                            </span>
-                        ))}
-                    </div>
-                </div>
+                <AnswerHistory guesses={guesses} />
             </div>
         </div>
     );

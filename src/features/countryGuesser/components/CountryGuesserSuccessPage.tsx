@@ -3,6 +3,7 @@ import BorderingCountriesGuesser from '../../borderingCountries/components/Borde
 import Button from '../../../components/ui/Button';
 import StartNewGame from '../../../components/layout/StartNewGame';
 import StreakDisplay from '../../../components/layout/StreakDisplay';
+import AnswerHistory from '../../../components/layout/AnswerHistory';
 
 interface CountryGuesserSuccessPageProps {
     countriesInfo: any;
@@ -79,18 +80,7 @@ function CountryGuesserSuccessPage(props: CountryGuesserSuccessPageProps) {
                                 />
                             )}
                         </div>
-                        {incorrectCount > 0 && (
-                            <div className='answer-history-container'>
-                                <p className='answer-history-title'>Your guesses:</p>
-                                <div className='answer-history-grid'>
-                                    {guesses.map((guess, index) => (
-                                        <span key={index} className='answer-badge'>
-                                            {guess}
-                                        </span>
-                                    ))}
-                                </div>
-                            </div>
-                        )}
+                        {incorrectCount > 0 && <AnswerHistory guesses={guesses} />}
                         <StreakDisplay streak={streak} />
                     </div>
                 </div>
