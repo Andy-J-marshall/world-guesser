@@ -158,7 +158,6 @@
 
     .answer-history-container {
         padding: var(--spacing-sm) var(--spacing-md);
-        margin-top: var(--spacing-md);
     }
 
     .answer-history-title {
