@@ -29,7 +29,7 @@ function Navigation({ activeView, onNavigate }: NavigationProps) {
                 <Navbar.Brand href="#home">Fun With Countries</Navbar.Brand>
                 <Navbar.Toggle aria-controls="basic-navbar-nav" />
                 <Navbar.Collapse id="basic-navbar-nav">
-                    <Nav>
+                    <Nav className="ms-auto">
                         <Nav.Link
                             active={activeView === 'country-guesser'}
                             onClick={() => handleNavClick('country-guesser')}
