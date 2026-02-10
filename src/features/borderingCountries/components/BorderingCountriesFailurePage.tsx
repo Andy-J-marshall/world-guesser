@@ -1,8 +1,10 @@
+import { useEffect } from 'react';
 import StartNewGame from '../../../components/layout/StartNewGame';
 import AnswerHistory from '../../../components/layout/AnswerHistory';
 import GameResultLayout from '../../../components/layout/GameResultLayout';
 import useStreakManager from '../../../hooks/useStreakManager';
 import { STORAGE_KEYS } from '../../../constants/storageKeys';
+import { getStorageNumber, setStorageValue } from '../../../lib/storageUtils';
 
 interface BorderingCountriesFailurePageProps {
     borderingCountries: string[];
@@ -19,6 +21,16 @@ function BorderingCountriesFailurePage({
 }: BorderingCountriesFailurePageProps) {
     const borderingCountriesCount = borderingCountries.length;
     useStreakManager(STORAGE_KEYS.BORDER_STREAK, 'reset');
+
+    useEffect(() => {
+        // Increment games
+        const currentGames = getStorageNumber(STORAGE_KEYS.BORDER_GAMES, 0);
+        setStorageValue(STORAGE_KEYS.BORDER_GAMES, currentGames + 1);
+
+        // Add attempts
+        const currentAttempts = getStorageNumber(STORAGE_KEYS.BORDER_ATTEMPTS, 0);
+        setStorageValue(STORAGE_KEYS.BORDER_ATTEMPTS, currentAttempts + guesses.length);
+    }, [guesses.length]);
 
     return (
         <GameResultLayout

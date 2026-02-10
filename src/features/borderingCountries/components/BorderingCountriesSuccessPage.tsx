@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import StartNewGame from '../../../components/layout/StartNewGame';
 import StreakDisplay from '../../../components/layout/StreakDisplay';
 import AnswerHistory from '../../../components/layout/AnswerHistory';
@@ -5,6 +6,7 @@ import GameResultLayout from '../../../components/layout/GameResultLayout';
 import CountryDisplay from '../../../components/layout/CountryDisplay';
 import useStreakManager from '../../../hooks/useStreakManager';
 import { STORAGE_KEYS } from '../../../constants/storageKeys';
+import { getStorageNumber, setStorageValue } from '../../../lib/storageUtils';
 
 interface BorderingCountriesSuccessPageProps {
     name: string;
@@ -23,6 +25,17 @@ function BorderingCountriesSuccessPage({
 }: BorderingCountriesSuccessPageProps) {
     const totalBorders = correctGuesses.length;
     const streak = useStreakManager(STORAGE_KEYS.BORDER_STREAK, 'increment');
+
+    useEffect(() => {
+        const currentWins = getStorageNumber(STORAGE_KEYS.BORDER_WINS, 0);
+        setStorageValue(STORAGE_KEYS.BORDER_WINS, currentWins + 1);
+
+        const currentGames = getStorageNumber(STORAGE_KEYS.BORDER_GAMES, 0);
+        setStorageValue(STORAGE_KEYS.BORDER_GAMES, currentGames + 1);
+
+        const currentAttempts = getStorageNumber(STORAGE_KEYS.BORDER_ATTEMPTS, 0);
+        setStorageValue(STORAGE_KEYS.BORDER_ATTEMPTS, currentAttempts + guesses.length);
+    }, [guesses.length]);
 
     return (
         <GameResultLayout

@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import BorderingCountriesGuesser from '../../borderingCountries/components/BorderingCountriesGuesser';
 import Button from '../../../components/ui/Button';
 import StartNewGame from '../../../components/layout/StartNewGame';
@@ -8,6 +8,7 @@ import GameResultLayout from '../../../components/layout/GameResultLayout';
 import CountryDisplay from '../../../components/layout/CountryDisplay';
 import useStreakManager from '../../../hooks/useStreakManager';
 import { STORAGE_KEYS } from '../../../constants/storageKeys';
+import { getStorageNumber, setStorageValue } from '../../../lib/storageUtils';
 
 interface CountryGuesserSuccessPageProps {
     countriesInfo: any;
@@ -33,6 +34,17 @@ function CountryGuesserSuccessPage({
     const [newGameStarted, setNewGameStarted] = useState(false);
     const [borderingCountriesGameStarted, setBorderingCountriesGameStarted] = useState(false);
     const streak = useStreakManager(STORAGE_KEYS.COUNTRY_STREAK, 'increment');
+
+    useEffect(() => {
+        const currentWins = getStorageNumber(STORAGE_KEYS.COUNTRY_WINS, 0);
+        setStorageValue(STORAGE_KEYS.COUNTRY_WINS, currentWins + 1);
+
+        const currentGames = getStorageNumber(STORAGE_KEYS.COUNTRY_GAMES, 0);
+        setStorageValue(STORAGE_KEYS.COUNTRY_GAMES, currentGames + 1);
+
+        const currentAttempts = getStorageNumber(STORAGE_KEYS.COUNTRY_ATTEMPTS, 0);
+        setStorageValue(STORAGE_KEYS.COUNTRY_ATTEMPTS, currentAttempts + guesses.length);
+    }, [guesses.length]);
 
     function startBorderingCountriesGame() {
         setBorderingCountriesGameStarted(true);

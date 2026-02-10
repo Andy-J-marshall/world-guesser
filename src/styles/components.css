@@ -169,6 +169,19 @@
     color: var(--color-primary-light);
 }
 
+.stats-empty-state {
+    text-align: center;
+    padding: var(--spacing-xl);
+    color: var(--color-text-secondary);
+}
+
+.stats-empty-message {
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin-bottom: var(--spacing-sm);
+    color: var(--color-text-primary);
+}
+
 .stats-display-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
