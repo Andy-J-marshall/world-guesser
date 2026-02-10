@@ -1,6 +1,7 @@
 import { useEffect } from 'react';
 import StartNewGame from '../../../components/layout/StartNewGame';
 import AnswerHistory from '../../../components/layout/AnswerHistory';
+import GameResultLayout from '../../../components/layout/GameResultLayout';
 
 interface CountryGuesserFailurePageProps {
     name: string;
@@ -22,21 +23,21 @@ function CountryGuesserFailurePage(props: CountryGuesserFailurePageProps) {
     }, []);
 
     return (
-        <div id='country-guesser-failure-page' className='fade-in'>
-            <div id='country-failure' className='game-container success-page-container'>
-                <div className='success-stat-hero'>
+        <GameResultLayout
+            id='country-failure'
+            heroContent={
+                <>
                     <div className='success-celebration'>Not quite!</div>
                     <div className='success-country-display'>
                         <img src={flag} className='success-flag' alt={`${name} flag`} />
                         <div className='success-country-name'>{name}</div>
                     </div>
-                </div>
-                <div className='btn-container'>
-                    <StartNewGame buttonText='Try again' />
-                </div>
-                <AnswerHistory guesses={guesses} />
-            </div>
-        </div>
+                </>
+            }
+            actions={<StartNewGame buttonText='Try again' />}
+        >
+            <AnswerHistory guesses={guesses} />
+        </GameResultLayout>
     );
 }
 

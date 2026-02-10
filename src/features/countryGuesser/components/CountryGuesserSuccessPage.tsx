@@ -4,6 +4,7 @@ import Button from '../../../components/ui/Button';
 import StartNewGame from '../../../components/layout/StartNewGame';
 import StreakDisplay from '../../../components/layout/StreakDisplay';
 import AnswerHistory from '../../../components/layout/AnswerHistory';
+import GameResultLayout from '../../../components/layout/GameResultLayout';
 
 interface CountryGuesserSuccessPageProps {
     countriesInfo: any;
@@ -56,9 +57,10 @@ function CountryGuesserSuccessPage(props: CountryGuesserSuccessPageProps) {
     return (
         <>
             {!newGameStarted && (
-                <div className='fade-in'>
-                    <div id='successful-country-game' className='game-container success-page-container'>
-                        <div className='success-stat-hero'>
+                <GameResultLayout
+                    id='successful-country-game'
+                    heroContent={
+                        <>
                             <div className='success-celebration'>{getSubtext()}</div>
                             <div className='success-stat-number'>
                                 {guessCount} {guessCount === 1 ? 'GUESS' : 'GUESSES'}
@@ -67,8 +69,10 @@ function CountryGuesserSuccessPage(props: CountryGuesserSuccessPageProps) {
                                 <img src={flag} className='success-flag' alt={`${name} flag`} />
                                 <div className='success-country-name'>{name}</div>
                             </div>
-                        </div>
-                        <div className='btn-container'>
+                        </>
+                    }
+                    actions={
+                        <>
                             {!borderingCountriesGameStarted && (
                                 <StartNewGame buttonText='Play again' variant='primary' />
                             )}
@@ -79,11 +83,12 @@ function CountryGuesserSuccessPage(props: CountryGuesserSuccessPageProps) {
                                     variant='light'
                                 />
                             )}
-                        </div>
-                        {incorrectCount > 0 && <AnswerHistory guesses={guesses} />}
-                        <StreakDisplay streak={streak} />
-                    </div>
-                </div>
+                        </>
+                    }
+                >
+                    {incorrectCount > 0 && <AnswerHistory guesses={guesses} />}
+                    <StreakDisplay streak={streak} />
+                </GameResultLayout>
             )}
 
             {newGameStarted && borderingCountriesGameStarted && (

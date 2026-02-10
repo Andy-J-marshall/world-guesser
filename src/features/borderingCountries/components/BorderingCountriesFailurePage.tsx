@@ -1,6 +1,7 @@
 import { useEffect } from 'react';
 import StartNewGame from '../../../components/layout/StartNewGame';
 import AnswerHistory from '../../../components/layout/AnswerHistory';
+import GameResultLayout from '../../../components/layout/GameResultLayout';
 
 interface BorderingCountriesFailurePageProps {
     borderingCountries: string[];
@@ -24,27 +25,25 @@ function BorderingCountriesFailurePage({
     }, []);
 
     return (
-        <div id='bordering-countries-failure-page' className='fade-in'>
-            {borderingCountries && (
-                <div id='bordering-countries-failure' className='game-container success-page-container'>
-                    <div className='success-stat-hero'>
-                        <div className='success-celebration'>Not quite!</div>
-                        {correctGuesses.length === 0 && (
-                            <p className='failure-message'>No borders found. Keep trying!</p>
-                        )}
-                        {correctGuesses.length > 0 && (
-                            <p className='failure-message'>
-                                {correctGuesses.length} of {borderingCountriesCount} borders found.
-                            </p>
-                        )}
-                    </div>
-                    <div className='btn-container'>
-                        <StartNewGame buttonText='Try again' />
-                    </div>
-                    <AnswerHistory guesses={guesses} correctGuesses={correctGuesses} />
-                </div>
-            )}
-        </div>
+        <GameResultLayout
+            id='bordering-countries-failure'
+            heroContent={
+                <>
+                    <div className='success-celebration'>Not quite!</div>
+                    {correctGuesses.length === 0 && (
+                        <p className='failure-message'>No borders found. Keep trying!</p>
+                    )}
+                    {correctGuesses.length > 0 && (
+                        <p className='failure-message'>
+                            {correctGuesses.length} of {borderingCountriesCount} borders found.
+                        </p>
+                    )}
+                </>
+            }
+            actions={<StartNewGame buttonText='Try again' />}
+        >
+            <AnswerHistory guesses={guesses} correctGuesses={correctGuesses} />
+        </GameResultLayout>
     );
 }
 
