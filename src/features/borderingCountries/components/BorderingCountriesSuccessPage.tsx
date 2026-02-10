@@ -1,8 +1,9 @@
-import { useState, useEffect } from 'react';
 import StartNewGame from '../../../components/layout/StartNewGame';
 import StreakDisplay from '../../../components/layout/StreakDisplay';
 import AnswerHistory from '../../../components/layout/AnswerHistory';
 import GameResultLayout from '../../../components/layout/GameResultLayout';
+import CountryDisplay from '../../../components/layout/CountryDisplay';
+import useStreakManager from '../../../hooks/useStreakManager';
 
 interface BorderingCountriesSuccessPageProps {
     name: string;
@@ -13,18 +14,7 @@ interface BorderingCountriesSuccessPageProps {
 
 function BorderingCountriesSuccessPage({ name, flag, correctGuesses, guesses }: BorderingCountriesSuccessPageProps) {
     const totalBorders = correctGuesses.length;
-    const [streak, setStreak] = useState(0);
-
-    useEffect(() => {
-        const currentStreak = JSON.parse(localStorage.getItem('borderStreak') || '0') || 0;
-        setStreak(currentStreak + 1);
-
-        try {
-            localStorage.setItem('borderStreak', JSON.stringify(currentStreak + 1));
-        } catch (error) {
-            console.log('Unable to update streak');
-        }
-    }, []);
+    const streak = useStreakManager('borderStreak', 'increment');
 
     return (
         <GameResultLayout
@@ -34,10 +24,7 @@ function BorderingCountriesSuccessPage({ name, flag, correctGuesses, guesses }: 
                     <div className='success-stat-number'>
                         {totalBorders === 1 ? 'Border found!' : `All ${totalBorders} borders found!`}
                     </div>
-                    <div className='success-country-display'>
-                        <img src={flag} className='success-flag' alt={`${name} flag`} />
-                        <div className='success-country-name'>{name}</div>
-                    </div>
+                    <CountryDisplay name={name} flag={flag} />
                 </>
             }
             actions={<StartNewGame buttonText='Play again' />}

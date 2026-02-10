@@ -1,7 +1,7 @@
-import { useEffect } from 'react';
 import StartNewGame from '../../../components/layout/StartNewGame';
 import AnswerHistory from '../../../components/layout/AnswerHistory';
 import GameResultLayout from '../../../components/layout/GameResultLayout';
+import useStreakManager from '../../../hooks/useStreakManager';
 
 interface BorderingCountriesFailurePageProps {
     borderingCountries: string[];
@@ -15,14 +15,7 @@ function BorderingCountriesFailurePage({
     guesses,
 }: BorderingCountriesFailurePageProps) {
     const borderingCountriesCount = borderingCountries.length;
-
-    useEffect(() => {
-        try {
-            localStorage.setItem('borderStreak', '0');
-        } catch (error) {
-            console.log('Unable to reset streak');
-        }
-    }, []);
+    useStreakManager('borderStreak', 'reset');
 
     return (
         <GameResultLayout

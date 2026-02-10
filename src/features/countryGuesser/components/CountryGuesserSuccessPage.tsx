@@ -1,10 +1,12 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import BorderingCountriesGuesser from '../../borderingCountries/components/BorderingCountriesGuesser';
 import Button from '../../../components/ui/Button';
 import StartNewGame from '../../../components/layout/StartNewGame';
 import StreakDisplay from '../../../components/layout/StreakDisplay';
 import AnswerHistory from '../../../components/layout/AnswerHistory';
 import GameResultLayout from '../../../components/layout/GameResultLayout';
+import CountryDisplay from '../../../components/layout/CountryDisplay';
+import useStreakManager from '../../../hooks/useStreakManager';
 
 interface CountryGuesserSuccessPageProps {
     countriesInfo: any;
@@ -16,18 +18,18 @@ interface CountryGuesserSuccessPageProps {
     flag: string;
 }
 
-function CountryGuesserSuccessPage(props: CountryGuesserSuccessPageProps) {
-    const countriesInfo = props.countriesInfo;
-    const incorrectCount = props.incorrectCount;
-    const guesses = props.guesses;
-    const name = props.name;
-    const borderingCountries = props.borderingCountries;
-    const possibleCountries = props.possibleCountries;
-    const flag = props.flag;
-
+function CountryGuesserSuccessPage({
+    countriesInfo,
+    incorrectCount,
+    guesses,
+    name,
+    borderingCountries,
+    possibleCountries,
+    flag,
+}: CountryGuesserSuccessPageProps) {
     const [newGameStarted, setNewGameStarted] = useState(false);
     const [borderingCountriesGameStarted, setBorderingCountriesGameStarted] = useState(false);
-    const [streak, setStreak] = useState(0);
+    const streak = useStreakManager('streak', 'increment');
 
     function startBorderingCountriesGame() {
         setBorderingCountriesGameStarted(true);
@@ -43,17 +45,6 @@ function CountryGuesserSuccessPage(props: CountryGuesserSuccessPageProps) {
         return 'You got it!';
     };
 
-    useEffect(() => {
-        const currentStreak = JSON.parse(localStorage.getItem('streak') || '0') || 0;
-        setStreak(currentStreak + 1);
-
-        try {
-            localStorage.setItem('streak', JSON.stringify(currentStreak + 1));
-        } catch (error) {
-            console.log('Unable to update streak');
-        }
-    }, []);
-
     return (
         <>
             {!newGameStarted && (
@@ -65,10 +56,7 @@ function CountryGuesserSuccessPage(props: CountryGuesserSuccessPageProps) {
                             <div className='success-stat-number'>
                                 {guessCount} {guessCount === 1 ? 'GUESS' : 'GUESSES'}
                             </div>
-                            <div className='success-country-display'>
-                                <img src={flag} className='success-flag' alt={`${name} flag`} />
-                                <div className='success-country-name'>{name}</div>
-                            </div>
+                            <CountryDisplay name={name} flag={flag} />
                         </>
                     }
                     actions={

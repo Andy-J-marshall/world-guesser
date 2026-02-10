@@ -1,7 +1,8 @@
-import { useEffect } from 'react';
 import StartNewGame from '../../../components/layout/StartNewGame';
 import AnswerHistory from '../../../components/layout/AnswerHistory';
 import GameResultLayout from '../../../components/layout/GameResultLayout';
+import CountryDisplay from '../../../components/layout/CountryDisplay';
+import useStreakManager from '../../../hooks/useStreakManager';
 
 interface CountryGuesserFailurePageProps {
     name: string;
@@ -9,18 +10,8 @@ interface CountryGuesserFailurePageProps {
     guesses: string[];
 }
 
-function CountryGuesserFailurePage(props: CountryGuesserFailurePageProps) {
-    const name = props.name;
-    const flag = props.flag;
-    const guesses = props.guesses;
-
-    useEffect(() => {
-        try {
-            localStorage.setItem('streak', '0');
-        } catch (error) {
-            console.log('Unable to reset streak');
-        }
-    }, []);
+function CountryGuesserFailurePage({ name, flag, guesses }: CountryGuesserFailurePageProps) {
+    useStreakManager('streak', 'reset');
 
     return (
         <GameResultLayout
@@ -28,10 +19,7 @@ function CountryGuesserFailurePage(props: CountryGuesserFailurePageProps) {
             heroContent={
                 <>
                     <div className='success-celebration'>Not quite!</div>
-                    <div className='success-country-display'>
-                        <img src={flag} className='success-flag' alt={`${name} flag`} />
-                        <div className='success-country-name'>{name}</div>
-                    </div>
+                    <CountryDisplay name={name} flag={flag} />
                 </>
             }
             actions={<StartNewGame buttonText='Try again' />}
