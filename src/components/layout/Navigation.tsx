@@ -17,35 +17,34 @@ function Navigation({ activeView, onNavigate }: NavigationProps) {
     };
 
     return (
-        <Navbar 
-            bg="dark" 
-            variant="dark" 
-            expand="lg" 
-            className="mb-3"
+        <Navbar
+            bg='dark'
+            variant='dark'
+            expand='lg'
+            className='mb-3'
             expanded={expanded}
             onToggle={(expanded) => setExpanded(expanded)}
         >
             <Container>
-                <Navbar.Brand href="#home">Fun With Countries</Navbar.Brand>
-                <Navbar.Toggle aria-controls="basic-navbar-nav" />
-                <Navbar.Collapse id="basic-navbar-nav">
-                    <Nav className="ms-auto">
+                <Navbar.Brand href='#home'>Fun With Countries</Navbar.Brand>
+                <Navbar.Toggle aria-controls='basic-navbar-nav' />
+                <Navbar.Collapse id='basic-navbar-nav'>
+                    <Nav className='ms-auto'>
                         <Nav.Link
+                            href='#country-guesser'
                             active={activeView === 'country-guesser'}
                             onClick={() => handleNavClick('country-guesser')}
                         >
                             Country Guesser
                         </Nav.Link>
                         <Nav.Link
+                            href='#border-finder'
                             active={activeView === 'border-finder'}
                             onClick={() => handleNavClick('border-finder')}
                         >
                             Border Finder
                         </Nav.Link>
-                        <Nav.Link
-                            active={activeView === 'stats'}
-                            onClick={() => handleNavClick('stats')}
-                        >
+                        <Nav.Link href='#stats' active={activeView === 'stats'} onClick={() => handleNavClick('stats')}>
                             Stats
                         </Nav.Link>
                     </Nav>
