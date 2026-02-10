@@ -40,6 +40,10 @@
         grid-template-columns: repeat(2, 1fr);
     }
 
+    .stats-view-content {
+        max-width: 100%;
+    }
+
     .clues-grid {
         grid-template-columns: 1fr;
         gap: var(--spacing-md);
@@ -69,7 +73,7 @@
         max-width: 60px;
     }
 
-    #bordering-countries-guess-feedback > div[style*="text-align"] {
+    #bordering-countries-guess-feedback > div[style*='text-align'] {
         text-align: center !important;
     }
 
