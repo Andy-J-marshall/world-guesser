@@ -60,50 +60,25 @@ function GameStats({ title, storageKeys }: GameStatsProps) {
     }
 
     const baseStats = [
-        {
-            value: numberOfGames,
-            label: 'Games',
-        },
-        {
-            value: numberOfWins,
-            label: 'Wins',
-        },
-        {
-            value: `${Math.round((numberOfWins / numberOfGames) * 100)}%`,
-            label: 'Win Rate',
-            highlight: true,
-        },
-        {
-            value: streak,
-            label: 'Streak',
-        },
+        { value: numberOfGames, label: 'Games' },
+        { value: numberOfWins, label: 'Wins' },
+        { value: `${Math.round((numberOfWins / numberOfGames) * 100)}%`, label: 'Win Rate', highlight: true },
+        { value: streak, label: 'Streak' },
     ];
 
-    if (storageKeys.correctAnswers) {
-        baseStats.push(
-            {
-                value: numberOfCorrectAnswers,
-                label: 'Correct',
-            },
-            {
-                value: numberOfIncorrectAnswers,
-                label: 'Incorrect',
-            },
-        );
-    } else {
-        baseStats.push(
-            {
-                value: numberOfAttempts,
-                label: 'Attempts',
-            },
-            {
-                value: Number((numberOfAttempts / numberOfGames).toFixed(1)),
-                label: 'Per Game',
-            },
-        );
-    }
+    const gameSpecificStats = storageKeys.correctAnswers
+        ? [
+              { value: numberOfCorrectAnswers, label: 'Correct' },
+              { value: numberOfIncorrectAnswers, label: 'Incorrect' },
+          ]
+        : [
+              { value: numberOfAttempts, label: 'Attempts' },
+              { value: Number((numberOfAttempts / numberOfGames).toFixed(1)), label: 'Per Game' },
+          ];
 
-    return <StatsDisplay title={title} stats={baseStats} streak={streak} />;
+    const allStats = baseStats.concat(gameSpecificStats);
+
+    return <StatsDisplay title={title} stats={allStats} streak={streak} />;
 }
 
 export default GameStats;

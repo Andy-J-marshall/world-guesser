@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import BorderingCountriesGuesser from '../../borderingCountries/components/BorderingCountriesGuesser';
 import Button from '../../../components/ui/Button';
 import StartNewGame from '../../../components/layout/StartNewGame';
@@ -34,8 +34,12 @@ function CountryGuesserSuccessPage({
     const [newGameStarted, setNewGameStarted] = useState(false);
     const [borderingCountriesGameStarted, setBorderingCountriesGameStarted] = useState(false);
     const streak = useStreakManager(STORAGE_KEYS.COUNTRY_STREAK, 'increment');
+    const statsSaved = useRef(false);
 
     useEffect(() => {
+        if (statsSaved.current) return;
+        statsSaved.current = true;
+
         const currentWins = getStorageNumber(STORAGE_KEYS.COUNTRY_WINS, 0);
         setStorageValue(STORAGE_KEYS.COUNTRY_WINS, currentWins + 1);
 

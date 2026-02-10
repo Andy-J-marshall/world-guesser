@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useRef } from 'react';
 import StartNewGame from '../../../components/layout/StartNewGame';
 import StreakDisplay from '../../../components/layout/StreakDisplay';
 import AnswerHistory from '../../../components/layout/AnswerHistory';
@@ -25,8 +25,12 @@ function BorderingCountriesSuccessPage({
 }: BorderingCountriesSuccessPageProps) {
     const totalBorders = correctGuesses.length;
     const streak = useStreakManager(STORAGE_KEYS.BORDER_STREAK, 'increment');
+    const statsSaved = useRef(false);
 
     useEffect(() => {
+        if (statsSaved.current) return;
+        statsSaved.current = true;
+
         const currentWins = getStorageNumber(STORAGE_KEYS.BORDER_WINS, 0);
         setStorageValue(STORAGE_KEYS.BORDER_WINS, currentWins + 1);
 

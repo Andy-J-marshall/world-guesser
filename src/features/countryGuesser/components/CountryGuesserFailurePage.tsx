@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useRef } from 'react';
 import StartNewGame from '../../../components/layout/StartNewGame';
 import AnswerHistory from '../../../components/layout/AnswerHistory';
 import GameResultLayout from '../../../components/layout/GameResultLayout';
@@ -16,8 +16,12 @@ interface CountryGuesserFailurePageProps {
 
 function CountryGuesserFailurePage({ name, flag, guesses, onReset }: CountryGuesserFailurePageProps) {
     useStreakManager(STORAGE_KEYS.COUNTRY_STREAK, 'reset');
+    const statsSaved = useRef(false);
 
     useEffect(() => {
+        if (statsSaved.current) return;
+        statsSaved.current = true;
+
         const currentGames = getStorageNumber(STORAGE_KEYS.COUNTRY_GAMES, 0);
         setStorageValue(STORAGE_KEYS.COUNTRY_GAMES, currentGames + 1);
 

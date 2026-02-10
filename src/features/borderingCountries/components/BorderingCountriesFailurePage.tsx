@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useRef } from 'react';
 import StartNewGame from '../../../components/layout/StartNewGame';
 import AnswerHistory from '../../../components/layout/AnswerHistory';
 import GameResultLayout from '../../../components/layout/GameResultLayout';
@@ -21,8 +21,12 @@ function BorderingCountriesFailurePage({
 }: BorderingCountriesFailurePageProps) {
     const borderingCountriesCount = borderingCountries.length;
     useStreakManager(STORAGE_KEYS.BORDER_STREAK, 'reset');
+    const statsSaved = useRef(false);
 
     useEffect(() => {
+        if (statsSaved.current) return;
+        statsSaved.current = true;
+
         const currentGames = getStorageNumber(STORAGE_KEYS.BORDER_GAMES, 0);
         setStorageValue(STORAGE_KEYS.BORDER_GAMES, currentGames + 1);
 
