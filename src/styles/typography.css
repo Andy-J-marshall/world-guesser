@@ -21,7 +21,6 @@ h2 {
     margin: 0 0 var(--spacing-md) 0;
     padding: var(--spacing-sm) 0;
     letter-spacing: -0.01em;
-    text-align: left;
     max-width: 100%;
     width: 100%;
 }

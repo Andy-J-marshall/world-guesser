@@ -152,7 +152,6 @@
 .stats-display-title {
     margin: var(--spacing-xs);
     color: var(--color-primary-light);
-    text-align: left;
 }
 
 .stats-display-grid {

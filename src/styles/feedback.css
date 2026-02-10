@@ -2,26 +2,6 @@
    Feedback & Messages
    ======================================== */
 
-/* Success/Failure Titles */
-.success-title {
-    color: var(--color-success);
-    font-size: clamp(1.75rem, 4vw, 2.5rem);
-    font-weight: 700;
-    margin: 0 0 var(--spacing-lg) 0;
-    text-align: left;
-}
-
-.game-over-title {
-    color: var(--color-error);
-    font-weight: 700;
-}
-
-.success-subtitle {
-    color: var(--color-success);
-    margin-bottom: var(--spacing-xl);
-    text-align: left;
-}
-
 /* Success Stat Hero - Performance-focused display */
 .success-stat-hero {
     width: 100%;
