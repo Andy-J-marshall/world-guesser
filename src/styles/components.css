@@ -145,7 +145,7 @@
 }
 
 #stats-view h3 {
-    margin-bottom: var(--spacing-sm);
+    margin-bottom: var(--spacing-md);
 }
 
 .stats-view-content {
@@ -165,7 +165,7 @@
 }
 
 .stats-display-title {
-    margin: var(--spacing-md);
+    margin: var(--spacing-lg);
     color: var(--color-primary-light);
 }
 
