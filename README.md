@@ -25,9 +25,3 @@ Run the following:
 - `npm i`
 - `npm run build`
 - `npm run deploy`
-
-<!-- TODO -->
-<!-- 1. don't call api every time, reuse it. -->
-<!-- 2. create a home page -->
-<!-- reimplement stats on home page -->
-<!-- remove title from every game mode -->
