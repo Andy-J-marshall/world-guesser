@@ -79,7 +79,7 @@ function GameStats({ title, storageKeys }: GameStatsProps) {
         },
     ];
 
-    if (storageKeys.correctAnswers && numberOfCorrectAnswers > 0) {
+    if (storageKeys.correctAnswers) {
         baseStats.push(
             {
                 value: numberOfCorrectAnswers,
@@ -90,18 +90,18 @@ function GameStats({ title, storageKeys }: GameStatsProps) {
                 label: 'Incorrect',
             },
         );
+    } else {
+        baseStats.push(
+            {
+                value: numberOfAttempts,
+                label: 'Attempts',
+            },
+            {
+                value: Number((numberOfAttempts / numberOfGames).toFixed(1)),
+                label: 'Per Game',
+            },
+        );
     }
-
-    baseStats.push(
-        {
-            value: numberOfAttempts,
-            label: 'Attempts',
-        },
-        {
-            value: Number((numberOfAttempts / numberOfGames).toFixed(1)),
-            label: 'Per Game',
-        },
-    );
 
     return <StatsDisplay title={title} stats={baseStats} streak={streak} />;
 }

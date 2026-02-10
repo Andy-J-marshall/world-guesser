@@ -23,14 +23,21 @@ function BorderingCountriesFailurePage({
     useStreakManager(STORAGE_KEYS.BORDER_STREAK, 'reset');
 
     useEffect(() => {
-        // Increment games
         const currentGames = getStorageNumber(STORAGE_KEYS.BORDER_GAMES, 0);
         setStorageValue(STORAGE_KEYS.BORDER_GAMES, currentGames + 1);
 
-        // Add attempts
         const currentAttempts = getStorageNumber(STORAGE_KEYS.BORDER_ATTEMPTS, 0);
         setStorageValue(STORAGE_KEYS.BORDER_ATTEMPTS, currentAttempts + guesses.length);
-    }, [guesses.length]);
+
+        const correctCount = correctGuesses.length;
+        const incorrectCount = guesses.length - correctGuesses.length;
+
+        const currentCorrect = getStorageNumber(STORAGE_KEYS.BORDER_CORRECT_ANSWERS, 0);
+        setStorageValue(STORAGE_KEYS.BORDER_CORRECT_ANSWERS, currentCorrect + correctCount);
+
+        const currentIncorrect = getStorageNumber(STORAGE_KEYS.BORDER_INCORRECT_ANSWERS, 0);
+        setStorageValue(STORAGE_KEYS.BORDER_INCORRECT_ANSWERS, currentIncorrect + incorrectCount);
+    }, [guesses.length, correctGuesses.length]);
 
     return (
         <GameResultLayout
@@ -38,9 +45,7 @@ function BorderingCountriesFailurePage({
             heroContent={
                 <>
                     <div className='success-celebration'>Not quite!</div>
-                    {correctGuesses.length === 0 && (
-                        <p className='failure-message'>No borders found. Keep trying!</p>
-                    )}
+                    {correctGuesses.length === 0 && <p className='failure-message'>No borders found. Keep trying!</p>}
                     {correctGuesses.length > 0 && (
                         <p className='failure-message'>
                             {correctGuesses.length} of {borderingCountriesCount} borders found.
