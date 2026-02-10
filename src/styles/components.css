@@ -28,7 +28,8 @@
 }
 
 @keyframes pulse-warning {
-    0%, 100% {
+    0%,
+    100% {
         box-shadow: 0 4px 12px rgba(255, 71, 87, 0.3);
     }
     50% {
@@ -41,7 +42,11 @@
     border: 1px solid var(--color-border-primary);
     border-radius: var(--border-radius-lg);
     padding: var(--spacing-xl);
-    transition: background 0.4s ease, border-color 0.4s ease, box-shadow 0.4s ease, transform 0.3s ease;
+    transition:
+        background 0.4s ease,
+        border-color 0.4s ease,
+        box-shadow 0.4s ease,
+        transform 0.3s ease;
     height: 170px;
     position: relative;
     overflow: hidden;
@@ -135,9 +140,25 @@
 }
 
 /* Stats Components */
+#stats-view h2 {
+    margin-bottom: var(--spacing-sm);
+}
+
+#stats-view h3 {
+    margin-bottom: var(--spacing-sm);
+}
+
+.stats-view-content {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-md);
+    max-width: 100%;
+    margin: 0 auto;
+}
+
 .stats-display-container {
-    max-width: 700px;
-    margin: var(--spacing-xl) auto 0;
+    max-width: 100%;
+    margin: 0 auto;
 }
 
 .stats-display-card {
@@ -149,7 +170,7 @@
 }
 
 .stats-display-title {
-    margin: var(--spacing-xs);
+    margin: var(--spacing-md);
     color: var(--color-primary-light);
 }
 

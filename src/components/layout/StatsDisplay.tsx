@@ -14,10 +14,9 @@ function StatsDisplay({ title, stats, streak }: StatsDisplayProps) {
     return (
         <div className='stats-display-container'>
             <div className='stats-display-card'>
-                <h2 className='stats-display-title'>
+                <h3 className='stats-display-title'>
                     {title}
-                </h2>
-
+                </h3>
                 <div className={`stats-display-grid ${streak > 0 ? 'with-streak' : ''}`}>
                     {stats.map((stat) => (
                         <StatCard key={stat.label} {...stat} />

@@ -18,7 +18,13 @@ interface BorderingCountriesGuesserProps {
     onReset: () => void;
 }
 
-function BorderingCountriesGuesser({ name, flag, borderingCountries, possibleCountries, onReset }: BorderingCountriesGuesserProps) {
+function BorderingCountriesGuesser({
+    name,
+    flag,
+    borderingCountries,
+    possibleCountries,
+    onReset,
+}: BorderingCountriesGuesserProps) {
     const [correctGuesses, setCorrectGuesses] = useState<string[]>([]);
     const [incorrectGuesses, setIncorrectGuesses] = useState<string[]>([]);
     const [incorrectCount, setIncorrectCount] = useState(0);

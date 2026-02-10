@@ -12,10 +12,11 @@ interface StorageKeys {
 }
 
 interface GameStatsProps {
+    title: string;
     storageKeys: StorageKeys;
 }
 
-function GameStats({ storageKeys }: GameStatsProps) {
+function GameStats({ title, storageKeys }: GameStatsProps) {
     const [numberOfWins, setNumberOfWins] = useState(0);
     const [numberOfAttempts, setNumberOfAttempts] = useState(0);
     const [numberOfGames, setNumberOfGames] = useState(0);
@@ -93,7 +94,7 @@ function GameStats({ storageKeys }: GameStatsProps) {
         },
     );
 
-    return <StatsDisplay title='Stats' stats={baseStats} streak={streak} />;
+    return <StatsDisplay title={title} stats={baseStats} streak={streak} />;
 }
 
 export default GameStats;
