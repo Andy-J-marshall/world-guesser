@@ -12,7 +12,7 @@ function BorderingCountriesFeedback({ correctGuesses, incorrectCount }: Borderin
     return (
         <div id='bordering-countries-guess-feedback'>
             {incorrectCount > 0 && incorrectCount < MAX_ATTEMPTS_BORDERING_COUNTRIES && (
-                <div style={{ textAlign: 'left' }}>
+                <div>
                     <div className='lives-counter'>
                         {guessesRemainingCount} {livesWord} remaining
                     </div>
