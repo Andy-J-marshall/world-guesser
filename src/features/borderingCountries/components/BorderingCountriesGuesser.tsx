@@ -15,9 +15,10 @@ interface BorderingCountriesGuesserProps {
     flag: string;
     borderingCountries: string[];
     possibleCountries: string[];
+    onReset: () => void;
 }
 
-function BorderingCountriesGuesser({ name, flag, borderingCountries, possibleCountries }: BorderingCountriesGuesserProps) {
+function BorderingCountriesGuesser({ name, flag, borderingCountries, possibleCountries, onReset }: BorderingCountriesGuesserProps) {
     const [correctGuesses, setCorrectGuesses] = useState<string[]>([]);
     const [incorrectGuesses, setIncorrectGuesses] = useState<string[]>([]);
     const [incorrectCount, setIncorrectCount] = useState(0);
@@ -124,6 +125,7 @@ function BorderingCountriesGuesser({ name, flag, borderingCountries, possibleCou
                     correctGuesses={correctGuesses}
                     borderingCountries={borderingCountries}
                     guesses={guesses}
+                    onReset={onReset}
                 />
             )}
             {succeeded && (
@@ -132,6 +134,7 @@ function BorderingCountriesGuesser({ name, flag, borderingCountries, possibleCou
                     flag={flag}
                     correctGuesses={correctGuesses}
                     guesses={guesses}
+                    onReset={onReset}
                 />
             )}
         </div>

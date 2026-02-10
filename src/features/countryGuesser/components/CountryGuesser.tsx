@@ -7,7 +7,11 @@ import { parseFormGuess } from '../../../lib/formUtils';
 import { CountryGuesserProps } from '../../../types';
 import { MAX_ATTEMPTS_COUNTRY_GUESSER } from '../../../constants';
 
-function CountryGuesser({ countriesInfo, country, possibleCountries }: CountryGuesserProps) {
+interface CountryGuesserComponentProps extends CountryGuesserProps {
+    onReset: () => void;
+}
+
+function CountryGuesser({ countriesInfo, country, possibleCountries, onReset }: CountryGuesserComponentProps) {
     const { name, population, flag, landlocked, region, subregion, capital, borderingCountries } = country;
 
     const [correctGuess, setCorrectGuess] = useState(false);
@@ -184,9 +188,10 @@ function CountryGuesser({ countriesInfo, country, possibleCountries }: CountryGu
                     guesses={guesses}
                     borderingCountries={borderingCountries}
                     possibleCountries={possibleCountries}
+                    onReset={onReset}
                 />
             )}
-            {failed && <CountryGuesserFailurePage name={name} flag={flag} guesses={guesses} />}
+            {failed && <CountryGuesserFailurePage name={name} flag={flag} guesses={guesses} onReset={onReset} />}
         </div>
     );
 }

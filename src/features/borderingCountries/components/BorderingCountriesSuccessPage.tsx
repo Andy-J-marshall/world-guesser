@@ -11,9 +11,16 @@ interface BorderingCountriesSuccessPageProps {
     flag: string;
     correctGuesses: string[];
     guesses: string[];
+    onReset: () => void;
 }
 
-function BorderingCountriesSuccessPage({ name, flag, correctGuesses, guesses }: BorderingCountriesSuccessPageProps) {
+function BorderingCountriesSuccessPage({
+    name,
+    flag,
+    correctGuesses,
+    guesses,
+    onReset,
+}: BorderingCountriesSuccessPageProps) {
     const totalBorders = correctGuesses.length;
     const streak = useStreakManager(STORAGE_KEYS.BORDER_STREAK, 'increment');
 
@@ -28,7 +35,7 @@ function BorderingCountriesSuccessPage({ name, flag, correctGuesses, guesses }: 
                     <CountryDisplay name={name} flag={flag} />
                 </>
             }
-            actions={<StartNewGame buttonText='Play again' />}
+            actions={<StartNewGame buttonText='Play again' onReset={onReset} />}
         >
             <AnswerHistory guesses={guesses} correctGuesses={correctGuesses} />
             <StreakDisplay streak={streak} />

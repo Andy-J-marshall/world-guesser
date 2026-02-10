@@ -9,9 +9,10 @@ interface CountryGuesserFailurePageProps {
     name: string;
     flag: string;
     guesses: string[];
+    onReset: () => void;
 }
 
-function CountryGuesserFailurePage({ name, flag, guesses }: CountryGuesserFailurePageProps) {
+function CountryGuesserFailurePage({ name, flag, guesses, onReset }: CountryGuesserFailurePageProps) {
     useStreakManager(STORAGE_KEYS.COUNTRY_STREAK, 'reset');
 
     return (
@@ -23,7 +24,7 @@ function CountryGuesserFailurePage({ name, flag, guesses }: CountryGuesserFailur
                     <CountryDisplay name={name} flag={flag} />
                 </>
             }
-            actions={<StartNewGame buttonText='Try again' />}
+            actions={<StartNewGame buttonText='Try again' onReset={onReset} />}
         >
             <AnswerHistory guesses={guesses} />
         </GameResultLayout>

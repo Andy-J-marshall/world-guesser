@@ -17,6 +17,7 @@ interface CountryGuesserSuccessPageProps {
     borderingCountries: string[];
     possibleCountries: string[];
     flag: string;
+    onReset: () => void;
 }
 
 function CountryGuesserSuccessPage({
@@ -27,6 +28,7 @@ function CountryGuesserSuccessPage({
     borderingCountries,
     possibleCountries,
     flag,
+    onReset,
 }: CountryGuesserSuccessPageProps) {
     const [newGameStarted, setNewGameStarted] = useState(false);
     const [borderingCountriesGameStarted, setBorderingCountriesGameStarted] = useState(false);
@@ -63,7 +65,7 @@ function CountryGuesserSuccessPage({
                     actions={
                         <>
                             {!borderingCountriesGameStarted && (
-                                <StartNewGame buttonText='Play again' variant='primary' />
+                                <StartNewGame buttonText='Play again' variant='primary' onReset={onReset} />
                             )}
                             {borderingCountries.length > 0 && (
                                 <Button
@@ -87,6 +89,7 @@ function CountryGuesserSuccessPage({
                     flag={flag}
                     borderingCountries={borderingCountries}
                     possibleCountries={possibleCountries}
+                    onReset={onReset}
                 />
             )}
         </>

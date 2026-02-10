@@ -8,12 +8,14 @@ interface BorderingCountriesFailurePageProps {
     borderingCountries: string[];
     correctGuesses: string[];
     guesses: string[];
+    onReset: () => void;
 }
 
 function BorderingCountriesFailurePage({
     borderingCountries,
     correctGuesses,
     guesses,
+    onReset,
 }: BorderingCountriesFailurePageProps) {
     const borderingCountriesCount = borderingCountries.length;
     useStreakManager(STORAGE_KEYS.BORDER_STREAK, 'reset');
@@ -34,7 +36,7 @@ function BorderingCountriesFailurePage({
                     )}
                 </>
             }
-            actions={<StartNewGame buttonText='Try again' />}
+            actions={<StartNewGame buttonText='Try again' onReset={onReset} />}
         >
             <AnswerHistory guesses={guesses} correctGuesses={correctGuesses} />
         </GameResultLayout>
