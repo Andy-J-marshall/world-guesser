@@ -2,7 +2,7 @@
    Layout & Containers
    ======================================== */
 #app {
-    max-width: 1200px;
+    max-width: 1000px;
     margin: 0 auto;
     padding: var(--spacing-xl);
     text-align: center;
@@ -34,7 +34,6 @@
     color: var(--color-text-primary);
     text-align: center;
     padding: 0;
-    max-width: 900px;
     margin: 0 auto;
     width: 100%;
 }
@@ -44,7 +43,6 @@
     display: flex;
     flex-direction: column;
     gap: 0;
-    max-width: 900px;
     margin: 0 auto;
     width: 100%;
 }
@@ -58,8 +56,9 @@
 }
 
 .game-container {
-    max-width: 700px;
+    max-width: 600px;
     margin: 0 auto;
+    width: 100%;
 }
 
 .success-page-container {
