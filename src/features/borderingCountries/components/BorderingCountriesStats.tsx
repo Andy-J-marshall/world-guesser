@@ -1,18 +1,8 @@
 import GameStats from '../../../components/layout/GameStats';
+import { BORDERING_COUNTRIES_KEYS } from '../../../constants/storageKeys';
 
 function BorderingCountriesStats() {
-    return (
-        <GameStats
-            storageKeys={{
-                wins: 'numberOfBorderWins',
-                games: 'numberOfBorderGames',
-                attempts: 'numberOfBorderAttempts',
-                streak: 'borderStreak',
-                correctAnswers: 'numberOfCorrectBorderAnswers',
-                incorrectAnswers: 'numberOfIncorrectBorderAnswers',
-            }}
-        />
-    );
+    return <GameStats storageKeys={BORDERING_COUNTRIES_KEYS} />;
 }
 
 export default BorderingCountriesStats;

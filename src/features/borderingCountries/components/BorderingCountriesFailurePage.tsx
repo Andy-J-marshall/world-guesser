@@ -2,6 +2,7 @@ import StartNewGame from '../../../components/layout/StartNewGame';
 import AnswerHistory from '../../../components/layout/AnswerHistory';
 import GameResultLayout from '../../../components/layout/GameResultLayout';
 import useStreakManager from '../../../hooks/useStreakManager';
+import { STORAGE_KEYS } from '../../../constants/storageKeys';
 
 interface BorderingCountriesFailurePageProps {
     borderingCountries: string[];
@@ -15,7 +16,7 @@ function BorderingCountriesFailurePage({
     guesses,
 }: BorderingCountriesFailurePageProps) {
     const borderingCountriesCount = borderingCountries.length;
-    useStreakManager('borderStreak', 'reset');
+    useStreakManager(STORAGE_KEYS.BORDER_STREAK, 'reset');
 
     return (
         <GameResultLayout

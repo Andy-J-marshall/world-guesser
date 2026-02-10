@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { StatsDisplay } from './StatsDisplay';
+import { getStorageNumber } from '../../lib/storageUtils';
 
 interface StorageKeys {
     wins: string;
@@ -23,10 +24,10 @@ function GameStats({ storageKeys }: GameStatsProps) {
     const [streak, setStreak] = useState(0);
 
     useEffect(() => {
-        const wins = JSON.parse(localStorage.getItem(storageKeys.wins) || '0') || 0;
-        const games = JSON.parse(localStorage.getItem(storageKeys.games) || '0') || 0;
-        const attempts = JSON.parse(localStorage.getItem(storageKeys.attempts) || '0') || 0;
-        const currentStreak = JSON.parse(localStorage.getItem(storageKeys.streak) || '0') || 0;
+        const wins = getStorageNumber(storageKeys.wins, 0);
+        const games = getStorageNumber(storageKeys.games, 0);
+        const attempts = getStorageNumber(storageKeys.attempts, 0);
+        const currentStreak = getStorageNumber(storageKeys.streak, 0);
 
         setNumberOfWins(wins);
         setNumberOfGames(games);
@@ -34,12 +35,12 @@ function GameStats({ storageKeys }: GameStatsProps) {
         setStreak(currentStreak);
 
         if (storageKeys.correctAnswers) {
-            const correct = JSON.parse(localStorage.getItem(storageKeys.correctAnswers) || '0') || 0;
+            const correct = getStorageNumber(storageKeys.correctAnswers, 0);
             setNumberOfCorrectAnswers(correct);
         }
 
         if (storageKeys.incorrectAnswers) {
-            const incorrect = JSON.parse(localStorage.getItem(storageKeys.incorrectAnswers) || '0') || 0;
+            const incorrect = getStorageNumber(storageKeys.incorrectAnswers, 0);
             setNumberOfIncorrectAnswers(incorrect);
         }
     }, [storageKeys]);

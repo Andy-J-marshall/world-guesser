@@ -3,6 +3,7 @@ import AnswerHistory from '../../../components/layout/AnswerHistory';
 import GameResultLayout from '../../../components/layout/GameResultLayout';
 import CountryDisplay from '../../../components/layout/CountryDisplay';
 import useStreakManager from '../../../hooks/useStreakManager';
+import { STORAGE_KEYS } from '../../../constants/storageKeys';
 
 interface CountryGuesserFailurePageProps {
     name: string;
@@ -11,7 +12,7 @@ interface CountryGuesserFailurePageProps {
 }
 
 function CountryGuesserFailurePage({ name, flag, guesses }: CountryGuesserFailurePageProps) {
-    useStreakManager('streak', 'reset');
+    useStreakManager(STORAGE_KEYS.COUNTRY_STREAK, 'reset');
 
     return (
         <GameResultLayout

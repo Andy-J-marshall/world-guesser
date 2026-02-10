@@ -7,6 +7,7 @@ import AnswerHistory from '../../../components/layout/AnswerHistory';
 import GameResultLayout from '../../../components/layout/GameResultLayout';
 import CountryDisplay from '../../../components/layout/CountryDisplay';
 import useStreakManager from '../../../hooks/useStreakManager';
+import { STORAGE_KEYS } from '../../../constants/storageKeys';
 
 interface CountryGuesserSuccessPageProps {
     countriesInfo: any;
@@ -29,7 +30,7 @@ function CountryGuesserSuccessPage({
 }: CountryGuesserSuccessPageProps) {
     const [newGameStarted, setNewGameStarted] = useState(false);
     const [borderingCountriesGameStarted, setBorderingCountriesGameStarted] = useState(false);
-    const streak = useStreakManager('streak', 'increment');
+    const streak = useStreakManager(STORAGE_KEYS.COUNTRY_STREAK, 'increment');
 
     function startBorderingCountriesGame() {
         setBorderingCountriesGameStarted(true);

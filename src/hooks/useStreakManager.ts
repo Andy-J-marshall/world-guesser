@@ -1,25 +1,17 @@
 import { useState, useEffect } from 'react';
+import { getStorageNumber, setStorageValue } from '../lib/storageUtils';
 
 function useStreakManager(storageKey: string, action: 'increment' | 'reset'): number {
     const [streak, setStreak] = useState(0);
 
     useEffect(() => {
         if (action === 'increment') {
-            const currentStreak = JSON.parse(localStorage.getItem(storageKey) || '0') || 0;
+            const currentStreak = getStorageNumber(storageKey, 0);
             const newStreak = currentStreak + 1;
             setStreak(newStreak);
-
-            try {
-                localStorage.setItem(storageKey, JSON.stringify(newStreak));
-            } catch (error) {
-                console.log(`Unable to update ${storageKey}`);
-            }
+            setStorageValue(storageKey, newStreak);
         } else {
-            try {
-                localStorage.setItem(storageKey, '0');
-            } catch (error) {
-                console.log(`Unable to reset ${storageKey}`);
-            }
+            setStorageValue(storageKey, 0);
         }
     }, [storageKey, action]);
 

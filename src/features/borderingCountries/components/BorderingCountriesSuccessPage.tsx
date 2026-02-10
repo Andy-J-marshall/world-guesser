@@ -4,6 +4,7 @@ import AnswerHistory from '../../../components/layout/AnswerHistory';
 import GameResultLayout from '../../../components/layout/GameResultLayout';
 import CountryDisplay from '../../../components/layout/CountryDisplay';
 import useStreakManager from '../../../hooks/useStreakManager';
+import { STORAGE_KEYS } from '../../../constants/storageKeys';
 
 interface BorderingCountriesSuccessPageProps {
     name: string;
@@ -14,7 +15,7 @@ interface BorderingCountriesSuccessPageProps {
 
 function BorderingCountriesSuccessPage({ name, flag, correctGuesses, guesses }: BorderingCountriesSuccessPageProps) {
     const totalBorders = correctGuesses.length;
-    const streak = useStreakManager('borderStreak', 'increment');
+    const streak = useStreakManager(STORAGE_KEYS.BORDER_STREAK, 'increment');
 
     return (
         <GameResultLayout
