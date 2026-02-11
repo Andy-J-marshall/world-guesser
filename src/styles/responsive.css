@@ -13,10 +13,6 @@
 }
 
 @media (max-width: 480px) {
-    #app {
-        padding: var(--spacing-sm);
-    }
-
     h2 {
         text-align: center;
     }
