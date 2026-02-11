@@ -6,10 +6,6 @@
         font-size: 2rem;
         padding: var(--spacing-lg) 0;
     }
-
-    #header::after {
-        width: 60px;
-    }
 }
 
 @media (max-width: 480px) {

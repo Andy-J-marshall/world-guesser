@@ -47,11 +47,6 @@ p {
     margin: var(--spacing-sm) 0;
 }
 
-p.error-message {
-    font-size: 1.3rem;
-    color: var(--color-error);
-}
-
 p.small-text {
     font-size: 0.9rem;
 }

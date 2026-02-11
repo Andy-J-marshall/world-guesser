@@ -8,25 +8,6 @@
     text-align: center;
 }
 
-#header {
-    padding-bottom: var(--spacing-md);
-    margin-bottom: var(--spacing-xs);
-    position: relative;
-}
-
-#header::after {
-    content: '';
-    position: absolute;
-    bottom: var(--spacing-md);
-    left: 50%;
-    transform: translateX(-50%);
-    width: 120px;
-    height: 3px;
-    background: linear-gradient(90deg, transparent, var(--color-primary), var(--color-secondary), transparent);
-    border-radius: 2px;
-    box-shadow: 0 0 20px var(--color-shadow-primary-glow);
-}
-
 /* Game Sections */
 #country,
 #borders {
