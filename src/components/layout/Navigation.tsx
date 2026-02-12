@@ -26,7 +26,7 @@ function Navigation({ activeView, onNavigate }: NavigationProps) {
             onToggle={(expanded) => setExpanded(expanded)}
         >
             <Container>
-                <Navbar.Brand>Fun With Countries</Navbar.Brand>
+                <Navbar.Brand onClick={() => handleNavClick('country-guesser')}>Fun With Countries</Navbar.Brand>
                 <Navbar.Toggle aria-controls='basic-navbar-nav' />
                 <Navbar.Collapse id='basic-navbar-nav'>
                     <Nav className='ms-auto'>

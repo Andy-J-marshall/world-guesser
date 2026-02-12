@@ -48,6 +48,8 @@
     border: 1px solid var(--color-border-primary);
     padding: var(--spacing-xl);
     backdrop-filter: blur(10px);
+    max-width: 700px;
+    margin: 0 auto;
 }
 
 .success-page-container p {
