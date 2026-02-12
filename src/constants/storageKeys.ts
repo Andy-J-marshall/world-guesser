@@ -4,7 +4,6 @@ export const STORAGE_KEYS = {
     COUNTRY_WINS: 'numberOfWins',
     COUNTRY_GAMES: 'numberOfGames',
     COUNTRY_ATTEMPTS: 'numberOfAttempts',
-    COUNTRY_RECENT: 'recentCountries',
 
     // Bordering Countries game stats
     BORDER_STREAK: 'borderStreak',
@@ -13,7 +12,9 @@ export const STORAGE_KEYS = {
     BORDER_ATTEMPTS: 'numberOfBorderAttempts',
     BORDER_CORRECT_ANSWERS: 'numberOfCorrectBorderAnswers',
     BORDER_INCORRECT_ANSWERS: 'numberOfIncorrectBorderAnswers',
-    BORDER_RECENT: 'recentBorderCountries',
+
+    // Shared recent countries for both modes
+    COUNTRY_RECENT: 'recentCountries',
 } as const;
 
 export const COUNTRY_GUESSER_KEYS = {

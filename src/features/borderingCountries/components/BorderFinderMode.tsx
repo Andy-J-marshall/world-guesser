@@ -22,9 +22,9 @@ function BorderFinderMode({ countriesInfo }: BorderFinderModeProps) {
     }, [countriesWithBorders]);
 
     const country = useMemo(() => {
-        const recentCountries = getRecentCountries(STORAGE_KEYS.BORDER_RECENT);
+        const recentCountries = getRecentCountries(STORAGE_KEYS.COUNTRY_RECENT);
         const selected = selectCountry(possibleCountries, countriesWithBorders, countryCodeMapping, recentCountries);
-        addRecentCountry(STORAGE_KEYS.BORDER_RECENT, selected.name.toLowerCase());
+        addRecentCountry(STORAGE_KEYS.COUNTRY_RECENT, selected.name.toLowerCase());
         return selected;
     }, [gameKey, possibleCountries, countriesWithBorders, countryCodeMapping]);
 
