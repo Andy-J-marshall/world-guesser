@@ -191,7 +191,7 @@ function CountryGuesser({ countriesInfo, country, possibleCountries, onReset }: 
                     onReset={onReset}
                 />
             )}
-            {failed && <CountryGuesserFailurePage name={name} flag={flag} guesses={guesses} onReset={onReset} />}
+            {failed && <CountryGuesserFailurePage guesses={guesses} onReset={onReset} />}
         </div>
     );
 }

@@ -2,19 +2,16 @@ import { useEffect, useRef } from 'react';
 import StartNewGame from '../../../components/layout/StartNewGame';
 import AnswerHistory from '../../../components/layout/AnswerHistory';
 import GameResultLayout from '../../../components/layout/GameResultLayout';
-import CountryDisplay from '../../../components/layout/CountryDisplay';
 import useStreakManager from '../../../hooks/useStreakManager';
 import { STORAGE_KEYS } from '../../../constants/storageKeys';
 import { getStorageNumber, setStorageValue } from '../../../lib/storageUtils';
 
 interface CountryGuesserFailurePageProps {
-    name: string;
-    flag: string;
     guesses: string[];
     onReset: () => void;
 }
 
-function CountryGuesserFailurePage({ name, flag, guesses, onReset }: CountryGuesserFailurePageProps) {
+function CountryGuesserFailurePage({ guesses, onReset }: CountryGuesserFailurePageProps) {
     useStreakManager(STORAGE_KEYS.COUNTRY_STREAK, 'reset');
     const statsSaved = useRef(false);
 
@@ -32,12 +29,7 @@ function CountryGuesserFailurePage({ name, flag, guesses, onReset }: CountryGues
     return (
         <GameResultLayout
             id='country-failure'
-            heroContent={
-                <>
-                    <div className='success-celebration'>Not quite!</div>
-                    <CountryDisplay name={name} flag={flag} />
-                </>
-            }
+            heroContent={<div className='success-celebration'>Not quite!</div>}
             actions={<StartNewGame buttonText='Try again' onReset={onReset} />}
         >
             <AnswerHistory guesses={guesses} />
