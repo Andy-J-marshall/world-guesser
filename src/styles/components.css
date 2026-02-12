@@ -238,7 +238,7 @@
 .answer-history-grid {
     display: flex;
     flex-wrap: wrap;
-    gap: var(--spacing-xs);
+    gap: var(--spacing-sm);
     justify-content: center;
 }
 
