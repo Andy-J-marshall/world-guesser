@@ -151,8 +151,8 @@
 .stats-view-content {
     display: flex;
     flex-direction: column;
-    gap: var(--spacing-xl);
-    max-width: 700px;
+    gap: var(--spacing-2xl);
+    max-width: 100%;
     margin: 0 auto;
 }
 

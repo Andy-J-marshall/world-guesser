@@ -48,12 +48,10 @@ function GameStats({ title, storageKeys }: GameStatsProps) {
 
     if (numberOfAttempts === 0 || numberOfGames === 0) {
         return (
-            <div className='stats-display-container'>
-                <div className='stats-display-card'>
-                    <h3 className='stats-display-title'>{title}</h3>
-                    <div className='stats-empty-state'>
-                        <p className='stats-empty-message'>No games played yet</p>
-                    </div>
+            <div className='stats-display-card'>
+                <h3 className='stats-display-title'>{title}</h3>
+                <div className='stats-empty-state'>
+                    <p className='stats-empty-message'>No games played yet</p>
                 </div>
             </div>
         );

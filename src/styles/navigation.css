@@ -10,9 +10,7 @@
 }
 
 .navbar .container {
-    max-width: 1000px;
-    padding-left: var(--spacing-lg);
-    padding-right: var(--spacing-lg);
+    max-width: 900px;
 }
 
 .navbar-brand {
@@ -71,7 +69,7 @@
 }
 
 #app > .container {
-    max-width: 1000px;
+    max-width: 900px;
     padding: var(--spacing-xl);
 }
 
@@ -94,7 +92,18 @@
 }
 
 @media (max-width: 768px) {
+    .navbar-brand {
+        padding-left: var(--spacing-sm);
+        font-size: 1.25rem;
+    }
+
     #app > .container {
         padding: var(--spacing-md);
+    }
+}
+
+@media (max-width: 480px) {
+    .navbar-brand {
+        font-size: 1.1rem;
     }
 }
