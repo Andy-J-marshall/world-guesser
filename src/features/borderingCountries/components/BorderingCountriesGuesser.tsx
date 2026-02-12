@@ -7,7 +7,7 @@ import FeedbackToast from '../../../components/ui/FeedbackToast';
 import checkValidGuess from '../../../lib/countryValidation';
 import { parseFormGuess } from '../../../lib/formUtils';
 import { CountriesInfo } from '../../../types';
-import { MAX_ATTEMPTS_BORDERING_COUNTRIES } from '../../../constants';
+import { MAX_ATTEMPTS_BORDERING_COUNTRIES } from '../../../constants/game';
 
 interface BorderingCountriesGuesserProps {
     countriesInfo: CountriesInfo;

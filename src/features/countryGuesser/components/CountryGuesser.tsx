@@ -5,7 +5,7 @@ import CountryForm from '../../../components/ui/CountryForm';
 import checkValidGuess from '../../../lib/countryValidation';
 import { parseFormGuess } from '../../../lib/formUtils';
 import { CountryGuesserProps } from '../../../types';
-import { MAX_ATTEMPTS_COUNTRY_GUESSER } from '../../../constants';
+import { MAX_ATTEMPTS_COUNTRY_GUESSER } from '../../../constants/game';
 
 interface CountryGuesserComponentProps extends CountryGuesserProps {
     onReset: () => void;

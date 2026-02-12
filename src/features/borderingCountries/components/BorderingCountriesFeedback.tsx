@@ -1,4 +1,4 @@
-import { MAX_ATTEMPTS_BORDERING_COUNTRIES } from '../../../constants';
+import { MAX_ATTEMPTS_BORDERING_COUNTRIES } from '../../../constants/game';
 
 interface BorderingCountriesFeedbackProps {
     correctGuesses: string[];
