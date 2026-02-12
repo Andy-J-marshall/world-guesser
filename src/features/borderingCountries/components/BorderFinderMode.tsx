@@ -10,12 +10,18 @@ interface BorderFinderModeProps {
 function BorderFinderMode({ countriesInfo }: BorderFinderModeProps) {
     const [gameKey, setGameKey] = useState(0);
     const countryCodeMapping = countriesInfo.countryCodeMapping;
-    const possibleCountries = countriesInfo.countriesArray;
-    const allCountriesResponseBody = countriesInfo.responseBody;
+
+    const countriesWithBorders = useMemo(() => {
+        return countriesInfo.responseBody.filter((country) => country.borders && country.borders.length > 0);
+    }, [countriesInfo.responseBody]);
+
+    const possibleCountries = useMemo(() => {
+        return countriesWithBorders.map((country) => country.name.common);
+    }, [countriesWithBorders]);
 
     const country = useMemo(
-        () => selectCountry(possibleCountries, allCountriesResponseBody, countryCodeMapping),
-        [gameKey, possibleCountries, allCountriesResponseBody, countryCodeMapping],
+        () => selectCountry(possibleCountries, countriesWithBorders, countryCodeMapping),
+        [gameKey, possibleCountries, countriesWithBorders, countryCodeMapping],
     );
 
     function resetGame() {
