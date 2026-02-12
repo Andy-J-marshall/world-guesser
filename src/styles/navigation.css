@@ -10,9 +10,9 @@
 }
 
 .navbar .container {
-    max-width: 800px;
-    padding-left: var(--spacing-xl);
-    padding-right: var(--spacing-xl);
+    max-width: 1000px;
+    padding-left: var(--spacing-lg);
+    padding-right: var(--spacing-lg);
 }
 
 .navbar-brand {
@@ -83,11 +83,11 @@
         margin-top: 0.5rem;
         border-radius: 4px;
     }
-    
+
     .navbar-dark .navbar-nav {
         margin-left: 0;
     }
-    
+
     .navbar-dark .navbar-nav .nav-link {
         margin: 0.25rem 0;
     }
