@@ -5,10 +5,13 @@ export function selectCountry(
     countriesArray: string[],
     countriesResponse: Country[],
     countryCodeMapping: CountryCodeMapping[],
+    recentCountries: string[] = [],
 ): CountryInfo {
     let country = countriesResponse.find((c: Country) => c.useThis);
     if (!country) {
-        const selectedCountry = countriesArray[Math.floor(Math.random() * countriesArray.length)];
+        const availableCountries = countriesArray.filter((c) => !recentCountries.includes(c.toLowerCase()));
+        const selectionPool = availableCountries.length > 0 ? availableCountries : countriesArray;
+        const selectedCountry = selectionPool[Math.floor(Math.random() * selectionPool.length)];
         country = countriesResponse.find((c: Country) => c.name.common.toLowerCase() === selectedCountry.toLowerCase());
     }
     if (!country) {

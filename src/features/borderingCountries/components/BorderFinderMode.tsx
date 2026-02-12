@@ -2,6 +2,8 @@ import { useState, useMemo } from 'react';
 import BorderingCountriesGuesser from './BorderingCountriesGuesser';
 import { selectCountry } from '../../../lib/countrySelection';
 import { CountriesInfo } from '../../../types';
+import { getRecentCountries, addRecentCountry } from '../../../lib/storageUtils';
+import { STORAGE_KEYS } from '../../../constants/storageKeys';
 
 interface BorderFinderModeProps {
     countriesInfo: CountriesInfo;
@@ -19,10 +21,12 @@ function BorderFinderMode({ countriesInfo }: BorderFinderModeProps) {
         return countriesWithBorders.map((country) => country.name.common);
     }, [countriesWithBorders]);
 
-    const country = useMemo(
-        () => selectCountry(possibleCountries, countriesWithBorders, countryCodeMapping),
-        [gameKey, possibleCountries, countriesWithBorders, countryCodeMapping],
-    );
+    const country = useMemo(() => {
+        const recentCountries = getRecentCountries(STORAGE_KEYS.BORDER_RECENT);
+        const selected = selectCountry(possibleCountries, countriesWithBorders, countryCodeMapping, recentCountries);
+        addRecentCountry(STORAGE_KEYS.BORDER_RECENT, selected.name.toLowerCase());
+        return selected;
+    }, [gameKey, possibleCountries, countriesWithBorders, countryCodeMapping]);
 
     function resetGame() {
         setGameKey((prev) => prev + 1);
