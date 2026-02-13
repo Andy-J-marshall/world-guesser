@@ -11,8 +11,12 @@ function FindNeighboursMode({ countriesInfo }: FindNeighboursModeProps) {
     const countryCodeMapping = countriesInfo.countryCodeMapping;
 
     const countriesWithBorders = useMemo(() => {
-        return countriesInfo.responseBody.filter((country) => country.borders && country.borders.length > 0);
-    }, [countriesInfo.responseBody]);
+        const independentCountryNames = countriesInfo.countriesArray;
+        return countriesInfo.responseBody.filter(
+            (country) =>
+                independentCountryNames.includes(country.name.common) && country.borders && country.borders.length > 0,
+        );
+    }, [countriesInfo.responseBody, countriesInfo.countriesArray]);
 
     const possibleCountries = useMemo(() => {
         return countriesWithBorders.map((country) => country.name.common).sort();
