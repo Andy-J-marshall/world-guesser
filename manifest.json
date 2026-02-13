@@ -1,6 +1,6 @@
 {
-  "short_name": "Fun With Countries",
-  "name": "Guess the country!",
+  "short_name": "Globe Guesser",
+  "name": "Globe Guesser - Geography Quiz Game",
   "icons": [
     {
       "src": "favicon.ico",
