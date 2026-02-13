@@ -30,6 +30,16 @@
     width: auto;
 }
 
+@media (min-width: 768px) {
+    #guess-button {
+        order: 2;
+    }
+
+    #give-up-button {
+        order: 1;
+    }
+}
+
 .btn::before {
     content: '';
     position: absolute;
