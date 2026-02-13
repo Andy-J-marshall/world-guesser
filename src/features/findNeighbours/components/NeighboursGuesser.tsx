@@ -18,13 +18,7 @@ interface NeighboursGuesserProps {
     onReset: () => void;
 }
 
-function NeighboursGuesser({
-    name,
-    flag,
-    borderingCountries,
-    possibleCountries,
-    onReset,
-}: NeighboursGuesserProps) {
+function NeighboursGuesser({ name, flag, borderingCountries, possibleCountries, onReset }: NeighboursGuesserProps) {
     const [correctGuesses, setCorrectGuesses] = useState<string[]>([]);
     const [incorrectGuesses, setIncorrectGuesses] = useState<string[]>([]);
     const [incorrectCount, setIncorrectCount] = useState(0);
@@ -120,7 +114,7 @@ function NeighboursGuesser({
                             />
                         )}
                         <FeedbackToast
-                            message={`Incorrect! ${lastIncorrectGuess.charAt(0).toUpperCase() + lastIncorrectGuess.slice(1)} doesn't border ${name}`}
+                            message={`${lastIncorrectGuess.charAt(0).toUpperCase() + lastIncorrectGuess.slice(1)} doesn't border ${name}`}
                             show={showIncorrectToast}
                             type='error'
                         />
