@@ -15,7 +15,7 @@ function FindNeighboursMode({ countriesInfo }: FindNeighboursModeProps) {
     }, [countriesInfo.responseBody]);
 
     const possibleCountries = useMemo(() => {
-        return countriesWithBorders.map((country) => country.name.common);
+        return countriesWithBorders.map((country) => country.name.common).sort();
     }, [countriesWithBorders]);
 
     const { country, resetGame, gameKey } = useCountrySelection(
