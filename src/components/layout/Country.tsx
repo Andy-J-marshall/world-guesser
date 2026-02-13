@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import CountryGuesser from '../../features/countryGuesser/components/CountryGuesser';
+import MysteryCountry from '../../features/mysteryCountry/components/MysteryCountry';
 import { selectCountry } from '../../lib/countrySelection';
 import { CountryProps } from '../../types';
 
@@ -17,7 +17,7 @@ function Country({ countriesInfo }: CountryProps) {
     return (
         <div id='country'>
             {country && (
-                <CountryGuesser
+                <MysteryCountry
                     key={gameKey}
                     countriesInfo={countriesInfo}
                     country={country}

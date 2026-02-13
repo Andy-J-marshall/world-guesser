@@ -49,7 +49,7 @@ export interface CountryProps {
     countriesInfo: CountriesInfo;
 }
 
-export interface CountryGuesserProps {
+export interface MysteryCountryProps {
     countriesInfo: CountriesInfo;
     country: CountryInfo;
     possibleCountries: string[];

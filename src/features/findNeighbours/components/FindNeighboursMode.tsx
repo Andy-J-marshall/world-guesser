@@ -1,13 +1,13 @@
 import { useMemo } from 'react';
-import BorderingCountriesGuesser from './BorderingCountriesGuesser';
+import NeighboursGuesser from './NeighboursGuesser';
 import { useCountrySelection } from '../../../hooks/useCountrySelection';
 import { CountriesInfo } from '../../../types';
 
-interface BorderFinderModeProps {
+interface FindNeighboursModeProps {
     countriesInfo: CountriesInfo;
 }
 
-function BorderFinderMode({ countriesInfo }: BorderFinderModeProps) {
+function FindNeighboursMode({ countriesInfo }: FindNeighboursModeProps) {
     const countryCodeMapping = countriesInfo.countryCodeMapping;
 
     const countriesWithBorders = useMemo(() => {
@@ -25,9 +25,9 @@ function BorderFinderMode({ countriesInfo }: BorderFinderModeProps) {
     );
 
     return (
-        <div id='borders-mode'>
+        <div id='find-neighbours-mode'>
             {country && (
-                <BorderingCountriesGuesser
+                <NeighboursGuesser
                     key={gameKey}
                     countriesInfo={countriesInfo}
                     name={country.name}
@@ -41,4 +41,4 @@ function BorderFinderMode({ countriesInfo }: BorderFinderModeProps) {
     );
 }
 
-export default BorderFinderMode;
+export default FindNeighboursMode;

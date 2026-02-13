@@ -1,17 +1,17 @@
 import { useState, useEffect } from 'react';
-import CountryGuesserFailurePage from './CountryGuesserFailurePage';
-import CountryGuesserSuccessPage from './CountryGuesserSuccessPage';
+import MysteryCountryFailurePage from './MysteryCountryFailurePage';
+import MysteryCountrySuccessPage from './MysteryCountrySuccessPage';
 import CountryForm from '../../../components/ui/CountryForm';
 import checkValidGuess from '../../../lib/countryValidation';
 import { parseFormGuess } from '../../../lib/formUtils';
-import { CountryGuesserProps } from '../../../types';
-import { MAX_ATTEMPTS_COUNTRY_GUESSER } from '../../../constants/game';
+import { MysteryCountryProps } from '../../../types';
+import { MAX_ATTEMPTS_MYSTERY_COUNTRY } from '../../../constants/game';
 
-interface CountryGuesserComponentProps extends CountryGuesserProps {
+interface MysteryCountryComponentProps extends MysteryCountryProps {
     onReset: () => void;
 }
 
-function CountryGuesser({ countriesInfo, country, possibleCountries, onReset }: CountryGuesserComponentProps) {
+function MysteryCountry({ countriesInfo, country, possibleCountries, onReset }: MysteryCountryComponentProps) {
     const { name, population, flag, landlocked, region, subregion, capital, borderingCountries } = country;
 
     const [correctGuess, setCorrectGuess] = useState(false);
@@ -52,13 +52,13 @@ function CountryGuesser({ countriesInfo, country, possibleCountries, onReset }: 
     }
 
     useEffect(() => {
-        if (incorrectCount >= MAX_ATTEMPTS_COUNTRY_GUESSER) {
+        if (incorrectCount >= MAX_ATTEMPTS_MYSTERY_COUNTRY) {
             setFailed(true);
         }
     }, [incorrectCount]);
 
     return (
-        <div id='country-guesser' className='fade-in'>
+        <div id='mystery-country' className='fade-in'>
             {!failed && !correctGuess && (
                 <>
                     <h2>Name That Country</h2>
@@ -71,7 +71,7 @@ function CountryGuesser({ countriesInfo, country, possibleCountries, onReset }: 
                                 handleSubmit={handleSubmit}
                                 duplicateGuess={duplicateGuess}
                                 knownCountry={knownCountry}
-                                isLastAttempt={incorrectCount === MAX_ATTEMPTS_COUNTRY_GUESSER - 1}
+                                isLastAttempt={incorrectCount === MAX_ATTEMPTS_MYSTERY_COUNTRY - 1}
                             />
                         )}
                     </div>
@@ -180,7 +180,7 @@ function CountryGuesser({ countriesInfo, country, possibleCountries, onReset }: 
                 </>
             )}
             {correctGuess && !failed && (
-                <CountryGuesserSuccessPage
+                <MysteryCountrySuccessPage
                     countriesInfo={countriesInfo}
                     name={name}
                     flag={flag}
@@ -191,9 +191,9 @@ function CountryGuesser({ countriesInfo, country, possibleCountries, onReset }: 
                     onReset={onReset}
                 />
             )}
-            {failed && <CountryGuesserFailurePage guesses={guesses} onReset={onReset} />}
+            {failed && <MysteryCountryFailurePage guesses={guesses} onReset={onReset} />}
         </div>
     );
 }
 
-export default CountryGuesser;
+export default MysteryCountry;

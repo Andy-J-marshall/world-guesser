@@ -8,7 +8,7 @@ import useStreakManager from '../../../hooks/useStreakManager';
 import { STORAGE_KEYS } from '../../../constants/storageKeys';
 import { getStorageNumber, setStorageValue } from '../../../lib/storageUtils';
 
-interface BorderingCountriesSuccessPageProps {
+interface NeighboursSuccessPageProps {
     name: string;
     flag: string;
     correctGuesses: string[];
@@ -16,13 +16,13 @@ interface BorderingCountriesSuccessPageProps {
     onReset: () => void;
 }
 
-function BorderingCountriesSuccessPage({
+function NeighboursSuccessPage({
     name,
     flag,
     correctGuesses,
     guesses,
     onReset,
-}: BorderingCountriesSuccessPageProps) {
+}: NeighboursSuccessPageProps) {
     const totalBorders = correctGuesses.length;
     const streak = useStreakManager(STORAGE_KEYS.BORDER_STREAK, 'increment');
     const statsSaved = useRef(false);
@@ -69,4 +69,4 @@ function BorderingCountriesSuccessPage({
     );
 }
 
-export default BorderingCountriesSuccessPage;
+export default NeighboursSuccessPage;

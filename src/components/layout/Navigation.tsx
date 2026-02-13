@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { Navbar, Nav, Container } from 'react-bootstrap';
 
-export type ViewType = 'country-guesser' | 'border-finder' | 'stats';
+export type ViewType = 'mystery-country' | 'find-neighbours' | 'stats';
 
 interface NavigationProps {
     activeView: ViewType;
@@ -26,19 +26,19 @@ function Navigation({ activeView, onNavigate }: NavigationProps) {
             onToggle={(expanded) => setExpanded(expanded)}
         >
             <Container>
-                <Navbar.Brand onClick={() => handleNavClick('country-guesser')}>Globe Guesser</Navbar.Brand>
+                <Navbar.Brand onClick={() => handleNavClick('mystery-country')}>Globe Guesser</Navbar.Brand>
                 <Navbar.Toggle aria-controls='basic-navbar-nav' />
                 <Navbar.Collapse id='basic-navbar-nav'>
                     <Nav className='ms-auto'>
                         <Nav.Link
-                            active={activeView === 'country-guesser'}
-                            onClick={() => handleNavClick('country-guesser')}
+                            active={activeView === 'mystery-country'}
+                            onClick={() => handleNavClick('mystery-country')}
                         >
                             Mystery Country
                         </Nav.Link>
                         <Nav.Link
-                            active={activeView === 'border-finder'}
-                            onClick={() => handleNavClick('border-finder')}
+                            active={activeView === 'find-neighbours'}
+                            onClick={() => handleNavClick('find-neighbours')}
                         >
                             Find Neighbours
                         </Nav.Link>

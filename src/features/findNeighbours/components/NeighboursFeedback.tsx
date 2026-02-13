@@ -1,17 +1,17 @@
-import { MAX_ATTEMPTS_BORDERING_COUNTRIES } from '../../../constants/game';
+import { MAX_ATTEMPTS_FIND_NEIGHBOURS } from '../../../constants/game';
 
-interface BorderingCountriesFeedbackProps {
+interface NeighboursFeedbackProps {
     correctGuesses: string[];
     incorrectCount: number;
 }
 
-function BorderingCountriesFeedback({ correctGuesses, incorrectCount }: BorderingCountriesFeedbackProps) {
-    const guessesRemainingCount = MAX_ATTEMPTS_BORDERING_COUNTRIES - incorrectCount;
+function NeighboursFeedback({ correctGuesses, incorrectCount }: NeighboursFeedbackProps) {
+    const guessesRemainingCount = MAX_ATTEMPTS_FIND_NEIGHBOURS - incorrectCount;
     const livesWord = guessesRemainingCount === 1 ? 'life' : 'lives';
 
     return (
-        <div id='bordering-countries-guess-feedback'>
-            {incorrectCount > 0 && incorrectCount < MAX_ATTEMPTS_BORDERING_COUNTRIES && (
+        <div id='neighbours-guess-feedback'>
+            {incorrectCount > 0 && incorrectCount < MAX_ATTEMPTS_FIND_NEIGHBOURS && (
                 <div>
                     <div className='lives-counter'>
                         {guessesRemainingCount} {livesWord} remaining
@@ -33,4 +33,4 @@ function BorderingCountriesFeedback({ correctGuesses, incorrectCount }: Borderin
     );
 }
 
-export default BorderingCountriesFeedback;
+export default NeighboursFeedback;

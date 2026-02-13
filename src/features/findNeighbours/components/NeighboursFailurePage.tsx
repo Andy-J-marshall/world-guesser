@@ -6,19 +6,19 @@ import useStreakManager from '../../../hooks/useStreakManager';
 import { STORAGE_KEYS } from '../../../constants/storageKeys';
 import { getStorageNumber, setStorageValue } from '../../../lib/storageUtils';
 
-interface BorderingCountriesFailurePageProps {
+interface NeighboursFailurePageProps {
     borderingCountries: string[];
     correctGuesses: string[];
     guesses: string[];
     onReset: () => void;
 }
 
-function BorderingCountriesFailurePage({
+function NeighboursFailurePage({
     borderingCountries,
     correctGuesses,
     guesses,
     onReset,
-}: BorderingCountriesFailurePageProps) {
+}: NeighboursFailurePageProps) {
     const borderingCountriesCount = borderingCountries.length;
     useStreakManager(STORAGE_KEYS.BORDER_STREAK, 'reset');
     const statsSaved = useRef(false);
@@ -64,4 +64,4 @@ function BorderingCountriesFailurePage({
     );
 }
 
-export default BorderingCountriesFailurePage;
+export default NeighboursFailurePage;

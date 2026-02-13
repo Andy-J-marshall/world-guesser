@@ -1,12 +1,12 @@
-import CountryGuesser from './CountryGuesser';
+import MysteryCountry from './MysteryCountry';
 import { useCountrySelection } from '../../../hooks/useCountrySelection';
 import { CountriesInfo } from '../../../types';
 
-interface CountryGuesserModeProps {
+interface MysteryCountryModeProps {
     countriesInfo: CountriesInfo;
 }
 
-function CountryGuesserMode({ countriesInfo }: CountryGuesserModeProps) {
+function MysteryCountryMode({ countriesInfo }: MysteryCountryModeProps) {
     const countryCodeMapping = countriesInfo.countryCodeMapping;
     const possibleCountries = countriesInfo.countriesArray;
     const allCountriesResponseBody = countriesInfo.responseBody;
@@ -20,7 +20,7 @@ function CountryGuesserMode({ countriesInfo }: CountryGuesserModeProps) {
     return (
         <div id='country'>
             {country && (
-                <CountryGuesser
+                <MysteryCountry
                     key={gameKey}
                     countriesInfo={countriesInfo}
                     country={country}
@@ -32,4 +32,4 @@ function CountryGuesserMode({ countriesInfo }: CountryGuesserModeProps) {
     );
 }
 
-export default CountryGuesserMode;
+export default MysteryCountryMode;

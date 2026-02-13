@@ -1,15 +1,15 @@
 import { useState, useEffect } from 'react';
-import BorderingCountriesFeedback from './BorderingCountriesFeedback';
-import BorderingCountriesFailurePage from './BorderingCountriesFailurePage';
-import BorderingCountriesSuccessPage from './BorderingCountriesSuccessPage';
+import NeighboursFeedback from './NeighboursFeedback';
+import NeighboursFailurePage from './NeighboursFailurePage';
+import NeighboursSuccessPage from './NeighboursSuccessPage';
 import CountryForm from '../../../components/ui/CountryForm';
 import FeedbackToast from '../../../components/ui/FeedbackToast';
 import checkValidGuess from '../../../lib/countryValidation';
 import { parseFormGuess } from '../../../lib/formUtils';
 import { CountriesInfo } from '../../../types';
-import { MAX_ATTEMPTS_BORDERING_COUNTRIES } from '../../../constants/game';
+import { MAX_ATTEMPTS_FIND_NEIGHBOURS } from '../../../constants/game';
 
-interface BorderingCountriesGuesserProps {
+interface NeighboursGuesserProps {
     countriesInfo: CountriesInfo;
     name: string;
     flag: string;
@@ -18,13 +18,13 @@ interface BorderingCountriesGuesserProps {
     onReset: () => void;
 }
 
-function BorderingCountriesGuesser({
+function NeighboursGuesser({
     name,
     flag,
     borderingCountries,
     possibleCountries,
     onReset,
-}: BorderingCountriesGuesserProps) {
+}: NeighboursGuesserProps) {
     const [correctGuesses, setCorrectGuesses] = useState<string[]>([]);
     const [incorrectGuesses, setIncorrectGuesses] = useState<string[]>([]);
     const [incorrectCount, setIncorrectCount] = useState(0);
@@ -60,7 +60,7 @@ function BorderingCountriesGuesser({
         setDuplicateGuess(duplicateGuess);
 
         if (isValidCountry && knownCountry && !duplicateGuess) {
-            if (incorrectCount === MAX_ATTEMPTS_BORDERING_COUNTRIES - 1) {
+            if (incorrectCount === MAX_ATTEMPTS_FIND_NEIGHBOURS - 1) {
                 setFinalAttemptWarningDismissed(true);
             }
             checkGuessIsCorrect(guessedName);
@@ -84,18 +84,18 @@ function BorderingCountriesGuesser({
     }
 
     useEffect(() => {
-        if (incorrectCount >= MAX_ATTEMPTS_BORDERING_COUNTRIES) {
+        if (incorrectCount >= MAX_ATTEMPTS_FIND_NEIGHBOURS) {
             setFailed(true);
         }
     }, [incorrectCount, incorrectGuesses.length, correctGuesses]);
 
     return (
-        <div id='borders' className='fade-in'>
+        <div id='find-neighbours' className='fade-in'>
             {!succeeded && !failed && (
                 <>
                     <div id='borders-form'>
                         <h2>
-                            Name {name}'s Neighbors{' '}
+                            Name {name}'s Neighbours{' '}
                             <span className='progress-count'>
                                 ({correctGuesses.length}/{borderingCountries.length})
                             </span>
@@ -109,11 +109,11 @@ function BorderingCountriesGuesser({
                             knownCountry={knownCountry}
                             actualCountry={guessedActualCountry}
                             isLastAttempt={
-                                incorrectCount === MAX_ATTEMPTS_BORDERING_COUNTRIES - 1 && !finalAttemptWarningDismissed
+                                incorrectCount === MAX_ATTEMPTS_FIND_NEIGHBOURS - 1 && !finalAttemptWarningDismissed
                             }
                         />
                         {guesses.length > 0 && (
-                            <BorderingCountriesFeedback
+                            <NeighboursFeedback
                                 correctGuesses={correctGuesses}
                                 incorrectCount={incorrectCount}
                             />
@@ -127,7 +127,7 @@ function BorderingCountriesGuesser({
                 </>
             )}
             {failed && !succeeded && (
-                <BorderingCountriesFailurePage
+                <NeighboursFailurePage
                     correctGuesses={correctGuesses}
                     borderingCountries={borderingCountries}
                     guesses={guesses}
@@ -135,7 +135,7 @@ function BorderingCountriesGuesser({
                 />
             )}
             {succeeded && (
-                <BorderingCountriesSuccessPage
+                <NeighboursSuccessPage
                     name={name}
                     flag={flag}
                     correctGuesses={correctGuesses}
@@ -147,4 +147,4 @@ function BorderingCountriesGuesser({
     );
 }
 
-export default BorderingCountriesGuesser;
+export default NeighboursGuesser;

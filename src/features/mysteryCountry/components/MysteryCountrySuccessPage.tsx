@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from 'react';
-import BorderingCountriesGuesser from '../../borderingCountries/components/BorderingCountriesGuesser';
+import NeighboursGuesser from '../../findNeighbours/components/NeighboursGuesser';
 import Button from '../../../components/ui/Button';
 import StartNewGame from '../../../components/layout/StartNewGame';
 import StreakDisplay from '../../../components/layout/StreakDisplay';
@@ -10,7 +10,7 @@ import useStreakManager from '../../../hooks/useStreakManager';
 import { STORAGE_KEYS } from '../../../constants/storageKeys';
 import { getStorageNumber, setStorageValue } from '../../../lib/storageUtils';
 
-interface CountryGuesserSuccessPageProps {
+interface MysteryCountrySuccessPageProps {
     countriesInfo: any;
     incorrectCount: number;
     guesses: string[];
@@ -21,7 +21,7 @@ interface CountryGuesserSuccessPageProps {
     onReset: () => void;
 }
 
-function CountryGuesserSuccessPage({
+function MysteryCountrySuccessPage({
     countriesInfo,
     incorrectCount,
     guesses,
@@ -30,9 +30,9 @@ function CountryGuesserSuccessPage({
     possibleCountries,
     flag,
     onReset,
-}: CountryGuesserSuccessPageProps) {
+}: MysteryCountrySuccessPageProps) {
     const [newGameStarted, setNewGameStarted] = useState(false);
-    const [borderingCountriesGameStarted, setBorderingCountriesGameStarted] = useState(false);
+    const [neighboursGameStarted, setNeighboursGameStarted] = useState(false);
     const streak = useStreakManager(STORAGE_KEYS.COUNTRY_STREAK, 'increment');
     const statsSaved = useRef(false);
 
@@ -50,8 +50,8 @@ function CountryGuesserSuccessPage({
         setStorageValue(STORAGE_KEYS.COUNTRY_ATTEMPTS, currentAttempts + guesses.length);
     }, [guesses.length]);
 
-    function startBorderingCountriesGame() {
-        setBorderingCountriesGameStarted(true);
+    function startNeighboursGame() {
+        setNeighboursGameStarted(true);
         setNewGameStarted(true);
     }
 
@@ -80,12 +80,12 @@ function CountryGuesserSuccessPage({
                     }
                     actions={
                         <>
-                            {!borderingCountriesGameStarted && (
+                            {!neighboursGameStarted && (
                                 <StartNewGame buttonText='Play again' variant='primary' onReset={onReset} />
                             )}
                             {borderingCountries.length > 0 && (
                                 <Button
-                                    callback={startBorderingCountriesGame}
+                                    callback={startNeighboursGame}
                                     buttonText='Find the Neighbours'
                                     variant='light'
                                 />
@@ -98,8 +98,8 @@ function CountryGuesserSuccessPage({
                 </GameResultLayout>
             )}
 
-            {newGameStarted && borderingCountriesGameStarted && (
-                <BorderingCountriesGuesser
+            {newGameStarted && neighboursGameStarted && (
+                <NeighboursGuesser
                     countriesInfo={countriesInfo}
                     name={name}
                     flag={flag}
@@ -112,4 +112,4 @@ function CountryGuesserSuccessPage({
     );
 }
 
-export default CountryGuesserSuccessPage;
+export default MysteryCountrySuccessPage;

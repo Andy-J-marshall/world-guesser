@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import Navigation, { ViewType } from './components/layout/Navigation';
-import CountryGuesserMode from './features/countryGuesser/components/CountryGuesserMode';
-import BorderFinderMode from './features/borderingCountries/components/BorderFinderMode';
+import MysteryCountryMode from './features/mysteryCountry/components/MysteryCountryMode';
+import FindNeighboursMode from './features/findNeighbours/components/FindNeighboursMode';
 import StatsView from './components/layout/StatsView';
 import getAllCountriesRequest from './lib/countryApi';
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -10,7 +10,7 @@ import './styles/index.css';
 function App() {
     const [countriesData, setCountriesData] = useState<any>();
     const [foundCountry, setFoundCountry] = useState(false);
-    const [activeView, setActiveView] = useState<ViewType>('country-guesser');
+    const [activeView, setActiveView] = useState<ViewType>('mystery-country');
 
     useEffect(() => {
         if (!foundCountry) {
@@ -31,10 +31,10 @@ function App() {
         }
 
         switch (activeView) {
-            case 'country-guesser':
-                return <CountryGuesserMode countriesInfo={countriesData} />;
-            case 'border-finder':
-                return <BorderFinderMode countriesInfo={countriesData} />;
+            case 'mystery-country':
+                return <MysteryCountryMode countriesInfo={countriesData} />;
+            case 'find-neighbours':
+                return <FindNeighboursMode countriesInfo={countriesData} />;
             case 'stats':
                 return <StatsView />;
             default:

@@ -1,11 +1,11 @@
 export const STORAGE_KEYS = {
-    // Country Guesser game stats
+    // Mystery Country game stats
     COUNTRY_STREAK: 'streak',
     COUNTRY_WINS: 'numberOfWins',
     COUNTRY_GAMES: 'numberOfGames',
     COUNTRY_ATTEMPTS: 'numberOfAttempts',
 
-    // Bordering Countries game stats
+    // Find Neighbours game stats
     BORDER_STREAK: 'borderStreak',
     BORDER_WINS: 'numberOfBorderWins',
     BORDER_GAMES: 'numberOfBorderGames',
@@ -17,14 +17,14 @@ export const STORAGE_KEYS = {
     COUNTRY_RECENT: 'recentCountries',
 } as const;
 
-export const COUNTRY_GUESSER_KEYS = {
+export const MYSTERY_COUNTRY_KEYS = {
     wins: STORAGE_KEYS.COUNTRY_WINS,
     games: STORAGE_KEYS.COUNTRY_GAMES,
     attempts: STORAGE_KEYS.COUNTRY_ATTEMPTS,
     streak: STORAGE_KEYS.COUNTRY_STREAK,
 } as const;
 
-export const BORDERING_COUNTRIES_KEYS = {
+export const NEIGHBOURS_KEYS = {
     wins: STORAGE_KEYS.BORDER_WINS,
     games: STORAGE_KEYS.BORDER_GAMES,
     attempts: STORAGE_KEYS.BORDER_ATTEMPTS,

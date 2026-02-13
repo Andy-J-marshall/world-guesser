@@ -6,12 +6,12 @@ import useStreakManager from '../../../hooks/useStreakManager';
 import { STORAGE_KEYS } from '../../../constants/storageKeys';
 import { getStorageNumber, setStorageValue } from '../../../lib/storageUtils';
 
-interface CountryGuesserFailurePageProps {
+interface MysteryCountryFailurePageProps {
     guesses: string[];
     onReset: () => void;
 }
 
-function CountryGuesserFailurePage({ guesses, onReset }: CountryGuesserFailurePageProps) {
+function MysteryCountryFailurePage({ guesses, onReset }: MysteryCountryFailurePageProps) {
     useStreakManager(STORAGE_KEYS.COUNTRY_STREAK, 'reset');
     const statsSaved = useRef(false);
 
@@ -37,4 +37,4 @@ function CountryGuesserFailurePage({ guesses, onReset }: CountryGuesserFailurePa
     );
 }
 
-export default CountryGuesserFailurePage;
+export default MysteryCountryFailurePage;
