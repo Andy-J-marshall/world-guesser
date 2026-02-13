@@ -176,7 +176,7 @@
 }
 
 .validation-toast-content {
-    background: linear-gradient(135deg, rgba(255, 107, 107, 0.95) 0%, rgba(238, 90, 111, 0.95) 100%);
+    background: linear-gradient(135deg, rgba(251, 146, 60, 0.95) 0%, rgba(249, 115, 22, 0.95) 100%);
     color: #ffffff;
     padding: var(--spacing-md) var(--spacing-lg);
     border-radius: var(--border-radius-md);

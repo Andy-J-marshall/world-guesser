@@ -12,13 +12,13 @@ function ValidationToast({ duplicateGuess, knownCountry, actualCountry }: Valida
 
     useEffect(() => {
         if (duplicateGuess) {
-            setMessage("You've already tried that country!");
+            setMessage("You've already tried that country");
             setShow(true);
         } else if (!knownCountry) {
             setMessage('Enter a valid country name');
             setShow(true);
         } else if (actualCountry) {
-            setMessage("That's the actual country! Guess the bordering ones instead");
+            setMessage("That's the actual country. Guess the neighbours instead");
             setShow(true);
         }
 
