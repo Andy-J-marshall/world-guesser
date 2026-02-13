@@ -12,10 +12,11 @@ interface MysteryCountryFailurePageProps {
     name: string;
     flag: string;
     guesses: string[];
+    incorrectCount: number;
     onReset: () => void;
 }
 
-function MysteryCountryFailurePage({ name, flag, guesses, onReset }: MysteryCountryFailurePageProps) {
+function MysteryCountryFailurePage({ name, flag, guesses, incorrectCount, onReset }: MysteryCountryFailurePageProps) {
     useStreakManager(STORAGE_KEYS.COUNTRY_STREAK, 'reset');
     const statsSaved = useRef(false);
 
@@ -26,9 +27,10 @@ function MysteryCountryFailurePage({ name, flag, guesses, onReset }: MysteryCoun
         const currentGames = getStorageNumber(STORAGE_KEYS.COUNTRY_GAMES, 0);
         setStorageValue(STORAGE_KEYS.COUNTRY_GAMES, currentGames + 1);
 
+        const attemptsToRecord = Math.max(guesses.length, incorrectCount);
         const currentAttempts = getStorageNumber(STORAGE_KEYS.COUNTRY_ATTEMPTS, 0);
-        setStorageValue(STORAGE_KEYS.COUNTRY_ATTEMPTS, currentAttempts + guesses.length);
-    }, [guesses.length]);
+        setStorageValue(STORAGE_KEYS.COUNTRY_ATTEMPTS, currentAttempts + attemptsToRecord);
+    }, [guesses.length, incorrectCount]);
 
     return (
         <GameResultLayout

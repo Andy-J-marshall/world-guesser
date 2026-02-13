@@ -199,7 +199,15 @@ function MysteryCountry({ countriesInfo, country, possibleCountries, onReset }: 
                     onReset={onReset}
                 />
             )}
-            {failed && <MysteryCountryFailurePage name={name} flag={flag} guesses={guesses} onReset={onReset} />}
+            {failed && (
+                <MysteryCountryFailurePage
+                    name={name}
+                    flag={flag}
+                    guesses={guesses}
+                    incorrectCount={incorrectCount}
+                    onReset={onReset}
+                />
+            )}
         </div>
     );
 }

@@ -34,14 +34,14 @@ function NeighboursFailurePage({ borderingCountries, correctGuesses, guesses, on
         setStorageValue(STORAGE_KEYS.BORDER_ATTEMPTS, currentAttempts + guesses.length);
 
         const correctCount = correctGuesses.length;
-        const incorrectCount = guesses.length - correctGuesses.length;
+        const incorrectCount = borderingCountriesCount - correctCount;
 
         const currentCorrect = getStorageNumber(STORAGE_KEYS.BORDER_CORRECT_ANSWERS, 0);
         setStorageValue(STORAGE_KEYS.BORDER_CORRECT_ANSWERS, currentCorrect + correctCount);
 
         const currentIncorrect = getStorageNumber(STORAGE_KEYS.BORDER_INCORRECT_ANSWERS, 0);
         setStorageValue(STORAGE_KEYS.BORDER_INCORRECT_ANSWERS, currentIncorrect + incorrectCount);
-    }, [guesses.length, correctGuesses.length]);
+    }, [guesses.length, correctGuesses.length, borderingCountriesCount]);
 
     return (
         <GameResultLayout
