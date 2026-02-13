@@ -4,7 +4,7 @@ import BorderingCountriesStats from '../../features/borderingCountries/component
 function StatsView() {
     return (
         <div id='stats-view' className='fade-in'>
-            <h2>Your Statistics</h2>
+            <h2>Your Stats</h2>
             <div className='stats-view-content'>
                 <CountryGuesserStats />
                 <BorderingCountriesStats />

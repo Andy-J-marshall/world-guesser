@@ -26,7 +26,7 @@ function Navigation({ activeView, onNavigate }: NavigationProps) {
             onToggle={(expanded) => setExpanded(expanded)}
         >
             <Container>
-                <Navbar.Brand onClick={() => handleNavClick('country-guesser')}>Fun With Countries</Navbar.Brand>
+                <Navbar.Brand onClick={() => handleNavClick('country-guesser')}>Globe Guesser</Navbar.Brand>
                 <Navbar.Toggle aria-controls='basic-navbar-nav' />
                 <Navbar.Collapse id='basic-navbar-nav'>
                     <Nav className='ms-auto'>
@@ -34,13 +34,13 @@ function Navigation({ activeView, onNavigate }: NavigationProps) {
                             active={activeView === 'country-guesser'}
                             onClick={() => handleNavClick('country-guesser')}
                         >
-                            Country Guesser
+                            Mystery Country
                         </Nav.Link>
                         <Nav.Link
                             active={activeView === 'border-finder'}
                             onClick={() => handleNavClick('border-finder')}
                         >
-                            Border Finder
+                            Find Neighbours
                         </Nav.Link>
                         <Nav.Link active={activeView === 'stats'} onClick={() => handleNavClick('stats')}>
                             Stats

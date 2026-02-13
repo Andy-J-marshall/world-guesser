@@ -61,7 +61,7 @@ function CountryGuesser({ countriesInfo, country, possibleCountries, onReset }: 
         <div id='country-guesser' className='fade-in'>
             {!failed && !correctGuess && (
                 <>
-                    <h2>Guess the Mystery Country</h2>
+                    <h2>Name That Country</h2>
                     <div id='country-form'>
                         {!correctGuess && !failed && (
                             <CountryForm

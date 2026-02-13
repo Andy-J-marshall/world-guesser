@@ -95,7 +95,7 @@ function BorderingCountriesGuesser({
                 <>
                     <div id='borders-form'>
                         <h2>
-                            Find {name}'s borders{' '}
+                            Name {name}'s Neighbors{' '}
                             <span className='progress-count'>
                                 ({correctGuesses.length}/{borderingCountries.length})
                             </span>

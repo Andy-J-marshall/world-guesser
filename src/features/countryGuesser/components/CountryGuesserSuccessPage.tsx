@@ -86,7 +86,7 @@ function CountryGuesserSuccessPage({
                             {borderingCountries.length > 0 && (
                                 <Button
                                     callback={startBorderingCountriesGame}
-                                    buttonText='Find the Borders'
+                                    buttonText='Find the Neighbours'
                                     variant='light'
                                 />
                             )}
