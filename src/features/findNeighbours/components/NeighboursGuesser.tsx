@@ -84,13 +84,15 @@ function NeighboursGuesser({ name, flag, borderingCountries, possibleCountries, 
         }
     }, [incorrectCount, incorrectGuesses.length, correctGuesses]);
 
+    const possessiveName = `${name}'${name.endsWith('s') ? '' : 's'}`;
+
     return (
         <div id='find-neighbours' className='fade-in'>
             {!succeeded && !failed && (
                 <>
                     <div id='borders-form'>
                         <h2>
-                            Name {name}'s Neighbours{' '}
+                            Name {possessiveName} Neighbours{' '}
                             <span className='progress-count'>
                                 ({correctGuesses.length}/{borderingCountries.length})
                             </span>
