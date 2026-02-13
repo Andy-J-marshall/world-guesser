@@ -1,16 +1,13 @@
-import { useState, useMemo } from 'react';
+import { useMemo } from 'react';
 import BorderingCountriesGuesser from './BorderingCountriesGuesser';
-import { selectCountry } from '../../../lib/countrySelection';
+import { useCountrySelection } from '../../../hooks/useCountrySelection';
 import { CountriesInfo } from '../../../types';
-import { getRecentCountries, addRecentCountry } from '../../../lib/storageUtils';
-import { STORAGE_KEYS } from '../../../constants/storageKeys';
 
 interface BorderFinderModeProps {
     countriesInfo: CountriesInfo;
 }
 
 function BorderFinderMode({ countriesInfo }: BorderFinderModeProps) {
-    const [gameKey, setGameKey] = useState(0);
     const countryCodeMapping = countriesInfo.countryCodeMapping;
 
     const countriesWithBorders = useMemo(() => {
@@ -21,16 +18,11 @@ function BorderFinderMode({ countriesInfo }: BorderFinderModeProps) {
         return countriesWithBorders.map((country) => country.name.common);
     }, [countriesWithBorders]);
 
-    const country = useMemo(() => {
-        const recentCountries = getRecentCountries(STORAGE_KEYS.COUNTRY_RECENT);
-        const selected = selectCountry(possibleCountries, countriesWithBorders, countryCodeMapping, recentCountries);
-        addRecentCountry(STORAGE_KEYS.COUNTRY_RECENT, selected.name.toLowerCase());
-        return selected;
-    }, [gameKey, possibleCountries, countriesWithBorders, countryCodeMapping]);
-
-    function resetGame() {
-        setGameKey((prev) => prev + 1);
-    }
+    const { country, resetGame, gameKey } = useCountrySelection(
+        possibleCountries,
+        countriesWithBorders,
+        countryCodeMapping,
+    );
 
     return (
         <div id='borders-mode'>
