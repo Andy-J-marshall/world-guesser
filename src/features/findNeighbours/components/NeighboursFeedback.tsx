@@ -1,11 +1,12 @@
 import { MAX_ATTEMPTS_FIND_NEIGHBOURS } from '../../../constants/game';
 
 interface NeighboursFeedbackProps {
+    guesses: string[];
     correctGuesses: string[];
     incorrectCount: number;
 }
 
-function NeighboursFeedback({ correctGuesses, incorrectCount }: NeighboursFeedbackProps) {
+function NeighboursFeedback({ guesses, correctGuesses, incorrectCount }: NeighboursFeedbackProps) {
     const guessesRemainingCount = MAX_ATTEMPTS_FIND_NEIGHBOURS - incorrectCount;
     const livesWord = guessesRemainingCount === 1 ? 'life' : 'lives';
 
@@ -18,17 +19,20 @@ function NeighboursFeedback({ correctGuesses, incorrectCount }: NeighboursFeedba
                     </div>
                 </div>
             )}
-            {correctGuesses.length > 0 && (
-                <div className='feedback-section'>
-                    <div className='feedback-badges'>
-                        {correctGuesses.map((guess, index) => (
-                            <span key={index} className='answer-badge correct-badge'>
+            <div className='feedback-section'>
+                <div className='feedback-badges'>
+                    {guesses.map((guess, index) => {
+                        const isCorrect = correctGuesses.includes(guess);
+                        const badgeClass = isCorrect ? 'answer-badge correct-badge' : 'answer-badge incorrect-badge';
+
+                        return (
+                            <span key={index} className={badgeClass}>
                                 {guess}
                             </span>
-                        ))}
-                    </div>
+                        );
+                    })}
                 </div>
-            )}
+            </div>
         </div>
     );
 }

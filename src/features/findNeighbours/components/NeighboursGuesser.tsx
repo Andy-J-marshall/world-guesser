@@ -114,6 +114,7 @@ function NeighboursGuesser({
                         />
                         {guesses.length > 0 && (
                             <NeighboursFeedback
+                                guesses={guesses}
                                 correctGuesses={correctGuesses}
                                 incorrectCount={incorrectCount}
                             />
