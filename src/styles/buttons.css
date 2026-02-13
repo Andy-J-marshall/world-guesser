@@ -21,12 +21,13 @@
     overflow: hidden;
     letter-spacing: 0.02em;
     text-transform: none;
-    min-width: 240px;
+    min-width: 160px;
+    flex: 1;
     max-width: 320px;
 }
 
 #guess-button {
-    width: 100%;
+    width: auto;
 }
 
 .btn::before {
@@ -76,4 +77,22 @@
 .btn-primary:active {
     transform: translateY(0) !important;
     box-shadow: 0 4px 12px var(--color-shadow-primary-medium) !important;
+}
+
+.btn-secondary {
+    background: linear-gradient(135deg, #6c757d 0%, #5a6268 100%) !important;
+    color: var(--color-white) !important;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2) !important;
+    border: none !important;
+}
+
+.btn-secondary:hover {
+    transform: translateY(-2px) !important;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3) !important;
+    background: linear-gradient(135deg, #5a6268 0%, #4e555b 100%) !important;
+}
+
+.btn-secondary:active {
+    transform: translateY(0) !important;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2) !important;
 }

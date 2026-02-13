@@ -16,7 +16,6 @@
     font-size: clamp(1.25rem, 3vw, 1.5rem);
     font-weight: 600;
     color: var(--color-text-secondary);
-    margin-bottom: var(--spacing-xs);
     text-transform: uppercase;
     letter-spacing: 0.05em;
 }
@@ -100,10 +99,6 @@
     color: var(--color-text-secondary);
     font-weight: 600;
     margin-top: var(--spacing-sm);
-}
-
-.failure-message {
-    margin-bottom: var(--spacing-lg);
 }
 
 /* Feedback Messages */

@@ -15,7 +15,7 @@ function ValidationToast({ duplicateGuess, knownCountry, actualCountry }: Valida
             setMessage('Already guessed that one');
             setShow(true);
         } else if (!knownCountry) {
-            setMessage("That's not a recognized country");
+            setMessage("That's not a recognised country");
             setShow(true);
         } else if (actualCountry) {
             setMessage("That's the country itself. Try its neighbours");

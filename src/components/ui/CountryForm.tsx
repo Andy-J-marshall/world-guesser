@@ -14,6 +14,7 @@ interface CountryFormProps {
     knownCountry?: boolean;
     actualCountry?: boolean;
     isLastAttempt?: boolean;
+    onGiveUp?: () => void;
 }
 
 function CountryForm({
@@ -25,6 +26,7 @@ function CountryForm({
     knownCountry = true,
     actualCountry = false,
     isLastAttempt = false,
+    onGiveUp,
 }: CountryFormProps) {
     return (
         <Form onSubmit={handleSubmit}>
@@ -54,6 +56,11 @@ function CountryForm({
                 <Button id='guess-button' variant='light' type='submit'>
                     Guess
                 </Button>
+                {onGiveUp && (
+                    <Button id='give-up-button' variant='secondary' onClick={onGiveUp}>
+                        Give Up
+                    </Button>
+                )}
             </div>
         </Form>
     );

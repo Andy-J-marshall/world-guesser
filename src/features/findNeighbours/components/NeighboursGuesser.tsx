@@ -84,6 +84,13 @@ function NeighboursGuesser({ name, flag, borderingCountries, possibleCountries, 
         }
     }, [incorrectCount, incorrectGuesses.length, correctGuesses]);
 
+    const handleGiveUp = () => {
+        const newIncorrectCount = MAX_ATTEMPTS_FIND_NEIGHBOURS;
+
+        setIncorrectCount(newIncorrectCount);
+        setFailed(true);
+    };
+
     const possessiveName = `${name}'${name.endsWith('s') ? '' : 's'}`;
 
     return (
@@ -108,6 +115,7 @@ function NeighboursGuesser({ name, flag, borderingCountries, possibleCountries, 
                             isLastAttempt={
                                 incorrectCount === MAX_ATTEMPTS_FIND_NEIGHBOURS - 1 && !finalAttemptWarningDismissed
                             }
+                            onGiveUp={handleGiveUp}
                         />
                         {guesses.length > 0 && (
                             <NeighboursFeedback

@@ -25,6 +25,8 @@
     transition: all var(--transition-base) !important;
     backdrop-filter: blur(10px);
     font-weight: 500;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
 }
 
 .form-control:focus,
@@ -35,7 +37,6 @@
         0 0 0 4px var(--color-overlay-primary-focus),
         0 4px 12px var(--color-shadow-primary) !important;
     outline: none !important;
-    transform: translateY(-1px);
 }
 
 .form-control::placeholder,

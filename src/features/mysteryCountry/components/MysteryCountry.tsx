@@ -57,6 +57,13 @@ function MysteryCountry({ countriesInfo, country, possibleCountries, onReset }: 
         }
     }, [incorrectCount]);
 
+    const handleGiveUp = () => {
+        const newIncorrectCount = MAX_ATTEMPTS_MYSTERY_COUNTRY;
+
+        setIncorrectCount(newIncorrectCount);
+        setFailed(true);
+    };
+
     return (
         <div id='mystery-country' className='fade-in'>
             {!failed && !correctGuess && (
@@ -72,6 +79,7 @@ function MysteryCountry({ countriesInfo, country, possibleCountries, onReset }: 
                                 duplicateGuess={duplicateGuess}
                                 knownCountry={knownCountry}
                                 isLastAttempt={incorrectCount === MAX_ATTEMPTS_MYSTERY_COUNTRY - 1}
+                                onGiveUp={handleGiveUp}
                             />
                         )}
                     </div>
@@ -191,7 +199,7 @@ function MysteryCountry({ countriesInfo, country, possibleCountries, onReset }: 
                     onReset={onReset}
                 />
             )}
-            {failed && <MysteryCountryFailurePage guesses={guesses} onReset={onReset} />}
+            {failed && <MysteryCountryFailurePage name={name} flag={flag} guesses={guesses} onReset={onReset} />}
         </div>
     );
 }

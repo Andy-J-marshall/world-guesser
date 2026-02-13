@@ -1,4 +1,4 @@
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useMemo } from 'react';
 import StartNewGame from '../../../components/layout/StartNewGame';
 import AnswerHistory from '../../../components/layout/AnswerHistory';
 import GameResultLayout from '../../../components/layout/GameResultLayout';
@@ -13,15 +13,15 @@ interface NeighboursFailurePageProps {
     onReset: () => void;
 }
 
-function NeighboursFailurePage({
-    borderingCountries,
-    correctGuesses,
-    guesses,
-    onReset,
-}: NeighboursFailurePageProps) {
+function NeighboursFailurePage({ borderingCountries, correctGuesses, guesses, onReset }: NeighboursFailurePageProps) {
     const borderingCountriesCount = borderingCountries.length;
     useStreakManager(STORAGE_KEYS.BORDER_STREAK, 'reset');
     const statsSaved = useRef(false);
+
+    const missedBorders = useMemo(() => {
+        const correctGuessesLower = correctGuesses.map((g) => g.toLowerCase());
+        return borderingCountries.filter((border) => !correctGuessesLower.includes(border.toLowerCase()));
+    }, [borderingCountries, correctGuesses]);
 
     useEffect(() => {
         if (statsSaved.current) return;
@@ -49,17 +49,23 @@ function NeighboursFailurePage({
             heroContent={
                 <>
                     <div className='success-celebration'>Not quite!</div>
-                    {correctGuesses.length === 0 && <p className='failure-message'>No borders found. Keep trying!</p>}
+                    {correctGuesses.length === 0 && <p>No neighbours found. Keep trying!</p>}
                     {correctGuesses.length > 0 && (
-                        <p className='failure-message'>
-                            {correctGuesses.length} of {borderingCountriesCount} borders found.
+                        <p>
+                            {correctGuesses.length} of {borderingCountriesCount} neighbours found.
                         </p>
                     )}
                 </>
             }
             actions={<StartNewGame buttonText='Try again' onReset={onReset} />}
         >
-            <AnswerHistory guesses={guesses} correctGuesses={correctGuesses} />
+            {guesses.length > 0 && <AnswerHistory guesses={guesses} correctGuesses={correctGuesses} />}
+            {missedBorders.length > 0 && (
+                <AnswerHistory
+                    guesses={missedBorders}
+                    title={`Missed ${missedBorders.length === 1 ? 'Neighbour' : 'Neighbours'}:`}
+                />
+            )}
         </GameResultLayout>
     );
 }
