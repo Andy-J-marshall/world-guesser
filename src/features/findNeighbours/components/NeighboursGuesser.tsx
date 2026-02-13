@@ -6,6 +6,7 @@ import CountryForm from '../../../components/ui/CountryForm';
 import FeedbackToast from '../../../components/ui/FeedbackToast';
 import checkValidGuess from '../../../lib/countryValidation';
 import { parseFormGuess } from '../../../lib/formUtils';
+import { capitalizeString } from '../../../lib/utils';
 import { CountriesInfo } from '../../../types';
 import { MAX_ATTEMPTS_FIND_NEIGHBOURS } from '../../../constants/game';
 
@@ -114,7 +115,7 @@ function NeighboursGuesser({ name, flag, borderingCountries, possibleCountries, 
                             />
                         )}
                         <FeedbackToast
-                            message={`${lastIncorrectGuess.charAt(0).toUpperCase() + lastIncorrectGuess.slice(1)} doesn't border ${name}`}
+                            message={`${capitalizeString(lastIncorrectGuess)} doesn't border ${name}`}
                             show={showIncorrectToast}
                             type='error'
                         />
