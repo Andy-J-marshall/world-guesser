@@ -134,6 +134,8 @@ function NeighboursGuesser({ name, flag, borderingCountries, possibleCountries, 
             )}
             {failed && !succeeded && (
                 <NeighboursFailurePage
+                    name={name}
+                    flag={flag}
                     correctGuesses={correctGuesses}
                     borderingCountries={borderingCountries}
                     guesses={guesses}

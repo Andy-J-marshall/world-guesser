@@ -2,18 +2,21 @@ import { useEffect, useRef, useMemo } from 'react';
 import StartNewGame from '../../../components/layout/StartNewGame';
 import AnswerHistory from '../../../components/layout/AnswerHistory';
 import GameResultLayout from '../../../components/layout/GameResultLayout';
+import CountryDisplay from '../../../components/layout/CountryDisplay';
 import useStreakManager from '../../../hooks/useStreakManager';
 import { STORAGE_KEYS } from '../../../constants/storageKeys';
 import { getStorageNumber, setStorageValue } from '../../../lib/storageUtils';
 
 interface NeighboursFailurePageProps {
+    name: string;
+    flag: string;
     borderingCountries: string[];
     correctGuesses: string[];
     guesses: string[];
     onReset: () => void;
 }
 
-function NeighboursFailurePage({ borderingCountries, correctGuesses, guesses, onReset }: NeighboursFailurePageProps) {
+function NeighboursFailurePage({ name, flag, borderingCountries, correctGuesses, guesses, onReset }: NeighboursFailurePageProps) {
     const borderingCountriesCount = borderingCountries.length;
     useStreakManager(STORAGE_KEYS.BORDER_STREAK, 'reset');
     const statsSaved = useRef(false);
@@ -49,12 +52,13 @@ function NeighboursFailurePage({ borderingCountries, correctGuesses, guesses, on
             heroContent={
                 <>
                     <div className='success-celebration'>Not quite!</div>
-                    {correctGuesses.length === 0 && <p>No neighbours found. Keep trying!</p>}
+                    {correctGuesses.length === 0 && <p className='failure-message'>No neighbours found. Keep trying!</p>}
                     {correctGuesses.length > 0 && (
-                        <p>
+                        <p className='failure-message'>
                             {correctGuesses.length} of {borderingCountriesCount} neighbours found.
                         </p>
                     )}
+                    <CountryDisplay name={name} flag={flag} />
                 </>
             }
             actions={<StartNewGame buttonText='Try again' onReset={onReset} />}
